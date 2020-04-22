@@ -1,4 +1,4 @@
-#Hotel Booking Website
+# Hotel Booking Website
 
 A local tourism agency in Bergen is launching a new website called ‘Holidaze’ for visitors to the
 area to be able to find hotels, B&Bs and guesthouses, and for the accommodation owners to
@@ -17,9 +17,9 @@ you are able to develop with the tools they give you.
 You can implement your own API if you’d prefer, and can use React and Vue frameworks like
 Next, Gatsby and Nuxt.
 
-##Requirements for the Website
+## Requirements for the Website
 
-###Visitor Side
+### Visitor Side
 • Home page.
 • Search bar typeahead (auto dropdown with hotel names that match what has been
 typed).
@@ -28,18 +28,18 @@ typed).
 • An enquiry page either as a modal or a separate page.
 • A contact page (different to the enquiry page) which goes to the admin for Holidaze.
 
-###Admin side
+### Admin side
 • Simulate a login section (you can make use of localStorage).
 • The list of enquiries, contact messages and establishments should be listed here. New
 enquiries and contact messages will appear when a user submits the forms.
 • The admin can create a new establishment via a form.
 
-###Recommended Process
+### Recommended Process
 Week 1 and 2: Planning and Design
 Week 3 to 6: Coding
 Week 7: Bug Fixing
 
-##Level 1 Process
+## Level 1 Process
 • Start by planning out the project. Develop a Gantt chart, a functional specification and a
 wireframe.
 • Next begin your research of likely users and browse competitor websites for ideas.

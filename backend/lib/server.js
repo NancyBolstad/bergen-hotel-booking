@@ -4,9 +4,9 @@ const serveStatic = require('serve-static');
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
-const establishments = require('../data/establishments.json');
-const enquires = require('../data/enquires.json');
-const contact = require('../data/contact.json');
+const establishmentsJson = require('../data/establishments.json');
+const enquiresJson = require('../data/enquires.json');
+const contactJson = require('../data/contact.json');
 var methodOverride = require('method-override');
 
 const app = express();
@@ -54,15 +54,17 @@ app
   .route('/api/v1/establishments')
   .get(function (_, res) {
     try {
-      res.json({ code: 200, ...establishments });
+      res.json({ code: 200, ...establishmentsJson });
     } catch (error) {
       if ('response' in error) {
         res.json(error.response.body);
       } else res.json(error);
     }
   })
-  .post(function (_, res) {
+  .post(function (req, res) {
     try {
+      console.log(req.body);
+      enquiresJson.establishments.push(req.body);
       res.send('Add an establishment');
     } catch (error) {
       if ('response' in error) {
@@ -75,7 +77,7 @@ app.get('/api/v1/establishments/:id', function (req, res, _) {
   try {
     const requestValue = req.params.id;
 
-    const toFind = establishments.find((establishment) => {
+    const toFind = establishments.establishments.find((establishment) => {
       return establishment.id === requestValue;
     });
 
@@ -95,7 +97,7 @@ app.get('/api/v1/establishments/:id', function (req, res, _) {
 
 app.get('/api/v1/enquiries', function (_, res, _) {
   try {
-    res.json({ code: 200, ...enquires });
+    res.json({ code: 200, ...enquiresJson });
   } catch (error) {
     if ('response' in error) {
       res.json(error.response.body);
@@ -105,7 +107,7 @@ app.get('/api/v1/enquiries', function (_, res, _) {
 
 app.get('/api/v1/contact', function (_, res, _) {
   try {
-    res.json({ code: 200, ...contact });
+    res.json({ code: 200, ...contactJson });
   } catch (error) {
     if ('response' in error) {
       res.json(error.response.body);

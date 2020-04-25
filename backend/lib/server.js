@@ -2,6 +2,7 @@
 
 const serveStatic = require('serve-static');
 const express = require('express');
+const fs = require('fs');
 const path = require('path');
 const cors = require('cors');
 const establishmentsJson = require('../data/establishments.json');
@@ -64,8 +65,18 @@ app
   .post(function (req, res) {
     try {
       console.log(req.body);
-      enquiresJson.establishments.push(req.body);
-      res.send('Add an establishment');
+      fs.writeFile(
+        '../data/establishments.json',
+        JSON.stringify(JSON.parse(req.body), null, 4),
+        (err) => {
+          if (err) {
+            console.error(err);
+            return;
+          }
+          console.log('File has been created');
+        },
+      );
+      res.send('A new establishment has been created');
     } catch (error) {
       if ('response' in error) {
         res.json(error.response.body);

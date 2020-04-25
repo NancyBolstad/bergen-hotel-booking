@@ -9,10 +9,11 @@
     "develop": "node ./lib/server.js"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.14.0",
+    "fs": "^0.0.1-security",
     "serve-static": "^1.11.2",
-    "trie-search": "^1.0.0",
-    "cors": "^2.8.5"
+    "trie-search": "^1.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.6.4",

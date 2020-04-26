@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import * as firebase from 'firebase';
-import database from '../config/database';
-import { Contact } from '../types/contact';
+import database from '../../config/database';
+import { Contact } from './contact';
 
 export async function getAllContact(req: Request, res: Response) {
   try {

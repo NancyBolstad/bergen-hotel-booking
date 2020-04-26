@@ -5,25 +5,24 @@
   "author": "Nancy Bolstad <litchacha@gmail.com>",
   "private": true,
   "scripts": {
-    "start": "cd backend && npm install && node ./lib/server.js",
     "setup:npm": "npm install && npm-run-all -p setup:npm:*",
-    "setup:npm:backend": "cd backend && npm install",
+    "setup:npm:functions": "cd functions && npm install",
     "setup:npm:frontend": "cd frontend && npm install",
     "develop:npm": "npm-run-all -p develop:npm:*",
-    "develop:npm:backend": "cd backend && npm run develop",
+    "develop:npm:functions": "cd functions && npm run start",
     "develop:npm:frontend": "cd frontend && npm run develop",
     "setup:yarn": "yarn && npm-run-all -p setup:yarn:*",
-    "setup:yarn:backend": "cd backend && yarn",
+    "setup:yarn:functions": "cd functions && yarn",
     "setup:yarn:frontend": "cd frontend && yarn",
     "develop:yarn": "npm-run-all -p develop:yarn:*",
-    "develop:yarn:backend": "cd backend && yarn develop",
+    "develop:yarn:functions": "cd functions && yarn start",
     "develop:yarn:frontend": "cd frontend && yarn develop",
     "build:npm": "cd frontend && npm run build",
-    "build:yarn": "cd frontend && yarn install && yarn build"
+    "build:yarn": "cd frontend && yarn install && yarn build",
+    "deploy-firebase:npm": "cd functions && npm install && npm run deploy",
+    "deploy-firebase:yarn": "cd functions && yarn install && yarn deploy"
   },
   "devDependencies": {
-    "body-parser": "^1.19.0",
-    "method-override": "^3.0.0",
     "npm-run-all": "^4.1.5"
   },
   "license": "MIT"

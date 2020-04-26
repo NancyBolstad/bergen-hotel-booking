@@ -33,7 +33,7 @@ app
             });
           });
 
-          res.status(200).json({ contact: data });
+          res.status(200).json({ code: 200, contact: data });
         });
     } catch (error) {
       res.status(500).send(error);
@@ -49,9 +49,19 @@ app
 
       return database
         .ref('contact')
-        .push(newContact)
+        .push(
+          {
+            newContact,
+            createdAt: firebase.database.ServerValue.TIMESTAMP,
+          },
+          (error) => {
+            if (error) {
+              throw error;
+            }
+          },
+        )
         .then((doc) => {
-          res.status(200).json(`Created a new contact ${doc.key}`);
+          res.status(200).json({ code: 200, message: `Created a new contact ${doc.key}` });
         });
     } catch (error) {
       res.status(500).send(error);

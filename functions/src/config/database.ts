@@ -1,3 +1,5 @@
+import * as firebase from 'firebase';
+
 const config = {
   apiKey: 'AIzaSyBEqQ8JXTaRWlPxmZ-yFmu8-gUj2UCQP2k',
   authDomain: 'holidaze-service.firebaseapp.com',
@@ -9,4 +11,7 @@ const config = {
   measurementId: 'G-6PBETGE2D7',
 };
 
-export default config;
+firebase.initializeApp(config);
+const database = firebase.database();
+
+export default database;

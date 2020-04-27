@@ -37,7 +37,7 @@ export async function createContact(req: Request, res: Response) {
       .ref('contact')
       .push(
         {
-          newContact,
+          ...newContact,
           createdAt: firebase.database.ServerValue.TIMESTAMP,
         },
         (error) => {

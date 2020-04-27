@@ -23,7 +23,11 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+      - name: Install Dependencies
+        run: cd client && npm install
       - name: Build project
-        run: npm build:npm
+        run: cd client && npm run build
+      - name: Test Storybook
+        run: cd client && npm run build-storybook
         env:
           CI: true

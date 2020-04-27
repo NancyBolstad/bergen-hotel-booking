@@ -26,10 +26,8 @@ jobs:
       - name: Install Dependencies
         run: cd client && npm install
       - name: Build project
-        run: npm run build
+        run: cd client && npm run build
       - name: Test Storybook
-        run: npm run build-storybook
+        run: cd client && npm run build-storybook
         env:
           CI: true
-      - name: Pre-Deploy
-        run: npm run predeploy

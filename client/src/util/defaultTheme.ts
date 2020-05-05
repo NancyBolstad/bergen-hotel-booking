@@ -9,34 +9,36 @@ import {
   ISpacing,
 } from '../types/theme';
 
+const stableColors: Partial<IColors> = {
+  success: '#049F51',
+  warning: '#FFB84D',
+  error: '#FF4D4D',
+  white: '#ffffff',
+  dark: '#000000',
+};
+
 const defaultColors: IColors = {
-  primary: '#2B2928',
-  primaryVariant: '#555453',
-  secondary: '#9933FF',
-  secondaryVariant: '#642D96',
+  primary: '#C2003D',
+  onPrimary: '#ffffff',
+  secondary: '#FFEBE4',
+  onSecondary: '#000000',
   background: '#ffffff',
-  surface: '#f7f8f6',
-  error: '#ff0000',
-  onPrimary: '#f7f8f6',
-  onSecondary: '#ffffff',
-  onBackground: '#2B2928',
-  onSurface: '#2B2928',
-  onError: '#ffffff',
+  surface: '#F5E5E5',
+  onSurface: '#888888',
+  onBackground: '#000000',
+  ...stableColors,
 };
 
 const darkThemeColors: IColors = {
-  primary: '#f7f8f6',
-  primaryVariant: '#ffffff',
-  secondary: '#9933FF',
-  secondaryVariant: '#642D96',
+  primary: '#FFEBE4',
+  onPrimary: '#000000',
+  secondary: '#FFEBE4',
+  onSecondary: '000000',
   background: '#000000',
-  surface: '#000000',
-  error: '#ff0000',
-  onPrimary: '#f7f8f6',
-  onSecondary: '#ffffff',
-  onBackground: '#f7f8f6',
-  onSurface: '#f7f8f6',
-  onError: '#ffffff',
+  surface: '#888888',
+  onSurface: '#ffffff',
+  onBackground: '#ffffff',
+  ...stableColors,
 };
 
 export const defaultMediaQueries: IMediaQueries = {
@@ -49,8 +51,10 @@ const defaultSpacing: ISpacing = {
   xs: 0.5,
   s: 1,
   m: 1.5,
-  l: 3,
-  xl: 5,
+  l: 2,
+  xl: 3,
+  xxl: 3.5,
+  max: 4.5,
 };
 
 const defaultFontFamily: IFontFamily = {
@@ -66,14 +70,14 @@ const defaultFontWeight: IFontWeight = {
 const h1: Font = {
   family: defaultFontFamily.primary,
   weight: defaultFontWeight.bold,
-  size: 1.875,
-  lineHeight: 1.25,
+  size: 2.8125,
+  lineHeight: 1.15,
   mediaQueries: [
     {
       query: defaultMediaQueries.small,
       weight: defaultFontWeight.bold,
-      size: 3.125,
-      lineHeight: 1.15,
+      size: 3.4375,
+      lineHeight: 1.25,
     },
   ],
 };
@@ -132,7 +136,7 @@ const h5: Font = {
     {
       query: defaultMediaQueries.small,
       weight: defaultFontWeight.regular,
-      size: 1.25,
+      size: 1,
       lineHeight: 1.15,
     },
   ],
@@ -157,13 +161,13 @@ const b1: Font = {
   family: defaultFontFamily.primary,
   weight: defaultFontWeight.regular,
   size: 1,
-  lineHeight: 1.5,
+  lineHeight: 1.15,
   mediaQueries: [
     {
       query: defaultMediaQueries.small,
       weight: defaultFontWeight.regular,
       size: 1,
-      lineHeight: 1.5,
+      lineHeight: 1.125,
     },
   ],
 };
@@ -177,7 +181,7 @@ const b2: Font = {
     {
       query: defaultMediaQueries.small,
       weight: defaultFontWeight.bold,
-      size: 1.125,
+      size: 1.25,
       lineHeight: 1.15,
     },
   ],

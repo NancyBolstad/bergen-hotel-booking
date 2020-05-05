@@ -1,6 +1,8 @@
 import { Root as Details } from '../types/details';
 import { Root as Response } from '../types/data';
 
+export const APP_NAME: string = 'Holidaze Bergen';
+
 export const API_BASE_URL: string = 'https://api.rawg.io/api/games';
 
 export const FAVORITES_KEY: string = 'favorites';

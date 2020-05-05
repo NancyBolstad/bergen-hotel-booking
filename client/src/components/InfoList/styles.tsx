@@ -39,7 +39,7 @@ export const InfoItemTitleWrapper = styled.div`
   svg {
     width: 1.5rem;
     height: 1.5rem;
-    fill: ${props => props.theme.colors.secondary};
+    fill: ${props => props.theme.colors.primary};
     margin-left: ${props => props.theme.spacing.xs}rem;
     margin-top: 0.5rem;
   }

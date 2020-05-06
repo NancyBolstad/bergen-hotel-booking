@@ -1,5 +1,5 @@
 import React from 'react';
-import Typography from '../Typography';
+import Typography from '../Typography/Typography';
 import { ButtonInternal } from '../Button';
 import { Result } from '../../types/data';
 import { CardWrapper, CardImage, LikeButton } from './styles';

@@ -9,6 +9,6 @@ export const LoaderWrapper = styled.div`
   justify-content: center;
 
   svg {
-    fill: ${props => props.theme.colors.secondary};
+    fill: ${props => props.theme.colors.primary};
   }
 `;

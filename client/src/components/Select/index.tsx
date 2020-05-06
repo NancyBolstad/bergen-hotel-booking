@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { solidArrow } from '../../util/icons';
 import { Wrapper, SelectFieldWrapper, Label, Arrow, StyledSelect } from './styles';
-import Typography from '../Typography';
+import Typography from '../Typography/Typography';
 
 export interface Option {
   label?: string;

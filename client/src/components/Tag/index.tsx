@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Typography from '../Typography';
+import Typography from '../Typography/Typography';
 import { Genre, Platform2 } from '../../types/details';
 import {
   TagWrapper,

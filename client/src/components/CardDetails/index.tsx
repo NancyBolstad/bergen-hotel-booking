@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Typography from '../Typography';
+import Typography from '../Typography/Typography';
 import { ButtonExternal } from '../Button';
 import Tag from '../Tag';
 import { Genre, Platform2 } from '../../types/details';

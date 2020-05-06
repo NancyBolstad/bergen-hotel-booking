@@ -1,3 +1,4 @@
+import { Success } from './../pages/Success/index';
 export interface IMediaQueries {
   small: number;
   medium: number;
@@ -10,6 +11,8 @@ export interface ISpacing {
   m: number;
   l: number;
   xl: number;
+  xxl: number;
+  max: number;
 }
 
 export interface FontMediaQuery {
@@ -53,17 +56,18 @@ export interface IFontWeight {
 
 export interface IColors {
   primary: string;
-  primaryVariant: string;
-  secondary: string;
-  secondaryVariant: string;
-  background: string;
-  surface: string;
-  error: string;
   onPrimary: string;
+  secondary: string;
   onSecondary: string;
+  background: string;
   onBackground: string;
+  surface: string;
   onSurface: string;
-  onError: string;
+  success?: string;
+  warning?: string;
+  error?: string;
+  white?: string;
+  dark?: string;
 }
 
 export interface Theme {

@@ -6,7 +6,7 @@ import {
   InfoItemFlexChild,
   InfoItemTitleWrapper,
 } from './styles';
-import Typography from '../Typography';
+import Typography from '../Typography/Typography';
 
 interface InfoBox {
   title: string;
@@ -30,12 +30,10 @@ export const InfoList: React.FunctionComponent<InfoListProps> = ({ sectionTitle,
             {!!box.title && (
               <InfoItemTitleWrapper>
                 {check}
-                <Typography element="h2" variant="h2" content={box.title} />
+                <Typography element="h3" variant="h3" content={box.title} isPrimaryColor />
               </InfoItemTitleWrapper>
             )}
-            {!!box.content && (
-              <Typography element="p" variant="b1" content={box.content} isPrimaryColor />
-            )}
+            {!!box.content && <Typography element="p" variant="b1" content={box.content} />}
           </InfoItemFlexChild>
         ))}
       </InfoListFlexParent>

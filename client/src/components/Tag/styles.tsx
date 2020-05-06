@@ -29,7 +29,9 @@ export const CategoriesButtonWrapper = styled.div`
 export const CategoriesButton = styled(Button)<{ active?: boolean }>`
   font-weight: bold;
   flex: 1;
-  border-bottom: 2px solid ${props => props.theme.colors.secondary};
+  background-color: ${props => props.theme.colors.background};
+  color: ${props => props.theme.colors.onBackground};
+  border-bottom: 2px solid ${props => props.theme.colors.onBackground};
 
   @media (min-width: 600px) {
     padding: 10px 20px;
@@ -39,7 +41,7 @@ export const CategoriesButton = styled(Button)<{ active?: boolean }>`
     props.active === true &&
     css`
       background-color: ${props => props.theme.colors.secondary};
-      color: white;
+      color: ${props => props.theme.colors.dark};
     `}
 `;
 
@@ -52,7 +54,7 @@ export const CategoriesList = styled.ul`
 
 export const CategoriesListItem = styled.li`
   margin-bottom: ${props => props.theme.spacing.s}rem;
-  background-color: ${props => props.theme.colors.primaryVariant};
+  background-color: ${props => props.theme.colors.onBackground};
   padding: ${props => props.theme.spacing.xs}rem ${props => props.theme.spacing.s}rem;
   border-radius: 10px;
   margin-right: ${props => props.theme.spacing.s}rem;

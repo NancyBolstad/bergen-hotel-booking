@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const FooterWrapper = styled.footer`
   width: 100%;
-  background-color: ${props => props.theme.colors.surface};
+  background-color: ${props => props.theme.colors.dark};
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -11,11 +11,8 @@ export const FooterWrapper = styled.footer`
 `;
 
 export const FooterContent = styled.div`
-  max-width: 1440px;
-  margin: 0 auto;
-
   a {
-    color: ${props => props.theme.colors.onSurface};
+    color: ${props => props.theme.colors.white};
     text-decoration: none;
   }
   a:hover {

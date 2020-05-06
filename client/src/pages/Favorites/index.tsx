@@ -2,7 +2,7 @@ import * as React from 'react';
 import HomeContent from '../../components/MainContent';
 import { Context } from '../../context/GlobalContext';
 import Slider from '../../components/Slider/';
-import Banner from '../../components/Banner';
+import Banner from '../../components/PageHero';
 
 interface Props {}
 

@@ -1,23 +1,56 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { IColors } from '../../types/theme';
+import createMediaQueries from '../../util/createMediaQuery';
 
-export const Wrapper = styled.section<{ background?: string }>`
+type backgroundColor = keyof IColors;
+
+interface BackgroundInterface {
+  imageUrl?: string;
+  backgroundColor?: backgroundColor;
+}
+
+const backgroundCSS = css<BackgroundInterface>`
+  background-image: url(${props => props.imageUrl});
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  ${props =>
+    props.backgroundColor &&
+    css`
+      background-color: ${props.theme.colors[props.backgroundColor]};
+    `}
+`;
+
+export const BackgroundImage = styled.section<BackgroundInterface>`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
-  background-image: url(${props => props.background});
-  background-color: ${props => props.theme.colors.secondary};
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: relative;
-  height: 65vh;
+  height: 40vh;
+  ${backgroundCSS}
 `;
 
 export const Content = styled.div`
-  position: absolute;
-  bottom: 0;
-  height: 79px;
+  position: relative;
   background-color: ${props => props.theme.colors.background};
+  margin: 0 auto;
+  width: 80vw;
+  z-index: 1;
+  top: -5.5625rem;
+
+  ${createMediaQueries(
+    'medium',
+    css`
+      top: -8.0625rem;
+    `,
+  )}
+
+  ${createMediaQueries(
+    'large',
+    css`
+      max-width: 1280px;
+    `,
+  )}
 `;

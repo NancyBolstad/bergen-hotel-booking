@@ -20,6 +20,8 @@ const image = {
 
 export const mockChildren = [mockHeadingA, mockHeadingB, mockHeadingA, mockHeadingB];
 
-storiesOf('Component/PageHero', module).add('Default', () => (
-  <PageHero children={mockChildren} figure={image} />
-));
+storiesOf('Component/PageHero', module)
+  .add('Default', () => <PageHero children={mockChildren} figure={image} />)
+  .add('Without background image', () => (
+    <PageHero children={mockChildren} backgroundColor="primary" />
+  ));

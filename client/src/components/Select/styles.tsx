@@ -28,7 +28,7 @@ export const StyledSelect = styled.select`
   color: ${props => props.theme.colors.primary};
   background-size: 20px 20px;
   ${props => createFontStyles(props.theme.fonts.b1)};
-  border: 1px solid ${props => props.theme.colors.primaryVariant};
+  border: 1px solid ${props => props.theme.colors.primary};
   padding: 0 16px;
   margin-top: ${props => props.theme.spacing.xs}rem;
   outline: none;

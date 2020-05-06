@@ -7,14 +7,13 @@ import {
   HeaderNavLinkList,
   HeaderNavLink,
   SiteLogo,
-  ModeSwitchButton,
-  TogglerSlider,
   MobileMenuIcon,
   MobileMenuWrapper,
 } from './styles';
+import { APP_NAME } from '../../util/constants';
 import { ContrastContext } from '../../context/Contrast';
 import { Context } from '../../context/GlobalContext';
-import { hamburger, cross } from '../../util/icons';
+import { hamburger, cross, search, heart, sun, moon } from '../../util/icons';
 import useIsDesktop from '../../hooks/useIsDesktop';
 
 const Header: React.FunctionComponent = () => {
@@ -48,12 +47,18 @@ const Header: React.FunctionComponent = () => {
                 }
               }}
             >
-              RAWG
+              {APP_NAME}
             </SiteLogo>
             {isDesktop && (
               <HeaderNavLinkList>
                 <li>
-                  <HeaderNavLink to="/favorites">Favorites ({favorites.length})</HeaderNavLink>
+                  <HeaderNavLink to="/accommodations">Accommodations</HeaderNavLink>
+                </li>
+                <li>
+                  <HeaderNavLink to="/blog">Blog</HeaderNavLink>
+                </li>
+                <li>
+                  <HeaderNavLink to="/about">About</HeaderNavLink>
                 </li>
                 <li>
                   <HeaderNavLink to="/contact">Contact</HeaderNavLink>
@@ -62,19 +67,15 @@ const Header: React.FunctionComponent = () => {
             )}
           </HeaderMenuLeft>
           <HeaderMenuRight>
-            <ModeSwitchButton onClick={() => toggleContrast()}>
-              <span role="img" aria-label="default mode">
-                🌞
-              </span>
-              <span role="img" aria-label="dark mode">
-                🌛
-              </span>
-              <TogglerSlider mode={theme} />
-            </ModeSwitchButton>
+            <HeaderNavLink to="/search">{search}</HeaderNavLink>
+            <HeaderNavLink to="/favorites">
+              {heart} ({favorites.length})
+            </HeaderNavLink>
+            <HeaderNavLink to="/#" onClick={() => toggleContrast()}>
+              {theme === 'default' ? sun : moon}
+            </HeaderNavLink>
             {!isDesktop && (
               <MobileMenuIcon
-                variant="primary"
-                size="small"
                 onClick={e => {
                   e.preventDefault();
                   setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -88,16 +89,6 @@ const Header: React.FunctionComponent = () => {
       </HeaderWrapper>
       {!isDesktop && isMobileMenuOpen && (
         <MobileMenuWrapper>
-          <HeaderNavLink
-            to="/favorites"
-            onClick={e => {
-              e.preventDefault();
-              window.location.assign('/favorites');
-              setIsMobileMenuOpen(false);
-            }}
-          >
-            Favorites ({favorites.length})
-          </HeaderNavLink>
           <HeaderNavLink
             to="/contact"
             onClick={e => {

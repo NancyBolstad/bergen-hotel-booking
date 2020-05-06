@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import HomeContent from '.';
-import Typography from '../Typography';
+import Typography from '../Typography/Typography';
 
 const mockHeadingA = (
   <Typography element="h1" variant="h1" content="Neque porro quisquam dolorem" isPrimaryColor />

@@ -20,9 +20,9 @@ export const SearchFormWrapper = styled.div`
     }
   }
   input[type='text'] {
-    border: 2px solid ${props => props.theme.colors.primaryVariant};
+    border: 2px solid ${props => props.theme.colors.primary};
     background: ${props => props.theme.colors.surface};
-    color: ${props => props.theme.colors.primaryVariant};
+    color: ${props => props.theme.colors.primary};
     white-space: nowrap;
     padding: 0.55rem 0.75rem;
     font-size: 1.1em;
@@ -33,7 +33,7 @@ export const SearchFormWrapper = styled.div`
     width: 40vw;
 
     ::placeholder {
-      color: ${props => props.theme.colors.primaryVariant};
+      color: ${props => props.theme.colors.primary};
     }
   }
   button[type='submit'] {

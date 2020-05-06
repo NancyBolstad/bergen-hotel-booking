@@ -62,6 +62,7 @@ yarn-error.log
 # Yarn Integrity file
 .yarn-integrity
 
-/frontend/dist
+/client/build
 
 /forms
+/mockData

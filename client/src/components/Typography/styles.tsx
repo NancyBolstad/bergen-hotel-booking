@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import createFontStyles from '../../util/createFontStyles';
 import pixelsToRem from '../../util/pixelsToRem';
-import { Space as SpaceInterface, Styles } from './';
+import { Space as SpaceInterface, Styles } from './Typography';
 
 export const Space = css<SpaceInterface>`
   ${props =>
@@ -32,7 +32,7 @@ export const Space = css<SpaceInterface>`
 
 export const Text = styled.p<Styles>`
   color: ${props =>
-    props.isPrimaryColor ? props.theme.colors.primaryVariant : props.theme.colors.secondary};
+    props.isPrimaryColor ? props.theme.colors.primary : props.theme.colors.onBackground};
   ${props =>
     props.variant === 'b1' &&
     css`

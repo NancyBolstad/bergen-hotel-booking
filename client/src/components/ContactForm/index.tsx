@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 import { Form, StyledInput, Label, StyledLabelText, StyledTextArea, ErrorMessage } from './styles';
 import Button from '../Button';
-import Typography from '../Typography';
+import Typography from '../Typography/Typography';
 import contactSchema from '../../util/contactSchema';
 
 interface Props {}

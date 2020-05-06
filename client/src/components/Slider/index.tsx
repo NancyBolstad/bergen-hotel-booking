@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Swipeable } from 'react-swipeable';
 import { arrow } from '../../util/icons';
-import Typography from '../Typography';
+import Typography from '../Typography/Typography';
 import { Result } from '../../types/data';
 import {
   SliderWrapper,

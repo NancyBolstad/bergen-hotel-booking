@@ -1,16 +1,9 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import PageHero from '.';
-import Typography from '../Typography/Typography';
+import { BlogListStory } from '../Blog/stories';
 
-const mockHeadingA = (
-  <Typography element="h1" variant="h1" content="Neque porro quisquam dolorem" isPrimaryColor />
-);
-const mockHeadingB = (
-  <Typography element="h2" variant="h2" content="Neque porro quisquam dolorem" />
-);
-
-const image = {
+export const image = {
   url:
     'https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1080&q=80',
   alt: 'Foo',
@@ -18,10 +11,8 @@ const image = {
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
 };
 
-export const mockChildren = [mockHeadingA, mockHeadingB, mockHeadingA, mockHeadingB];
-
 storiesOf('Component/PageHero', module)
-  .add('Default', () => <PageHero children={mockChildren} figure={image} />)
+  .add('Default', () => <PageHero children={BlogListStory} figure={image} />)
   .add('Without background image', () => (
-    <PageHero children={mockChildren} backgroundColor="primary" />
+    <PageHero children={BlogListStory} backgroundColor="primary" />
   ));

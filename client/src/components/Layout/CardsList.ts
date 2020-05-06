@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
-export const CardsListWrapper = styled.div`
+export const CardsList = styled.div`
+  max-width: 1440px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -10,7 +11,7 @@ export const CardsListWrapper = styled.div`
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
-    margin: calc(-${props => props.theme.spacing.s}rem / 2);
+    margin: calc(-${props => props.theme.spacing.xs}rem / 2);
 
     &::after {
       content: '';

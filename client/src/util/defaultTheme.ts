@@ -161,13 +161,13 @@ const b1: Font = {
   family: defaultFontFamily.primary,
   weight: defaultFontWeight.regular,
   size: 1,
-  lineHeight: 1.15,
+  lineHeight: 1.25,
   mediaQueries: [
     {
       query: defaultMediaQueries.small,
       weight: defaultFontWeight.regular,
       size: 1,
-      lineHeight: 1.125,
+      lineHeight: 1.5,
     },
   ],
 };

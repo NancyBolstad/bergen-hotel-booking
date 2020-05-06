@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import createFontStyles from '../../util/createFontStyles';
 import pixelsToRem from '../../util/pixelsToRem';
-import { Space as SpaceInterface, Styles } from './';
+import { Space as SpaceInterface, Styles } from './Typography';
 
 export const Space = css<SpaceInterface>`
   ${props =>

@@ -1,6 +1,5 @@
 import * as React from 'react';
-import LayoutContainer from '../LayoutContainer';
-import Typography from '../Typography';
+import Typography from '../Typography/Typography';
 import { FooterWrapper, FooterContent } from './styles';
 
 export interface Props {}
@@ -8,18 +7,16 @@ export interface Props {}
 export const Footer: React.FC<Props> = () => {
   return (
     <FooterWrapper>
-      <LayoutContainer size="large">
-        <FooterContent>
-          <a href="https://rawg.io/" title="Go to RAWG Video Games ">
-            <Typography
-              variant="b2"
-              element="h6"
-              content="Developed with RAWG Video Games Database API"
-              isPrimaryColor
-            />
-          </a>
-        </FooterContent>
-      </LayoutContainer>
+      <FooterContent>
+        <a href="https://rawg.io/" title="Go to RAWG Video Games ">
+          <Typography
+            variant="b2"
+            element="h6"
+            content="Developed with RAWG Video Games Database API"
+            isPrimaryColor
+          />
+        </a>
+      </FooterContent>
     </FooterWrapper>
   );
 };

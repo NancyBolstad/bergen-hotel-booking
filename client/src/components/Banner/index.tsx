@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Wrapper } from './styles';
-import Typography from '../Typography';
+import Typography from '../Typography/Typography';
 import { ButtonInternal } from '../Button';
 
 interface Props {

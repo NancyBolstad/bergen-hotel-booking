@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Typography from '../../components/Typography';
+import Typography from '../../components/Typography/Typography';
 import MainContent from '../../components/MainContent';
 import InfoList, { InfoListProps } from '../../components/InfoList';
 

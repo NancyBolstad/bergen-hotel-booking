@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { storiesOf } from '@storybook/react';
-import Typography from '.';
+import Typography from './Typography';
 
 const Wrapper = styled.div`
   display: flex;

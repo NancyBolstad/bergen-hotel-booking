@@ -1,7 +1,7 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import createFontStyles from '../../util/createFontStyles';
-import Button, { ButtonProps } from '../Button';
+import { ButtonProps } from '../Button';
 
 export const HeaderWrapper = styled.header`
   width: 100%;

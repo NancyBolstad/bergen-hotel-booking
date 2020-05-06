@@ -6,7 +6,7 @@ import {
   InfoItemFlexChild,
   InfoItemTitleWrapper,
 } from './styles';
-import Typography from '../Typography';
+import Typography from '../Typography/Typography';
 
 interface InfoBox {
   title: string;

@@ -1,13 +1,13 @@
 import styled, { css } from 'styled-components';
 
-type layout = 'small' | 'medium' | 'large' | 'fluid';
+export type widthSize = 'small' | 'medium' | 'large' | 'fluid';
 
 interface Props {
-  size?: layout;
+  size?: widthSize;
   custom?: string;
 }
 
-const LayoutContainer = styled.div<Props>`
+const WidthConstraints = styled.div<Props>`
   margin: 0 auto;
   ${props =>
     props.size === 'small' &&
@@ -36,4 +36,4 @@ const LayoutContainer = styled.div<Props>`
     `};
 `;
 
-export default LayoutContainer;
+export default WidthConstraints;

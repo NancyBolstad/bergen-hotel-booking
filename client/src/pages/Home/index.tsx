@@ -1,5 +1,5 @@
 import React from 'react';
-import Typography from '../../components/Typography';
+import Typography from '../../components/Typography/Typography';
 import MainContent from '../../components/MainContent';
 import { Context } from '../../context/GlobalContext';
 import { Result } from '../../types/data';

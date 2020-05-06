@@ -11,7 +11,7 @@ export const CardWrapper = styled.div`
   text-decoration: none;
   color: ${props => props.theme.colors.onSurface};
   margin: calc(${props => props.theme.spacing.s}rem / 2);
-  border: 2px solid ${props => props.theme.colors.primaryVariant};
+  border: 2px solid ${props => props.theme.colors.primary};
   border-radius: 15px;
   transition: all 0.15s ease-in-out;
 

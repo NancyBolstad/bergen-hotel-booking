@@ -1,9 +1,11 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import Blog, { Item, Props } from './';
+import { Props as BlogCardProps } from './BlogCard';
+import { Props } from './BlogList';
+import BlogList from './';
 import { mockImageObject, createList } from '../../util/mockHelpers';
 
-const mockBlog: Item = {
+const mockBlog: BlogCardProps = {
   id: '556-05-7989',
   title: 'a libero nam',
   intro:
@@ -23,6 +25,6 @@ const mockList: Props = {
   list: createList(mockBlog, 5),
 };
 
-export const BlogListStory = <Blog {...mockList} />;
+export const BlogListStory = <BlogList {...mockList} />;
 
 storiesOf('Component/Blog', module).add('Default', () => BlogListStory);

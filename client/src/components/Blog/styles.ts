@@ -6,6 +6,7 @@ import { IColors } from '../../types/theme';
 
 const Section = styled.section<{ backgroundColor?: keyof IColors }>`
   background-color: ${props => props.theme.colors.background};
+  overflow: auto;
 
   ${props =>
     props.backgroundColor &&

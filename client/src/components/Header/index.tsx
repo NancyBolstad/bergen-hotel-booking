@@ -14,12 +14,12 @@ import { APP_NAME } from '../../util/constants';
 import { ContrastContext } from '../../context/Contrast';
 import { Context } from '../../context/GlobalContext';
 import { hamburger, cross, search, heart, sun, moon } from '../../util/icons';
-import useIsDesktop from '../../hooks/useIsDesktop';
+import useIsMobile from '../../hooks/useIsMobile';
 
 const Header: React.FunctionComponent = () => {
   const { theme, toggleContrast } = React.useContext(ContrastContext);
   const { favorites } = React.useContext(Context);
-  const isDesktop = useIsDesktop();
+  const isMobile = useIsMobile();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState<boolean>(false);
 
   React.useEffect(() => {
@@ -40,7 +40,7 @@ const Header: React.FunctionComponent = () => {
             <SiteLogo
               to="/"
               onClick={e => {
-                if (!isDesktop) {
+                if (isMobile) {
                   e.preventDefault();
                   window.location.assign('/');
                   setIsMobileMenuOpen(false);
@@ -49,7 +49,7 @@ const Header: React.FunctionComponent = () => {
             >
               {APP_NAME}
             </SiteLogo>
-            {isDesktop && (
+            {!isMobile && (
               <HeaderNavLinkList>
                 <li>
                   <HeaderNavLink to="/accommodations">Accommodations</HeaderNavLink>
@@ -74,7 +74,7 @@ const Header: React.FunctionComponent = () => {
             <HeaderNavLink to="/#" onClick={() => toggleContrast()}>
               {theme === 'default' ? sun : moon}
             </HeaderNavLink>
-            {!isDesktop && (
+            {isMobile && (
               <MobileMenuIcon
                 onClick={e => {
                   e.preventDefault();
@@ -87,7 +87,7 @@ const Header: React.FunctionComponent = () => {
           </HeaderMenuRight>
         </HeaderNav>
       </HeaderWrapper>
-      {!isDesktop && isMobileMenuOpen && (
+      {isMobile && isMobileMenuOpen && (
         <MobileMenuWrapper>
           <HeaderNavLink
             to="/contact"

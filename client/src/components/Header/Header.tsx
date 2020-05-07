@@ -17,7 +17,6 @@ import { ContrastContext } from '../../context/Contrast';
 import { Context } from '../../context/GlobalContext';
 import { hamburger, cross, search, heart, sun, moon } from '../../util/icons';
 import useIsMobile from '../../hooks/useIsMobile';
-import { CardsList } from '../Layout/';
 
 const Header: React.FunctionComponent = () => {
   const { theme, toggleContrast } = React.useContext(ContrastContext);
@@ -70,7 +69,7 @@ const Header: React.FunctionComponent = () => {
             )}
           </HeaderMenuLeft>
           <HeaderMenuRight>
-            <HeaderNavLink to="/search">{search}</HeaderNavLink>
+            <HeaderNavLink to="/#">{search}</HeaderNavLink>
             {!isMobile && (
               <>
                 <LikeButton to="/favorites">

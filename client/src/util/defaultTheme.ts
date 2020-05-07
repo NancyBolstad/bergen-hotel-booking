@@ -23,7 +23,7 @@ const defaultColors: IColors = {
   secondary: '#FFEBE4',
   onSecondary: '#000000',
   background: '#ffffff',
-  surface: '#F5E5E5',
+  surface: '#E5E5E5',
   onSurface: '#888888',
   onBackground: '#000000',
   ...stableColors,

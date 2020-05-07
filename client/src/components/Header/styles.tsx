@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import createFontStyles from '../../util/createFontStyles';
-import { ButtonProps } from '../Button';
 
 export const HeaderWrapper = styled.header`
   width: 100%;
@@ -54,6 +53,9 @@ export const HeaderNavLink = styled(Link)`
 
   &:hover {
     color: ${props => props.theme.colors.primary};
+    svg {
+      fill: ${props => props.theme.colors.primary};
+    }
   }
   @media (min-width: ${props => props.theme.mediaQueries.large}px) {
     padding: 0.5rem 1rem;
@@ -69,9 +71,13 @@ export const HeaderNavLink = styled(Link)`
 export const LikeButton = styled(HeaderNavLink)`
   position: relative;
 
+  svg {
+    fill: ${props => props.theme.colors.onBackground};
+  }
+
   span {
     font-size: 12px;
-    background-color: ${props => props.theme.colors.surface};
+    background-color: ${props => props.theme.colors.dark};
     width: 16px;
     height: 16px;
     border-radius: 50%;
@@ -79,6 +85,7 @@ export const LikeButton = styled(HeaderNavLink)`
     justify-content: center;
     position: absolute;
     left: 16px;
+    color: ${props => props.theme.colors.white};
   }
 
   @media all and (min-width: ${props => props.theme.mediaQueries.large}px) {
@@ -88,6 +95,8 @@ export const LikeButton = styled(HeaderNavLink)`
       top: 2px;
       width: 24px;
       height: 24px;
+      background-color: ${props => props.theme.colors.surface};
+      color: ${props => props.theme.colors.dark};
     }
   }
 `;
@@ -100,6 +109,10 @@ export const SiteLogo = styled(HeaderNavLink)`
 
   @media (min-width: ${props => props.theme.mediaQueries.large}px) {
     font-size: 2.35rem !important;
+  }
+
+  &:hover {
+    opacity: 0.8;
   }
 `;
 
@@ -132,6 +145,12 @@ export const MobileMenuIcon = styled.a`
     height: 24px;
     fill: ${props => props.theme.colors.onBackground};
   }
+
+  &:hover {
+    svg {
+      fill: ${props => props.theme.colors.primary};
+    }
+  }
 `;
 
 export const MobileMenuWrapper = styled.div`
@@ -158,8 +177,7 @@ export const MobileIcons = styled.div`
   justify-content: space-around;
   align-items: center;
   width: 100%;
-  border-top: 2px solid ${props => props.theme.colors.primary};
-  border-bottom: 2px solid ${props => props.theme.colors.primary};
+  background-color: ${props => props.theme.colors.surface};
 
   a {
     margin: ${props => props.theme.spacing.s}rem auto;

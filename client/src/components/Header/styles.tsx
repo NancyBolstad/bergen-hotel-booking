@@ -18,6 +18,7 @@ export const HeaderWrapper = styled.header`
 
 export const HeaderNav = styled.nav`
   display: flex;
+  margin: 0 auto;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -65,11 +66,41 @@ export const HeaderNavLink = styled(Link)`
   }
 `;
 
+export const LikeButton = styled(HeaderNavLink)`
+  position: relative;
+
+  span {
+    font-size: 12px;
+    background-color: ${props => props.theme.colors.surface};
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    position: absolute;
+    left: 16px;
+  }
+
+  @media all and (min-width: ${props => props.theme.mediaQueries.large}px) {
+    span {
+      font-size: 16px;
+      left: 32px;
+      top: 2px;
+      width: 24px;
+      height: 24px;
+    }
+  }
+`;
+
 export const SiteLogo = styled(HeaderNavLink)`
   color: ${props => props.theme.colors.primary};
   font-family: 'Lobster', cursive;
   font-weight: bold;
-  font-size: 2.375rem !important;
+  font-size: 1.5rem;
+
+  @media (min-width: ${props => props.theme.mediaQueries.large}px) {
+    font-size: 2.35rem !important;
+  }
 `;
 
 export const HeaderButton = styled(HeaderNavLink)`
@@ -88,20 +119,17 @@ export const HeaderMenuLeft = styled.div`
 
 export const HeaderMenuRight = styled.div`
   list-style-type: none;
-  display: flex;
-  align-content: center;
+  display: inline-flex;
+  align-content: flex-start;
   justify-content: center;
 `;
 
-interface MobileMenuButton extends ButtonProps {
-  isOpen: boolean;
-}
-
 export const MobileMenuIcon = styled.a`
-  background-color: ${props => props.theme.colors.background};
   padding: 0;
   svg {
     margin: 0;
+    width: 24px;
+    height: 24px;
     fill: ${props => props.theme.colors.onBackground};
   }
 `;
@@ -120,7 +148,20 @@ export const MobileMenuWrapper = styled.div`
   ${props => createFontStyles(props.theme.fonts.h1)};
 
   a {
-    margin-top: ${props => props.theme.spacing.xl}rem;
+    margin: ${props => props.theme.spacing.l}rem auto;
     color: ${props => props.theme.colors.onBackground};
+  }
+`;
+
+export const MobileIcons = styled.div`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  border-top: 2px solid ${props => props.theme.colors.primary};
+  border-bottom: 2px solid ${props => props.theme.colors.primary};
+
+  a {
+    margin: ${props => props.theme.spacing.s}rem auto;
   }
 `;

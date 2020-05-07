@@ -9,12 +9,15 @@ import {
   SiteLogo,
   MobileMenuIcon,
   MobileMenuWrapper,
+  LikeButton,
+  MobileIcons,
 } from './styles';
 import { APP_NAME } from '../../util/constants';
 import { ContrastContext } from '../../context/Contrast';
 import { Context } from '../../context/GlobalContext';
 import { hamburger, cross, search, heart, sun, moon } from '../../util/icons';
 import useIsMobile from '../../hooks/useIsMobile';
+import { CardsList } from '../Layout/';
 
 const Header: React.FunctionComponent = () => {
   const { theme, toggleContrast } = React.useContext(ContrastContext);
@@ -68,12 +71,17 @@ const Header: React.FunctionComponent = () => {
           </HeaderMenuLeft>
           <HeaderMenuRight>
             <HeaderNavLink to="/search">{search}</HeaderNavLink>
-            <HeaderNavLink to="/favorites">
-              {heart} ({favorites.length})
-            </HeaderNavLink>
-            <HeaderNavLink to="/#" onClick={() => toggleContrast()}>
-              {theme === 'default' ? sun : moon}
-            </HeaderNavLink>
+            {!isMobile && (
+              <>
+                <LikeButton to="/favorites">
+                  {heart}
+                  <span>{favorites.length}</span>
+                </LikeButton>
+                <HeaderNavLink to="/#" onClick={() => toggleContrast()}>
+                  {theme === 'default' ? sun : moon}
+                </HeaderNavLink>
+              </>
+            )}
             {isMobile && (
               <MobileMenuIcon
                 onClick={e => {
@@ -89,6 +97,45 @@ const Header: React.FunctionComponent = () => {
       </HeaderWrapper>
       {isMobile && isMobileMenuOpen && (
         <MobileMenuWrapper>
+          <MobileIcons>
+            <LikeButton to="/favorites">
+              {heart}
+              <span>{favorites.length}</span>
+            </LikeButton>
+            <HeaderNavLink to="/#" onClick={() => toggleContrast()}>
+              {theme === 'default' ? sun : moon}
+            </HeaderNavLink>
+          </MobileIcons>
+          <HeaderNavLink
+            to="/accommodations"
+            onClick={e => {
+              e.preventDefault();
+              window.location.assign('/accommodations');
+              setIsMobileMenuOpen(false);
+            }}
+          >
+            Accommodations
+          </HeaderNavLink>{' '}
+          <HeaderNavLink
+            to="/blog"
+            onClick={e => {
+              e.preventDefault();
+              window.location.assign('/blog');
+              setIsMobileMenuOpen(false);
+            }}
+          >
+            Blog
+          </HeaderNavLink>
+          <HeaderNavLink
+            to="/about"
+            onClick={e => {
+              e.preventDefault();
+              window.location.assign('/about');
+              setIsMobileMenuOpen(false);
+            }}
+          >
+            About
+          </HeaderNavLink>
           <HeaderNavLink
             to="/contact"
             onClick={e => {

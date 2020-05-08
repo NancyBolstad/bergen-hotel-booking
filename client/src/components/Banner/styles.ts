@@ -52,11 +52,12 @@ export const SearchBannerContent = styled(BackgroundImage)<{ isDesktop?: boolean
   justify-content: center;
   align-items: center;
   width: 100%;
-  padding: ${props => props.theme.spacing.s}rem 0;
+  padding: ${props => props.theme.spacing.m}rem 0;
 
   ${props =>
     props.isDesktop &&
     css`
       height: 209px;
+      padding: ${props => props.theme.spacing.l}rem 0;
     `}
 `;

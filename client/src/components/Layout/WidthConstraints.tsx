@@ -9,6 +9,7 @@ interface Props {
 
 const WidthConstraints = styled.div<Props>`
   margin: 0 auto;
+  width: 100%;
   ${props =>
     props.size === 'small' &&
     css`

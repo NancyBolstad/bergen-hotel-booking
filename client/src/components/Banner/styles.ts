@@ -57,7 +57,7 @@ export const SearchBannerContent = styled(BackgroundImage)<{ isDesktop?: boolean
   ${props =>
     props.isDesktop &&
     css`
-      height: 250px;
+      height: 204px;
       padding: ${props => props.theme.spacing.l}rem 0;
     `}
 `;

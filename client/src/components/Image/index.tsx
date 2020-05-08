@@ -1,3 +1,4 @@
-import { Image } from './Image';
+import Image from './Image';
+import BackgroundImage from './BackgroundImage';
 
-export default Image;
+export { Image, BackgroundImage };

@@ -3,7 +3,7 @@ import Typography from '../../components/Typography/Typography';
 import MainContent from '../../components/MainContent';
 import { Context } from '../../context/GlobalContext';
 import { Result } from '../../types/data';
-import SearchCards from '../../components/SearchCards/SearchCards';
+import SearchForm from '../../components/SearchForm/SearchForm';
 import CardsList from '../../components/CardsList/';
 import Loader from '../../components/Loader';
 import Select from '../../components/Select';
@@ -85,7 +85,7 @@ export const Home: React.FunctionComponent<Props> = () => {
         topDesktop={48}
         isPrimaryColor
       />
-      <SearchCards handler={filter} />
+      <SearchForm handler={filter} />
       {!!message && message.length > 0 && (
         <Typography variant="b2" element="p" content={message} isPrimaryColor />
       )}

@@ -19,11 +19,13 @@ const stableColors: Partial<IColors> = {
 
 const defaultColors: IColors = {
   primary: '#C2003D',
+  primaryVariant: '#C2003D',
   onPrimary: '#ffffff',
   secondary: '#FFEBE4',
+  secondaryVariant: '#FFEBE4',
   onSecondary: '#000000',
   background: '#ffffff',
-  surface: '#F5E5E5',
+  surface: '#E5E5E5',
   onSurface: '#888888',
   onBackground: '#000000',
   ...stableColors,
@@ -31,9 +33,11 @@ const defaultColors: IColors = {
 
 const darkThemeColors: IColors = {
   primary: '#FFEBE4',
+  primaryVariant: '#FFEBE4',
   onPrimary: '#000000',
   secondary: '#FFEBE4',
-  onSecondary: '000000',
+  secondaryVariant: '#000000',
+  onSecondary: '#000000',
   background: '#000000',
   surface: '#888888',
   onSurface: '#ffffff',
@@ -70,7 +74,7 @@ const defaultFontWeight: IFontWeight = {
 const h1: Font = {
   family: defaultFontFamily.primary,
   weight: defaultFontWeight.bold,
-  size: 2.8125,
+  size: 1.8125,
   lineHeight: 1.15,
   mediaQueries: [
     {

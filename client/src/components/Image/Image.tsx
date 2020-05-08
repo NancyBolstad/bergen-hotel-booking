@@ -35,3 +35,5 @@ export const Image: React.FunctionComponent<Props> = ({ image, size }) => {
     </>
   );
 };
+
+export default Image;

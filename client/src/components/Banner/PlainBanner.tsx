@@ -1,57 +1,50 @@
 import * as React from 'react';
-import styled, { css } from 'styled-components';
 import { Image as ImageType } from '../../types/types';
-import { WidthConstraints, HorizontalSpacer, VerticalSpacer } from '../Layout';
-import Typography from '../Typography';
-import { BackgroundImage, Image } from '../Image';
-
-type alignVariant = 'flex-start' | 'center' | 'flex-end';
+import { WidthConstraints, HorizontalSpacer } from '../Layout';
+import { PlainBannerTitle, PlainBannerContent } from './styles';
 
 interface Props {
   title?: string;
   subTitle?: string;
   backgroundColor?: 'secondary' | 'surface';
   isTitleColorRed?: boolean;
-  align?: alignVariant;
-  image?: ImageType;
+  backgroundImage?: ImageType;
 }
-
-export const Content = styled(BackgroundImage)<{ align?: alignVariant }>`
-  display: flex;
-  flex-direction: column;
-  justify-content: ${props => (props.align ? props.align : 'center')};
-  align-items: ${props => (props.align ? props.align : 'center')};
-  width: 100%;
-`;
 
 const PlainBanner: React.FunctionComponent<Props> = ({
   title,
   subTitle,
   backgroundColor,
-  align,
-  image,
+  backgroundImage,
   isTitleColorRed,
 }) => {
   return (
-    <Content
+    <PlainBannerContent
       backgroundColor={backgroundColor ? backgroundColor : 'secondary'}
-      imageUrl={image?.url}
-      align={align}
+      imageUrl={backgroundImage?.url}
     >
       <WidthConstraints size="medium">
         <HorizontalSpacer>
           {!!title && (
-            <Typography
+            <PlainBannerTitle
               variant="h1"
               element="h1"
               content={title}
               isPrimaryColor={isTitleColorRed}
+              hasBackgroundImage={backgroundImage ? true : false}
             />
           )}
-          {!!subTitle && <Typography variant="h2" element="h2" content={subTitle} />}
+          {!!subTitle && (
+            <PlainBannerTitle
+              variant="h2"
+              element="h2"
+              content={subTitle}
+              hasBackgroundImage={backgroundImage ? true : false}
+            />
+          )}
         </HorizontalSpacer>
       </WidthConstraints>
-    </Content>
+    </PlainBannerContent>
   );
 };
 

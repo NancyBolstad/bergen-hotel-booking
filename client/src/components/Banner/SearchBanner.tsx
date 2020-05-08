@@ -1,13 +1,10 @@
 import * as React from 'react';
-import styled, { css } from 'styled-components';
 import { Image as ImageType } from '../../types/types';
-import { WidthConstraints, HorizontalSpacer, VerticalSpacer } from '../Layout';
-// import { widthSize } from '../Layout/WidthConstraints';
-// import { Flex } from '../Flex';
+import { WidthConstraints, HorizontalSpacer } from '../Layout';
 import Typography from '../Typography';
-import { BackgroundImage, Image } from '../Image';
 import SearchForm from '../SearchForm/SearchForm';
 import useIsMobile from '../../hooks/useIsMobile';
+import { SearchBannerContent, SearchBannerBackground } from './styles';
 
 interface Props {
   title?: string;
@@ -15,28 +12,6 @@ interface Props {
   figure?: ImageType;
   searchHandler?: (value: string) => any;
 }
-
-const BannerBackground = styled(BackgroundImage)`
-  width: 100%;
-  height: 55vh;
-`;
-
-const Content = styled(BackgroundImage)<{ isDesktop?: boolean }>`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  padding: ${props => props.theme.spacing.s}rem 0;
-
-  ${props =>
-    props.isDesktop &&
-    css`
-      height: 209px;
-    `}
-`;
-
-const Form = styled(SearchForm)``;
 
 const SearchBanner: React.FunctionComponent<Props> = ({
   title,
@@ -48,29 +23,29 @@ const SearchBanner: React.FunctionComponent<Props> = ({
   return (
     <>
       {isMobile && (
-        <Content backgroundColor="secondary" isDesktop={!isMobile}>
+        <SearchBannerContent backgroundColor="secondary" isDesktop={!isMobile}>
           <WidthConstraints size="medium">
             <HorizontalSpacer>
               {!!title && <Typography variant="h1" element="h1" content={title} isPrimaryColor />}
               {!!subTitle && <Typography variant="h2" element="h2" content={subTitle} />}
-              <Form handler={searchHandler} />
+              <SearchForm handler={searchHandler} />
             </HorizontalSpacer>
           </WidthConstraints>
-        </Content>
+        </SearchBannerContent>
       )}
-      <BannerBackground imageUrl={figure?.url}>
+      <SearchBannerBackground imageUrl={figure?.url}>
         {!isMobile && (
-          <Content backgroundColor="secondary" isDesktop={!isMobile}>
+          <SearchBannerContent backgroundColor="secondary" isDesktop={!isMobile}>
             <WidthConstraints size="medium">
               <HorizontalSpacer>
                 {!!title && <Typography variant="h1" element="h1" content={title} isPrimaryColor />}
                 {!!subTitle && <Typography variant="h2" element="h2" content={subTitle} />}
-                <Form handler={searchHandler} />
+                <SearchForm handler={searchHandler} />
               </HorizontalSpacer>
             </WidthConstraints>
-          </Content>
+          </SearchBannerContent>
         )}
-      </BannerBackground>
+      </SearchBannerBackground>
     </>
   );
 };

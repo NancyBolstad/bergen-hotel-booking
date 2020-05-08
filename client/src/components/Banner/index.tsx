@@ -1,3 +1,5 @@
 import SearchBanner from './SearchBanner';
 import PlainBanner from './PlainBanner';
-export { SearchBanner, PlainBanner };
+import FlexBanner from './FlexBanner';
+
+export { SearchBanner, PlainBanner, FlexBanner };

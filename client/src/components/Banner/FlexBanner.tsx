@@ -10,7 +10,7 @@ interface Props {
   title?: string;
   subTitle?: string;
   descriptions?: string;
-  backgroundColor?: 'secondary' | 'surface' | 'background';
+  backgroundColor?: 'secondary' | 'surface' | 'background' | 'secondaryVariant';
   isImageRight?: boolean;
   figure?: ImageType;
   buttonVariant?: ButtonVariant;

@@ -11,7 +11,6 @@ export const SearchFormWrapper = styled.div`
     flex-direction: row;
     flex-wrap: wrap;
     margin: 0 auto;
-    width: 100%;
   }
   input[type='text'] {
     border: 2px solid ${props => props.theme.colors.primary};
@@ -24,13 +23,10 @@ export const SearchFormWrapper = styled.div`
     line-height: normal;
     height: 4rem;
     cursor: pointer;
-    flex-grow: 1;
+    flex-grow: 2;
 
     ::placeholder {
       color: ${props => props.theme.colors.onSurface};
-    }
-    @media screen and (min-width: 375px) {
-      flex-grow: 2;
     }
   }
   button[type='submit'] {

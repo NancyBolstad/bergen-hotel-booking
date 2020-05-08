@@ -1,22 +1,12 @@
 import * as React from 'react';
 import { Swipeable } from 'react-swipeable';
 import { arrow } from '../../util/icons';
-import Typography from '../Typography/Typography';
-import { Result } from '../../types/data';
-import {
-  SliderWrapper,
-  Slide,
-  SlideImageWrapper,
-  SliderNav,
-  SlideTitle,
-  Dots,
-  Dot,
-  PrevNextButton,
-} from './styles';
+import { Image } from '../../types/types';
+import { Slide, SliderNav, SliderButtonWrapper, Dots, Dot, PrevNextButton } from './styles';
 
 interface Props {
   defaultIndex?: number;
-  slides?: Result[];
+  slides?: Image[];
 }
 
 export const Slider: React.FunctionComponent<Props> = ({ defaultIndex = 0, slides = [] }) => {
@@ -50,23 +40,13 @@ export const Slider: React.FunctionComponent<Props> = ({ defaultIndex = 0, slide
   }
 
   return (
-    <SliderWrapper>
-      <Swipeable
-        onSwipedLeft={() => changeIndex(index - 1)}
-        onSwipedRight={() => changeIndex(index + 1)}
-      >
-        <Slide>
-          <SlideTitle>
-            {currentSlide.name && (
-              <Typography element="h3" variant="h2" content={currentSlide.name} />
-            )}
-          </SlideTitle>
-          <SlideImageWrapper>
-            {currentSlide.background_image && (
-              <img src={currentSlide.background_image} alt={currentSlide.name} />
-            )}
-          </SlideImageWrapper>
-          <SliderNav>
+    <Swipeable
+      onSwipedLeft={() => changeIndex(index - 1)}
+      onSwipedRight={() => changeIndex(index + 1)}
+    >
+      <Slide imageUrl={currentSlide.url} role="image" aria-label={currentSlide.alt}>
+        <SliderNav>
+          <SliderButtonWrapper>
             <PrevNextButton
               href="#"
               aria-label="Go to previous slide"
@@ -77,11 +57,6 @@ export const Slider: React.FunctionComponent<Props> = ({ defaultIndex = 0, slide
             >
               {arrow}
             </PrevNextButton>
-            <Dots>
-              {slides.map((_, k) => (
-                <Dot key={k} active={k === index} />
-              ))}
-            </Dots>
             <PrevNextButton
               next
               href="#"
@@ -93,10 +68,15 @@ export const Slider: React.FunctionComponent<Props> = ({ defaultIndex = 0, slide
             >
               {arrow}
             </PrevNextButton>
-          </SliderNav>
-        </Slide>
-      </Swipeable>
-    </SliderWrapper>
+          </SliderButtonWrapper>
+          <Dots>
+            {slides.map((_, k) => (
+              <Dot key={k} active={k === index} />
+            ))}
+          </Dots>
+        </SliderNav>
+      </Slide>
+    </Swipeable>
   );
 };
 

@@ -36,7 +36,7 @@ const SearchBanner: React.FunctionComponent<Props> = ({
       <SearchBannerBackground imageUrl={figure?.url}>
         {!isMobile && (
           <SearchBannerContent backgroundColor="secondary" isDesktop={!isMobile}>
-            <WidthConstraints size="medium">
+            <WidthConstraints size="small">
               <HorizontalSpacer>
                 {!!title && <Typography variant="h1" element="h1" content={title} isPrimaryColor />}
                 {!!subTitle && <Typography variant="h2" element="h2" content={subTitle} />}

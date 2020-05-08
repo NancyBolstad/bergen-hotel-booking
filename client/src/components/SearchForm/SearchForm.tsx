@@ -3,10 +3,10 @@ import { search } from '../../util/icons';
 import { Wrapper, SearchFormWrapper } from './styles';
 
 interface Props {
-  handler: (value: string) => any;
+  handler?: (value: string) => any;
 }
 
-export const SearchCards: React.FunctionComponent<Props> = ({ handler }) => {
+export const SearchForm: React.FunctionComponent<Props> = ({ handler }) => {
   const [searchValue, setSearchValue] = React.useState<string>('');
   return (
     <Wrapper>
@@ -14,7 +14,7 @@ export const SearchCards: React.FunctionComponent<Props> = ({ handler }) => {
         <form
           onSubmit={(e: any) => {
             e.preventDefault();
-            handler(searchValue);
+            if (handler) handler(searchValue);
           }}
         >
           <input
@@ -27,11 +27,11 @@ export const SearchCards: React.FunctionComponent<Props> = ({ handler }) => {
             onChange={(e: any) => {
               e.preventDefault();
               setSearchValue(e.target.value);
-              handler(e.target.value);
+              if (handler) handler(e.target.value);
             }}
           />
-          <button type="submit" aria-label="Search for recipe name">
-            {search}
+          <button type="submit" aria-label="Search for hotels">
+            Search{search}
           </button>
         </form>
       </SearchFormWrapper>
@@ -39,4 +39,4 @@ export const SearchCards: React.FunctionComponent<Props> = ({ handler }) => {
   );
 };
 
-export default SearchCards;
+export default SearchForm;

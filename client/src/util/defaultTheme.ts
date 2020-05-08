@@ -70,7 +70,7 @@ const defaultFontWeight: IFontWeight = {
 const h1: Font = {
   family: defaultFontFamily.primary,
   weight: defaultFontWeight.bold,
-  size: 2.8125,
+  size: 1.8125,
   lineHeight: 1.15,
   mediaQueries: [
     {

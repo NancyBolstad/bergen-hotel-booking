@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import Image from '.';
+import { Image } from '.';
 
 const image = {
   url:

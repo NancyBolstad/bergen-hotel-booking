@@ -13,8 +13,8 @@ export const SearchFormWrapper = styled.div`
     margin: 0 auto;
   }
   input[type='text'] {
-    border: 2px solid ${props => props.theme.colors.primary};
     background: ${props => props.theme.colors.background};
+    border: 1px solid ${props => props.theme.colors.secondary};
     color: ${props => props.theme.colors.primary};
     white-space: nowrap;
     padding: 0.55rem 0.75rem;
@@ -61,7 +61,7 @@ export const SearchFormWrapper = styled.div`
     background: #ffffff;
     color: black;
     outline: none;
-    border: 1px solid ${props => props.theme.colors.secondary};
+    border: 1px solid ${props => props.theme.colors.primary};
   }
   button[type='submit']:focus {
     outline: none;

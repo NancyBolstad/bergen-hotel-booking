@@ -13,7 +13,9 @@ const image = {
   alt: 'Foo',
 };
 
-export const SearchBannerStory = <SearchBanner figure={image} title={mockTitleLong} />;
+export const SearchBannerStory = (
+  <SearchBanner figure={image} title={mockTitleLong} placeHolderText="Search for hotels" />
+);
 export const PlainBannerWithBackgroundImageStory = (
   <PlainBanner title={mockTitleShort} backgroundColor="surface" backgroundImage={image} />
 );
@@ -26,7 +28,7 @@ export const FlexBannerLeftStory = (
     title={mockTitleShort}
     descriptions={mockDescription}
     figure={image}
-    backgroundColor="secondary"
+    backgroundColor="secondaryVariant"
     buttonText="Read More"
     redirectLink="/foo"
   />
@@ -36,7 +38,7 @@ export const FlexBannerRightStory = (
     title={mockTitleShort}
     subTitle={mockTitleLong}
     figure={image}
-    backgroundColor="secondary"
+    backgroundColor="secondaryVariant"
     isImageRight
   />
 );

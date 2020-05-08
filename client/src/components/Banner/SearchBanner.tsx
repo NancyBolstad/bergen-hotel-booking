@@ -11,6 +11,7 @@ interface Props {
   subTitle?: string;
   figure?: ImageType;
   searchHandler?: (value: string) => any;
+  placeHolderText?: string;
 }
 
 const SearchBanner: React.FunctionComponent<Props> = ({
@@ -18,29 +19,36 @@ const SearchBanner: React.FunctionComponent<Props> = ({
   subTitle,
   figure,
   searchHandler,
+  placeHolderText,
 }) => {
   const isMobile = useIsMobile();
   return (
     <>
       {isMobile && (
-        <SearchBannerContent backgroundColor="secondary" isDesktop={!isMobile}>
+        <SearchBannerContent backgroundColor="secondaryVariant" isDesktop={!isMobile}>
           <WidthConstraints size="medium">
             <HorizontalSpacer>
               {!!title && <Typography variant="h1" element="h1" content={title} isPrimaryColor />}
               {!!subTitle && <Typography variant="h2" element="h2" content={subTitle} />}
-              <SearchForm handler={searchHandler} />
+              <SearchForm
+                handler={searchHandler}
+                placeHolderText={placeHolderText ? placeHolderText : 'Search her'}
+              />
             </HorizontalSpacer>
           </WidthConstraints>
         </SearchBannerContent>
       )}
       <SearchBannerBackground imageUrl={figure?.url}>
         {!isMobile && (
-          <SearchBannerContent backgroundColor="secondary" isDesktop={!isMobile}>
+          <SearchBannerContent backgroundColor="secondaryVariant" isDesktop={!isMobile}>
+            {!!title && <Typography variant="h1" element="h1" content={title} isPrimaryColor />}
+            {!!subTitle && <Typography variant="h2" element="h2" content={subTitle} />}
             <WidthConstraints size="small">
               <HorizontalSpacer>
-                {!!title && <Typography variant="h1" element="h1" content={title} isPrimaryColor />}
-                {!!subTitle && <Typography variant="h2" element="h2" content={subTitle} />}
-                <SearchForm handler={searchHandler} />
+                <SearchForm
+                  handler={searchHandler}
+                  placeHolderText={placeHolderText ? placeHolderText : 'Search her'}
+                />
               </HorizontalSpacer>
             </WidthConstraints>
           </SearchBannerContent>

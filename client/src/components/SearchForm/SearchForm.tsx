@@ -4,9 +4,10 @@ import { Wrapper, SearchFormWrapper } from './styles';
 
 interface Props {
   handler?: (value: string) => any;
+  placeHolderText?: string;
 }
 
-export const SearchForm: React.FunctionComponent<Props> = ({ handler }) => {
+export const SearchForm: React.FunctionComponent<Props> = ({ handler, placeHolderText }) => {
   const [searchValue, setSearchValue] = React.useState<string>('');
   return (
     <Wrapper>
@@ -21,8 +22,8 @@ export const SearchForm: React.FunctionComponent<Props> = ({ handler }) => {
             id="searchForm"
             className="searchInput"
             type="text"
-            aria-label="Search"
-            placeholder="Search for video games"
+            aria-label={placeHolderText ? placeHolderText : 'Search form'}
+            placeholder={placeHolderText ? placeHolderText : 'Search her'}
             value={searchValue}
             onChange={(e: any) => {
               e.preventDefault();
@@ -30,7 +31,7 @@ export const SearchForm: React.FunctionComponent<Props> = ({ handler }) => {
               if (handler) handler(e.target.value);
             }}
           />
-          <button type="submit" aria-label="Search for hotels">
+          <button type="submit" aria-label={'Submit search form'}>
             Search{search}
           </button>
         </form>

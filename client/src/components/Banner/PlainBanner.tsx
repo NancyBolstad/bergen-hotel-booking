@@ -6,7 +6,7 @@ import { PlainBannerTitle, PlainBannerContent } from './styles';
 interface Props {
   title?: string;
   subTitle?: string;
-  backgroundColor?: 'secondary' | 'surface';
+  backgroundColor?: 'surface' | 'secondaryVariant';
   isTitleColorRed?: boolean;
   backgroundImage?: ImageType;
 }
@@ -20,7 +20,7 @@ const PlainBanner: React.FunctionComponent<Props> = ({
 }) => {
   return (
     <PlainBannerContent
-      backgroundColor={backgroundColor ? backgroundColor : 'secondary'}
+      backgroundColor={backgroundColor ? backgroundColor : 'secondaryVariant'}
       imageUrl={backgroundImage?.url}
     >
       <WidthConstraints size="medium">

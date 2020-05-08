@@ -1,69 +1,34 @@
 import styled, { css } from 'styled-components';
+import { BackgroundImage } from '../Image/BackgroundImage';
 
-export const SliderWrapper = styled.div`
-  background-color: ${props => props.theme.colors.background};
-  padding: ${props => props.theme.spacing.s}rem 0;
-
-  @media (min-width: ${props => props.theme.mediaQueries.large}px) {
-    padding: ${props => props.theme.spacing.m}rem 0;
-  }
-`;
-
-export const Slide = styled.div`
+export const Slide = styled(BackgroundImage)`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`;
-
-export const SlideImageWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  img {
-    width: 100%;
-    height: 280px;
-  }
+  height: 280px;
+  position: relative;
 
   @media (min-width: ${props => props.theme.mediaQueries.large}px) {
-    padding: ${props => props.theme.spacing.m}rem 0;
-
-    img {
-      width: 100%;
-      max-width: 880px;
-      height: 580px;
-    }
+    height: 580px;
   }
 `;
 
 export const SliderNav = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  max-width: 880px;
   width: 100%;
-  margin: 0 auto;
-`;
-
-export const SlideTitle = styled.div`
-  display: flex;
-  align-items: center;
-  margin: ${props => `${props.theme.spacing.xs}rem 0 ${props.theme.spacing.xs}rem`};
-
-  h3 {
-    margin: 0 auto;
-  }
-
-  @media (min-width: ${props => props.theme.mediaQueries.large}px) {
-    margin: ${props => `${props.theme.spacing.xs}rem 0`};
-  }
+  padding: 0 ${props => props.theme.spacing.m}rem;
 `;
 
 export const Dots = styled.ul`
   margin: 0;
   padding: 0;
   list-style: none;
+  position: absolute;
+  bottom: ${props => props.theme.spacing.xs}rem;
 `;
 
 export const Dot = styled.li<{ active?: boolean }>`
@@ -71,7 +36,8 @@ export const Dot = styled.li<{ active?: boolean }>`
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background-color: ${props => props.theme.colors.primary};
+  background-color: ${props => props.theme.colors.white};
+  opacity: 0.8;
 
   &:not(:last-child) {
     margin-right: ${props => props.theme.spacing.xs}rem;
@@ -80,7 +46,7 @@ export const Dot = styled.li<{ active?: boolean }>`
   ${props =>
     props.active &&
     css`
-      background-color: ${props => props.theme.colors.secondary};
+      background-color: ${props => props.theme.colors.primary};
     `}
 `;
 
@@ -92,8 +58,9 @@ export const PrevNextButton = styled.a<{ next?: boolean }>`
   width: 38px;
   height: 38px;
   border-radius: 50%;
-  color: ${props => props.theme.colors.primary};
-  background-color: ${props => props.theme.colors.secondary};
+  color: ${props => props.theme.colors.dark};
+  background-color: ${props => props.theme.colors.white};
+  opacity: 0.8;
   box-shadow: none;
   cursor: pointer;
 
@@ -106,7 +73,7 @@ export const PrevNextButton = styled.a<{ next?: boolean }>`
     height: 28px;
     transform: rotate(90deg);
     path {
-      fill: ${props => props.theme.colors.background};
+      fill: ${props => props.theme.colors.dark};
     }
   }
 
@@ -117,4 +84,10 @@ export const PrevNextButton = styled.a<{ next?: boolean }>`
         transform: rotate(270deg);
       }
     `}
+`;
+
+export const SliderButtonWrapper = styled.div`
+  width: 100%;
+  display: inline-flex;
+  justify-content: space-between;
 `;

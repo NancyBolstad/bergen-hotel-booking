@@ -19,8 +19,10 @@ const stableColors: Partial<IColors> = {
 
 const defaultColors: IColors = {
   primary: '#C2003D',
+  primaryVariant: '#C2003D',
   onPrimary: '#ffffff',
   secondary: '#FFEBE4',
+  secondaryVariant: '#FFEBE4',
   onSecondary: '#000000',
   background: '#ffffff',
   surface: '#E5E5E5',
@@ -31,9 +33,11 @@ const defaultColors: IColors = {
 
 const darkThemeColors: IColors = {
   primary: '#FFEBE4',
+  primaryVariant: '#FFEBE4',
   onPrimary: '#000000',
   secondary: '#FFEBE4',
-  onSecondary: '000000',
+  secondaryVariant: '#000000',
+  onSecondary: '#000000',
   background: '#000000',
   surface: '#888888',
   onSurface: '#ffffff',

@@ -56,8 +56,10 @@ export interface IFontWeight {
 
 export interface IColors {
   primary: string;
+  primaryVariant: string;
   onPrimary: string;
   secondary: string;
+  secondaryVariant: string;
   onSecondary: string;
   background: string;
   onBackground: string;

@@ -1,9 +1,3 @@
-interface Image {
-  url?: string;
-  alt?: string;
-  captions?: string;
-}
-
 type HotelCategories =
   | 'hotel'
   | 'bed and breakfast'
@@ -24,11 +18,11 @@ type Features =
   | 'helpful staff'
   | 'family friendly';
 
-export interface Establishment {
-  id?: string;
-  name?: string;
+export interface HotelDetails {
+  id: string;
+  name: string;
   category?: HotelCategories;
-  featuredImages?: Image[];
+  featuredImages?: ImageType[];
   descriptions?: string;
   location?: string;
   price?: number;
@@ -38,4 +32,34 @@ export interface Establishment {
   rating?: number;
   features?: Features[];
   reviews?: string[];
+}
+
+export interface Root {
+  code: number;
+  data: HotelDetails[];
+}
+
+export interface HotelDetailsRoot {
+  code: number;
+  data: Data;
+}
+
+export interface Data {
+  id: string;
+  category: string;
+  descriptions: string;
+  featuredImages: FeaturedImage[];
+  features: string[];
+  location: string;
+  name: string;
+  onSale: boolean;
+  price: number;
+  rating: number;
+  salePrice: number;
+  services: string[];
+}
+
+export interface FeaturedImage {
+  alt: string;
+  url: string;
 }

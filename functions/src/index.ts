@@ -2,6 +2,7 @@ import * as functions from 'firebase-functions';
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import contact from './services/contact/route';
+import establishments from './services/establishments/route';
 import getRootUrls from './utils/getRootUrls';
 
 const app = express();
@@ -28,3 +29,4 @@ app.get('/', (req: express.Request, res: express.Response) => {
 
 app.use('/v1', routes);
 routes.use('/contact', contact);
+routes.use('/establishments', establishments);

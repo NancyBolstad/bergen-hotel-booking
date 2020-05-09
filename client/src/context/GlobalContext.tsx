@@ -1,16 +1,16 @@
 import React from 'react';
 import useApi from '../hooks/useApi';
 import { FavoriteActions, favoriteCardsReducer } from '../reducer/favoriteCardsReducer';
-import { Result, Root } from '../types/data';
-import { API_BASE_URL, mockResponse, FAVORITES_KEY } from '../util/constants';
+import { HotelDetails, Root } from '../types/response';
+import { FAVORITES_KEY } from '../util/constants';
 import isBrowser from '../util/isBrowser';
 import Storage from '../util/storage';
 
 interface Props {}
 
 interface GlobalDataProps {
-  default: Result[];
-  favorites: Result[];
+  default: HotelDetails[];
+  favorites: HotelDetails[];
   dispatch: React.Dispatch<FavoriteActions>;
 }
 
@@ -22,11 +22,14 @@ export const Context = React.createContext<GlobalDataProps>({
 
 export const GlobalContext: React.FunctionComponent<Props> = ({ children }) => {
   const { data } = useApi<Root>({
-    endpoint: API_BASE_URL,
+    endpoint: `${process.env.REACT_APP_API_URL}establishments`,
     fetchOnMount: true,
-    initialData: mockResponse,
+    initialData: {
+      code: 0,
+      data: [],
+    },
   });
-  const [localData, setLocalData] = React.useState<Result[]>(() => {
+  const [localData, setLocalData] = React.useState<HotelDetails[]>(() => {
     const storage = new Storage();
     const localFavorites = storage.get(FAVORITES_KEY);
 
@@ -46,7 +49,7 @@ export const GlobalContext: React.FunctionComponent<Props> = ({ children }) => {
   return (
     <Context.Provider
       value={{
-        default: data.results,
+        default: data.data,
         favorites: state,
         dispatch: dispatch,
       }}

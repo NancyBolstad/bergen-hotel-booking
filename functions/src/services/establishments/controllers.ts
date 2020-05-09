@@ -39,7 +39,7 @@ export async function getOneEstablishment(req: Request, res: Response) {
             code: 200,
             data: {
               id: snapshot.key,
-              snapshot,
+              ...snapshot.val(),
             },
           });
         } else {

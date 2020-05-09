@@ -7,9 +7,14 @@ import { Slide, SliderNav, SliderButtonWrapper, Dots, Dot, PrevNextButton } from
 interface Props {
   defaultIndex?: number;
   slides?: Image[];
+  large?: boolean;
 }
 
-export const Slider: React.FunctionComponent<Props> = ({ defaultIndex = 0, slides = [] }) => {
+export const Slider: React.FunctionComponent<Props> = ({
+  defaultIndex = 0,
+  slides = [],
+  large,
+}) => {
   const [index, setIndex] = React.useState(defaultIndex);
 
   const changeIndex = React.useCallback(
@@ -44,7 +49,7 @@ export const Slider: React.FunctionComponent<Props> = ({ defaultIndex = 0, slide
       onSwipedLeft={() => changeIndex(index - 1)}
       onSwipedRight={() => changeIndex(index + 1)}
     >
-      <Slide imageUrl={currentSlide.url} role="image" aria-label={currentSlide.alt}>
+      <Slide imageUrl={currentSlide.url} role="image" aria-label={currentSlide.alt} large={large}>
         <SliderNav>
           <SliderButtonWrapper>
             <PrevNextButton

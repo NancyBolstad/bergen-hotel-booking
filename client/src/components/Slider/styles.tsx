@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { BackgroundImage } from '../Image/BackgroundImage';
 
-export const Slide = styled(BackgroundImage)`
+export const Slide = styled(BackgroundImage)<{ large?: boolean }>`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -9,9 +9,13 @@ export const Slide = styled(BackgroundImage)`
   height: 280px;
   position: relative;
 
-  @media (min-width: ${props => props.theme.mediaQueries.large}px) {
-    height: 580px;
-  }
+  ${props =>
+    props.large &&
+    css`
+      @media (min-width: ${props => props.theme.mediaQueries.large}px) {
+        height: 580px;
+      }
+    `}
 `;
 
 export const SliderNav = styled.div`

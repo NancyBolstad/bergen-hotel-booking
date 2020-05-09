@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import Slider from './';
+import Slider from '.';
 
 export const image1 = {
   url:
@@ -26,6 +26,8 @@ export const image3 = {
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
 };
 
-const mockSlides = [image1, image2, image3];
+export const mockSlides = [image1, image2, image3];
 
-storiesOf('Component/Slider', module).add('Default', () => <Slider slides={mockSlides} />);
+storiesOf('Component/Slider', module)
+  .add('Default', () => <Slider slides={mockSlides} />)
+  .add('Large slider', () => <Slider slides={mockSlides} large />);

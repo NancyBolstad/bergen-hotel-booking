@@ -8,9 +8,9 @@ export async function getAllContact(req: Request, res: Response) {
     return database
       .ref('contact')
       .once('value')
-      .then(function (snapshot) {
+      .then(function(snapshot) {
         const data: any[] = [];
-        snapshot.forEach(function (childSnapshot) {
+        snapshot.forEach(function(childSnapshot) {
           const childKey = childSnapshot.key;
           const childData = childSnapshot.val();
           data.push({
@@ -18,7 +18,7 @@ export async function getAllContact(req: Request, res: Response) {
             ...childData,
           });
         });
-        res.status(200).json({ code: 200, contact: data });
+        res.status(200).json({ code: 200, data: data });
       });
   } catch (error) {
     res.status(500).send(error);
@@ -40,13 +40,13 @@ export async function createContact(req: Request, res: Response) {
           ...newContact,
           createdAt: firebase.database.ServerValue.TIMESTAMP,
         },
-        (error) => {
+        error => {
           if (error) {
             throw error;
           }
         },
       )
-      .then((doc) => {
+      .then(doc => {
         res.status(200).json({ code: 200, message: `Created a new contact ${doc.key}` });
       });
   } catch (error) {

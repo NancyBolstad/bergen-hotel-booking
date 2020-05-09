@@ -11,7 +11,7 @@ type HotelCategories =
   | 'bed and breakfast'
   | 'hostels'
   | 'tourist residence'
-  | 'furnished accommodation';
+  | 'furnished apartment';
 type HotelServices =
   | 'free breakfast'
   | 'fitness centre'
@@ -37,7 +37,7 @@ export interface HotelDetails {
   onSale?: boolean;
   salePrice?: number;
   services?: HotelServices[];
-  rating?: string;
+  rating?: number;
   features?: Features[];
   reviews?: string[];
 }

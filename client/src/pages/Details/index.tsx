@@ -8,27 +8,6 @@ import { HotelDetailsRoot } from '../../types/response';
 
 interface Props {}
 
-interface mockResponse {
-  code: number;
-  data: {
-    id: string;
-    snapshot: {
-      name: string;
-      category: 'hotel';
-      featuredImages: [];
-      descriptions: '';
-      location: '';
-      price: 0;
-      onSale: false;
-      salePrice: 0;
-      services: [];
-      rating: 0;
-      features: [];
-      reviews: [];
-    };
-  };
-}
-
 export const Details: React.FunctionComponent<Props> = () => {
   let { id } = useParams();
   const { data, loading } = useApi<HotelDetailsRoot>({

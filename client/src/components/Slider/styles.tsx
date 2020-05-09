@@ -6,16 +6,12 @@ export const Slide = styled(BackgroundImage)<{ large?: boolean }>`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 280px;
   position: relative;
+  min-height: 180px;
 
-  ${props =>
-    props.large &&
-    css`
-      @media (min-width: ${props => props.theme.mediaQueries.large}px) {
-        height: 580px;
-      }
-    `}
+  @media (min-width: ${props => props.theme.mediaQueries.medium}px) {
+    min-height: ${props => (props.large ? '580px' : '280px')};
+  }
 `;
 
 export const SliderNav = styled.div`
@@ -59,8 +55,8 @@ export const PrevNextButton = styled.a<{ next?: boolean }>`
   justify-content: center;
   align-items: center;
   border: none;
-  width: 38px;
-  height: 38px;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
   color: ${props => props.theme.colors.dark};
   background-color: ${props => props.theme.colors.white};
@@ -88,6 +84,11 @@ export const PrevNextButton = styled.a<{ next?: boolean }>`
         transform: rotate(270deg);
       }
     `}
+
+    @media (min-width: ${props => props.theme.mediaQueries.large}px) {
+      width: 38px;
+      height: 38px;
+    }
 `;
 
 export const SliderButtonWrapper = styled.div`

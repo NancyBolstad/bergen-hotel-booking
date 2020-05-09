@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { Image as ImageType } from '../../types/types';
 import Typography from '../Typography';
 import transformLangText from '../../util/transformLangText';
-import { ButtonInternal } from '../Button';
-import { Card, FeaturedImages } from './styles';
+import { Card, FeaturedImages, LikeButton, LikeButtonWrapper } from './styles';
+import { heart, heartSolid } from '../../util/icons';
 
 type HotelCategories =
   | 'hotel'
@@ -55,20 +55,33 @@ const HotelCard: React.FunctionComponent<HotelDetails> = ({
   rating,
   features,
 }) => {
+  const [like, setLike] = React.useState(false);
+
   if (!id || !name) {
     return null;
   }
   return (
     <Card to={`/accommodation/details/${id}`}>
       {!!featuredImages && <FeaturedImages slides={featuredImages} />}
+      <LikeButtonWrapper>
+        <LikeButton
+          variant="primary"
+          size="small"
+          isLiked={like}
+          onClick={e => {
+            e.preventDefault();
+            setLike(!like);
+          }}
+        >
+          {like ? heartSolid : heart}
+        </LikeButton>
+      </LikeButtonWrapper>
       {!!category && <Typography element="span" variant="b2" content={category} />}
+      {!!name && <Typography element="span" variant="b2" content={name} />}
       {!!descriptions && (
-        <Typography element="span" variant="b2" content={transformLangText(descriptions, 220)} />
+        <Typography element="p" variant="b3" content={transformLangText(descriptions, 180)} />
       )}
       {!!price && <Typography element="span" variant="h3" content={`From ${price}`} />}
-      <ButtonInternal variant="primary" size="medium" to={`/accommodation/details/${id}`}>
-        View Details
-      </ButtonInternal>
     </Card>
   );
 };

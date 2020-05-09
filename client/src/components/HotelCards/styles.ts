@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Typography from '../Typography';
 import { IColors } from '../../types/theme';
 import Slider from '../Slider';
+import Button from '../Button';
 
 const Section = styled.section<{ backgroundColor?: keyof IColors }>`
   background-color: ${props => props.theme.colors.background};
@@ -65,7 +66,7 @@ const HotelName = styled(Typography)<{ element: 'h3' | 'h4' }>`
 `;
 
 const FeaturedImages = styled(Slider)`
-  height: 280px;
+  height: 80px;
 `;
 
 const SectionTitle = styled(Typography)<{ element: 'h2' }>`
@@ -75,13 +76,14 @@ const SectionTitle = styled(Typography)<{ element: 'h2' }>`
 const More = styled.div`
   margin: ${props => props.theme.spacing.s}rem auto;
   @media screen and (min-width: 1280px) {
-    margin: ${props => props.theme.spacing.m}rem auto;
+    margin: ${props => props.theme.spacing.xl}rem auto;
   }
 `;
 
 const CardVariant = styled(Link)`
   display: flex;
   flex-direction: row;
+  flex: 1;
   text-decoration: none;
   color: ${props => props.theme.colors.onBackground};
   border: 1px solid white;
@@ -95,4 +97,71 @@ const CardVariant = styled(Link)`
   }
 `;
 
-export { Section, Wrapper, Card, HotelName, SectionTitle, More, FeaturedImages, CardVariant };
+const SliderVariant = styled(Slider)`
+  height: 88px;
+`;
+
+const CardVariantLeft = styled.div`
+  flex: 1;
+
+  @media screen and (max-width: 480px) {
+    div[role='image'] {
+      height: 88px;
+    }
+  }
+`;
+const CardVariantRight = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex: 2;
+  padding: 0 ${props => props.theme.spacing.xs}rem;
+
+  @media screen and (min-width: 1280px) {
+    padding: ${props => props.theme.spacing.m}rem;
+  }
+
+  span {
+    font-weight: normal;
+  }
+`;
+
+const LikeButtonWrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
+
+const LikeButton = styled(Button)<{ isLiked: boolean }>`
+  background-color: transparent;
+
+  svg {
+    width: 24px;
+    height: 24px;
+    stroke-width: 30px;
+    fill: ${props => props.theme.colors.onBackground};
+    margin-top: ${props => props.theme.spacing.xs}rem;
+  }
+  ${props =>
+    props.isLiked === true &&
+    css`
+      svg {
+        fill: ${props => props.theme.colors.primary};
+      }
+    `}
+`;
+
+export {
+  Section,
+  Wrapper,
+  Card,
+  HotelName,
+  SectionTitle,
+  More,
+  FeaturedImages,
+  CardVariant,
+  CardVariantLeft,
+  CardVariantRight,
+  SliderVariant,
+  LikeButton,
+  LikeButtonWrapper,
+};

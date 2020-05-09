@@ -21,7 +21,7 @@ export const backgroundCSS = css<BackgroundInterface>`
     `}
 `;
 
-export const BackgroundImage = styled.section<BackgroundInterface>`
+export const BackgroundImage = styled.div<BackgroundInterface>`
   width: 100%;
   ${backgroundCSS}
 `;

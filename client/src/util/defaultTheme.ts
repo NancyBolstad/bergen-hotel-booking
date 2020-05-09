@@ -193,13 +193,13 @@ const b2: Font = {
 
 const b3: Font = {
   family: defaultFontFamily.primary,
-  weight: defaultFontWeight.bold,
+  weight: defaultFontWeight.regular,
   size: 1.125,
   lineHeight: 1.15,
   mediaQueries: [
     {
       query: defaultMediaQueries.small,
-      weight: defaultFontWeight.bold,
+      weight: defaultFontWeight.regular,
       size: 1.25,
       lineHeight: 1.15,
     },

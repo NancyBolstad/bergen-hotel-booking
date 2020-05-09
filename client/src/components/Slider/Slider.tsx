@@ -50,36 +50,38 @@ export const Slider: React.FunctionComponent<Props> = ({
       onSwipedRight={() => changeIndex(index + 1)}
     >
       <Slide imageUrl={currentSlide.url} role="image" aria-label={currentSlide.alt} large={large}>
-        <SliderNav>
-          <SliderButtonWrapper>
-            <PrevNextButton
-              href="#"
-              aria-label="Go to previous slide"
-              onClick={e => {
-                e.preventDefault();
-                changeIndex(index - 1);
-              }}
-            >
-              {arrow}
-            </PrevNextButton>
-            <PrevNextButton
-              next
-              href="#"
-              aria-label="Go to next slide"
-              onClick={e => {
-                e.preventDefault();
-                changeIndex(index + 1);
-              }}
-            >
-              {arrow}
-            </PrevNextButton>
-          </SliderButtonWrapper>
-          <Dots>
-            {slides.map((_, k) => (
-              <Dot key={k} active={k === index} />
-            ))}
-          </Dots>
-        </SliderNav>
+        {slides.length > 0 && (
+          <SliderNav>
+            <SliderButtonWrapper>
+              <PrevNextButton
+                href="#"
+                aria-label="Go to previous slide"
+                onClick={e => {
+                  e.preventDefault();
+                  changeIndex(index - 1);
+                }}
+              >
+                {arrow}
+              </PrevNextButton>
+              <PrevNextButton
+                next
+                href="#"
+                aria-label="Go to next slide"
+                onClick={e => {
+                  e.preventDefault();
+                  changeIndex(index + 1);
+                }}
+              >
+                {arrow}
+              </PrevNextButton>
+            </SliderButtonWrapper>
+            <Dots>
+              {slides.map((_, k) => (
+                <Dot key={k} active={k === index} />
+              ))}
+            </Dots>
+          </SliderNav>
+        )}
       </Slide>
     </Swipeable>
   );

@@ -1,9 +1,6 @@
 import * as React from 'react';
-import styled from 'styled-components';
-import { Image as ImageType } from '../../types/types';
 import Typography from '../Typography';
 import transformLangText from '../../util/transformLangText';
-import { ButtonInternal } from '../Button';
 import { CardVariant, FeaturedImages, CardVariantLeft, CardVariantRight } from './styles';
 import { HotelDetails } from './HotelCard';
 import useIsMobile from '../../hooks/useIsMobile';

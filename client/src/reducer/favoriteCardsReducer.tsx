@@ -1,4 +1,4 @@
-import { Result } from '../types/data';
+import { HotelDetails } from '../types/response';
 type ActionMap<M extends { [index: string]: any }> = {
   [Key in keyof M]: M[Key] extends undefined
     ? {
@@ -16,15 +16,15 @@ export enum Types {
 }
 
 export type Payload = {
-  [Types.Like]: Result;
+  [Types.Like]: HotelDetails;
   [Types.Dislike]: {
-    id: number;
+    id: string;
   };
 };
 
 export type FavoriteActions = ActionMap<Payload>[keyof ActionMap<Payload>];
 
-export const favoriteCardsReducer = (state: Result[], action: FavoriteActions) => {
+export const favoriteCardsReducer = (state: HotelDetails[], action: FavoriteActions) => {
   switch (action.type) {
     case Types.Like:
       return [...state, action.payload];

@@ -2,21 +2,60 @@ import * as React from 'react';
 import { useParams } from 'react-router-dom';
 import MainContent from '../../components/MainContent';
 import CardDetails from '../../components/GameCardDetails';
-import { Root } from '../../types/details';
-import { API_BASE_URL, mockCardDetails } from '../../util/constants';
 import useApi from '../../hooks/useApi';
 import Loader from '../../components/Loader';
 
 interface Props {}
 
+interface mockResponse {
+  code: number;
+  data: {
+    id: string;
+    snapshot: {
+      name: string;
+      category: 'hotel';
+      featuredImages: [];
+      descriptions: '';
+      location: '';
+      price: 0;
+      onSale: false;
+      salePrice: 0;
+      services: [];
+      rating: 0;
+      features: [];
+      reviews: [];
+    };
+  };
+}
+
 export const Details: React.FunctionComponent<Props> = () => {
   let { id } = useParams();
-  const { data, loading } = useApi<Root>({
-    endpoint: API_BASE_URL,
-    queryParams: id,
+  const { data, loading } = useApi<mockResponse>({
+    endpoint: `${process.env.REACT_APP_API_URL}establishments/${id}`,
     fetchOnMount: true,
-    initialData: mockCardDetails,
+    initialData: {
+      code: 0,
+      data: {
+        id: '',
+        snapshot: {
+          name: '',
+          category: 'hotel',
+          featuredImages: [],
+          descriptions: '',
+          location: '',
+          price: 0,
+          onSale: false,
+          salePrice: 0,
+          services: [],
+          rating: 0,
+          features: [],
+          reviews: [],
+        },
+      },
+    },
   });
+
+  console.log(data);
 
   return (
     <>
@@ -24,12 +63,9 @@ export const Details: React.FunctionComponent<Props> = () => {
         {loading && <Loader />}
         {!!data && !loading && (
           <CardDetails
-            title={data.name}
-            image={data.background_image}
-            description={data.description}
-            websiteLink={data.website}
-            genres={data.genres}
-            platforms={data.platforms}
+            id={data.data.id}
+            name={data.data.snapshot.name}
+            featuredImages={data.data.snapshot.featuredImages}
           />
         )}
       </MainContent>

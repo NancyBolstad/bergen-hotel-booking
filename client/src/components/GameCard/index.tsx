@@ -1,14 +1,14 @@
 import React from 'react';
 import Typography from '../Typography/Typography';
 import { ButtonInternal } from '../Button';
-import { Result } from '../../types/data';
+import { HotelDetails } from '../../types/response';
 import { CardWrapper, CardImage, LikeButton } from './styles';
 import { Context } from '../../context/GlobalContext';
 import { Types } from '../../reducer/favoriteCardsReducer';
 import { heart, heartSolid } from '../../util/icons';
 
 export interface Props {
-  card: Result;
+  card: HotelDetails;
 }
 
 export const Card: React.FunctionComponent<Props> = ({ card }) => {
@@ -49,16 +49,8 @@ export const Card: React.FunctionComponent<Props> = ({ card }) => {
         top={16}
         isPrimaryColor
       />
-      {!!card.background_image && <CardImage src={card.background_image} alt={card.name} />}
-      {!!card.released && (
-        <Typography
-          element="span"
-          variant="h4"
-          content={`Released: ${card.released}`}
-          bottom={16}
-          top={16}
-          isPrimaryColor
-        />
+      {!!card.featuredImages && (
+        <CardImage src={card.featuredImages[0].url} alt={card.featuredImages[0].alt} />
       )}
       {!!card.rating && (
         <Typography

@@ -1,10 +1,10 @@
 import React from 'react';
-import { Result } from '../../types/data';
+import { HotelDetails } from '../../types/response';
 import { CardsListWrapper } from './styles';
 import Card from '../GameCard';
 
 export interface Props {
-  cards: Result[];
+  cards: HotelDetails[];
 }
 
 export const CardsList: React.FunctionComponent<Props> = ({ cards }) => {

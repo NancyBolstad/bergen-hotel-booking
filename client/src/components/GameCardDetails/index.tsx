@@ -1,42 +1,14 @@
 import * as React from 'react';
 import Typography from '../Typography/Typography';
-import { ButtonExternal } from '../Button';
-import { Genre, Platform2 } from '../../types/details';
-import { CardDetailsWrapper, DetailImage, CardDetailsContent, RichText } from './styles';
+import { HotelDetails } from '../../types/response';
+import { CardDetailsWrapper } from './styles';
+import Slider from '../Slider';
 
-export interface Props {
-  title: string;
-  image: string;
-  description: string;
-  websiteLink: string;
-  genres: Genre[];
-  platforms: Platform2[];
-}
-
-const CardDetails: React.FunctionComponent<Props> = ({
-  title,
-  image,
-  description,
-  websiteLink,
-}) => {
+const CardDetails: React.FunctionComponent<HotelDetails> = ({ name, featuredImages }) => {
   return (
     <CardDetailsWrapper>
-      <Typography variant="h1" element="h2" top={32} bottom={26} content={title} />
-      <DetailImage>
-        <img src={image} alt={title} />
-      </DetailImage>
-      <CardDetailsContent>
-        <RichText dangerouslySetInnerHTML={{ __html: description }} />
-      </CardDetailsContent>
-      <ButtonExternal
-        variant="primary"
-        size="large"
-        href={`${websiteLink}`}
-        title="Visit game website"
-        target="_blank"
-      >
-        Play Game
-      </ButtonExternal>
+      {!!name && <Typography variant="h1" element="h2" top={32} bottom={26} content={name} />}
+      {!!featuredImages && <Slider slides={featuredImages} large />}
     </CardDetailsWrapper>
   );
 };

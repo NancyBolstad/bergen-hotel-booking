@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Typography from '../Typography/Typography';
 import { ButtonExternal } from '../Button';
-import Tag from '../Tag';
 import { Genre, Platform2 } from '../../types/details';
 import { CardDetailsWrapper, DetailImage, CardDetailsContent, RichText } from './styles';
 
@@ -19,8 +18,6 @@ const CardDetails: React.FunctionComponent<Props> = ({
   image,
   description,
   websiteLink,
-  genres,
-  platforms,
 }) => {
   return (
     <CardDetailsWrapper>
@@ -29,7 +26,6 @@ const CardDetails: React.FunctionComponent<Props> = ({
         <img src={image} alt={title} />
       </DetailImage>
       <CardDetailsContent>
-        <Tag genres={genres} platforms={platforms} />
         <RichText dangerouslySetInnerHTML={{ __html: description }} />
       </CardDetailsContent>
       <ButtonExternal

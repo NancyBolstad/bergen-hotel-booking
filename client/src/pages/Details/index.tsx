@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useParams } from 'react-router-dom';
 import MainContent from '../../components/MainContent';
-import CardDetails from '../../components/CardDetails';
+import CardDetails from '../../components/GameCardDetails';
 import { Root } from '../../types/details';
 import { API_BASE_URL, mockCardDetails } from '../../util/constants';
 import useApi from '../../hooks/useApi';

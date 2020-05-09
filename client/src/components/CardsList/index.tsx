@@ -1,7 +1,7 @@
 import React from 'react';
 import { Result } from '../../types/data';
 import { CardsListWrapper } from './styles';
-import Card from '../Card';
+import Card from '../GameCard';
 
 export interface Props {
   cards: Result[];

@@ -79,4 +79,20 @@ const More = styled.div`
   }
 `;
 
-export { Section, Wrapper, Card, HotelName, SectionTitle, More, FeaturedImages };
+const CardVariant = styled(Link)`
+  display: flex;
+  flex-direction: row;
+  text-decoration: none;
+  color: ${props => props.theme.colors.onBackground};
+  border: 1px solid white;
+  margin: calc(${props => props.theme.spacing.s}rem / 2);
+  padding: ${props => props.theme.spacing.xs}rem;
+  transition: all 0.15s ease-in-out;
+
+  &:hover,
+  &:focus {
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.15);
+  }
+`;
+
+export { Section, Wrapper, Card, HotelName, SectionTitle, More, FeaturedImages, CardVariant };

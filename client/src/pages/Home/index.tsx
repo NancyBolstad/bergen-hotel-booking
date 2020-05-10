@@ -1,20 +1,16 @@
 import React from 'react';
-import MainContent from '../../components/MainContent';
 import { Context } from '../../context/GlobalContext';
-import { HotelDetails } from '../../types/response';
 import { SearchBanner } from '../../components/Banner';
 import IconList from '../../components/IconList';
 import { BannerGrid } from '../../components/Banner/';
 import { HotelCardsList } from '../../components/HotelCards';
+import Loader from '../../components/Loader';
 
 interface Props {}
 
 export const Home: React.FunctionComponent<Props> = () => {
   const localContext = React.useContext(Context);
-  const [currentData, setCurrentData] = React.useState<HotelDetails[]>([]);
-  const [filtedData, setFilterData] = React.useState<HotelDetails[]>([]);
   const [loading, setLoading] = React.useState<boolean>(true);
-  const [message, setMessage] = React.useState<string>();
 
   const image = {
     url:
@@ -34,10 +30,6 @@ export const Home: React.FunctionComponent<Props> = () => {
     }, 3000);
   }, [loading]);
 
-  React.useEffect(() => {
-    setCurrentData(localContext.default);
-  }, [localContext, loading]);
-
   return (
     <main>
       <SearchBanner
@@ -50,12 +42,16 @@ export const Home: React.FunctionComponent<Props> = () => {
         sectionTitle="We selected best deals for you."
         banners={[mockBannerGrid, mockBannerGrid, mockBannerGrid]}
       />
-      <HotelCardsList
-        sectionTitle="Most popular hotels"
-        ctaText="Explore more"
-        ctaUrl="/accommodations"
-        list={localContext.default.slice(0, 6)}
-      />
+      {loading ? (
+        <Loader />
+      ) : (
+        <HotelCardsList
+          sectionTitle="Most popular hotels"
+          ctaText="Explore more"
+          ctaUrl="/accommodations"
+          list={localContext.default.slice(0, 6)}
+        />
+      )}
     </main>
   );
 };

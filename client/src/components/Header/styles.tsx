@@ -13,6 +13,7 @@ export const HeaderWrapper = styled.header`
     padding: ${props => props.theme.spacing.xs}rem ${props => props.theme.spacing.m}rem;
     height: 72px;
   }
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.15);
 `;
 
 export const HeaderNav = styled.nav`

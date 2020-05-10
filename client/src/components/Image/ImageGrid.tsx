@@ -1,5 +1,4 @@
 import * as React from 'react';
-import styled from 'styled-components';
 import { Image } from '../../types/types';
 import { Grid, GridItem, WidthConstraints, VerticalSpacer, HorizontalSpacer } from '../Layout';
 

@@ -27,9 +27,11 @@ export const Item = styled(FlexKid)`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   padding: calc(${props => props.theme.spacing.xs}rem / 2);
   text-decoration: none;
-  margin: ${props => props.theme.spacing.l}rem 0;
+  margin: ${props => props.theme.spacing.m}rem 0;
+  text-align: center;
 
   svg {
     height: 3.625rem;
@@ -38,12 +40,6 @@ export const Item = styled(FlexKid)`
   }
 
   @media screen and (min-width: 768px) {
-    width: 50%;
-    padding: calc(${props => props.theme.spacing.s}rem / 2);
-  }
-
-  @media screen and (min-width: 1280px) {
     width: 33.333%;
-    margin: ${props => props.theme.spacing.s}rem 0;
   }
 `;

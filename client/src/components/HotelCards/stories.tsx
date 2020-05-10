@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import { HotelDetails } from './HotelCard';
+import { HotelDetails } from '../../types/response';
 import { Props as ListTypes } from './HotelCardsList';
 import { HotelCardsList, HotelCardsListVariant } from './index';
 import { createList } from '../../util/mockHelpers';

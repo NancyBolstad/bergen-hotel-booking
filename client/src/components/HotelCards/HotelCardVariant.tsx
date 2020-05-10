@@ -2,7 +2,7 @@ import * as React from 'react';
 import Typography from '../Typography';
 import transformLangText from '../../util/transformLangText';
 import { CardVariant, FeaturedImages, CardVariantLeft, CardVariantRight } from './styles';
-import { HotelDetails } from './HotelCard';
+import { HotelDetails } from '../../types/response';
 import useIsMobile from '../../hooks/useIsMobile';
 
 const HotelCardVariant: React.FunctionComponent<HotelDetails> = ({

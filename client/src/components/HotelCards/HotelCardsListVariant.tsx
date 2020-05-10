@@ -3,7 +3,7 @@ import { Section, Wrapper, SectionTitle, More } from './styles';
 import { ButtonInternal } from '../Button/Button';
 import { IColors } from '../../types/theme';
 import { WidthConstraints, VerticalSpacer, HorizontalSpacer } from '../Layout';
-import { HotelDetails } from './HotelCard';
+import { HotelDetails } from '../../types/response';
 import HotelCardVariant from './HotelCardVariant';
 import { Flex } from '../Flex';
 

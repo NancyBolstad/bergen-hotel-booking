@@ -3,7 +3,7 @@ import { Image as ImageType } from '../../types/types';
 import { WidthConstraints, HorizontalSpacer, VerticalSpacer } from '../Layout';
 import Typography from '../Typography';
 import useIsMobile from '../../hooks/useIsMobile';
-import { ButtonVariant, ButtonInternal } from '../Button';
+import { ButtonVariant, ButtonInternal } from '../Button/Button';
 import { FlexParent, FlexKid } from './styles';
 
 interface Props {

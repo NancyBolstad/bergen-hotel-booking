@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import createFontStyles from '../../util/createFontStyles';
-import { ButtonProps } from '.';
+import { ButtonProps } from './Button';
 
 export const Button = styled.button<ButtonProps>`
   display: flex;
@@ -56,7 +56,7 @@ export const Button = styled.button<ButtonProps>`
       &:hover,
       &:active,
       &:focus {
-        opacity: 0.8;
+        background-color: ${props => props.theme.colors.hoverColor};
       }
       svg {
         fill: ${props => props.theme.colors.onPrimary};

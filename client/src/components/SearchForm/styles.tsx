@@ -67,6 +67,10 @@ export const SearchFormWrapper = styled.div`
     outline: none;
   }
   button[type='submit']:hover {
-    opacity: 0.7;
+    background-color: ${props => props.theme.colors.hoverColor};
+    color: ${props => props.theme.colors.white};
+    svg {
+      fill: ${props => props.theme.colors.white};
+    }
   }
 `;

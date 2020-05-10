@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import Button from '../Button';
+import Button from '../Button/Button';
 
 export const CardWrapper = styled.div`
   background: ${props => props.theme.colors.surface};

@@ -1,6 +1,6 @@
 import React from 'react';
 import Typography from '../Typography/Typography';
-import { ButtonInternal } from '../Button';
+import { ButtonInternal } from '../Button/Button';
 import { HotelDetails } from '../../types/response';
 import { CardWrapper, CardImage, LikeButton } from './styles';
 import { Context } from '../../context/GlobalContext';

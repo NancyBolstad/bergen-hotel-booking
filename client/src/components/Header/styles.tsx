@@ -6,8 +6,8 @@ export const HeaderWrapper = styled.header`
   width: 100%;
   background: ${props => props.theme.colors.background};
   color: ${props => props.theme.colors.onSecondary};
-  padding: ${props => props.theme.spacing.s}rem;
-  position: fixed;
+  position: sticky;
+  top: 0;
   z-index: 999;
   @media (min-width: ${props => props.theme.mediaQueries.large}px) {
     padding: ${props => props.theme.spacing.s}rem ${props => props.theme.spacing.m}rem;

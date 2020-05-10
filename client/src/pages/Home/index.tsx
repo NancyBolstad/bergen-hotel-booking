@@ -1,13 +1,8 @@
 import React from 'react';
-import Typography from '../../components/Typography/Typography';
 import MainContent from '../../components/MainContent';
 import { Context } from '../../context/GlobalContext';
 import { HotelDetails } from '../../types/response';
-import SearchForm from '../../components/SearchForm/SearchForm';
-import CardsList from '../../components/CardsList/';
-import Loader from '../../components/Loader';
-import Select from '../../components/Select';
-import validateUserInput from '../../util/validateUserInput';
+import { SearchBanner } from '../../components/Banner';
 
 interface Props {}
 
@@ -18,86 +13,35 @@ export const Home: React.FunctionComponent<Props> = () => {
   const [loading, setLoading] = React.useState<boolean>(true);
   const [message, setMessage] = React.useState<string>();
 
-  function filter(value: string) {
-    setLoading(true);
-    const lowerCaseSearchValue = value.toLowerCase();
-    const newArray: HotelDetails[] = localContext.default.filter(element => {
-      const lowerGameName = element.name?.toLowerCase();
-      return lowerGameName?.startsWith(lowerCaseSearchValue);
-    });
-    setFilterData(newArray);
-    if (validateUserInput(value)) {
-      setMessage(`Find ${newArray.length} cards for ${value}`);
-    } else {
-      setMessage('');
-    }
-    setLoading(false);
-  }
-
-  function sortSearchResults(criteria: string) {
-    setLoading(true);
-
-    if (criteria === 'default') {
-      setCurrentData(filtedData.length > 0 ? filtedData : localContext.default);
-    }
-    setLoading(false);
-  }
+  const image = {
+    url:
+      'https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1080&q=80',
+    alt: 'Foo',
+  };
 
   React.useEffect(() => {
     setTimeout(function() {
       setLoading(false);
-    }, 2000);
+    }, 3000);
   }, [loading]);
 
   React.useEffect(() => {
     setCurrentData(localContext.default);
   }, [localContext, loading]);
 
-  React.useEffect(() => {
-    if (!!filtedData) {
-      setCurrentData(filtedData);
-    }
-  }, [filtedData]);
-
   return (
-    <MainContent>
-      <Typography
-        element="h1"
-        variant="h1"
-        content="Search RAWG Video Games"
-        bottom={32}
-        top={32}
-        bottomDesktop={48}
-        topDesktop={48}
-        isPrimaryColor
+    <main>
+      <SearchBanner
+        figure={image}
+        title="Find hotels in Bergen at best price"
+        placeHolderText="Search for hotels"
       />
-      <SearchForm handler={filter} />
-      {!!message && message.length > 0 && (
-        <Typography variant="b2" element="p" content={message} isPrimaryColor />
-      )}
-      {!loading && (filtedData.length > 1 || currentData.length > 1) && (
-        <Select
-          label="Sort by:"
-          options={[
-            {
-              value: 'default',
-              label: 'Default',
-              isSelected: true,
-            },
-            {
-              value: 'alphabetically',
-              label: 'Alphabetically',
-            },
-            {
-              value: 'popularity',
-              label: 'Popularity',
-            },
-          ]}
-          handler={sortSearchResults}
-        />
-      )}
-      {loading ? <Loader /> : <CardsList cards={currentData} />}
-    </MainContent>
+      <SearchBanner
+        figure={image}
+        title="Find hotels in Bergen at best price"
+        placeHolderText="Search for hotels"
+      />
+    </main>
   );
 };
 

@@ -1,68 +1,49 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { Image as ImageType } from '../../types/types';
 import Typography from '../Typography';
 import transformLangText from '../../util/transformLangText';
 import { Card, FeaturedImages, LikeButton, LikeButtonWrapper } from './styles';
 import { heart, heartSolid } from '../../util/icons';
+import { Context } from '../../context/GlobalContext';
+import { Types } from '../../reducer/favoriteCardsReducer';
+import { HotelDetails } from '../../types/response';
 
-type HotelCategories =
-  | 'hotel'
-  | 'bed and breakfast'
-  | 'hostels'
-  | 'tourist residence'
-  | 'furnished apartment';
-type HotelServices =
-  | 'free breakfast'
-  | 'fitness centre'
-  | 'private bathroom'
-  | 'free wifi'
-  | 'room service'
-  | 'accessible room';
-type Features =
-  | 'fantastic cleanness'
-  | 'wonderful location'
-  | 'very comfortable bed'
-  | 'helpful staff'
-  | 'family friendly';
-
-export interface HotelDetails {
-  id?: string;
-  name?: string;
-  category?: HotelCategories;
-  featuredImages?: ImageType[];
-  descriptions?: string;
-  location?: string;
-  price?: number;
-  onSale?: boolean;
-  salePrice?: number;
-  services?: HotelServices[];
-  rating?: number;
-  features?: Features[];
-  reviews?: string[];
+export interface HotelCard {
+  card: HotelDetails;
 }
 
 export const Category = styled(Typography)<{ element: 'span' }>``;
 
-const HotelCard: React.FunctionComponent<HotelDetails> = ({
-  id,
-  name,
-  category,
-  featuredImages,
-  descriptions,
-  price,
-  services,
-  rating,
-  features,
-}) => {
-  const [like, setLike] = React.useState(false);
+const HotelCard: React.FunctionComponent<HotelCard> = ({ card }) => {
+  const { favorites, dispatch } = React.useContext(Context);
+  const [like, setLike] = React.useState<boolean>(() => {
+    const found = favorites.find(item => {
+      return item.id === card.id;
+    });
 
-  if (!id || !name) {
-    return null;
+    return found ? true : false;
+  });
+
+  function handleLikeDispatch() {
+    setLike(!like);
+
+    if (!like === true) {
+      dispatch({
+        type: Types.Like,
+        payload: card,
+      });
+    } else {
+      dispatch({
+        type: Types.Dislike,
+        payload: {
+          id: card.id,
+        },
+      });
+    }
   }
   return (
-    <Card to={`/accommodation/details/${id}`}>
-      {!!featuredImages && <FeaturedImages slides={featuredImages} />}
+    <Card to={`/accommodation/details/${card.id}`}>
+      {!!card.featuredImages && <FeaturedImages slides={card.featuredImages} />}
       <LikeButtonWrapper>
         <LikeButton
           variant="primary"
@@ -70,18 +51,18 @@ const HotelCard: React.FunctionComponent<HotelDetails> = ({
           isLiked={like}
           onClick={e => {
             e.preventDefault();
-            setLike(!like);
+            handleLikeDispatch();
           }}
         >
           {like ? heartSolid : heart}
         </LikeButton>
       </LikeButtonWrapper>
-      {!!category && <Typography element="span" variant="b2" content={category} />}
-      {!!name && <Typography element="span" variant="b2" content={name} />}
-      {!!descriptions && (
-        <Typography element="p" variant="b3" content={transformLangText(descriptions, 180)} />
+      {!!card.category && <Typography element="span" variant="b2" content={card.category} />}
+      {!!card.name && <Typography element="span" variant="b2" content={card.name} />}
+      {!!card.descriptions && (
+        <Typography element="p" variant="b3" content={transformLangText(card.descriptions, 180)} />
       )}
-      {!!price && <Typography element="span" variant="h3" content={`From ${price}`} />}
+      {!!card.price && <Typography element="span" variant="h3" content={`From ${card.price}`} />}
     </Card>
   );
 };

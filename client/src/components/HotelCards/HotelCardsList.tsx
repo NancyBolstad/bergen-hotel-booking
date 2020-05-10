@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { Section, Wrapper, SectionTitle, More } from './styles';
-import { ButtonInternal } from '../Button';
+import { ButtonInternal } from '../Button/Button';
 import { IColors } from '../../types/theme';
 import { WidthConstraints, VerticalSpacer, HorizontalSpacer, CardsList } from '../Layout';
-import HotelCard, { HotelDetails } from './HotelCard';
+import HotelCard from './HotelCard';
+import { HotelDetails } from '../../types/response';
 
 export interface Props {
   sectionTitle?: string;
@@ -32,15 +33,7 @@ export const HotelCardsList: React.FunctionComponent<Props> = ({
               {!!sectionTitle && <SectionTitle element="h2" variant="h2" content={sectionTitle} />}
               <CardsList>
                 {list.map((card, index) => (
-                  <HotelCard
-                    key={`hotel-card${index}-${card.id}`}
-                    id={card.id}
-                    name={card.name}
-                    category={card.category}
-                    descriptions={card.descriptions}
-                    featuredImages={card.featuredImages}
-                    price={card.price}
-                  />
+                  <HotelCard key={`hotel-card${index}-${card.id}`} card={card} />
                 ))}
               </CardsList>
               {!!ctaText && !!ctaUrl && (

@@ -50,7 +50,7 @@ export const Dot = styled.li<{ active?: boolean }>`
     `}
 `;
 
-export const PrevNextButton = styled.a<{ next?: boolean }>`
+export const PrevNextButton = styled.button<{ next?: boolean }>`
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -63,6 +63,7 @@ export const PrevNextButton = styled.a<{ next?: boolean }>`
   opacity: 0.8;
   box-shadow: none;
   cursor: pointer;
+  outline:none;
 
   &:not(:last-child) {
     margin-right: ${props => props.theme.spacing.xs}rem;

@@ -70,6 +70,7 @@ export interface IColors {
   error?: string;
   white?: string;
   dark?: string;
+  hoverColor?: string;
 }
 
 export interface Theme {

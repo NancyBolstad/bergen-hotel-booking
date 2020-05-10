@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { storiesOf } from '@storybook/react';
 import { search, hamburger } from '../../util/icons';
-import Button from '.';
+import Button from './Button';
 
 const Wrapper = styled.div`
   padding: 1rem;

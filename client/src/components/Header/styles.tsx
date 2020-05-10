@@ -6,13 +6,14 @@ export const HeaderWrapper = styled.header`
   width: 100%;
   background: ${props => props.theme.colors.background};
   color: ${props => props.theme.colors.onSecondary};
-  padding: ${props => props.theme.spacing.s}rem;
-  position: fixed;
+  position: sticky;
+  top: 0;
   z-index: 999;
   @media (min-width: ${props => props.theme.mediaQueries.large}px) {
-    padding: ${props => props.theme.spacing.s}rem ${props => props.theme.spacing.m}rem;
+    padding: ${props => props.theme.spacing.xs}rem ${props => props.theme.spacing.m}rem;
     height: 72px;
   }
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.15);
 `;
 
 export const HeaderNav = styled.nav`
@@ -49,7 +50,7 @@ export const HeaderNavLink = styled(Link)`
   color: ${props => props.theme.colors.onBackground};
   margin-right: ${props => props.theme.spacing.s}rem;
   text-decoration: none;
-  ${props => createFontStyles(props.theme.fonts.h3)};
+  ${props => createFontStyles(props.theme.fonts.b2)};
 
   &:hover {
     color: ${props => props.theme.colors.primary};
@@ -90,11 +91,13 @@ export const LikeButton = styled(HeaderNavLink)`
 
   @media all and (min-width: ${props => props.theme.mediaQueries.large}px) {
     span {
-      font-size: 16px;
-      left: 32px;
-      top: 2px;
-      width: 24px;
-      height: 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      left: 33px;
+      top: 1px;
+      width: 18px;
+      height: 18px;
       background-color: ${props => props.theme.colors.surface};
       color: ${props => props.theme.colors.dark};
     }

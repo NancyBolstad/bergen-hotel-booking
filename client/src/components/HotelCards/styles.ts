@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Typography from '../Typography';
 import { IColors } from '../../types/theme';
 import Slider from '../Slider';
-import Button from '../Button';
+import Button from '../Button/Button';
 
 const Section = styled.section<{ backgroundColor?: keyof IColors }>`
   background-color: ${props => props.theme.colors.background};
@@ -148,6 +148,11 @@ const LikeButton = styled(Button)<{ isLiked: boolean }>`
         fill: ${props => props.theme.colors.primary};
       }
     `}
+
+  &:hover,
+  &:focus {
+    background-color: transparent;
+  }
 `;
 
 export {

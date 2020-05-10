@@ -38,7 +38,7 @@ const SearchBanner: React.FunctionComponent<Props> = ({
           </WidthConstraints>
         </SearchBannerContent>
       )}
-      <SearchBannerBackground imageUrl={figure?.url}>
+      <SearchBannerBackground imageUrl={figure?.url} isDesktop={!isMobile}>
         {!isMobile && (
           <SearchBannerContent backgroundColor="secondaryVariant" isDesktop={!isMobile}>
             {!!title && <Typography variant="h1" element="h1" content={title} isPrimaryColor />}

@@ -15,6 +15,7 @@ const stableColors: Partial<IColors> = {
   error: '#FF4D4D',
   white: '#ffffff',
   dark: '#000000',
+  hoverColor: '#5C0F47',
 };
 
 const defaultColors: IColors = {

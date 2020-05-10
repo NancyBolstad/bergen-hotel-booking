@@ -54,7 +54,6 @@ export const Slider: React.FunctionComponent<Props> = ({
           <SliderNav>
             <SliderButtonWrapper>
               <PrevNextButton
-                href="#"
                 aria-label="Go to previous slide"
                 onClick={e => {
                   e.preventDefault();
@@ -65,7 +64,6 @@ export const Slider: React.FunctionComponent<Props> = ({
               </PrevNextButton>
               <PrevNextButton
                 next
-                href="#"
                 aria-label="Go to next slide"
                 onClick={e => {
                   e.preventDefault();

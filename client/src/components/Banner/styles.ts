@@ -41,9 +41,14 @@ export const PlainBannerTitle = styled(Typography)<{ hasBackgroundImage?: boolea
     `}
 `;
 
-export const SearchBannerBackground = styled(BackgroundImage)`
+export const SearchBannerBackground = styled(BackgroundImage)<{ isDesktop?: boolean }>`
   width: 100%;
-  height: 55vh;
+  height: 35vh;
+  ${props =>
+    props.isDesktop &&
+    css`
+      height: 65vh;
+    `}
 `;
 
 export const SearchBannerContent = styled(BackgroundImage)<{ isDesktop?: boolean }>`
@@ -58,6 +63,6 @@ export const SearchBannerContent = styled(BackgroundImage)<{ isDesktop?: boolean
     props.isDesktop &&
     css`
       height: 11.125rem;
-      padding: ${props => props.theme.spacing.l}rem 0;
+      padding: 0;
     `}
 `;

@@ -3,6 +3,7 @@ import MainContent from '../../components/MainContent';
 import { Context } from '../../context/GlobalContext';
 import { HotelDetails } from '../../types/response';
 import { SearchBanner } from '../../components/Banner';
+import IconList from '../../components/IconList';
 
 interface Props {}
 
@@ -15,8 +16,8 @@ export const Home: React.FunctionComponent<Props> = () => {
 
   const image = {
     url:
-      'https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1080&q=80',
-    alt: 'Foo',
+      'https://res.cloudinary.com/dykdxdtuu/image/upload/v1589114470/holidaza/photo-1580946443359-1126222f9224_fjvl7g.jpg',
+    alt: 'Bergen scenery',
   };
 
   React.useEffect(() => {
@@ -33,14 +34,10 @@ export const Home: React.FunctionComponent<Props> = () => {
     <main>
       <SearchBanner
         figure={image}
-        title="Find hotels in Bergen at best price"
+        title="Book your holiday in Bergen at best price"
         placeHolderText="Search for hotels"
       />
-      <SearchBanner
-        figure={image}
-        title="Find hotels in Bergen at best price"
-        placeHolderText="Search for hotels"
-      />
+      <IconList />
     </main>
   );
 };

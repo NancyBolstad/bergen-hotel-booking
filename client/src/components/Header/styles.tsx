@@ -1,23 +1,24 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import createFontStyles from '../../util/createFontStyles';
-import { ButtonProps } from '../Button';
 
 export const HeaderWrapper = styled.header`
   width: 100%;
   background: ${props => props.theme.colors.background};
   color: ${props => props.theme.colors.onSecondary};
-  padding: ${props => props.theme.spacing.s}rem;
-  position: fixed;
+  position: sticky;
+  top: 0;
   z-index: 999;
   @media (min-width: ${props => props.theme.mediaQueries.large}px) {
-    padding: ${props => props.theme.spacing.s}rem ${props => props.theme.spacing.m}rem;
+    padding: ${props => props.theme.spacing.xs}rem ${props => props.theme.spacing.m}rem;
     height: 72px;
   }
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.15);
 `;
 
 export const HeaderNav = styled.nav`
   display: flex;
+  margin: 0 auto;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -49,10 +50,13 @@ export const HeaderNavLink = styled(Link)`
   color: ${props => props.theme.colors.onBackground};
   margin-right: ${props => props.theme.spacing.s}rem;
   text-decoration: none;
-  ${props => createFontStyles(props.theme.fonts.h3)};
+  ${props => createFontStyles(props.theme.fonts.b2)};
 
   &:hover {
     color: ${props => props.theme.colors.primary};
+    svg {
+      fill: ${props => props.theme.colors.primary};
+    }
   }
   @media (min-width: ${props => props.theme.mediaQueries.large}px) {
     padding: 0.5rem 1rem;
@@ -65,11 +69,54 @@ export const HeaderNavLink = styled(Link)`
   }
 `;
 
+export const LikeButton = styled(HeaderNavLink)`
+  position: relative;
+
+  svg {
+    fill: ${props => props.theme.colors.onBackground};
+  }
+
+  span {
+    font-size: 12px;
+    background-color: ${props => props.theme.colors.dark};
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    position: absolute;
+    left: 16px;
+    color: ${props => props.theme.colors.white};
+  }
+
+  @media all and (min-width: ${props => props.theme.mediaQueries.large}px) {
+    span {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      left: 33px;
+      top: 1px;
+      width: 18px;
+      height: 18px;
+      background-color: ${props => props.theme.colors.surface};
+      color: ${props => props.theme.colors.dark};
+    }
+  }
+`;
+
 export const SiteLogo = styled(HeaderNavLink)`
   color: ${props => props.theme.colors.primary};
   font-family: 'Lobster', cursive;
   font-weight: bold;
-  font-size: 2.375rem !important;
+  font-size: 1.5rem;
+
+  @media (min-width: ${props => props.theme.mediaQueries.large}px) {
+    font-size: 2.35rem !important;
+  }
+
+  &:hover {
+    opacity: 0.8;
+  }
 `;
 
 export const HeaderButton = styled(HeaderNavLink)`
@@ -88,21 +135,24 @@ export const HeaderMenuLeft = styled.div`
 
 export const HeaderMenuRight = styled.div`
   list-style-type: none;
-  display: flex;
-  align-content: center;
+  display: inline-flex;
+  align-content: flex-start;
   justify-content: center;
 `;
 
-interface MobileMenuButton extends ButtonProps {
-  isOpen: boolean;
-}
-
 export const MobileMenuIcon = styled.a`
-  background-color: ${props => props.theme.colors.background};
   padding: 0;
   svg {
     margin: 0;
+    width: 24px;
+    height: 24px;
     fill: ${props => props.theme.colors.onBackground};
+  }
+
+  &:hover {
+    svg {
+      fill: ${props => props.theme.colors.primary};
+    }
   }
 `;
 
@@ -120,7 +170,19 @@ export const MobileMenuWrapper = styled.div`
   ${props => createFontStyles(props.theme.fonts.h1)};
 
   a {
-    margin-top: ${props => props.theme.spacing.xl}rem;
+    margin: ${props => props.theme.spacing.l}rem auto;
     color: ${props => props.theme.colors.onBackground};
+  }
+`;
+
+export const MobileIcons = styled.div`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  background-color: ${props => props.theme.colors.surface};
+
+  a {
+    margin: ${props => props.theme.spacing.s}rem auto;
   }
 `;

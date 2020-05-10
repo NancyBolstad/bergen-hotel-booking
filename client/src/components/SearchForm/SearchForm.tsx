@@ -3,10 +3,11 @@ import { search } from '../../util/icons';
 import { Wrapper, SearchFormWrapper } from './styles';
 
 interface Props {
-  handler: (value: string) => any;
+  handler?: (value: string) => any;
+  placeHolderText?: string;
 }
 
-export const SearchCards: React.FunctionComponent<Props> = ({ handler }) => {
+export const SearchForm: React.FunctionComponent<Props> = ({ handler, placeHolderText }) => {
   const [searchValue, setSearchValue] = React.useState<string>('');
   return (
     <Wrapper>
@@ -14,24 +15,24 @@ export const SearchCards: React.FunctionComponent<Props> = ({ handler }) => {
         <form
           onSubmit={(e: any) => {
             e.preventDefault();
-            handler(searchValue);
+            if (handler) handler(searchValue);
           }}
         >
           <input
             id="searchForm"
             className="searchInput"
             type="text"
-            aria-label="Search"
-            placeholder="Search for video games"
+            aria-label={placeHolderText ? placeHolderText : 'Search form'}
+            placeholder={placeHolderText ? placeHolderText : 'Search her'}
             value={searchValue}
             onChange={(e: any) => {
               e.preventDefault();
               setSearchValue(e.target.value);
-              handler(e.target.value);
+              if (handler) handler(e.target.value);
             }}
           />
-          <button type="submit" aria-label="Search for recipe name">
-            {search}
+          <button type="submit" aria-label={'Submit search form'}>
+            Search{search}
           </button>
         </form>
       </SearchFormWrapper>
@@ -39,4 +40,4 @@ export const SearchCards: React.FunctionComponent<Props> = ({ handler }) => {
   );
 };
 
-export default SearchCards;
+export default SearchForm;

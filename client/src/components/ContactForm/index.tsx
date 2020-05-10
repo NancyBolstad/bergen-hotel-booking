@@ -2,9 +2,10 @@ import * as React from 'react';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 import { Form, StyledInput, Label, StyledLabelText, StyledTextArea, ErrorMessage } from './styles';
-import Button from '../Button';
+import Button from '../Button/Button';
 import Typography from '../Typography/Typography';
 import contactSchema from '../../util/contactSchema';
+import postData from '../../util/postData';
 
 interface Props {}
 
@@ -15,44 +16,38 @@ const ContactForm: React.FC<Props> = () => {
 
   let history = useHistory();
 
-  const onSubmit = () => {
-    history.push('/success');
-  };
+  async function sendForm(data: Object, endpoint: 'contact') {
+    const response = await postData({
+      endpoint: endpoint,
+      data: data,
+    });
+
+    console.log(response);
+
+    if (response.status === 200) {
+      history.push('/success');
+    }
+  }
 
   return (
     <>
       <Typography element="h1" variant="h1" content="Contact Us" isPrimaryColor />
-      <Form onSubmit={handleSubmit(onSubmit)}>
+      <Form onSubmit={handleSubmit((data: Object) => sendForm(data, 'contact'))} noValidate>
         <Label>
           <StyledLabelText>
-            First Name <span>*</span>
+            Name <span>*</span>
           </StyledLabelText>
           <StyledInput
             type="text"
-            name="firstName"
-            placeholder="Your first name"
+            name="clientName"
+            placeholder="Your name"
             ref={register}
             required
           />
         </Label>
         {/* 
       // @ts-ignore */
-        errors.firstName && <ErrorMessage>{errors.firstName.message}</ErrorMessage>}
-        <Label>
-          <StyledLabelText>
-            Last Name <span>*</span>
-          </StyledLabelText>
-          <StyledInput
-            type="text"
-            name="lastName"
-            placeholder="Your last name"
-            ref={register}
-            required
-          />
-        </Label>
-        {/* 
-      // @ts-ignore */
-        errors.lastName && <ErrorMessage>{errors.lastName.message}</ErrorMessage>}
+        errors.clientName && <ErrorMessage>{errors.clientName.message}</ErrorMessage>}
         <Label>
           <StyledLabelText>
             Email <span>*</span>

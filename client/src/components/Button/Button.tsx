@@ -2,11 +2,11 @@ import { Link } from 'react-router-dom';
 import { Button } from './styles';
 
 type Size = 'small' | 'medium' | 'large';
-type Variant = 'primary' | 'secondary' | 'tertiary';
+export type ButtonVariant = 'primary' | 'secondary' | 'tertiary';
 
 export interface ButtonProps {
   size: Size;
-  variant: Variant;
+  variant: ButtonVariant;
 }
 
 const ButtonExternal = Button.withComponent('a');

@@ -1,11 +1,9 @@
 import * as React from 'react';
 import { Section, Wrapper, SectionTitle, More } from './styles';
 import BlogCard, { Props as Card } from './BlogCard';
-import { ButtonInternal } from '../Button';
-import { Image } from '../../types/types';
+import { ButtonInternal } from '../Button/Button';
 import { IColors } from '../../types/theme';
 import { WidthConstraints, VerticalSpacer, HorizontalSpacer, CardsList } from '../Layout';
-import transformLangText from '../../util/transformLangText';
 
 export interface Props {
   sectionTitle?: string;

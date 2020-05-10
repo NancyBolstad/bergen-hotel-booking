@@ -4,6 +4,8 @@ import { Context } from '../../context/GlobalContext';
 import { HotelDetails } from '../../types/response';
 import { SearchBanner } from '../../components/Banner';
 import IconList from '../../components/IconList';
+import { BannerGrid } from '../../components/Banner/';
+import { HotelCardsList } from '../../components/HotelCards';
 
 interface Props {}
 
@@ -18,6 +20,12 @@ export const Home: React.FunctionComponent<Props> = () => {
     url:
       'https://res.cloudinary.com/dykdxdtuu/image/upload/v1589114470/holidaza/photo-1580946443359-1126222f9224_fjvl7g.jpg',
     alt: 'Bergen scenery',
+  };
+
+  const mockBannerGrid = {
+    backgroundImage: image,
+    text: 'Up to 50% off',
+    redirectLink: '/accommodations',
   };
 
   React.useEffect(() => {
@@ -38,6 +46,16 @@ export const Home: React.FunctionComponent<Props> = () => {
         placeHolderText="Search for hotels"
       />
       <IconList />
+      <BannerGrid
+        sectionTitle="We selected best deals for you."
+        banners={[mockBannerGrid, mockBannerGrid, mockBannerGrid]}
+      />
+      <HotelCardsList
+        sectionTitle="Most popular hotels"
+        ctaText="Explore more"
+        ctaUrl="/accommodations"
+        list={localContext.default.slice(0, 6)}
+      />
     </main>
   );
 };

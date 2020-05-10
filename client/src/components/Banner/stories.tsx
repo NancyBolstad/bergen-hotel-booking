@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import { SearchBanner, PlainBanner, FlexBanner } from '.';
+import { SearchBanner, PlainBanner, FlexBanner, BannerGrid } from '.';
+import { createList } from '../../util/mockHelpers';
 
 const mockTitleLong: string = 'Lorem ipsum dolor sit amet';
 const mockTitleShort: string = 'Accommodations';
@@ -11,6 +12,12 @@ const image = {
   url:
     'https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1080&q=80',
   alt: 'Foo',
+};
+
+const mockBannerGrid = {
+  backgroundImage: image,
+  text: mockTitleShort,
+  redirectLink: '/accommodations',
 };
 
 export const SearchBannerStory = (
@@ -43,10 +50,13 @@ export const FlexBannerRightStory = (
   />
 );
 
+export const BannerGridStory = <BannerGrid banners={createList(mockBannerGrid, 4)} />;
+
 storiesOf('Component/Banner', module)
   .add('SearchBanner', () => SearchBannerStory)
   .add('PlainBanner with background image', () => PlainBannerWithBackgroundImageStory)
   .add('PlainBanner Variant A', () => PlainBannerVariantAStory)
   .add('PlainBanner Variant B', () => PlainBannerVariantBStory)
   .add('FlexBanner with Image Left', () => FlexBannerLeftStory)
-  .add('FlexBanner with Image Right', () => FlexBannerRightStory);
+  .add('FlexBanner with Image Right', () => FlexBannerRightStory)
+  .add('BannerGrid', () => BannerGridStory);

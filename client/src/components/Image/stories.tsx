@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import { Image } from '.';
+import { Image, ImageGrid } from '.';
+import { createList } from '../../util/mockHelpers';
 
 const image = {
   url:
@@ -14,9 +15,11 @@ export const ImageFixedStorySmall = <Image image={image} size="small" />;
 export const ImageFixedStoryMedium = <Image image={image} size="medium" />;
 export const ImageFixedStoryLarge = <Image image={image} size="large" />;
 export const ImageFixedStoryFluid = <Image image={image} size="fluid" />;
+export const ImageGridStory = <ImageGrid images={createList(image, 3)} />;
 
 storiesOf('Component/Image', module)
   .add('Fixed size small', () => ImageFixedStorySmall)
   .add('Fixed size medium', () => ImageFixedStoryMedium)
   .add('Fixed size large', () => ImageFixedStoryLarge)
-  .add('Fixed size fluid', () => ImageFixedStoryFluid);
+  .add('Fixed size fluid', () => ImageFixedStoryFluid)
+  .add('Image Grid', () => ImageGridStory);

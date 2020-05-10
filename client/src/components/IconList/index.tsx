@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { VerticalSpacer, HorizontalSpacer, WidthConstraints, CardsList } from '../Layout';
 import Typography from '../Typography';
-import { Image } from '../../types/types';
 import { ContentWrapper, Item } from './styles';
 import { service, topRated, bestPrice } from '../../util/icons';
 
@@ -42,7 +41,7 @@ export const IconList: React.FunctionComponent<FeaturesListProps> = ({ sectionTi
                 <Typography
                   element="span"
                   variant="b2"
-                  content="Top Rated Booking System"
+                  content="Most Popular Travel Platform"
                   top={16}
                   topDesktop={32}
                 />

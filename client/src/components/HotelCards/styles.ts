@@ -148,6 +148,11 @@ const LikeButton = styled(Button)<{ isLiked: boolean }>`
         fill: ${props => props.theme.colors.primary};
       }
     `}
+
+  &:hover,
+  &:focus {
+    background-color: transparent;
+  }
 `;
 
 export {

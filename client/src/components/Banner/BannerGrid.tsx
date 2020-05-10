@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { Image } from '../../types/types';
 import { Grid, GridItem, WidthConstraints, VerticalSpacer, HorizontalSpacer } from '../Layout';
@@ -16,7 +16,7 @@ interface BannerGridProps {
   banners: Banner[];
 }
 
-const InnerTextWrapper = styled(Link)<{ sizeLarge?: boolean }>`
+const InnerTextWrapper = styled(Link)<{ large?: string }>`
   background-color: ${props => props.theme.colors.secondary};
   width: 15.6875rem;
   height: 8.3125rem;
@@ -37,8 +37,8 @@ const InnerTextWrapper = styled(Link)<{ sizeLarge?: boolean }>`
   }
 
   @media screen and (min-width: 1280px) {
-    width: ${props => (props.sizeLarge ? '30rem' : '18rem')};
-    height: ${props => (props.sizeLarge ? '20rem' : '12rem')};
+    width: ${props => (props.large === 'true' ? '30rem' : '18rem')};
+    height: ${props => (props.large === 'true' ? '20rem' : '12rem')};
   }
 `;
 
@@ -72,7 +72,7 @@ const BannerGrid: React.FunctionComponent<BannerGridProps> = ({ sectionTitle, ba
                 {!!banner.text && (
                   <InnerTextWrapper
                     to={banner.redirectLink ? banner.redirectLink : ''}
-                    sizeLarge={index === 0}
+                    large={index === 0 ? 'true' : 'false'}
                   >
                     <Typography
                       variant="h2"

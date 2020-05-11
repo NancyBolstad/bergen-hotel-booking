@@ -47,7 +47,7 @@ export const SearchBannerBackground = styled(BackgroundImage)<{ isDesktop?: bool
   ${props =>
     props.isDesktop &&
     css`
-      height: 65vh;
+      height: 75vh;
     `}
 `;
 
@@ -63,15 +63,19 @@ export const SearchBannerContent = styled(BackgroundImage)<{ isDesktop?: boolean
     props.isDesktop &&
     css`
       position: relative;
-      height: 13.125rem;
+      height: 8.125rem;
       padding: 0;
 
       div {
         position: absolute;
-        bottom: -9px;
+        bottom: -19px;
         width: 100%;
         max-width: 650px;
         margin: 0 auto;
+
+        div {
+          padding: ${props => props.theme.spacing.m}rem 0;
+        }
       }
     `}
 `;

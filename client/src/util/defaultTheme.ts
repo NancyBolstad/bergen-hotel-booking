@@ -81,7 +81,7 @@ const h1: Font = {
     {
       query: defaultMediaQueries.small,
       weight: defaultFontWeight.bold,
-      size: 3.4375,
+      size: 2.875,
       lineHeight: 1.25,
     },
   ],

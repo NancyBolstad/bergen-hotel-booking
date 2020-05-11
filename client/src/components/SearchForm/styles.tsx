@@ -14,7 +14,7 @@ export const SearchFormWrapper = styled.div`
   }
   input[type='text'] {
     background: ${props => props.theme.colors.background};
-    border: 2px solid ${props => props.theme.colors.primary};
+    border: 2px solid ${props => props.theme.colors.white};
     color: ${props => props.theme.colors.primary};
     white-space: nowrap;
     padding: 0.55rem 0.75rem;

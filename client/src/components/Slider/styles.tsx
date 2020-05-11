@@ -8,6 +8,7 @@ export const Slide = styled(BackgroundImage)<{ large?: boolean }>`
   align-items: center;
   position: relative;
   min-height: 180px;
+  height: 100%;
 
   @media (min-width: ${props => props.theme.mediaQueries.medium}px) {
     min-height: ${props => (props.large ? '580px' : '280px')};
@@ -55,15 +56,15 @@ export const PrevNextButton = styled.button<{ next?: boolean }>`
   justify-content: center;
   align-items: center;
   border: none;
-  width: 16px;
-  height: 16px;
+  width: 2.375rem;
+  height: 2.375rem;
   border-radius: 50%;
   color: ${props => props.theme.colors.dark};
   background-color: ${props => props.theme.colors.white};
   opacity: 0.8;
   box-shadow: none;
   cursor: pointer;
-  outline:none;
+  outline: none;
 
   &:not(:last-child) {
     margin-right: ${props => props.theme.spacing.xs}rem;
@@ -85,11 +86,6 @@ export const PrevNextButton = styled.button<{ next?: boolean }>`
         transform: rotate(270deg);
       }
     `}
-
-    @media (min-width: ${props => props.theme.mediaQueries.large}px) {
-      width: 38px;
-      height: 38px;
-    }
 `;
 
 export const SliderButtonWrapper = styled.div`

@@ -28,7 +28,7 @@ export interface HotelDetails {
   price?: number;
   onSale?: boolean;
   salePrice?: number;
-  services?: HotelServices[];
+  services?: string[];
   rating?: number;
   features?: Features[];
   reviews?: string[];

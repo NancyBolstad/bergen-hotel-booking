@@ -92,18 +92,24 @@ export const SearchSubmitButton = styled.button<{ isMobile?: boolean }>`
 
 export const SearchResultsWrapper = styled.div<{ isMobile?: boolean }>`
   height: 500px;
+  background-color: ${props => props.theme.colors.secondaryVariant};
+  border: 2px solid ${props => props.theme.colors.secondary};
+  box-shadow: 0 3px 4px 0 rgba(71, 68, 69, 0.14), 0 3px 3px -2px rgba(71, 68, 69, 0.2),
+    0 1px 8px 0 rgba(71, 68, 69, 0.12);
   max-width: 650px;
   overflow-y: auto;
-  background-color: ${props => props.theme.colors.background};
   list-style: none;
   width: 100%;
+  border-radius: 0 0 8px 8px;
 
   ${props =>
     props.isMobile &&
     css`
       position: absolute;
       top: 3rem;
-      z-index: 1;
+      left: 0;
+      right: 0;
+      z-index: 2;
     `}
 
   li {

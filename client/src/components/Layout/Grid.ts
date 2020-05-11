@@ -7,6 +7,9 @@ const Grid = styled.div`
   grid-gap: ${props => props.theme.spacing.xs}rem;
   grid-auto-rows: 260px;
   grid-template-columns: 1fr;
+  min-height: 0;
+  min-width: 0;
+  overflow: auto;
 
   ${createMediaQuery(
     'medium',

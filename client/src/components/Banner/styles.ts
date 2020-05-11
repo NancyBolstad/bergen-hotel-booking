@@ -62,18 +62,10 @@ export const SearchBannerContent = styled(BackgroundImage)<{ isDesktop?: boolean
   ${props =>
     props.isDesktop &&
     css`
-      position: relative;
-      height: 8.125rem;
+      height: 13rem;
       padding: 0;
       justify-content: center;
       align-items: center;
-
-      div {
-        position: absolute;
-        bottom: -22px;
-        width: 100%;
-        max-width: 650px;
-        margin: 0 auto;
-      }
+      position: relative;
     `}
 `;

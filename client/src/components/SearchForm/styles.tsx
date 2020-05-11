@@ -1,8 +1,19 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import createFontStyles from '../../util/createFontStyles';
+import { Flex } from '../Flex';
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.div<{ isMobile?: boolean }>`
+  width: 100%;
+  max-width: 650px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  ${props =>
+    props.isMobile === false &&
+    css`
+      position: absolute;
+    `}
 `;
 
 export const Form = styled.form`
@@ -11,6 +22,7 @@ export const Form = styled.form`
   margin: 0 auto;
   padding: 0;
   width: 100%;
+  max-width: 100vw;
 `;
 
 export const SearchInputField = styled.input`
@@ -25,6 +37,7 @@ export const SearchInputField = styled.input`
   height: 3rem;
   cursor: pointer;
   flex-grow: 2;
+  max-width: 60vw;
 
   ::placeholder {
     color: ${props => props.theme.colors.onSurface};
@@ -77,14 +90,21 @@ export const SearchSubmitButton = styled.button<{ isMobile?: boolean }>`
   }
 `;
 
-export const SearchResultsWrapper = styled.ul`
+export const SearchResultsWrapper = styled.div<{ isMobile?: boolean }>`
   max-height: 500px;
+  max-width: 650px;
   overflow-y: auto;
   background-color: ${props => props.theme.colors.background};
-  padding: ${props => props.theme.spacing.xs}px;
-  margin: 2px 0 0;
   list-style: none;
-  box-shadow: inset 0 -14px 10px -10px #00000029;
+  width: 100%;
+
+  ${props =>
+    props.isMobile &&
+    css`
+      position: absolute;
+      top: 3rem;
+      z-index: 1;
+    `}
 
   li {
     &:not(:last-child) {

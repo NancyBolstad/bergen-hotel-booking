@@ -20,34 +20,44 @@ export const SearchForm: React.FunctionComponent<Props> = ({ handler, placeHolde
   const [showResults, setShowResults] = React.useState(false);
   const isMobile = useIsMobile();
   React.useEffect(() => {
-    setShowResults(true);
+    if (searchValue !== '') {
+      setShowResults(true);
+    }
   }, [searchValue]);
 
   return (
-    <Form
-      onSubmit={(e: any) => {
-        e.preventDefault();
-        if (handler) handler(searchValue);
-      }}
-    >
-      <SearchInputField
-        id="searchForm"
-        className="searchInput"
-        type="text"
-        aria-label={placeHolderText ? placeHolderText : 'Search form'}
-        placeholder={placeHolderText ? placeHolderText : 'Search her'}
-        value={searchValue}
-        onChange={(e: any) => {
+    <Wrapper isMobile={isMobile}>
+      <Form
+        onSubmit={(e: any) => {
           e.preventDefault();
-          setSearchValue(e.target.value);
-          if (handler) handler(e.target.value);
+          if (handler) handler(searchValue);
         }}
-      />
-      <SearchSubmitButton type="submit" aria-label={'Submit search form'} isMobile={isMobile}>
-        {!isMobile && 'Search'}
-        {search}
-      </SearchSubmitButton>
-    </Form>
+      >
+        <SearchInputField
+          id="searchForm"
+          className="searchInput"
+          type="text"
+          autoComplete="off"
+          aria-label={placeHolderText ? placeHolderText : 'Search form'}
+          placeholder={placeHolderText ? placeHolderText : 'Search her'}
+          value={searchValue}
+          onChange={(e: any) => {
+            e.preventDefault();
+            setSearchValue(e.target.value);
+            if (handler) handler(e.target.value);
+          }}
+        />
+        <SearchSubmitButton type="submit" aria-label={'Submit search form'} isMobile={isMobile}>
+          {!isMobile && 'Search'}
+          {search}
+        </SearchSubmitButton>
+      </Form>
+      {showResults && (
+        <SearchResultsWrapper isMobile={isMobile}>
+          <h1>Hello</h1>
+        </SearchResultsWrapper>
+      )}
+    </Wrapper>
   );
 };
 

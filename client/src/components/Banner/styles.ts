@@ -54,8 +54,8 @@ export const SearchBannerBackground = styled(BackgroundImage)<{ isDesktop?: bool
 export const SearchBannerContent = styled(BackgroundImage)<{ isDesktop?: boolean }>`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: left;
+  align-items: left;
   width: 100%;
   padding: ${props => props.theme.spacing.m}rem 0;
 
@@ -65,17 +65,15 @@ export const SearchBannerContent = styled(BackgroundImage)<{ isDesktop?: boolean
       position: relative;
       height: 8.125rem;
       padding: 0;
+      justify-content: center;
+      align-items: center;
 
       div {
         position: absolute;
-        bottom: -19px;
+        bottom: -22px;
         width: 100%;
         max-width: 650px;
         margin: 0 auto;
-
-        div {
-          padding: ${props => props.theme.spacing.m}rem 0;
-        }
       }
     `}
 `;

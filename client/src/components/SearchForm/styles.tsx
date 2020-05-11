@@ -91,7 +91,7 @@ export const SearchSubmitButton = styled.button<{ isMobile?: boolean }>`
 `;
 
 export const SearchResultsWrapper = styled.div<{ isMobile?: boolean }>`
-  max-height: 500px;
+  height: 500px;
   max-width: 650px;
   overflow-y: auto;
   background-color: ${props => props.theme.colors.background};

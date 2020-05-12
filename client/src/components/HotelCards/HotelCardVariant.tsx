@@ -5,41 +5,33 @@ import { CardVariant, FeaturedImages, CardVariantLeft, CardVariantRight } from '
 import { HotelDetails } from '../../types/response';
 import useIsMobile from '../../hooks/useIsMobile';
 
-const HotelCardVariant: React.FunctionComponent<HotelDetails> = ({
-  id,
-  name,
-  category,
-  featuredImages,
-  descriptions,
-  price,
-  services,
-  rating,
-  features,
-}) => {
+interface Props {
+  card: HotelDetails;
+}
+
+const HotelCardVariant: React.FunctionComponent<Props> = ({ card }) => {
   const isMobile = useIsMobile();
 
-  if (!id || !name) {
-    return null;
-  }
+  console.log(22222222222222222887779);
 
   return (
-    <CardVariant to={`/accommodation/details/${id}`}>
-      {!!featuredImages && (
+    <CardVariant to={`/accommodation/details/${card.id}`}>
+      {!!card.featuredImages && (
         <CardVariantLeft>
-          <FeaturedImages slides={featuredImages} />
+          <FeaturedImages slides={card.featuredImages} />
         </CardVariantLeft>
       )}
       <CardVariantRight>
-        {!!category && <Typography element="span" variant="b2" content={category} />}
-        {!!name && <Typography element="span" variant="b2" content={name} />}
-        {!!descriptions && (
+        {!!card.category && <Typography element="span" variant="b2" content={card.category} />}
+        {!!card.name && <Typography element="span" variant="b2" content={card.name} />}
+        {!!card.descriptions && (
           <Typography
             element="p"
             variant="b1"
-            content={transformLangText(descriptions, isMobile ? 150 : 180)}
+            content={transformLangText(card.descriptions, isMobile ? 150 : 180)}
           />
         )}
-        {!!price && <Typography element="span" variant="h3" content={`From ${price}`} />}
+        {!!card.price && <Typography element="span" variant="h3" content={`From ${card.price}`} />}
       </CardVariantRight>
     </CardVariant>
   );

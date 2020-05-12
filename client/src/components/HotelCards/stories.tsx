@@ -35,7 +35,7 @@ const mockList: ListTypes = {
 };
 
 export const HotelCardsListStory = <HotelCardsList {...mockList} />;
-export const HotelCardsListVariantStory = <HotelCardsListVariant {...mockList} />;
+export const HotelCardsListVariantStory = <HotelCardsListVariant {...mockList} hasPagination />;
 
 storiesOf('Component/HotelList', module)
   .add('Default', () => HotelCardsListStory)

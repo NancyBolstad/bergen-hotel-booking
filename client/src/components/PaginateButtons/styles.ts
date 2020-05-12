@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import setColorOpacity from '../../util/setColorOpacity';
-import { ButtonAnchor } from '../../components/Button';
+import { ButtonExternal } from '../../components/Button/Button';
 
 const ButtonsWrapper = styled.div`
   display: flex;
@@ -9,7 +9,7 @@ const ButtonsWrapper = styled.div`
   margin: ${props => props.theme.spacing.s}rem auto;
 `;
 
-const JumpPageButton = styled(ButtonAnchor)<{ isActive: boolean }>`
+const JumpPageButton = styled(ButtonExternal)<{ isActive: boolean }>`
   margin: 0 ${props => props.theme.spacing.xs}rem;
   ${props =>
     props.isActive &&

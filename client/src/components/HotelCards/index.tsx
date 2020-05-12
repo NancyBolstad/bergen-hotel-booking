@@ -1,3 +1,4 @@
 import HotelCardsList from './HotelCardsList';
 import HotelCardsListVariant from './HotelCardsListVariant';
-export { HotelCardsList, HotelCardsListVariant };
+import HotelCardVariant from './HotelCardVariant';
+export { HotelCardsList, HotelCardsListVariant, HotelCardVariant };

@@ -23,7 +23,7 @@ const PlainBanner: React.FunctionComponent<Props> = ({
       backgroundColor={backgroundColor ? backgroundColor : 'secondaryVariant'}
       imageUrl={backgroundImage?.url}
     >
-      <WidthConstraints size="medium">
+      <WidthConstraints size="large">
         <HorizontalSpacer>
           {!!title && (
             <PlainBannerTitle

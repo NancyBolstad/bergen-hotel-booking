@@ -9,8 +9,8 @@ import Loader from '../../components/Loader';
 interface Props {}
 
 export const Home: React.FunctionComponent<Props> = () => {
-  //const localContext = React.useContext(Context);
-  const [loading, setLoading] = React.useState<boolean>(true);
+  const localContext = React.useContext(Context);
+  const [loading, setLoading] = React.useState<boolean>(localContext.loading);
 
   const image = {
     url:
@@ -24,12 +24,6 @@ export const Home: React.FunctionComponent<Props> = () => {
     redirectLink: '/accommodations',
   };
 
-  React.useEffect(() => {
-    setTimeout(function() {
-      setLoading(false);
-    }, 3000);
-  }, [loading]);
-
   return (
     <main>
       <SearchBanner
@@ -42,7 +36,7 @@ export const Home: React.FunctionComponent<Props> = () => {
         sectionTitle="We selected best deals for you."
         banners={[mockBannerGrid, mockBannerGrid, mockBannerGrid]}
       />
-      {/* {loading ? (
+      {loading ? (
         <Loader />
       ) : (
         <HotelCardsList
@@ -51,7 +45,7 @@ export const Home: React.FunctionComponent<Props> = () => {
           ctaUrl="/accommodations"
           list={localContext.default.slice(0, 6)}
         />
-      )} */}
+      )}
     </main>
   );
 };

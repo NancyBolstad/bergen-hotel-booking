@@ -19,7 +19,7 @@ const mockBlog: BlogCardProps = {
 
 const mockList: Props = {
   sectionTitle: 'Blog',
-  backgroundColor: 'secondary',
+  backgroundColor: 'background',
   ctaText: 'Read more blogs',
   ctaUrl: '/blog',
   list: createList(mockBlog, 5),

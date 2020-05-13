@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { lazy, Suspense } from 'react';
 import styled, { css } from 'styled-components';
 import createFontStyles from '../../util/createFontStyles';
 import { HotelDetails, HotelCategories, HotelServices } from '../../types/response';

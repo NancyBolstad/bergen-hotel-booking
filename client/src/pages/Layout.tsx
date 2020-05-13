@@ -5,13 +5,13 @@ import Header from '../components/Header/Header';
 import Footer from '../components/Footer';
 import Loader from '../components/Loader';
 import Home from './Home';
-import Details from './Details';
 import Favorites from './Favorites';
 import ContrastProvider from '../context/Contrast';
 import Accommodations from './Accommodations/Accommodations';
 
 const Contact = lazy(() => import('./Contact'));
 const Success = lazy(() => import('./Success'));
+const HotelDetails = lazy(() => import('./HotelDetails'));
 
 interface Props {}
 
@@ -20,7 +20,7 @@ const Layout: React.FunctionComponent<Props> = () => {
     <ContrastProvider>
       <ThemeWrapper>
         <BrowserRouter>
-          <div>
+          <>
             <Header />
             <Switch>
               <Route path="/success">
@@ -38,9 +38,9 @@ const Layout: React.FunctionComponent<Props> = () => {
                   <Contact />
                 </Suspense>
               </Route>
-              <Route path="/details/:id">
+              <Route path="/accommodation/details/:id">
                 <Suspense fallback={<Loader />}>
-                  <Details />
+                  <HotelDetails />
                 </Suspense>
               </Route>
               <Route path="/accommodations" exact>
@@ -60,7 +60,7 @@ const Layout: React.FunctionComponent<Props> = () => {
               </Route>
             </Switch>
             <Footer />
-          </div>
+          </>
         </BrowserRouter>
       </ThemeWrapper>
     </ContrastProvider>

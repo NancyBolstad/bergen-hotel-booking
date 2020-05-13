@@ -39,6 +39,7 @@ export const Content = styled.div`
   width: 80vw;
   z-index: 1;
   top: -5.5625rem;
+  padding 5rem 0 0 0;
 
   ${createMediaQueries(
     'medium',

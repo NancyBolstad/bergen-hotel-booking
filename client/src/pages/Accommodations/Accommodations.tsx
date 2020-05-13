@@ -221,13 +221,20 @@ const Accommodations: React.FunctionComponent<Props> = ({
     <>
       <PlainBanner
         title="Accommodations"
-        subTitle="Search, find and book your stay at Bergen."
+        text="
+        Enjoy the comfort accommodations in prime locations in Bergen. Run by hospitality professionals and equipped by Scandinavian interior designers, they are able to combine the quality standard of a hotel with the advantages of an apartment."
         isTitleColorRed
       />
       <MainContent>
         <VerticalSpacer topSpace="xs" topSpaceDesktop="m" bottomSpace="xs" bottomSpaceDesktop="m">
           <HorizontalSpacer>
             <WidthConstraints size="large">
+              <Typography
+                variant="h2"
+                element="h2"
+                content="You can search, find and book your stay her."
+                bottom={56}
+              />
               <Filter>
                 <SelectFieldWrapper>
                   <Typography variant="b3" element="span" content="Filter by" />

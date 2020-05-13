@@ -31,7 +31,6 @@ export const Home: React.FunctionComponent<Props> = () => {
         title="Book your holiday in Bergen at best price"
         placeHolderText="Search for hotels"
       />
-      <IconList />
       <BannerGrid
         sectionTitle="We selected best deals for you."
         banners={[mockBannerGrid, mockBannerGrid, mockBannerGrid]}
@@ -46,6 +45,7 @@ export const Home: React.FunctionComponent<Props> = () => {
           list={localContext.default.slice(0, 6)}
         />
       )}
+      <IconList />
     </main>
   );
 };

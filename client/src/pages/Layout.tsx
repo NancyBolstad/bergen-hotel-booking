@@ -8,6 +8,7 @@ import Home from './Home';
 import Details from './Details';
 import Favorites from './Favorites';
 import ContrastProvider from '../context/Contrast';
+import Accommodations from './Accommodations/Accommodations';
 
 const Contact = lazy(() => import('./Contact'));
 const Success = lazy(() => import('./Success'));
@@ -40,6 +41,16 @@ const Layout: React.FunctionComponent<Props> = () => {
               <Route path="/details/:id">
                 <Suspense fallback={<Loader />}>
                   <Details />
+                </Suspense>
+              </Route>
+              <Route path="/accommodations" exact>
+                <Suspense fallback={<Loader />}>
+                  <Accommodations />
+                </Suspense>
+              </Route>
+              <Route exact path="/accommodations/:number">
+                <Suspense fallback={<Loader />}>
+                  <Accommodations />
                 </Suspense>
               </Route>
               <Route path="/">

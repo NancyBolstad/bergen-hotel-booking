@@ -12,16 +12,18 @@ interface GlobalDataProps {
   default: HotelDetails[];
   favorites: HotelDetails[];
   dispatch: React.Dispatch<FavoriteActions>;
+  loading: boolean;
 }
 
 export const Context = React.createContext<GlobalDataProps>({
   default: [],
   favorites: [],
   dispatch: () => null,
+  loading: false,
 });
 
 export const GlobalContext: React.FunctionComponent<Props> = ({ children }) => {
-  const { data } = useApi<Root>({
+  const { data, loading } = useApi<Root>({
     endpoint: `${process.env.REACT_APP_API_URL}establishments`,
     fetchOnMount: true,
     initialData: {
@@ -52,6 +54,7 @@ export const GlobalContext: React.FunctionComponent<Props> = ({ children }) => {
         default: data.data,
         favorites: state,
         dispatch: dispatch,
+        loading: loading,
       }}
     >
       {children}

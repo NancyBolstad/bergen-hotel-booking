@@ -6,24 +6,29 @@ import { PlainBannerTitle, PlainBannerContent } from './styles';
 interface Props {
   title?: string;
   subTitle?: string;
+  text?: string;
   backgroundColor?: 'surface' | 'secondaryVariant';
   isTitleColorRed?: boolean;
   backgroundImage?: ImageType;
+  center?: 'center' | 'flex-start' | 'flex-end';
 }
 
 const PlainBanner: React.FunctionComponent<Props> = ({
   title,
   subTitle,
+  text,
   backgroundColor,
   backgroundImage,
   isTitleColorRed,
+  center,
 }) => {
   return (
     <PlainBannerContent
       backgroundColor={backgroundColor ? backgroundColor : 'secondaryVariant'}
       imageUrl={backgroundImage?.url}
+      align={center}
     >
-      <WidthConstraints size="medium">
+      <WidthConstraints size="large">
         <HorizontalSpacer>
           {!!title && (
             <PlainBannerTitle
@@ -39,6 +44,16 @@ const PlainBanner: React.FunctionComponent<Props> = ({
               variant="h2"
               element="h2"
               content={subTitle}
+              hasBackgroundImage={backgroundImage ? true : false}
+            />
+          )}
+          {!!text && (
+            <PlainBannerTitle
+              variant="b3"
+              element="p"
+              content={text}
+              maxWidth={650}
+              bottom={56}
               hasBackgroundImage={backgroundImage ? true : false}
             />
           )}

@@ -10,7 +10,7 @@ interface Props {}
 
 export const Home: React.FunctionComponent<Props> = () => {
   const localContext = React.useContext(Context);
-  const [loading, setLoading] = React.useState<boolean>(true);
+  const [loading, setLoading] = React.useState<boolean>(localContext.loading);
 
   const image = {
     url:
@@ -24,12 +24,6 @@ export const Home: React.FunctionComponent<Props> = () => {
     redirectLink: '/accommodations',
   };
 
-  React.useEffect(() => {
-    setTimeout(function() {
-      setLoading(false);
-    }, 3000);
-  }, [loading]);
-
   return (
     <main>
       <SearchBanner
@@ -37,7 +31,6 @@ export const Home: React.FunctionComponent<Props> = () => {
         title="Book your holiday in Bergen at best price"
         placeHolderText="Search for hotels"
       />
-      <IconList />
       <BannerGrid
         sectionTitle="We selected best deals for you."
         banners={[mockBannerGrid, mockBannerGrid, mockBannerGrid]}
@@ -52,6 +45,7 @@ export const Home: React.FunctionComponent<Props> = () => {
           list={localContext.default.slice(0, 6)}
         />
       )}
+      <IconList />
     </main>
   );
 };

@@ -19,7 +19,7 @@ const verticalMarginCSS = css<Props>`
   ${props =>
     !!props.topSpaceDesktop &&
     css`
-      @media all and (min-width: 600px) {
+      @media all and (min-width: 768px) {
         margin-top: ${props.theme.spacing[props.topSpaceDesktop]}rem;
       }
     `};
@@ -31,7 +31,7 @@ const verticalMarginCSS = css<Props>`
   ${props =>
     !!props.bottomSpaceDesktop &&
     css`
-      @media all and (min-width: 600px) {
+      @media all and (min-width: 768px) {
         margin-bottom: ${props.theme.spacing[props.bottomSpaceDesktop]}rem;
       }
     `};
@@ -44,8 +44,8 @@ const VerticalSpacer = styled.div<Props>`
 
 const HorizontalSpacer = styled.div`
   padding: 0 ${props => props.theme.spacing.m}rem;
-  @media all and (min-width: 600px) {
-    padding: 0 ${props => props.theme.spacing.l}rem;
+  @media all and (min-width: 768px) {
+    padding: 0 ${props => props.theme.spacing.s}rem;
   }
 `;
 

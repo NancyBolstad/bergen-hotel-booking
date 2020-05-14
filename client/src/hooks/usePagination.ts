@@ -1,21 +1,16 @@
 import { useHistory } from 'react-router-dom';
-import { HotelDetails } from '../types/response';
+import { Blog } from '../types/response';
 
-function usePagination(
-  data: HotelDetails[],
-  itemsPerPage: number,
-  currentPage: number,
-  maxPage: number,
-) {
+function usePagination(data: Blog[], itemsPerPage: number, currentPage: number, maxPage: number) {
   const history = useHistory();
-  function currentData(): HotelDetails[] {
+  function currentData(): Blog[] {
     const begin = (currentPage - 1) * itemsPerPage;
     const end = begin + itemsPerPage;
     return data.slice(begin, end);
   }
 
   function updatePage(pageNumber: number) {
-    history.push(`/${pageNumber <= maxPage ? pageNumber : 1}`);
+    history.push(`/blog/page/${pageNumber <= maxPage ? pageNumber : 1}`);
   }
 
   function next(): void {

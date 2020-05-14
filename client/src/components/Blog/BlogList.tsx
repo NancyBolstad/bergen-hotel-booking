@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Section, Wrapper, SectionTitle, More } from './styles';
-import BlogCard, { Props as Card } from './BlogCard';
+import BlogCard from './BlogCard';
+import { Blog } from '../../types/response';
 import { ButtonInternal } from '../Button/Button';
 import { IColors } from '../../types/theme';
 import { WidthConstraints, VerticalSpacer, HorizontalSpacer, CardsList } from '../Layout';
@@ -10,7 +11,7 @@ export interface Props {
   backgroundColor?: keyof IColors;
   ctaText?: string;
   ctaUrl?: string;
-  list?: Card[];
+  list?: Blog[];
 }
 
 export const BlogList: React.FunctionComponent<Props> = ({
@@ -36,7 +37,7 @@ export const BlogList: React.FunctionComponent<Props> = ({
                     id={blog.id}
                     title={blog.title}
                     intro={blog.intro}
-                    image={blog.image}
+                    images={blog.images}
                   />
                 ))}
               </CardsList>

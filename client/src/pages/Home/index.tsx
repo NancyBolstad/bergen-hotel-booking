@@ -10,7 +10,6 @@ interface Props {}
 
 export const Home: React.FunctionComponent<Props> = () => {
   const localContext = React.useContext(Context);
-  const [loading, setLoading] = React.useState<boolean>(localContext.loading);
 
   const image = {
     url:
@@ -35,7 +34,7 @@ export const Home: React.FunctionComponent<Props> = () => {
         sectionTitle="We selected best deals for you."
         banners={[mockBannerGrid, mockBannerGrid, mockBannerGrid]}
       />
-      {loading ? (
+      {localContext.loading ? (
         <Loader />
       ) : (
         <HotelCardsList

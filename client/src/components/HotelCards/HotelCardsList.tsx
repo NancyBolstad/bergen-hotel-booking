@@ -30,7 +30,17 @@ export const HotelCardsList: React.FunctionComponent<Props> = ({
         <HorizontalSpacer>
           <WidthConstraints size="large">
             <Wrapper>
-              {!!sectionTitle && <SectionTitle element="h2" variant="h2" content={sectionTitle} />}
+              {!!sectionTitle && (
+                <SectionTitle
+                  element="h2"
+                  variant="h2"
+                  content={sectionTitle}
+                  top={24}
+                  topDesktop={36}
+                  bottom={24}
+                  bottomDesktop={36}
+                />
+              )}
               <CardsList>
                 {list.map((card, index) => (
                   <HotelCard key={`hotel-card${index}-${card.id}`} card={card} />

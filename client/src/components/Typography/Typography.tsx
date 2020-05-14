@@ -17,6 +17,7 @@ export interface Styles extends Space {
   variant: Variant;
   maxWidth?: number;
   isPrimaryColor?: boolean;
+  textTransform?: 'uppercase' | 'lowercase' | 'capitalize';
 }
 
 interface HeadingProps extends Styles {

@@ -1,22 +1,12 @@
 import * as React from 'react';
 import { BlogCard as StyledCard, BlogImage, BlogTitle, BlogIntroText } from './styles';
-import { Image } from '../../types/types';
+import { Blog } from '../../types/response';
 import transformLangText from '../../util/transformLangText';
 
-export interface Props {
-  id?: string;
-  title?: string;
-  intro?: string;
-  content?: string;
-  author?: string;
-  category?: string;
-  image?: Image;
-}
-
-export const BlogCard: React.FunctionComponent<Props> = ({ id, title, intro, image }) => {
+export const BlogCard: React.FunctionComponent<Blog> = ({ id, title, intro, images }) => {
   return (
     <StyledCard to={`/blog/${id}`} title={title} aria-label={`Go to ${title}`}>
-      {!!image && <BlogImage src={image.url} alt={image.alt} />}
+      {!!images && <BlogImage src={images[0].url} alt={images[0].alt} />}
       {!!title && <BlogTitle element="h3" variant="h3" content={title} />}
       {!!intro && (
         <BlogIntroText element="p" variant="b3" content={transformLangText(intro, 180)} />

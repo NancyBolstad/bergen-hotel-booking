@@ -17,7 +17,6 @@ export interface Props {
   list?: HotelDetails[];
   ctaText?: string;
   ctaUrl?: string;
-  hasPagination?: boolean;
 }
 
 export const HotelCardsList: React.FunctionComponent<Props> = ({
@@ -26,22 +25,7 @@ export const HotelCardsList: React.FunctionComponent<Props> = ({
   ctaUrl,
   list,
   backgroundColor,
-  hasPagination,
 }) => {
-  const { number = '1' } = useParams();
-  const maxPage = Math.ceil(list ? list.length / 5 : 0);
-  const currentPage = parseInt(number) <= maxPage && parseInt(number) > 0 ? parseInt(number) : 1;
-  const { next, prev, jump, currentData } = usePagination(
-    list ? list : [],
-    5,
-    currentPage,
-    maxPage,
-  );
-
-  console.log(list);
-  console.log(currentPage);
-  console.log(currentData());
-
   return (
     <Section backgroundColor={backgroundColor}>
       <VerticalSpacer>
@@ -50,20 +34,9 @@ export const HotelCardsList: React.FunctionComponent<Props> = ({
             <Wrapper>
               {!!sectionTitle && <SectionTitle element="h2" variant="h2" content={sectionTitle} />}
               <Flex direction="column">
-                {(currentData() || []).map((card, index) => (
+                {(list || []).map((card, index) => (
                   <HotelCardVariant card={card} />
                 ))}
-                {!!hasPagination && (
-                  <PaginateButtons
-                    totalPages={maxPage}
-                    preHandler={prev}
-                    nextHandler={next}
-                    jumpHandler={jump}
-                    displayNext={currentPage < maxPage}
-                    displayPrev={currentPage > 1}
-                    currentPage={currentPage}
-                  />
-                )}
               </Flex>
               {!!ctaText && !!ctaUrl && (
                 <More>

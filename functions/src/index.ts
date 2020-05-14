@@ -1,6 +1,7 @@
 import * as functions from 'firebase-functions';
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
+import * as cors from 'cors';
 import contact from './services/contact/route';
 import establishments from './services/establishments/route';
 import getRootUrls from './utils/getRootUrls';
@@ -8,6 +9,12 @@ import getRootUrls from './utils/getRootUrls';
 const app = express();
 const routes = express();
 
+app.use(
+  cors({
+    origin: '*',
+    credentials: true,
+  }),
+);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 

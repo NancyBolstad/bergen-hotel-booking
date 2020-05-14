@@ -2,7 +2,7 @@ import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { HotelDetails } from '../../types/response';
 import { Props as ListTypes } from './HotelCardsList';
-import { HotelCardsList, HotelCardsListVariant } from './index';
+import { HotelCardsList } from './index';
 import { createList } from '../../util/mockHelpers';
 import { mockSlides } from '../Slider/story';
 
@@ -35,8 +35,5 @@ const mockList: ListTypes = {
 };
 
 export const HotelCardsListStory = <HotelCardsList {...mockList} />;
-export const HotelCardsListVariantStory = <HotelCardsListVariant {...mockList} hasPagination />;
 
-storiesOf('Component/HotelList', module)
-  .add('Default', () => HotelCardsListStory)
-  .add('Variant', () => HotelCardsListVariantStory);
+storiesOf('Component/HotelList', module).add('Default', () => HotelCardsListStory);

@@ -65,7 +65,7 @@ const Layout: React.FunctionComponent<Props> = () => {
                   <BlogDetails />
                 </Suspense>
               </Route>
-              <Route exact path="/blog/:number">
+              <Route exact path="/blog/page/:number">
                 <Suspense fallback={<Loader />}>
                   <Blog />
                 </Suspense>

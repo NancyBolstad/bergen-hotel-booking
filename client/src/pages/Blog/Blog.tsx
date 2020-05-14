@@ -1,13 +1,6 @@
 import React, { lazy, Suspense } from 'react';
-import styled, { css } from 'styled-components';
-import createFontStyles from '../../util/createFontStyles';
-import { HotelDetails, HotelCategories, HotelServices } from '../../types/response';
-import createMediaQuery from '../../util/createMediaQuery';
+import { useParams } from 'react-router-dom';
 import { VerticalSpacer, HorizontalSpacer, WidthConstraints } from '../../components/Layout';
-import Typography from '../../components/Typography';
-import { HotelCardVariant } from '../../components/HotelCards';
-import { Context } from '../../context/GlobalContext';
-import { MockHotels, MockCategories, MockServices } from '../../mocks/data';
 import MainContent from '../../components/MainContent';
 import { PlainBanner } from '../../components/Banner';
 import { solidArrow } from '../../util/icons';
@@ -15,6 +8,8 @@ import BlogList from '../../components/Blog';
 import useApi from '../../hooks/useApi';
 import { BlogList as BlogListTypes } from '../../types/response';
 import Loader from '../../components/Loader';
+import usePagination from '../../hooks/usePagination';
+import PaginateButtons from '../../components/PaginateButtons';
 
 interface Props {}
 
@@ -27,6 +22,10 @@ const Blog: React.FunctionComponent<Props> = ({}) => {
       data: [],
     },
   });
+  const { number = '1' } = useParams();
+  const maxPage = Math.ceil(data.data.length / 6);
+  const currentPage = parseInt(number) <= maxPage && parseInt(number) > 0 ? parseInt(number) : 1;
+  const { next, prev, jump, currentData } = usePagination(data.data, 6, currentPage, maxPage);
   return (
     <>
       <PlainBanner
@@ -38,7 +37,22 @@ const Blog: React.FunctionComponent<Props> = ({}) => {
         <VerticalSpacer topSpace="xs" topSpaceDesktop="m" bottomSpace="xs" bottomSpaceDesktop="m">
           <HorizontalSpacer>
             <WidthConstraints size="large">
-              {loading ? <Loader /> : <BlogList list={data.data} />}
+              {loading ? (
+                <Loader />
+              ) : (
+                <>
+                  <BlogList list={currentData()} />
+                  <PaginateButtons
+                    totalPages={maxPage}
+                    preHandler={prev}
+                    nextHandler={next}
+                    jumpHandler={jump}
+                    displayNext={currentPage < maxPage}
+                    displayPrev={currentPage > 1}
+                    currentPage={currentPage}
+                  />
+                </>
+              )}
             </WidthConstraints>
           </HorizontalSpacer>
         </VerticalSpacer>

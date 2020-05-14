@@ -18,6 +18,12 @@ type Features =
   | 'helpful staff'
   | 'family friendly';
 
+export interface Image {
+  url: string;
+  alt: string;
+  caption?: string;
+}
+
 export interface HotelDetails {
   id: string;
   name: string;
@@ -62,4 +68,25 @@ export interface Data {
 export interface FeaturedImage {
   alt: string;
   url: string;
+}
+
+export interface BlogList {
+  code: number;
+  data: Blog[];
+}
+
+export interface Blog {
+  id: string;
+  author?: string;
+  categories?: string[];
+  content?: string;
+  createdAt?: string;
+  images: Image[];
+  intro?: string;
+  title: string;
+}
+
+export interface BlogDetailsRoot {
+  code: number;
+  data: Blog;
 }

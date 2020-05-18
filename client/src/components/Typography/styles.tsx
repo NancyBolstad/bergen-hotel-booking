@@ -83,11 +83,23 @@ export const Text = styled.p<Styles>`
       css`
         ${props => createFontStyles(props.theme.fonts.h6)};
       `}
-  ${props =>
-    props.maxWidth &&
-    css`
-      max-width: ${props.maxWidth}px;
-    `}
+     ${props =>
+       props.maxWidth &&
+       css`
+         max-width: ${props.maxWidth}px;
+       `}
+      ${props =>
+        props.textTransform &&
+        css`
+          text-transform: ${props.textTransform};
+        `}
+
+        ${props =>
+          props.color &&
+          css`
+            color: ${props.theme.colors[props.color]};
+          `}
+
 
     ${Space};
 `;

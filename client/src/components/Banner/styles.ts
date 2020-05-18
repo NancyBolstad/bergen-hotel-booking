@@ -47,31 +47,25 @@ export const SearchBannerBackground = styled(BackgroundImage)<{ isDesktop?: bool
   ${props =>
     props.isDesktop &&
     css`
-      height: 65vh;
+      height: 75vh;
     `}
 `;
 
 export const SearchBannerContent = styled(BackgroundImage)<{ isDesktop?: boolean }>`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: left;
+  align-items: left;
   width: 100%;
   padding: ${props => props.theme.spacing.m}rem 0;
 
   ${props =>
     props.isDesktop &&
     css`
-      position: relative;
-      height: 13.125rem;
+      height: 13rem;
       padding: 0;
-
-      div {
-        position: absolute;
-        bottom: -9px;
-        width: 100%;
-        max-width: 650px;
-        margin: 0 auto;
-      }
+      justify-content: center;
+      align-items: center;
+      position: relative;
     `}
 `;

@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { StyledComponent } from 'styled-components';
-import { IFonts } from '../../types/theme';
+import { IFonts, IColors } from '../../types/theme';
 import { Space, Text } from './styles';
 
 type Element = 'p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 type Variant = keyof IFonts;
+type FontColor = keyof IColors;
 
 export interface Space {
   top?: number;
@@ -17,6 +18,8 @@ export interface Styles extends Space {
   variant: Variant;
   maxWidth?: number;
   isPrimaryColor?: boolean;
+  textTransform?: 'uppercase' | 'lowercase' | 'capitalize';
+  color?: FontColor;
 }
 
 interface HeadingProps extends Styles {

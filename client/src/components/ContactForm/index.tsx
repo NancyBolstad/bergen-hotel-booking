@@ -22,8 +22,6 @@ const ContactForm: React.FC<Props> = () => {
       data: data,
     });
 
-    console.log(response);
-
     if (response.status === 200) {
       history.push('/success');
     }
@@ -31,7 +29,7 @@ const ContactForm: React.FC<Props> = () => {
 
   return (
     <>
-      <Typography element="h1" variant="h1" content="Contact Us" isPrimaryColor />
+      <Typography element="h1" variant="h1" content="Contact Us" />
       <Form onSubmit={handleSubmit((data: Object) => sendForm(data, 'contact'))} noValidate>
         <Label>
           <StyledLabelText>

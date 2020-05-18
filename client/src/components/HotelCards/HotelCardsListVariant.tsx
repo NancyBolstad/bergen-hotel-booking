@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useParams } from 'react-router-dom';
 import { Section, Wrapper, SectionTitle, More } from './styles';
 import { ButtonInternal } from '../Button/Button';
 import { IColors } from '../../types/theme';
@@ -6,6 +7,8 @@ import { WidthConstraints, VerticalSpacer, HorizontalSpacer } from '../Layout';
 import { HotelDetails } from '../../types/response';
 import HotelCardVariant from './HotelCardVariant';
 import { Flex } from '../Flex';
+import PaginateButtons from '../PaginateButtons';
+import usePagination from '../../hooks/usePagination';
 
 export interface Props {
   sectionTitle?: string;
@@ -23,8 +26,6 @@ export const HotelCardsList: React.FunctionComponent<Props> = ({
   list,
   backgroundColor,
 }) => {
-  if (!list) return null;
-
   return (
     <Section backgroundColor={backgroundColor}>
       <VerticalSpacer>
@@ -33,16 +34,8 @@ export const HotelCardsList: React.FunctionComponent<Props> = ({
             <Wrapper>
               {!!sectionTitle && <SectionTitle element="h2" variant="h2" content={sectionTitle} />}
               <Flex direction="column">
-                {list.map((card, index) => (
-                  <HotelCardVariant
-                    key={`hotel-card${index}-${card.id}`}
-                    id={card.id}
-                    name={card.name}
-                    category={card.category}
-                    descriptions={card.descriptions}
-                    featuredImages={card.featuredImages}
-                    price={card.price}
-                  />
+                {(list || []).map((card, index) => (
+                  <HotelCardVariant card={card} />
                 ))}
               </Flex>
               {!!ctaText && !!ctaUrl && (

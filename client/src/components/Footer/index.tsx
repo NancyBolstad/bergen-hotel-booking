@@ -1,22 +1,23 @@
 import * as React from 'react';
 import Typography from '../Typography/Typography';
-import { FooterWrapper, FooterContent } from './styles';
+import { FooterWrapper, FooterLinksWrapper, FooterLink } from './styles';
+import { COPY_RIGHTS } from '../../data/footer';
+import { Flex } from '../Flex';
+import { Facebook, Twitter, Instagram } from '../../util/icons';
 
 export interface Props {}
 
 export const Footer: React.FC<Props> = () => {
   return (
     <FooterWrapper>
-      <FooterContent>
-        <a href="https://rawg.io/" title="Go to RAWG Video Games ">
-          <Typography
-            variant="b2"
-            element="h6"
-            content="Developed with RAWG Video Games Database API"
-            isPrimaryColor
-          />
-        </a>
-      </FooterContent>
+      <FooterLinksWrapper>
+        <FooterLink href="">{Facebook}</FooterLink>
+        <FooterLink href="">{Twitter}</FooterLink>
+        <FooterLink href="">{Instagram}</FooterLink>
+      </FooterLinksWrapper>
+      <Flex>
+        <Typography variant="h6" element="h6" content={COPY_RIGHTS} color="white" />
+      </Flex>
     </FooterWrapper>
   );
 };

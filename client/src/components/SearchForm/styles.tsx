@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components';
 import createFontStyles from '../../util/createFontStyles';
-import { Flex } from '../Flex';
 
 export const Wrapper = styled.div<{ isMobile?: boolean }>`
   width: 100%;

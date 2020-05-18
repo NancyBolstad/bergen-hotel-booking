@@ -88,11 +88,17 @@ export const Text = styled.p<Styles>`
        css`
          max-width: ${props.maxWidth}px;
        `}
-       ${props =>
-         props.textTransform &&
-         css`
-           text-transform: ${props.textTransform};
-         `}
+      ${props =>
+        props.textTransform &&
+        css`
+          text-transform: ${props.textTransform};
+        `}
+
+        ${props =>
+          props.color &&
+          css`
+            color: ${props.theme.colors[props.color]};
+          `}
 
 
     ${Space};

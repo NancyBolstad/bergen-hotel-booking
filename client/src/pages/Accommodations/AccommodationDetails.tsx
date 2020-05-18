@@ -1,5 +1,4 @@
 import * as React from 'react';
-import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import PageHero from '../../components/PageHero';
 import useApi from '../../hooks/useApi';
@@ -39,8 +38,6 @@ export const HotelDetails: React.FunctionComponent<Props> = () => {
       },
     },
   });
-
-  console.log(data);
 
   return (
     <>

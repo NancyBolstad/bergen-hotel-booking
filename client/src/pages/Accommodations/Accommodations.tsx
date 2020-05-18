@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from 'react';
+import React from 'react';
 import styled, { css } from 'styled-components';
 import createFontStyles from '../../util/createFontStyles';
 import { HotelDetails, HotelCategories, HotelServices } from '../../types/response';
@@ -7,7 +7,7 @@ import { VerticalSpacer, HorizontalSpacer, WidthConstraints } from '../../compon
 import Typography from '../../components/Typography';
 import { HotelCardVariant } from '../../components/HotelCards';
 import { Context } from '../../context/GlobalContext';
-import { MockHotels, MockCategories, MockServices } from '../../mocks/data';
+import { MockHotels, MockCategories, MockServices } from '../../data/data';
 import MainContent from '../../components/MainContent';
 import { PlainBanner } from '../../components/Banner';
 import { solidArrow } from '../../util/icons';
@@ -143,8 +143,6 @@ export const Arrow = styled.div`
     fill: ${props => props.theme.colors.primary};
   }
 `;
-
-type FilterTypes = 'category' | 'service' | 'name';
 
 interface Props {
   mockServices?: HotelServices[];

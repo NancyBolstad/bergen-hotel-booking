@@ -13,7 +13,7 @@ import BlogDetails from './Blog/BlogDetails';
 
 const Contact = lazy(() => import('./Contact'));
 const Success = lazy(() => import('./Success'));
-const HotelDetails = lazy(() => import('./HotelDetails'));
+const AccommodationDetails = lazy(() => import('./Accommodations/AccommodationDetails'));
 
 interface Props {}
 
@@ -42,7 +42,7 @@ const Layout: React.FunctionComponent<Props> = () => {
               </Route>
               <Route path="/accommodation/details/:id">
                 <Suspense fallback={<Loader />}>
-                  <HotelDetails />
+                  <AccommodationDetails />
                 </Suspense>
               </Route>
               <Route path="/accommodations" exact>

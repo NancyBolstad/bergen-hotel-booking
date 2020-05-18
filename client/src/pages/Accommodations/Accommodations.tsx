@@ -1,16 +1,17 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import createFontStyles from '../../util/createFontStyles';
-import { HotelDetails, HotelCategories, HotelServices } from '../../types/response';
+import { HotelDetails } from '../../types/response';
 import createMediaQuery from '../../util/createMediaQuery';
 import { VerticalSpacer, HorizontalSpacer, WidthConstraints } from '../../components/Layout';
 import Typography from '../../components/Typography';
 import { HotelCardVariant } from '../../components/HotelCards';
 import { Context } from '../../context/GlobalContext';
-import { MockHotels, MockCategories, MockServices } from '../../data/data';
-import MainContent from '../../components/MainContent';
+import { MockCategories, MockServices } from '../../data/data';
 import { PlainBanner } from '../../components/Banner';
-import { solidArrow } from '../../util/icons';
+import { solidArrow, search } from '../../util/icons';
+import Loader from '../../components/Loader';
+import Button from '../../components/Button/Button';
 
 const Sections = styled.div`
   flex: 1;
@@ -33,13 +34,6 @@ const SectionTitle = styled.div`
   background: white;
   z-index: 900;
 `;
-
-const EmployeesList = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const EmployeeData = styled.div``;
 
 const LettersWrapper = styled.div``;
 
@@ -74,32 +68,24 @@ const Results = styled.div`
 `;
 
 const Filter = styled.div`
-  > *:not(:last-child) {
-    margin-bottom: ${props => props.theme.spacing.xs}rem;
-  }
+  display: flex;
+  flex-direction: column;
 
   ${createMediaQuery(
     'medium',
     css`
-      display: flex;
-      align-items: flex-end;
-
-      > *:not(:first-child) {
-        margin-bottom: 0;
-        margin-left: ${props => props.theme.spacing.xs}rem;
-      }
-
-      > p {
-        margin-bottom: 6px !important;
-      }
+      flex-direction: row-reverse;
+      align-items: center;
+      justify-content: space-between;
     `,
   )}
 `;
 
-export const SelectFieldWrapper = styled.div`
+export const InputFieldWrapper = styled.div`
   position: relative;
   transition: opacity 0.1s ease-in-out;
   display: flex;
+  align-items: center;
 `;
 
 export const Label = styled.label`
@@ -111,10 +97,10 @@ export const Label = styled.label`
 
 export const Select = styled.select`
   height: 40px;
-  width: 9.8rem;
-  margin-left: ${props => props.theme.spacing.xs}rem;
+  width: 11.8rem;
+  margin-right: ${props => props.theme.spacing.xs}rem;
   background-color: ${props => props.theme.colors.background};
-  color: ${props => props.theme.colors.primary};
+  color: ${props => props.theme.colors.onBackground};
   background-size: 20px 20px;
   ${props => createFontStyles(props.theme.fonts.b1)};
   border: 1px solid ${props => props.theme.colors.onBackground};
@@ -124,6 +110,7 @@ export const Select = styled.select`
   transition: border-color 0.1s ease-in-out;
   -webkit-appearance: none;
   -webkit-border-radius: 0px;
+  text-transformation: capitalize;
 
   &:active,
   &:focus {
@@ -134,27 +121,73 @@ export const Select = styled.select`
 export const Arrow = styled.div`
   position: absolute;
   pointer-events: none;
-  right: 0.7rem;
-  top: 1.1875rem;
+  right: 8.7rem;
+  top: 1rem;
 
   svg {
     width: 10px;
     height: 10px;
     fill: ${props => props.theme.colors.primary};
   }
+
+  ${createMediaQuery(
+    'medium',
+    css`
+      right: 0.7rem;
+    `,
+  )}
 `;
 
-interface Props {
-  mockServices?: HotelServices[];
-  mockCategories?: HotelCategories[];
-  mockHotels?: HotelDetails[];
-}
+export const SearchForm = styled.form``;
+export const SelectWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: ${props => props.theme.spacing.s}rem;
 
-const Accommodations: React.FunctionComponent<Props> = ({
-  mockCategories,
-  mockHotels,
-  mockServices,
-}) => {
+  ${createMediaQuery(
+    'medium',
+    css`
+      flex-direction: row;
+      align-items: center;
+      margin-top: 0;
+
+      span {
+        margin-right: ${props => props.theme.spacing.xs}rem;
+      }
+    `,
+  )}
+`;
+
+export const StyledInput = styled.input`
+  height: 40px;
+  width: 11.8rem;
+  background-color: ${props => props.theme.colors.background};
+  border: 1px solid ${props => props.theme.colors.onBackground};
+  padding: 0 16px;
+  outline: none;
+  transition: border-color 0.1s ease-in-out;
+  ${props => createFontStyles(props.theme.fonts.b1)};
+  color: ${props => props.theme.colors.onBackground};
+
+  &::placeholder {
+    color: ${props => props.theme.colors.onSurface};
+  }
+  &:active,
+  &:focus {
+    border-bottom: 2px solid ${props => props.theme.colors.secondary};
+  }
+  &:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  &:placeholder-shown {
+    border: 1px solid ${props => props.theme.colors.onBackground};
+  }
+`;
+
+interface Props {}
+
+const Accommodations: React.FunctionComponent<Props> = ({}) => {
   const localContext = React.useContext(Context);
   const [letters, setLetters] = React.useState([] as string[]);
   const [filter, setFilter] = React.useState({ category: '', service: '', name: '' });
@@ -189,7 +222,7 @@ const Accommodations: React.FunctionComponent<Props> = ({
     filter[type] = value;
 
     setHotels(
-      (mockHotels || results).filter(e => {
+      results.filter(e => {
         let match = true;
 
         if (filter.category.length > 0) {
@@ -215,6 +248,8 @@ const Accommodations: React.FunctionComponent<Props> = ({
     extractHotelsInfo(hotels);
   }, [hotels]);
 
+  console.log({ hotels, results });
+
   return (
     <>
       <PlainBanner
@@ -223,44 +258,12 @@ const Accommodations: React.FunctionComponent<Props> = ({
         Enjoy the comfort accommodations in prime locations in Bergen. Run by hospitality professionals and equipped by Scandinavian interior designers, they are able to combine the quality standard of a hotel with the advantages of an apartment."
         isTitleColorRed
       />
-      <MainContent>
-        <VerticalSpacer topSpace="xs" topSpaceDesktop="m" bottomSpace="xs" bottomSpaceDesktop="m">
-          <HorizontalSpacer>
-            <WidthConstraints size="large">
-              <Filter>
-                <SelectFieldWrapper>
-                  <Typography variant="b3" element="span" content="Filter by" />
-                  <Label>
-                    <Arrow>{solidArrow}</Arrow>
-                    <Select
-                      value={filter.category}
-                      onChange={e => {
-                        handleFilter('category', e.target.value);
-                      }}
-                    >
-                      <option value="">All</option>
-                      {(mockCategories || categories).map((c, k) => (
-                        <option key={k} value={c}>
-                          {c}
-                        </option>
-                      ))}
-                    </Select>
-                  </Label>
-                </SelectFieldWrapper>
-                <Select
-                  value={filter.service}
-                  onChange={e => {
-                    handleFilter('service', e.target.value);
-                  }}
-                >
-                  <option value="">All</option>
-                  {(mockServices || services).map((s, k) => (
-                    <option key={k} value={s}>
-                      {s}
-                    </option>
-                  ))}
-                </Select>
-                <input
+      <VerticalSpacer topSpace="xs" topSpaceDesktop="m" bottomSpace="xs" bottomSpaceDesktop="m">
+        <HorizontalSpacer>
+          <WidthConstraints size="large">
+            <Filter>
+              <InputFieldWrapper>
+                <StyledInput
                   type="text"
                   placeholder="Search by name"
                   value={filter.name}
@@ -268,50 +271,91 @@ const Accommodations: React.FunctionComponent<Props> = ({
                     handleFilter('name', e.target.value);
                   }}
                 />
-              </Filter>
-              <Results>
-                <Sections>
+                <Button size="small" variant="tertiary">
+                  {search}
+                </Button>
+              </InputFieldWrapper>
+              <SelectWrapper>
+                <Typography element="span" variant="b2" content="Filter by: " />
+                <InputFieldWrapper>
+                  <Label>
+                    <Select
+                      value={filter.category}
+                      onChange={e => {
+                        handleFilter('category', e.target.value);
+                      }}
+                    >
+                      <option value="">All categories</option>
+                      {(categories || []).map((c, k) => (
+                        <option key={k} value={c}>
+                          {c}
+                        </option>
+                      ))}
+                    </Select>
+                  </Label>
+                </InputFieldWrapper>
+                <InputFieldWrapper>
+                  <Label>
+                    <Select
+                      value={filter.service}
+                      onChange={e => {
+                        handleFilter('service', e.target.value);
+                      }}
+                    >
+                      <option value="">All services</option>
+                      {(services || []).map((s, k) => (
+                        <option key={k} value={s}>
+                          {s}
+                        </option>
+                      ))}
+                    </Select>
+                  </Label>
+                </InputFieldWrapper>
+              </SelectWrapper>
+            </Filter>
+            {!!localContext.loading && <Loader />}
+            <Results>
+              <Sections>
+                {letters.map(letter => (
+                  <Section key={letter} id={letter}>
+                    <SectionTitle>
+                      <Typography element="h2" variant="h2" content={letter} />
+                    </SectionTitle>
+                    {hotels
+                      .filter(hotel => hotel.name.charAt(0) === letter.toLowerCase())
+                      .map((hotel, index) => (
+                        <HotelCardVariant card={hotel} key={index} />
+                      ))}
+                  </Section>
+                ))}
+              </Sections>
+              <LettersWrapper>
+                <Letters>
                   {letters.map(letter => (
-                    <Section key={letter} id={letter}>
-                      <SectionTitle>
-                        <Typography element="h2" variant="h2" content={letter} />
-                      </SectionTitle>
-                      {hotels
-                        .filter(hotel => hotel.name.charAt(0) === letter.toLowerCase())
-                        .map((hotel, index) => (
-                          <HotelCardVariant card={hotel} key={index} />
-                        ))}
-                    </Section>
+                    <Letter
+                      key={letter}
+                      href="#"
+                      onClick={e => {
+                        e.preventDefault();
+
+                        const el = document.getElementById(letter);
+
+                        if (el) {
+                          el.scrollIntoView({
+                            behavior: 'smooth',
+                          });
+                        }
+                      }}
+                    >
+                      {letter}
+                    </Letter>
                   ))}
-                </Sections>
-                <LettersWrapper>
-                  <Letters>
-                    {letters.map(letter => (
-                      <Letter
-                        key={letter}
-                        href="#"
-                        onClick={e => {
-                          e.preventDefault();
-
-                          const el = document.getElementById(letter);
-
-                          if (el) {
-                            el.scrollIntoView({
-                              behavior: 'smooth',
-                            });
-                          }
-                        }}
-                      >
-                        {letter}
-                      </Letter>
-                    ))}
-                  </Letters>
-                </LettersWrapper>
-              </Results>
-            </WidthConstraints>
-          </HorizontalSpacer>
-        </VerticalSpacer>
-      </MainContent>
+                </Letters>
+              </LettersWrapper>
+            </Results>
+          </WidthConstraints>
+        </HorizontalSpacer>
+      </VerticalSpacer>
     </>
   );
 };

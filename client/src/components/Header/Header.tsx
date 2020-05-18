@@ -11,6 +11,7 @@ import {
   MobileMenuWrapper,
   LikeButton,
   MobileIcons,
+  ThemeToggleButton,
 } from './styles';
 import { APP_NAME } from '../../util/constants';
 import { ContrastContext } from '../../context/Contrast';
@@ -76,9 +77,9 @@ const Header: React.FunctionComponent = () => {
                   {heart}
                   <span>{favorites.length}</span>
                 </LikeButton>
-                <HeaderNavLink to="/#" onClick={() => toggleContrast()}>
+                <ThemeToggleButton onClick={() => toggleContrast()}>
                   {theme === 'default' ? sun : moon}
-                </HeaderNavLink>
+                </ThemeToggleButton>
               </>
             )}
             {isMobile && (

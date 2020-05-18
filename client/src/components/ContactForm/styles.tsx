@@ -29,7 +29,7 @@ export const Label = styled.label`
 `;
 
 export const StyledLabelText = styled.span`
-  color: ${props => props.theme.colors.primary};
+  color: ${props => props.theme.colors.onBackground};
   height: 40px;
   display: flex;
   align-items: center;
@@ -47,16 +47,15 @@ export const StyledInput = styled.input`
   height: 50px;
   width: 100%;
   background-color: ${props => props.theme.colors.background};
-  border: 1px solid ${props => props.theme.colors.primary};
-  border-bottom: 2px solid ${props => props.theme.colors.primary};
+  border: 1px solid ${props => props.theme.colors.onBackground};
   padding: 0 20px;
   outline: none;
   transition: border-color 0.1s ease-in-out;
   ${props => createFontStyles(props.theme.fonts.b1)};
-  color: ${props => props.theme.colors.primary};
+  color: ${props => props.theme.colors.onBackground};
 
   &::placeholder {
-    color: ${props => props.theme.colors.primary};
+    color: ${props => props.theme.colors.onSurface};
   }
   &:active,
   &:focus {
@@ -67,7 +66,7 @@ export const StyledInput = styled.input`
     pointer-events: none;
   }
   &:placeholder-shown {
-    border: 1px solid ${props => props.theme.colors.primary};
+    border: 1px solid ${props => props.theme.colors.onBackground};
   }
 `;
 
@@ -76,16 +75,16 @@ export const StyledTextArea = styled.textarea`
   height: 180px;
   width: 100%;
   background-color: ${props => props.theme.colors.background};
-  border: 1px solid ${props => props.theme.colors.primary};
-  border-bottom: 2px solid ${props => props.theme.colors.primary};
+  border: 1px solid ${props => props.theme.colors.onBackground};
+  border-bottom: 2px solid ${props => props.theme.colors.onBackground};
   padding: 10px 20px;
   outline: none;
   transition: border-color 0.1s ease-in-out;
   ${props => createFontStyles(props.theme.fonts.b1)};
-  color: ${props => props.theme.colors.primary};
+  color: ${props => props.theme.colors.onBackground};
 
   &::placeholder {
-    color: ${props => props.theme.colors.primary};
+    color: ${props => props.theme.colors.onSurface};
   }
   &:active,
   &:focus {
@@ -96,7 +95,7 @@ export const StyledTextArea = styled.textarea`
     pointer-events: none;
   }
   &:placeholder-shown {
-    border: 1px solid ${props => props.theme.colors.primary};
+    border: 1px solid ${props => props.theme.colors.onBackground};
   }
 `;
 

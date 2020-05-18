@@ -46,7 +46,7 @@ export const HotelDetails: React.FunctionComponent<Props> = () => {
         <PageHero figure={data.data.featuredImages[0]}>
           <VerticalSpacer topSpace="xs" topSpaceDesktop="m" bottomSpace="xs" bottomSpaceDesktop="m">
             <HorizontalSpacer>
-              <WidthConstraints size="medium">
+              <WidthConstraints custom="980px">
                 <Flex direction="row" align="flex-start">
                   <FlexKid>
                     <Typography

@@ -1,8 +1,6 @@
 import * as React from 'react';
 import Typography from '../Typography/Typography';
 import { FooterWrapper, FooterLinksWrapper, FooterLink } from './styles';
-import { Image } from '../../types/response';
-import { WidthConstraints, VerticalSpacer, HorizontalSpacer } from '../Layout';
 import { COPY_RIGHTS } from '../../data/footer';
 import { Flex } from '../Flex';
 import { Facebook, Twitter, Instagram } from '../../util/icons';

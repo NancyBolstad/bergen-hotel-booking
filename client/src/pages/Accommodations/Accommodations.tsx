@@ -9,7 +9,7 @@ import { HotelCardVariant } from '../../components/HotelCards';
 import { Context } from '../../context/GlobalContext';
 import { MockCategories, MockServices } from '../../data/data';
 import { PlainBanner } from '../../components/Banner';
-import { solidArrow, search } from '../../util/icons';
+import { search } from '../../util/icons';
 import Loader from '../../components/Loader';
 import Button from '../../components/Button/Button';
 
@@ -187,7 +187,7 @@ export const StyledInput = styled.input`
 
 interface Props {}
 
-const Accommodations: React.FunctionComponent<Props> = ({}) => {
+const Accommodations: React.FunctionComponent<Props> = () => {
   const localContext = React.useContext(Context);
   const [letters, setLetters] = React.useState([] as string[]);
   const [filter, setFilter] = React.useState({ category: '', service: '', name: '' });

@@ -1,5 +1,4 @@
-import styled, { css } from 'styled-components';
-import createMediaQuery from '../../util/createMediaQuery';
+import styled from 'styled-components';
 import setColorOpacity from '../../util/setColorOpacity';
 
 export const FooterWrapper = styled.footer`

@@ -1,9 +1,8 @@
-import React, { lazy, Suspense } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
 import { VerticalSpacer, HorizontalSpacer, WidthConstraints } from '../../components/Layout';
 import MainContent from '../../components/MainContent';
 import { PlainBanner } from '../../components/Banner';
-import { solidArrow } from '../../util/icons';
 import BlogList from '../../components/Blog';
 import useApi from '../../hooks/useApi';
 import { BlogList as BlogListTypes } from '../../types/response';
@@ -13,7 +12,7 @@ import PaginateButtons from '../../components/PaginateButtons';
 
 interface Props {}
 
-const Blog: React.FunctionComponent<Props> = ({}) => {
+const Blog: React.FunctionComponent<Props> = () => {
   const { data, loading } = useApi<BlogListTypes>({
     endpoint: `${process.env.REACT_APP_API_URL}blog`,
     fetchOnMount: true,

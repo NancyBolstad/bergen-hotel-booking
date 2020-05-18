@@ -8,11 +8,11 @@ import {
   SearchResultsWrapper,
 } from './styles';
 import { useHistory } from 'react-router-dom';
-import { WidthConstraints, VerticalSpacer, HorizontalSpacer } from '../Layout';
+//import { WidthConstraints, VerticalSpacer, HorizontalSpacer } from '../Layout';
 import useIsMobile from '../../hooks/useIsMobile';
-import { Context } from '../../context/GlobalContext';
+//import { Context } from '../../context/GlobalContext';
 import { HotelDetails } from '../../types/response';
-import Loader from '../../components/Loader';
+//import Loader from '../../components/Loader';
 import validateUserInput from '../../util/validateUserInput';
 
 interface Props {
@@ -23,11 +23,11 @@ interface Props {
 
 export const SearchForm: React.FunctionComponent<Props> = ({ dataSet, placeHolderText }) => {
   const isMobile = useIsMobile();
-  const localContext = React.useContext(Context);
-  const [searchData, setSearchData] = React.useState<HotelDetails[]>([]);
+  //const localContext = React.useContext(Context);
+  //const [searchData, setSearchData] = React.useState<HotelDetails[]>([]);
   const [searchValue, setSearchValue] = React.useState<string>('');
   const [showResults, setShowResults] = React.useState(false);
-  const [showDefault, setShowDefault] = React.useState(false);
+  //const [showDefault, setShowDefault] = React.useState(false);
   React.useEffect(() => {
     setShowResults(validateUserInput(searchValue));
   }, [searchValue]);

@@ -7,7 +7,7 @@ import Loader from '../../components/Loader';
 import { BlogDetailsRoot } from '../../types/response';
 import { VerticalSpacer, HorizontalSpacer, WidthConstraints } from '../../components/Layout';
 import Typography from '../../components/Typography';
-import { Flex, FlexKid } from '../../components/Flex';
+import { Flex } from '../../components/Flex';
 import { HotelCardsList } from '../../components/HotelCards';
 import { Context } from '../../context/GlobalContext';
 
@@ -45,8 +45,6 @@ export const BlogDetails: React.FunctionComponent<Props> = () => {
       },
     },
   });
-
-  console.log(data);
 
   return (
     <>

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import PageHero from '../../components/PageHero';
 import useApi from '../../hooks/useApi';
@@ -40,8 +39,6 @@ export const HotelDetails: React.FunctionComponent<Props> = () => {
     },
   });
 
-  console.log(data);
-
   return (
     <>
       {loading && <Loader />}
@@ -49,7 +46,7 @@ export const HotelDetails: React.FunctionComponent<Props> = () => {
         <PageHero figure={data.data.featuredImages[0]}>
           <VerticalSpacer topSpace="xs" topSpaceDesktop="m" bottomSpace="xs" bottomSpaceDesktop="m">
             <HorizontalSpacer>
-              <WidthConstraints size="medium">
+              <WidthConstraints custom="980px">
                 <Flex direction="row" align="flex-start">
                   <FlexKid>
                     <Typography

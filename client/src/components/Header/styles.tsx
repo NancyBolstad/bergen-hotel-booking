@@ -160,7 +160,7 @@ export const MobileMenuWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 4.875rem;
+  margin-top: -0.5rem;
   position: fixed;
   width: 100vw;
   height: 100vh;
@@ -184,5 +184,31 @@ export const MobileIcons = styled.div`
 
   a {
     margin: ${props => props.theme.spacing.s}rem auto;
+  }
+`;
+
+export const ThemeToggleButton = styled.button`
+  color: ${props => props.theme.colors.onBackground};
+  margin-right: ${props => props.theme.spacing.s}rem;
+  text-decoration: none;
+  ${props => createFontStyles(props.theme.fonts.b2)};
+  background-color: ${props => props.theme.colors.background};
+  border: none;
+
+  &:hover {
+    cursor: pointer;
+    color: ${props => props.theme.colors.primary};
+    svg {
+      fill: ${props => props.theme.colors.primary};
+    }
+  }
+  @media (min-width: ${props => props.theme.mediaQueries.large}px) {
+    padding: 0.5rem 1rem;
+  }
+
+  svg {
+    fill: ${props => props.theme.colors.onBackground};
+    width: 24px;
+    height: 24px;
   }
 `;

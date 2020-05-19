@@ -39,7 +39,7 @@ const FlexBanner: React.FunctionComponent<Props> = ({
               backgroundColor={backgroundColor}
               isMobile={isMobile}
               imageUrl={figure?.url}
-              role="image"
+              role="img"
               aria-label={figure?.alt}
             />
             <FlexKid backgroundColor={backgroundColor} isMobile={isMobile}>

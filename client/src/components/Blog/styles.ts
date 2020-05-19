@@ -21,7 +21,7 @@ const Wrapper = styled.div`
   flex-direction: column;
 `;
 
-const BlogCard = styled(Link)`
+const BlogCard = styled.a`
   background: ${props => props.theme.colors.background};
   display: flex;
   flex-direction: column;

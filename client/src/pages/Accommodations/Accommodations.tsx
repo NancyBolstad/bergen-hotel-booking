@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import { useHistory } from 'react-router-dom';
 import createFontStyles from '../../util/createFontStyles';
 import { HotelDetails } from '../../types/response';
 import createMediaQuery from '../../util/createMediaQuery';
@@ -189,6 +190,7 @@ interface Props {}
 
 const Accommodations: React.FunctionComponent<Props> = () => {
   const localContext = React.useContext(Context);
+  const history = useHistory();
   const [letters, setLetters] = React.useState([] as string[]);
   const [filter, setFilter] = React.useState({ category: '', service: '', name: '' });
   const [hotels, setHotels] = React.useState(localContext.default);
@@ -242,13 +244,18 @@ const Accommodations: React.FunctionComponent<Props> = () => {
     );
 
     setFilter(filter);
+    history.push(`/accommodations/${value}`);
   }
 
   React.useEffect(() => {
     extractHotelsInfo(hotels);
-  }, [hotels]);
 
-  console.log({ hotels, results });
+    if (hotels.length <= 0 && results.length > 0) {
+      alert('No findings');
+    }
+  }, [hotels, results]);
+
+  console.log(hotels);
 
   return (
     <>

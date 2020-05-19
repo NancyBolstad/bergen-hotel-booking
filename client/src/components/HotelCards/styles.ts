@@ -23,7 +23,7 @@ const Wrapper = styled.div`
   flex-direction: column;
 `;
 
-const Card = styled(Link)`
+const Card = styled.a`
   background: ${props => props.theme.colors.background};
   display: flex;
   flex-direction: column;
@@ -105,7 +105,7 @@ const CardVariantLeft = styled.div`
   flex: 1;
 
   @media screen and (max-width: 480px) {
-    div[role='image'] {
+    div[role='img'] {
       height: 88px;
     }
   }

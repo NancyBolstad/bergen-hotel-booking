@@ -23,7 +23,7 @@ const ImageGrid: React.FunctionComponent<ImageGridProps> = ({ images }) => {
                   row={index === 0 || index === 3 ? 'span 2' : undefined}
                   column={index === 0 ? 'span 2' : index === 3 ? 'span 3' : undefined}
                   imageUrl={image.url}
-                  role="image"
+                  role="img"
                   aria-label={image.alt ? image.alt : `Grid image ${index}`}
                 ></GridItem>
               ) : null,

@@ -1,11 +1,20 @@
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
-import { Form, StyledInput, Label, StyledLabelText, StyledTextArea, ErrorMessage } from './styles';
+import {
+  StyledInput,
+  StyledLabelWrapper,
+  StyledTextArea,
+  Form,
+  StyledLabel,
+  ErrorMessage,
+} from '../FormElement';
 import Button from '../Button/Button';
 import Typography from '../Typography/Typography';
 import contactSchema from '../../util/contactSchema';
 import postData from '../../util/postData';
+import { WidthConstraints, VerticalSpacer, HorizontalSpacer } from '../Layout';
+import { Flex } from '../Flex';
 
 interface Props {}
 
@@ -14,61 +23,77 @@ const ContactForm: React.FC<Props> = () => {
     validationSchema: contactSchema,
   });
 
+  const [posting, setPosting] = React.useState<boolean>(false);
+
   let history = useHistory();
 
   async function sendForm(data: Object, endpoint: 'contact') {
+    setPosting(true);
     const response = await postData({
       endpoint: endpoint,
       data: data,
     });
 
     if (response.status === 200) {
+      setPosting(false);
       history.push('/success');
     }
   }
 
   return (
-    <>
-      <Typography element="h1" variant="h1" content="Contact Us" />
-      <Form onSubmit={handleSubmit((data: Object) => sendForm(data, 'contact'))} noValidate>
-        <Label>
-          <StyledLabelText>
-            Name <span>*</span>
-          </StyledLabelText>
-          <StyledInput
-            type="text"
-            name="clientName"
-            placeholder="Your name"
-            ref={register}
-            required
-          />
-        </Label>
-        {/* 
+    <VerticalSpacer>
+      <HorizontalSpacer>
+        <WidthConstraints size="large">
+          <Flex direction="column">
+            <Typography element="h1" variant="h1" content="Contact Us" />
+            <Form onSubmit={handleSubmit((data: Object) => sendForm(data, 'contact'))} noValidate>
+              <StyledLabel>
+                <StyledLabelWrapper>
+                  Name <span>*</span>
+                </StyledLabelWrapper>
+                <StyledInput
+                  type="text"
+                  name="clientName"
+                  placeholder="Your name"
+                  ref={register}
+                  required
+                />
+              </StyledLabel>
+              {/* 
       // @ts-ignore */
-        errors.clientName && <ErrorMessage>{errors.clientName.message}</ErrorMessage>}
-        <Label>
-          <StyledLabelText>
-            Email <span>*</span>
-          </StyledLabelText>
-          <StyledInput type="email" name="email" placeholder="Your email" ref={register} required />
-        </Label>
-        {/* 
+              errors.clientName && <ErrorMessage>{errors.clientName.message}</ErrorMessage>}
+              <StyledLabel>
+                <StyledLabelWrapper>
+                  Email <span>*</span>
+                </StyledLabelWrapper>
+                <StyledInput
+                  type="email"
+                  name="email"
+                  placeholder="Your email"
+                  ref={register}
+                  required
+                />
+              </StyledLabel>
+              {/* 
       // @ts-ignore */
-        errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
-        <Label>
-          <StyledLabelText>
-            Message <span>*</span>
-          </StyledLabelText>
-          <StyledTextArea name="message" placeholder="Your message" ref={register} />
-        </Label>
-        {/* 
+              errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
+              <StyledLabel>
+                <StyledLabelWrapper>
+                  Message <span>*</span>
+                </StyledLabelWrapper>
+                <StyledTextArea name="message" placeholder="Your message" ref={register} />
+              </StyledLabel>
+              {/* 
       // @ts-ignore */
-        errors.message && <ErrorMessage>{errors.message.message}</ErrorMessage>}
-        <Button size="large" variant="primary" type="submit">
-          Send
-        </Button>
-      </Form>
-    </>
+              errors.message && <ErrorMessage>{errors.message.message}</ErrorMessage>}
+              <Button size="large" variant="primary" type="submit">
+                {posting ? 'Sending ...' : 'Send'}
+              </Button>
+            </Form>
+          </Flex>
+        </WidthConstraints>
+      </HorizontalSpacer>
+    </VerticalSpacer>
   );
 };
 

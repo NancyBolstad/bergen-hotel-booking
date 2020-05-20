@@ -11,7 +11,7 @@ import {
 } from '../FormElement';
 import Button from '../Button/Button';
 import Typography from '../Typography/Typography';
-import contactSchema from '../../util/contactSchema';
+import ContactSchema from './contact.schema';
 import postData from '../../util/postData';
 import { WidthConstraints, VerticalSpacer, HorizontalSpacer } from '../Layout';
 import { Flex } from '../Flex';
@@ -20,7 +20,7 @@ interface Props {}
 
 const ContactForm: React.FC<Props> = () => {
   const { handleSubmit, register, errors } = useForm({
-    validationSchema: contactSchema,
+    validationSchema: ContactSchema,
   });
 
   const [posting, setPosting] = React.useState<boolean>(false);

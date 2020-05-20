@@ -212,3 +212,19 @@ export const ThemeToggleButton = styled.button`
     height: 24px;
   }
 `;
+
+export const HeaderTop = styled.div`
+  background-color: ${props => props.theme.colors.surface};
+  color: ${props => props.theme.colors.onSurface};
+  display: flex;
+  justify-content: flex-end;
+  padding: ${props => props.theme.spacing.s}rem;
+
+  @media (min-width: ${props => props.theme.mediaQueries.large}px) {
+    padding: 0 ${props => props.theme.spacing.xl}rem;
+  }
+
+  a {
+    ${props => createFontStyles(props.theme.fonts.b1)};
+  }
+`;

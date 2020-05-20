@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-import { Link } from 'react-router-dom';
 import createFontStyles from '../../util/createFontStyles';
 import Typography from '../Typography';
 import { IColors } from '../../types/theme';

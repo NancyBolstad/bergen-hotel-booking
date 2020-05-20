@@ -3,7 +3,7 @@ import { addDecorator, configure } from '@storybook/react';
 import { BrowserRouter } from 'react-router-dom';
 import ThemeWrapper from '../src/components/ThemeWrapper';
 import defaultTheme from '../src/util/defaultTheme';
-import ContrastProvider from '../src/context/Contrast';
+import ContrastProvider from '../src/context/ContrastContext';
 
 function requireAll(requireContext) {
   return requireContext.keys().map(requireContext);

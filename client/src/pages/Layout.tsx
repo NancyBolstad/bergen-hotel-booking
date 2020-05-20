@@ -10,10 +10,11 @@ import ContrastProvider from '../context/ContrastContext';
 import Accommodations from './Accommodations/Accommodations';
 import Blog from './Blog/Blog';
 import BlogDetails from './Blog/BlogDetails';
+import PrivateRoute from '../routes/PrivateRoute';
+import DashBoard from './DashBoard';
 
 const Contact = lazy(() => import('./Contact'));
 const Login = lazy(() => import('./Login/Login'));
-const DashBoard = lazy(() => import('./DashBoard'));
 const Success = lazy(() => import('./Success'));
 const AccommodationDetails = lazy(() => import('./Accommodations/AccommodationDetails'));
 
@@ -27,6 +28,12 @@ const Layout: React.FunctionComponent<Props> = () => {
           <>
             <Header />
             <Switch>
+              <PrivateRoute path="/dashboard" component={DashBoard} exact />
+              <Route path="/login">
+                <Suspense fallback={<Loader />}>
+                  <Login />
+                </Suspense>
+              </Route>
               <Route path="/success">
                 <Suspense fallback={<Loader />}>
                   <Success />
@@ -40,16 +47,6 @@ const Layout: React.FunctionComponent<Props> = () => {
               <Route path="/contact">
                 <Suspense fallback={<Loader />}>
                   <Contact />
-                </Suspense>
-              </Route>
-              <Route path="/login">
-                <Suspense fallback={<Loader />}>
-                  <Login />
-                </Suspense>
-              </Route>
-              <Route path="/dashboard">
-                <Suspense fallback={<Loader />}>
-                  <DashBoard />
                 </Suspense>
               </Route>
               <Route path="/accommodation/details/:id">

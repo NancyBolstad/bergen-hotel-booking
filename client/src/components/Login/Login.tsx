@@ -23,7 +23,7 @@ const Login: React.FC<Props> = () => {
     if (user.loggedIn) {
       history.push(`/dashboard`);
     }
-  }, [user.loggedIn]);
+  }, [user.loggedIn, history]);
 
   return (
     <VerticalSpacer>

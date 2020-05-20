@@ -12,6 +12,7 @@ import {
   LikeButton,
   MobileIcons,
   ThemeToggleButton,
+  HeaderTop,
 } from './styles';
 import { APP_NAME } from '../../util/constants';
 import { ContrastContext } from '../../context/ContrastContext';
@@ -37,6 +38,9 @@ const Header: React.FunctionComponent = () => {
 
   return (
     <>
+      <HeaderTop>
+        <HeaderNavLink to="/login">For Admins</HeaderNavLink>
+      </HeaderTop>
       <HeaderWrapper>
         <HeaderNav>
           <HeaderMenuLeft>

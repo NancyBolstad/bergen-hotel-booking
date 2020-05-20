@@ -15,9 +15,15 @@ const Login: React.FC<Props> = () => {
   const history = useHistory();
   const { user, setUser, logOut } = React.useContext(UserContext);
   const [userName, setUserName] = React.useState<string>(user.name);
-  const { handleSubmit, register, errors } = useForm({
+  const { register, errors } = useForm({
     validationSchema: LoginSchema,
   });
+
+  React.useEffect(() => {
+    if (user.loggedIn) {
+      history.push(`/dashboard`);
+    }
+  }, [user.loggedIn]);
 
   return (
     <VerticalSpacer>
@@ -32,10 +38,6 @@ const Login: React.FC<Props> = () => {
                   name: userName,
                   loggedIn: true,
                 });
-
-                if (user.loggedIn) {
-                  history.push(`/dashboard`);
-                }
               }}
               noValidate
             >

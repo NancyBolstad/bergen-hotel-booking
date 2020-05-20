@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import { useHistory } from 'react-router-dom';
 import createFontStyles from '../../util/createFontStyles';
 import { HotelDetails } from '../../types/response';
 import createMediaQuery from '../../util/createMediaQuery';
@@ -246,9 +247,13 @@ const Accommodations: React.FunctionComponent<Props> = () => {
 
   React.useEffect(() => {
     extractHotelsInfo(hotels);
-  }, [hotels]);
 
-  console.log({ hotels, results });
+    if (hotels.length <= 0 && results.length > 0) {
+      alert('No findings');
+    }
+  }, [hotels, results]);
+
+  console.log(hotels);
 
   return (
     <>

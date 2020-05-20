@@ -49,7 +49,7 @@ export const Slider: React.FunctionComponent<Props> = ({
       onSwipedLeft={() => changeIndex(index - 1)}
       onSwipedRight={() => changeIndex(index + 1)}
     >
-      <Slide imageUrl={currentSlide.url} role="image" aria-label={currentSlide.alt} large={large}>
+      <Slide imageUrl={currentSlide.url} role="img" aria-label={currentSlide.alt} large={large}>
         {slides.length > 0 && (
           <SliderNav>
             <SliderButtonWrapper>

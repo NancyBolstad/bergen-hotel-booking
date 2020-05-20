@@ -42,7 +42,7 @@ const HotelCard: React.FunctionComponent<HotelCard> = ({ card }) => {
     }
   }
   return (
-    <Card to={`/accommodation/details/${card.id}`}>
+    <Card href={`/accommodation/details/${card.id}`} aria-label={`View details about ${card.name}`}>
       {!!card.featuredImages && <FeaturedImages slides={card.featuredImages} />}
       <LikeButtonWrapper>
         <LikeButton
@@ -53,6 +53,7 @@ const HotelCard: React.FunctionComponent<HotelCard> = ({ card }) => {
             e.preventDefault();
             handleLikeDispatch();
           }}
+          aria-label={`${like ? 'Dislike' : 'Like'} this accommodation`}
         >
           {like ? heartSolid : heart}
         </LikeButton>

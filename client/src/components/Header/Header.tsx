@@ -70,14 +70,16 @@ const Header: React.FunctionComponent = () => {
             )}
           </HeaderMenuLeft>
           <HeaderMenuRight>
-            <HeaderNavLink to="/#">{search}</HeaderNavLink>
+            <HeaderNavLink to="/#" aria-label="Search her">
+              {search}
+            </HeaderNavLink>
             {!isMobile && (
               <>
                 <LikeButton to="/favorites">
                   {heart}
                   <span>{favorites.length}</span>
                 </LikeButton>
-                <ThemeToggleButton onClick={() => toggleContrast()}>
+                <ThemeToggleButton onClick={() => toggleContrast()} aria-label="Toggle mode">
                   {theme === 'default' ? sun : moon}
                 </ThemeToggleButton>
               </>

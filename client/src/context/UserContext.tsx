@@ -34,7 +34,10 @@ const UserProvider: FunctionComponent = ({ children }) => {
     <UserContext.Provider
       value={{
         user: state,
-        setUser: data => setState(data),
+        setUser: data => {
+          setState(data);
+          storage.setSerialize('user', data);
+        },
         logOut: () => {
           setState({
             ...state,

@@ -13,6 +13,7 @@ import BlogDetails from './Blog/BlogDetails';
 
 const Contact = lazy(() => import('./Contact'));
 const Login = lazy(() => import('./Login/Login'));
+const DashBoard = lazy(() => import('./DashBoard'));
 const Success = lazy(() => import('./Success'));
 const AccommodationDetails = lazy(() => import('./Accommodations/AccommodationDetails'));
 
@@ -44,6 +45,11 @@ const Layout: React.FunctionComponent<Props> = () => {
               <Route path="/login">
                 <Suspense fallback={<Loader />}>
                   <Login />
+                </Suspense>
+              </Route>
+              <Route path="/dashboard">
+                <Suspense fallback={<Loader />}>
+                  <DashBoard />
                 </Suspense>
               </Route>
               <Route path="/accommodation/details/:id">

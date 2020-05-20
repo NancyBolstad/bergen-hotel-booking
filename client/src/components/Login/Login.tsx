@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
+import { useHistory } from 'react-router-dom';
 import { StyledInput, StyledLabelWrapper, Form, StyledLabel, ErrorMessage } from '../FormElement';
 import Button from '../Button/Button';
 import Typography from '../Typography/Typography';
@@ -11,6 +12,7 @@ import { UserContext } from '../../context/UserContext';
 interface Props {}
 
 const Login: React.FC<Props> = () => {
+  const history = useHistory();
   const { user, setUser, logOut } = React.useContext(UserContext);
   const [userName, setUserName] = React.useState<string>(user.name);
   const { handleSubmit, register, errors } = useForm({
@@ -30,6 +32,10 @@ const Login: React.FC<Props> = () => {
                   name: userName,
                   loggedIn: true,
                 });
+
+                if (user.loggedIn) {
+                  history.push(`/dashboard`);
+                }
               }}
               noValidate
             >

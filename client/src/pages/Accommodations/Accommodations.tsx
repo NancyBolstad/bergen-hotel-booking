@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { useHistory } from 'react-router-dom';
+//import { useHistory } from 'react-router-dom';
 import createFontStyles from '../../util/createFontStyles';
 import { HotelDetails } from '../../types/response';
 import createMediaQuery from '../../util/createMediaQuery';

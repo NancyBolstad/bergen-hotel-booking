@@ -25,12 +25,20 @@ export const FlexKid = styled(BackgroundImage)<{ isMobile: boolean }>`
   min-height: 23.75rem;
 `;
 
-export const PlainBannerContent = styled(BackgroundImage)<{ align?: alignVariant }>`
+export const PlainBannerContent = styled(BackgroundImage)<{
+  align?: alignVariant;
+  large?: boolean;
+}>`
   display: flex;
   flex-direction: column;
   justify-content: ${props => (props.align ? props.align : 'center')};
   align-items: ${props => (props.align ? props.align : 'center')};
   width: 100%;
+  ${props =>
+    props.large &&
+    css`
+      height: 80vh;
+    `}
 `;
 
 export const PlainBannerTitle = styled(Typography)<{ hasBackgroundImage?: boolean }>`

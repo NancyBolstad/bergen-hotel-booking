@@ -2,7 +2,7 @@ import React from 'react';
 import { Context } from '../../context/GlobalContext';
 import { SearchBanner } from '../../components/Banner';
 import IconList from '../../components/IconList';
-import { BannerGrid } from '../../components/Banner/';
+import { BannerGrid, FlexBanner } from '../../components/Banner/';
 import { HotelCardsList } from '../../components/HotelCards';
 import Loader from '../../components/Loader';
 
@@ -23,6 +23,24 @@ export const Home: React.FunctionComponent<Props> = () => {
     redirectLink: '/accommodations',
   };
 
+  const mockFlexBannerBlog = {
+    title: 'Stories from Bergen',
+    descriptions:
+      'Stay updated with the latest travel stories, tips and insights shared by our community.',
+    figure: image,
+    buttonText: 'Read our blog',
+    redirectLink: '/blog',
+  };
+
+  const mockFlexBannerAboutUs = {
+    title: 'About Us',
+    descriptions:
+      'Holidaze Berge is a boutique design and software development company. We have 50+ JS and design experts on board and 6+ years of experience in building digital projects from scratch or refreshing existing ones.',
+    figure: image,
+    buttonText: 'Learn more',
+    redirectLink: '/about',
+  };
+
   return (
     <main>
       <SearchBanner
@@ -30,6 +48,7 @@ export const Home: React.FunctionComponent<Props> = () => {
         title="Book your holiday in Bergen at best price"
         placeHolderText="Search for hotels"
       />
+      <IconList />
       <BannerGrid
         sectionTitle="We selected best deals for you."
         banners={[mockBannerGrid, mockBannerGrid, mockBannerGrid]}
@@ -44,7 +63,8 @@ export const Home: React.FunctionComponent<Props> = () => {
           list={localContext.default.slice(0, 6)}
         />
       )}
-      <IconList />
+      <FlexBanner {...mockFlexBannerBlog} backgroundColor="secondaryVariant" />
+      <FlexBanner {...mockFlexBannerAboutUs} isImageRight />
     </main>
   );
 };

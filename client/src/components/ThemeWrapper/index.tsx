@@ -3,7 +3,8 @@ import { ThemeProvider } from 'styled-components';
 import { defaultTheme, darkTheme } from '../../util/defaultTheme';
 import GlobalContext from '../../context/GlobalContext';
 import { GlobalStyle } from './styles';
-import { ContrastContext } from '../../context/Contrast';
+import { ContrastContext } from '../../context/ContrastContext';
+import { UserProvider } from '../../context/UserContext';
 
 export interface Props {}
 
@@ -14,9 +15,11 @@ const ThemeWrapper: React.FunctionComponent<Props> = ({ children }) => {
     <ThemeProvider theme={theme === 'default' ? defaultTheme : darkTheme}>
       <div>
         <GlobalStyle />
-        <GlobalContext>
-          <div>{children}</div>
-        </GlobalContext>
+        <UserProvider>
+          <GlobalContext>
+            <div>{children}</div>
+          </GlobalContext>
+        </UserProvider>
       </div>
     </ThemeProvider>
   );

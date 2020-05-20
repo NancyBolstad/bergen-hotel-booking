@@ -12,9 +12,10 @@ import {
   LikeButton,
   MobileIcons,
   ThemeToggleButton,
+  HeaderTop,
 } from './styles';
 import { APP_NAME } from '../../util/constants';
-import { ContrastContext } from '../../context/Contrast';
+import { ContrastContext } from '../../context/ContrastContext';
 import { Context } from '../../context/GlobalContext';
 import { hamburger, cross, search, heart, sun, moon } from '../../util/icons';
 import useIsMobile from '../../hooks/useIsMobile';
@@ -37,6 +38,9 @@ const Header: React.FunctionComponent = () => {
 
   return (
     <>
+      <HeaderTop>
+        <HeaderNavLink to="/login">For Admins</HeaderNavLink>
+      </HeaderTop>
       <HeaderWrapper>
         <HeaderNav>
           <HeaderMenuLeft>
@@ -70,14 +74,16 @@ const Header: React.FunctionComponent = () => {
             )}
           </HeaderMenuLeft>
           <HeaderMenuRight>
-            <HeaderNavLink to="/#">{search}</HeaderNavLink>
+            <HeaderNavLink to="/#" aria-label="Search her">
+              {search}
+            </HeaderNavLink>
             {!isMobile && (
               <>
                 <LikeButton to="/favorites">
                   {heart}
                   <span>{favorites.length}</span>
                 </LikeButton>
-                <ThemeToggleButton onClick={() => toggleContrast()}>
+                <ThemeToggleButton onClick={() => toggleContrast()} aria-label="Toggle mode">
                   {theme === 'default' ? sun : moon}
                 </ThemeToggleButton>
               </>

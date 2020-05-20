@@ -4,7 +4,7 @@ import { FavoriteActions, favoriteCardsReducer } from '../reducer/favoriteCardsR
 import { HotelDetails, Root } from '../types/response';
 import { FAVORITES_KEY } from '../util/constants';
 import isBrowser from '../util/isBrowser';
-import Storage from '../util/storage';
+import storage from '../util/storage';
 
 interface Props {}
 
@@ -32,7 +32,6 @@ export const GlobalContext: React.FunctionComponent<Props> = ({ children }) => {
     },
   });
   const [localData, setLocalData] = React.useState<HotelDetails[]>(() => {
-    const storage = new Storage();
     const localFavorites = storage.get(FAVORITES_KEY);
 
     return localFavorites !== null ? JSON.parse(localFavorites) : [];
@@ -42,7 +41,6 @@ export const GlobalContext: React.FunctionComponent<Props> = ({ children }) => {
 
   React.useEffect(() => {
     if (isBrowser()) {
-      const storage = new Storage();
       storage.setSerialize(FAVORITES_KEY, state);
       setLocalData(state);
     }

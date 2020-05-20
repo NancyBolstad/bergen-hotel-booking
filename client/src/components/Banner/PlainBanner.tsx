@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Image as ImageType } from '../../types/types';
 import { WidthConstraints, HorizontalSpacer } from '../Layout';
 import { PlainBannerTitle, PlainBannerContent } from './styles';
+import { ButtonVariant, ButtonInternal } from '../Button/Button';
 
 interface Props {
   title?: string;
@@ -11,6 +12,10 @@ interface Props {
   isTitleColorRed?: boolean;
   backgroundImage?: ImageType;
   center?: 'center' | 'flex-start' | 'flex-end';
+  large?: boolean;
+  buttonVariant?: ButtonVariant;
+  buttonText?: string;
+  redirectLink?: string;
 }
 
 const PlainBanner: React.FunctionComponent<Props> = ({
@@ -21,12 +26,17 @@ const PlainBanner: React.FunctionComponent<Props> = ({
   backgroundImage,
   isTitleColorRed,
   center,
+  large,
+  buttonVariant,
+  buttonText,
+  redirectLink,
 }) => {
   return (
     <PlainBannerContent
       backgroundColor={backgroundColor ? backgroundColor : 'secondaryVariant'}
       imageUrl={backgroundImage?.url}
       align={center}
+      large={large}
     >
       <WidthConstraints size="large">
         <HorizontalSpacer>
@@ -56,6 +66,15 @@ const PlainBanner: React.FunctionComponent<Props> = ({
               bottom={56}
               hasBackgroundImage={backgroundImage ? true : false}
             />
+          )}
+          {!!buttonText && !!redirectLink && (
+            <ButtonInternal
+              variant={buttonVariant ? buttonVariant : 'primary'}
+              size="medium"
+              to={redirectLink}
+            >
+              {buttonText}
+            </ButtonInternal>
           )}
         </HorizontalSpacer>
       </WidthConstraints>

@@ -1,12 +1,12 @@
 import * as React from 'react';
-import ContactForm from '../../components/ContactForm';
+import Login from '../../components/Login/Login';
 
 interface Props {}
 
 export const Contact: React.FunctionComponent<Props> = () => {
   return (
     <main>
-      <ContactForm />
+      <Login />
     </main>
   );
 };

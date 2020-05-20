@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import createFontStyles from '../../util/createFontStyles';
 
 export const Form = styled.form`
+  max-width: 680px;
   width: 100%;
   margin: 0 auto;
   padding: ${props => props.theme.spacing.s}rem;
@@ -15,10 +15,4 @@ export const Form = styled.form`
     margin-left: auto;
     margin-right: auto;
   }
-`;
-
-export const ErrorMessage = styled.span`
-  ${props => createFontStyles(props.theme.fonts.b3)};
-  text-align: left;
-  color: ${props => props.theme.colors.error};
 `;

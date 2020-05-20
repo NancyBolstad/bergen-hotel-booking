@@ -11,9 +11,15 @@ export const Footer: React.FC<Props> = () => {
   return (
     <FooterWrapper>
       <FooterLinksWrapper>
-        <FooterLink href="">{Facebook}</FooterLink>
-        <FooterLink href="">{Twitter}</FooterLink>
-        <FooterLink href="">{Instagram}</FooterLink>
+        <FooterLink href="" aria-label="Follow us on Facebook">
+          {Facebook}
+        </FooterLink>
+        <FooterLink href="" aria-label="Follow us on Twitter">
+          {Twitter}
+        </FooterLink>
+        <FooterLink href="" aria-label="Follow us on Instagram">
+          {Instagram}
+        </FooterLink>
       </FooterLinksWrapper>
       <Flex>
         <Typography variant="h6" element="h6" content={COPY_RIGHTS} color="white" />

@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-import { Link } from 'react-router-dom';
 import createFontStyles from '../../util/createFontStyles';
 import Typography from '../Typography';
 import { IColors } from '../../types/theme';
@@ -21,7 +20,7 @@ const Wrapper = styled.div`
   flex-direction: column;
 `;
 
-const BlogCard = styled(Link)`
+const BlogCard = styled.a`
   background: ${props => props.theme.colors.background};
   display: flex;
   flex-direction: column;

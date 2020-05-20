@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Storage from '../util/storage';
+import storage from '../util/storage';
 import isBrowser from '../util/isBrowser';
 
 const ContrastContext = React.createContext({
@@ -12,7 +12,6 @@ const ContrastProvider: React.FunctionComponent = ({ children }) => {
 
   React.useEffect(() => {
     if (isBrowser()) {
-      const storage = new Storage();
       const storageTheme = storage.get('theme');
 
       if (!!storageTheme) {
@@ -31,7 +30,6 @@ const ContrastProvider: React.FunctionComponent = ({ children }) => {
       }
 
       setTheme(newTheme);
-      const storage = new Storage();
 
       storage.set('theme', newTheme);
     },

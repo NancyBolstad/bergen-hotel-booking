@@ -14,7 +14,7 @@ import {
   ThemeToggleButton,
 } from './styles';
 import { APP_NAME } from '../../util/constants';
-import { ContrastContext } from '../../context/Contrast';
+import { ContrastContext } from '../../context/ContrastContext';
 import { Context } from '../../context/GlobalContext';
 import { hamburger, cross, search, heart, sun, moon } from '../../util/icons';
 import useIsMobile from '../../hooks/useIsMobile';

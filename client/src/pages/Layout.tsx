@@ -6,7 +6,7 @@ import Footer from '../components/Footer';
 import Loader from '../components/Loader';
 import Home from './Home';
 import Favorites from './Favorites';
-import ContrastProvider from '../context/Contrast';
+import ContrastProvider from '../context/ContrastContext';
 import Accommodations from './Accommodations/Accommodations';
 import Blog from './Blog/Blog';
 import BlogDetails from './Blog/BlogDetails';

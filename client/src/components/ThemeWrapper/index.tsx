@@ -3,7 +3,7 @@ import { ThemeProvider } from 'styled-components';
 import { defaultTheme, darkTheme } from '../../util/defaultTheme';
 import GlobalContext from '../../context/GlobalContext';
 import { GlobalStyle } from './styles';
-import { ContrastContext } from '../../context/Contrast';
+import { ContrastContext } from '../../context/ContrastContext';
 
 export interface Props {}
 

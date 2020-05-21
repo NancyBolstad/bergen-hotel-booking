@@ -21,7 +21,7 @@ export const StyledTextArea = styled.textarea<
 
   &:active,
   &:focus {
-    border-color: ${props => props.theme.colors.primary};
+    border-bottom: 2px solid ${props => props.theme.colors.onBackground};
     outline: none;
   }
 `;

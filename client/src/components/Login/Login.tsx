@@ -30,7 +30,7 @@ const Login: React.FC<Props> = () => {
       <HorizontalSpacer>
         <WidthConstraints size="large">
           <Flex direction="column">
-            <Typography element="h1" variant="h1" content="Login" />
+            <Typography element="h1" variant="h1" content="Log Into Admin Dashboard" />
             <Form
               onSubmit={e => {
                 e.preventDefault();

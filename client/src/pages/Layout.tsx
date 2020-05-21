@@ -14,6 +14,7 @@ import PrivateRoute from '../routes/PrivateRoute';
 import DashBoard from './DashBoard';
 
 const Contact = lazy(() => import('./Contact'));
+const Book = lazy(() => import('./Book/Book'));
 const Login = lazy(() => import('./Login/Login'));
 const Success = lazy(() => import('./Success'));
 const AccommodationDetails = lazy(() => import('./Accommodations/AccommodationDetails'));
@@ -34,7 +35,12 @@ const Layout: React.FunctionComponent<Props> = () => {
                   <Login />
                 </Suspense>
               </Route>
-              <Route path="/book/success">
+              <Route exact path="/book/:id">
+                <Suspense fallback={<Loader />}>
+                  <Book />
+                </Suspense>
+              </Route>
+              <Route exact path="/book-success">
                 <Suspense fallback={<Loader />}>
                   <Success />
                 </Suspense>
@@ -49,7 +55,7 @@ const Layout: React.FunctionComponent<Props> = () => {
                   <Contact />
                 </Suspense>
               </Route>
-              <Route path="/contact/success">
+              <Route exact path="/contact-success">
                 <Suspense fallback={<Loader />}>
                   <Contact />
                 </Suspense>

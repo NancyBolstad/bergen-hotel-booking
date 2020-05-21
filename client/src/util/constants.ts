@@ -22,7 +22,6 @@ export const mockCardDetails: HotelDetails = {
   services: [],
   rating: 0,
   features: [],
-  reviews: [],
 };
 
 export const mockCardDetailsResponse = {

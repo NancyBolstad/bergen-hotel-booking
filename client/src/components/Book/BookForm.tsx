@@ -11,9 +11,10 @@ import { Flex } from '../Flex';
 
 interface Props {
   establishmentId: string;
+  establishmentName?: string;
 }
 
-const BookForm: React.FC<Props> = ({ establishmentId }) => {
+const BookForm: React.FC<Props> = ({ establishmentId, establishmentName }) => {
   const { handleSubmit, register, errors } = useForm({
     validationSchema: BookSchema,
   });
@@ -34,7 +35,7 @@ const BookForm: React.FC<Props> = ({ establishmentId }) => {
 
     if (response.status === 200) {
       setPosting(false);
-      history.push('/book/success');
+      history.push(`/book-success`);
     }
   }
 
@@ -43,7 +44,16 @@ const BookForm: React.FC<Props> = ({ establishmentId }) => {
       <HorizontalSpacer>
         <WidthConstraints size="large">
           <Flex direction="column">
-            <Typography element="h1" variant="h1" content="Send in your booking details" />
+            <Typography
+              element="h2"
+              variant="h2"
+              content={
+                establishmentName
+                  ? `Booking your stay at ${establishmentName} `
+                  : `Send in your booking`
+              }
+              textTransform="capitalize"
+            />
             <Form onSubmit={handleSubmit((data: Object) => sendForm(data, 'enquiries'))} noValidate>
               <StyledLabel>
                 <StyledLabelWrapper>

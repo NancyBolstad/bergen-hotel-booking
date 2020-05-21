@@ -27,9 +27,9 @@ export interface Image {
 export interface HotelDetails {
   id: string;
   name: string;
-  category?: HotelCategories;
-  featuredImages?: ImageType[];
-  descriptions?: string;
+  category: HotelCategories | '';
+  featuredImages: ImageType[];
+  descriptions: string;
   location?: string;
   price?: number;
   onSale?: boolean;
@@ -37,7 +37,6 @@ export interface HotelDetails {
   services?: string[];
   rating?: number;
   features?: Features[];
-  reviews?: string[];
 }
 
 export interface Root {
@@ -47,7 +46,7 @@ export interface Root {
 
 export interface HotelDetailsRoot {
   code: number;
-  data: Data;
+  data: HotelDetails;
 }
 
 export interface Data {

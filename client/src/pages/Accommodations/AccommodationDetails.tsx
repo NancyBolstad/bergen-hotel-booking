@@ -75,16 +75,18 @@ export const HotelDetails: React.FunctionComponent<Props> = () => {
                     >
                       <Slider slides={data.data.featuredImages} defaultIndex={2} />
                     </VerticalSpacer>
-                    <ButtonInternal variant="primary" size="large" to="/book">
+                    <ButtonInternal variant="primary" size="large" to={`/book/${id}`}>
                       Book
                     </ButtonInternal>
                   </FlexKid>
                   <FlexKid>
-                    <Typography
-                      variant="h3"
-                      element="h3"
-                      content={`Rating: ${data.data.rating.toString()}`}
-                    />
+                    {!!data.data.rating && (
+                      <Typography
+                        variant="h3"
+                        element="h3"
+                        content={`Rating: ${data.data.rating.toString()}`}
+                      />
+                    )}
                     <Typography variant="h3" element="h3" content="Features" />
                     <ul>
                       {(data.data.features || []).map((feature, key) => (

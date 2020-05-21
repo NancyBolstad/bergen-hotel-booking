@@ -5,6 +5,7 @@ import * as cors from 'cors';
 import contact from './services/contact/route';
 import establishments from './services/establishments/route';
 import blog from './services/blog/route';
+import enquiries from './services/enquiries/route';
 import getRootUrls from './utils/getRootUrls';
 
 const app = express();
@@ -37,5 +38,6 @@ app.get('/', (req: express.Request, res: express.Response) => {
 
 app.use('/v1', routes);
 routes.use('/contact', contact);
+routes.use('/enquiries', enquiries);
 routes.use('/establishments', establishments);
 routes.use('/blog', blog);

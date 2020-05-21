@@ -36,7 +36,7 @@ const ContactForm: React.FC<Props> = () => {
 
     if (response.status === 200) {
       setPosting(false);
-      history.push('/success');
+      history.push('/contact/success');
     }
   }
 

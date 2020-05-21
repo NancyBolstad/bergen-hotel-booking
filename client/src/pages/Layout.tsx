@@ -34,7 +34,7 @@ const Layout: React.FunctionComponent<Props> = () => {
                   <Login />
                 </Suspense>
               </Route>
-              <Route path="/success">
+              <Route path="/book/success">
                 <Suspense fallback={<Loader />}>
                   <Success />
                 </Suspense>
@@ -45,6 +45,11 @@ const Layout: React.FunctionComponent<Props> = () => {
                 </Suspense>
               </Route>
               <Route path="/contact">
+                <Suspense fallback={<Loader />}>
+                  <Contact />
+                </Suspense>
+              </Route>
+              <Route path="/contact/success">
                 <Suspense fallback={<Loader />}>
                   <Contact />
                 </Suspense>

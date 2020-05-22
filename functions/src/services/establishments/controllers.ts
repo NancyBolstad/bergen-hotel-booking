@@ -1,7 +1,6 @@
 import { Request, Response } from 'express';
 import * as firebase from 'firebase';
 import database from '../../config/database';
-import { Establishment } from './establishments.d';
 
 export async function getAllEstablishments(req: Request, res: Response) {
   try {
@@ -51,19 +50,13 @@ export async function getOneEstablishment(req: Request, res: Response) {
   }
 }
 
-export async function createEstablishment(req: Request, res: Response) {
+export async function createOneEstablishment(req: Request, res: Response) {
   try {
-    const newEstablishments: Establishment = {
-      name: req.body['name'],
-      category: req.body['category'],
-      descriptions: req.body['descriptions'],
-    };
-
     return database
-      .ref('contact')
+      .ref('establishments')
       .push(
         {
-          ...newEstablishments,
+          ...req.body,
           createdAt: firebase.database.ServerValue.TIMESTAMP,
         },
         error => {
@@ -74,6 +67,25 @@ export async function createEstablishment(req: Request, res: Response) {
       )
       .then(doc => {
         res.status(200).json({ code: 200, message: `Created a new establishment ${doc.key}` });
+      });
+  } catch (error) {
+    res.status(500).send(error);
+  }
+}
+
+export async function DeleteOneEstablishment(req: Request, res: Response) {
+  try {
+    const requestValue = req.params.id;
+
+    return database
+      .ref('establishments')
+      .child(requestValue)
+      .remove()
+      .then(function() {
+        res.status(200).json({
+          code: 200,
+          message: 'Remove succeeded.',
+        });
       });
   } catch (error) {
     res.status(500).send(error);

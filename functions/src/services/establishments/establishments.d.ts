@@ -1,5 +1,5 @@
 interface Image {
-  url?: string;
+  url: string;
   alt?: string;
   captions?: string;
 }
@@ -26,16 +26,15 @@ type Features =
 
 export interface Establishment {
   id?: string;
-  name?: string;
-  category?: HotelCategories;
+  name: string;
+  location: string;
+  descriptions: string;
+  category: string;
+  price: number;
   featuredImages?: Image[];
-  descriptions?: string;
-  location?: string;
-  price?: number;
   onSale?: boolean;
   salePrice?: number;
-  services?: HotelServices[];
+  services?: string[];
   rating?: number;
-  features?: Features[];
-  reviews?: string[];
+  features?: string[];
 }

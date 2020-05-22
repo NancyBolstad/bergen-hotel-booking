@@ -7,7 +7,7 @@ export interface RequestData {
 }
 
 export interface ApiOpts {
-  endpoint: 'contact' | 'establishment' | 'enquiries';
+  endpoint: 'contact' | 'establishments' | 'enquiries';
   data?: Object;
 }
 

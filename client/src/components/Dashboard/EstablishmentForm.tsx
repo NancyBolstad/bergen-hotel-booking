@@ -27,22 +27,24 @@ const EstablishmentForm: React.FC<Props> = ({}) => {
 
   let history = useHistory();
 
-  async function sendForm(data: Object, endpoint: 'establishment') {
+  async function sendForm(data: Object, endpoint: 'establishments') {
     console.log(2222222);
 
     setPosting(true);
     console.log(data);
-    // const response = await postData({
-    //   endpoint: endpoint,
-    //   data: {
-    //     ...data,
-    //   },
-    // });
+    const response = await postData({
+      endpoint: endpoint,
+      data: {
+        ...data,
+      },
+    });
 
-    // if (response.status === 200) {
-    //   setPosting(false);
-    //   history.push(`/book-success`);
-    // }
+    console.log(response);
+
+    if (response.status === 200) {
+      setPosting(false);
+      history.push(`/book-success`);
+    }
   }
 
   return (
@@ -57,7 +59,7 @@ const EstablishmentForm: React.FC<Props> = ({}) => {
               textTransform="capitalize"
             />
             <Form
-              onSubmit={handleSubmit((data: Object) => sendForm(data, 'establishment'))}
+              onSubmit={handleSubmit((data: Object) => sendForm(data, 'establishments'))}
               noValidate
             >
               <StyledLabel>

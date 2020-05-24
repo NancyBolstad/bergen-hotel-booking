@@ -89,3 +89,31 @@ export interface BlogDetailsRoot {
   code: number;
   data: Blog;
 }
+
+export interface ContactResponse {
+  code: number;
+  data: Contact[];
+}
+
+export interface Contact {
+  id: string;
+  clientName: string;
+  email: string;
+  message: string;
+  createdAt?: string;
+}
+
+export interface EnquiriesResponse {
+  code: number;
+  data: Enquiry[];
+}
+
+export interface Enquiry {
+  id: string;
+  checkIn: string;
+  checkOut: string;
+  email: string;
+  establishmentId: string;
+  name: string;
+  createdAt?: number;
+}

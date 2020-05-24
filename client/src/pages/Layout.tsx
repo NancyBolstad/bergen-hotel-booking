@@ -3,7 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import ThemeWrapper from '../components/ThemeWrapper';
 import Header from '../components/Header/Header';
 import Footer from '../components/Footer';
-import Loader from '../components/Loader';
+import Loader from '../components/Loader/Loader';
 import Home from './Home';
 import Favorites from './Favorites';
 import ContrastProvider from '../context/ContrastContext';
@@ -11,9 +11,10 @@ import Accommodations from './Accommodations/Accommodations';
 import Blog from './Blog/Blog';
 import BlogDetails from './Blog/BlogDetails';
 import PrivateRoute from '../routes/PrivateRoute';
-import DashBoard from './DashBoard';
+import DashBoard from './Dashboard/Dashboard';
 
 const Contact = lazy(() => import('./Contact'));
+const Book = lazy(() => import('./Book/Book'));
 const Login = lazy(() => import('./Login/Login'));
 const Success = lazy(() => import('./Success'));
 const AccommodationDetails = lazy(() => import('./Accommodations/AccommodationDetails'));
@@ -28,13 +29,19 @@ const Layout: React.FunctionComponent<Props> = () => {
           <>
             <Header />
             <Switch>
-              <PrivateRoute path="/dashboard" component={DashBoard} exact />
+              <PrivateRoute path="/dashboard/" component={DashBoard} exact />
+              <PrivateRoute path="/dashboard/:slug" component={DashBoard} exact />
               <Route path="/login">
                 <Suspense fallback={<Loader />}>
                   <Login />
                 </Suspense>
               </Route>
-              <Route path="/success">
+              <Route exact path="/book/:id">
+                <Suspense fallback={<Loader />}>
+                  <Book />
+                </Suspense>
+              </Route>
+              <Route exact path="/book-success">
                 <Suspense fallback={<Loader />}>
                   <Success />
                 </Suspense>
@@ -45,6 +52,11 @@ const Layout: React.FunctionComponent<Props> = () => {
                 </Suspense>
               </Route>
               <Route path="/contact">
+                <Suspense fallback={<Loader />}>
+                  <Contact />
+                </Suspense>
+              </Route>
+              <Route exact path="/contact-success">
                 <Suspense fallback={<Loader />}>
                   <Contact />
                 </Suspense>

@@ -4,6 +4,10 @@ import storage from '../util/storage';
 export interface UserState {
   name: string;
   loggedIn: boolean;
+  email?: string;
+  profileImage?: string;
+  tel?: number;
+  address?: string;
 }
 
 const defaultUser: UserState = {

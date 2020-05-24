@@ -1,35 +1,67 @@
 import { Request, Response } from 'express';
 import * as firebase from 'firebase';
 import database from '../../config/database';
+import { Enquiry } from './enquiry';
 
-export async function getAllEstablishments(req: Request, res: Response) {
+export async function getAllEnquiries(req: Request, res: Response) {
   try {
     return database
-      .ref('establishments')
+      .ref('enquiries')
       .once('value')
       .then(function(snapshot) {
-        const establishments: any[] = [];
+        const data: any[] = [];
         snapshot.forEach(function(childSnapshot) {
           const childKey = childSnapshot.key;
           const childData = childSnapshot.val();
-          establishments.push({
+          data.push({
             id: childKey,
             ...childData,
           });
         });
-        res.status(200).json({ code: 200, data: establishments });
+        res.status(200).json({ code: 200, data: data });
       });
   } catch (error) {
     res.status(500).send(error);
   }
 }
 
-export async function getOneEstablishment(req: Request, res: Response) {
+export async function createEnquiry(req: Request, res: Response) {
+  try {
+    const newEnquiry: Enquiry = {
+      name: req.body['name'],
+      email: req.body['email'],
+      establishmentId: req.body['establishmentId'],
+      checkIn: req.body['checkIn'],
+      checkOut: req.body['checkOut'],
+    };
+
+    return database
+      .ref('enquiries')
+      .push(
+        {
+          ...newEnquiry,
+          createdAt: firebase.database.ServerValue.TIMESTAMP,
+        },
+        error => {
+          if (error) {
+            throw error;
+          }
+        },
+      )
+      .then(doc => {
+        res.status(200).json({ code: 200, message: `Created a new contact ${doc.key}` });
+      });
+  } catch (error) {
+    res.status(500).send(error);
+  }
+}
+
+export async function getOneEnquiry(req: Request, res: Response) {
   try {
     const requestValue = req.params.id;
 
     return database
-      .ref('establishments')
+      .ref('enquiries')
       .child(requestValue)
       .once('value')
       .then(snapshot => {
@@ -50,35 +82,12 @@ export async function getOneEstablishment(req: Request, res: Response) {
   }
 }
 
-export async function createOneEstablishment(req: Request, res: Response) {
-  try {
-    return database
-      .ref('establishments')
-      .push(
-        {
-          ...req.body,
-          createdAt: firebase.database.ServerValue.TIMESTAMP,
-        },
-        error => {
-          if (error) {
-            throw error;
-          }
-        },
-      )
-      .then(doc => {
-        res.status(200).json({ code: 200, message: `Created a new establishment ${doc.key}` });
-      });
-  } catch (error) {
-    res.status(500).send(error);
-  }
-}
-
-export async function DeleteOneEstablishment(req: Request, res: Response) {
+export async function DeleteOneEnquiry(req: Request, res: Response) {
   try {
     const requestValue = req.params.id;
 
     return database
-      .ref('establishments')
+      .ref('enquiries')
       .child(requestValue)
       .remove()
       .then(function() {

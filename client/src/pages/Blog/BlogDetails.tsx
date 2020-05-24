@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import PageHero from '../../components/PageHero';
 import useApi from '../../hooks/useApi';
-import Loader from '../../components/Loader';
+import Loader from '../../components/Loader/Loader';
 import { BlogDetailsRoot } from '../../types/response';
 import { VerticalSpacer, HorizontalSpacer, WidthConstraints } from '../../components/Layout';
 import Typography from '../../components/Typography';

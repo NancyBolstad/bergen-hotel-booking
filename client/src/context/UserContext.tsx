@@ -1,9 +1,14 @@
 import React, { FunctionComponent, createContext, useState, useEffect } from 'react';
 import storage from '../util/storage';
+import { string } from 'yup';
 
 export interface UserState {
   name: string;
   loggedIn: boolean;
+  email?: string;
+  profileImage?: string;
+  tel?: number;
+  address?: string;
 }
 
 const defaultUser: UserState = {

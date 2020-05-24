@@ -8,13 +8,13 @@ import {
   Form,
   StyledLabel,
   ErrorMessage,
-} from '../FormElement';
-import Button from '../Button/Button';
-import Typography from '../Typography/Typography';
+} from '../../../components/FormElement';
+import Button from '../../../components/Button/Button';
+import Typography from '../../../components/Typography';
 import EstablishmentSchema from './establishment.schema';
-import postData from '../../util/postData';
-import { WidthConstraints, VerticalSpacer, HorizontalSpacer } from '../Layout';
-import { Flex } from '../Flex';
+import postData from '../../../util/postData';
+import { WidthConstraints, VerticalSpacer, HorizontalSpacer } from '../../../components/Layout';
+import { Flex } from '../../../components//Flex';
 
 interface Props {}
 

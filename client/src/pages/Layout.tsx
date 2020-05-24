@@ -3,7 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import ThemeWrapper from '../components/ThemeWrapper';
 import Header from '../components/Header/Header';
 import Footer from '../components/Footer';
-import Loader from '../components/Loader';
+import Loader from '../components/Loader/Loader';
 import Home from './Home';
 import Favorites from './Favorites';
 import ContrastProvider from '../context/ContrastContext';
@@ -12,6 +12,10 @@ import Blog from './Blog/Blog';
 import BlogDetails from './Blog/BlogDetails';
 import PrivateRoute from '../routes/PrivateRoute';
 import DashBoard from './DashBoard';
+import Enquiries from './DashBoard/Enquiries/Enquiries';
+import Establishments from './DashBoard/Establishments/Establishments';
+import CustomerService from './DashBoard/CustomerService/CustomerService';
+import Profile from './DashBoard/Profile/Profile';
 
 const Contact = lazy(() => import('./Contact'));
 const Book = lazy(() => import('./Book/Book'));
@@ -29,7 +33,12 @@ const Layout: React.FunctionComponent<Props> = () => {
           <>
             <Header />
             <Switch>
-              <PrivateRoute path="/dashboard" component={DashBoard} exact />
+              <PrivateRoute path="/dashboard/" component={DashBoard} exact />
+              <PrivateRoute path="/dashboard/:slug" component={DashBoard} exact />
+              {/* <PrivateRoute path="/dashboard/enquiries" component={Enquiries} exact />
+              <PrivateRoute path="/dashboard/establishments" component={Establishments} exact />
+              <PrivateRoute path="/dashboard/customer-service" component={CustomerService} exact />
+              <PrivateRoute path="/dashboard/my-profile" component={Profile} exact /> */}
               <Route path="/login">
                 <Suspense fallback={<Loader />}>
                   <Login />

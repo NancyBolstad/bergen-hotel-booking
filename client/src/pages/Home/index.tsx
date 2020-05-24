@@ -4,7 +4,7 @@ import { SearchBanner } from '../../components/Banner';
 import IconList from '../../components/IconList';
 import { BannerGrid, FlexBanner } from '../../components/Banner/';
 import { HotelCardsList } from '../../components/HotelCards';
-import Loader from '../../components/Loader';
+import Loader from '../../components/Loader/Loader';
 
 interface Props {}
 

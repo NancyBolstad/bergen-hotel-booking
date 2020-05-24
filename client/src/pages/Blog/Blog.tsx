@@ -6,7 +6,7 @@ import { PlainBanner } from '../../components/Banner';
 import BlogList from '../../components/Blog';
 import useApi from '../../hooks/useApi';
 import { BlogList as BlogListTypes } from '../../types/response';
-import Loader from '../../components/Loader';
+import Loader from '../../components/Loader/Loader';
 import usePagination from '../../hooks/usePagination';
 import PaginateButtons from '../../components/PaginateButtons';
 

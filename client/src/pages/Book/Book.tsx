@@ -5,14 +5,12 @@ import useApi from '../../hooks/useApi';
 import Loader from '../../components/Loader/Loader';
 import { HotelDetailsRoot } from '../../types/response';
 import { VerticalSpacer, HorizontalSpacer, WidthConstraints } from '../../components/Layout';
-import Typography from '../../components/Typography';
 import { Flex, FlexKid } from '../../components/Flex';
 import { HotelCardsList } from '../../components/HotelCards';
 import { Context } from '../../context/GlobalContext';
 import BookForm from '../../components/Book/BookForm';
 import { HotelCard } from '../../components/HotelCards';
-import { arrowTransformed } from '../../util/icons';
-import { MockHotels } from '../../data/data';
+//import { MockHotels } from '../../data/data';
 import createMediaQuery from '../../util/createMediaQuery';
 
 interface Props {}
@@ -49,30 +47,30 @@ const FlexLeft = styled(FlexKid)`
 export const Book: React.FunctionComponent<Props> = () => {
   const localContext = React.useContext(Context);
   let { id } = useParams();
-  //   const { data, loading } = useApi<HotelDetailsRoot>({
-  //     endpoint: `${process.env.REACT_APP_API_URL}establishments/${id}`,
-  //     fetchOnMount: true,
-  //     initialData: {
-  //       code: 0,
-  //       data: {
-  //         id: '',
-  //         category: '',
-  //         descriptions: '',
-  //         featuredImages: [],
-  //         features: [],
-  //         location: '',
-  //         name: '',
-  //         onSale: false,
-  //         price: 0,
-  //         rating: 0,
-  //         salePrice: 0,
-  //         services: [],
-  //       },
-  //     },
-  //   });
+  const { data, loading } = useApi<HotelDetailsRoot>({
+    endpoint: `${process.env.REACT_APP_API_URL}establishments/${id}`,
+    fetchOnMount: true,
+    initialData: {
+      code: 0,
+      data: {
+        id: '',
+        category: '',
+        descriptions: '',
+        featuredImages: [],
+        features: [],
+        location: '',
+        name: '',
+        onSale: false,
+        price: 0,
+        rating: 0,
+        salePrice: 0,
+        services: [],
+      },
+    },
+  });
 
-  const data = MockHotels[1];
-  const loading = false;
+  // const data = MockHotels[1];
+  // const loading = false;
 
   return (
     <main>
@@ -83,17 +81,17 @@ export const Book: React.FunctionComponent<Props> = () => {
             <WidthConstraints size="large">
               <Layout>
                 <FlexLeft flex={1}>
-                  <HotelCard card={data} />
+                  <HotelCard card={data.data} />
                 </FlexLeft>
                 <FlexKid flex={2}>
-                  <BookForm establishmentId={id} establishmentName={data.name} />
+                  <BookForm establishmentId={id} establishmentName={data.data.name} />
                 </FlexKid>
               </Layout>
             </WidthConstraints>
           </HorizontalSpacer>
         </VerticalSpacer>
       )}
-      {/* {localContext.loading ? (
+      {localContext.loading ? (
         <Loader />
       ) : (
         <HotelCardsList
@@ -103,7 +101,7 @@ export const Book: React.FunctionComponent<Props> = () => {
           list={localContext.default.slice(0, 3)}
           backgroundColor="secondaryVariant"
         />
-      )} */}
+      )}
     </main>
   );
 };

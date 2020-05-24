@@ -1,8 +1,4 @@
 import * as React from 'react';
-import styled, { css } from 'styled-components';
-import { Route } from 'react-router-dom';
-import createFontStyles from '../../../util/createFontStyles';
-import createMediaQuery from '../../../util/createMediaQuery';
 import SingleEnquiry from './SingleEnquiry';
 import Typography from '../../../components/Typography';
 import Section from '../helper-components/Section';

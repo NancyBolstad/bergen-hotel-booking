@@ -1,6 +1,6 @@
 import * as React from 'react';
-import styled, { css } from 'styled-components';
-import createMediaQuery from '../../../util/createMediaQuery';
+// import styled, { css } from 'styled-components';
+// import createMediaQuery from '../../../util/createMediaQuery';
 import Typography from '../../../components/Typography';
 import Section from '../helper-components/Section';
 import Card from '../helper-components/Card';

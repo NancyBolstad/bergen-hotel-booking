@@ -18,7 +18,7 @@ import { Flex } from '../../../components//Flex';
 
 interface Props {}
 
-const EstablishmentForm: React.FC<Props> = ({}) => {
+const EstablishmentForm: React.FC<Props> = () => {
   const { handleSubmit, register, errors } = useForm({
     validationSchema: EstablishmentSchema,
   });

@@ -81,7 +81,7 @@ const DashboardLayout: React.FunctionComponent<Props> = ({ user }) => {
     if (location.pathname === '/dashboard') {
       history.push(`/dashboard/my-account`);
     }
-  }, [history]);
+  }, [location, history]);
   console.log(location);
 
   return (

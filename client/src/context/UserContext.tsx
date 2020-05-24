@@ -1,6 +1,5 @@
 import React, { FunctionComponent, createContext, useState, useEffect } from 'react';
 import storage from '../util/storage';
-import { string } from 'yup';
 
 export interface UserState {
   name: string;

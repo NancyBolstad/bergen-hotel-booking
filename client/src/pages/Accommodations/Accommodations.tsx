@@ -11,7 +11,7 @@ import { Context } from '../../context/GlobalContext';
 import { MockCategories, MockServices } from '../../data/data';
 import { PlainBanner } from '../../components/Banner';
 import { search } from '../../util/icons';
-import Loader from '../../components/Loader';
+import Loader from '../../components/Loader/Loader';
 import Button from '../../components/Button/Button';
 
 const Sections = styled.div`

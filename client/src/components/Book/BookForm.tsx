@@ -1,42 +1,41 @@
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
-import {
-  StyledInput,
-  StyledLabelWrapper,
-  StyledTextArea,
-  Form,
-  StyledLabel,
-  ErrorMessage,
-} from '../FormElement';
+import { StyledInput, StyledLabelWrapper, Form, StyledLabel, ErrorMessage } from '../FormElement';
 import Button from '../Button/Button';
 import Typography from '../Typography/Typography';
-import ContactSchema from './contact.schema';
+import BookSchema from './book.schema';
 import postData from '../../util/postData';
 import { WidthConstraints, VerticalSpacer, HorizontalSpacer } from '../Layout';
 import { Flex } from '../Flex';
 
-interface Props {}
+interface Props {
+  establishmentId: string;
+  establishmentName?: string;
+}
 
-const ContactForm: React.FC<Props> = () => {
+const BookForm: React.FC<Props> = ({ establishmentId, establishmentName }) => {
   const { handleSubmit, register, errors } = useForm({
-    validationSchema: ContactSchema,
+    validationSchema: BookSchema,
   });
 
   const [posting, setPosting] = React.useState<boolean>(false);
 
   let history = useHistory();
 
-  async function sendForm(data: Object, endpoint: 'contact') {
+  async function sendForm(data: Object, endpoint: 'enquiries') {
     setPosting(true);
     const response = await postData({
       endpoint: endpoint,
-      data: data,
+      data: {
+        ...data,
+        establishmentId,
+      },
     });
 
     if (response.status === 200) {
       setPosting(false);
-      history.push('/contact-success');
+      history.push(`/book-success`);
     }
   }
 
@@ -45,15 +44,24 @@ const ContactForm: React.FC<Props> = () => {
       <HorizontalSpacer>
         <WidthConstraints size="large">
           <Flex direction="column">
-            <Typography element="h1" variant="h1" content="Contact Us" />
-            <Form onSubmit={handleSubmit((data: Object) => sendForm(data, 'contact'))} noValidate>
+            <Typography
+              element="h2"
+              variant="h2"
+              content={
+                establishmentName
+                  ? `Booking your stay at ${establishmentName} `
+                  : `Send in your booking`
+              }
+              textTransform="capitalize"
+            />
+            <Form onSubmit={handleSubmit((data: Object) => sendForm(data, 'enquiries'))} noValidate>
               <StyledLabel>
                 <StyledLabelWrapper>
                   Name <span>*</span>
                 </StyledLabelWrapper>
                 <StyledInput
                   type="text"
-                  name="clientName"
+                  name="name"
                   placeholder="Your name"
                   ref={register}
                   required
@@ -61,7 +69,7 @@ const ContactForm: React.FC<Props> = () => {
               </StyledLabel>
               {/* 
       // @ts-ignore */
-              errors.clientName && <ErrorMessage>{errors.clientName.message}</ErrorMessage>}
+              errors.name && <ErrorMessage>{errors.name.message}</ErrorMessage>}
               <StyledLabel>
                 <StyledLabelWrapper>
                   Email <span>*</span>
@@ -79,13 +87,22 @@ const ContactForm: React.FC<Props> = () => {
               errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
               <StyledLabel>
                 <StyledLabelWrapper>
-                  Message <span>*</span>
+                  Check-in Date <span>*</span>
                 </StyledLabelWrapper>
-                <StyledTextArea name="message" placeholder="Your message" ref={register} />
+                <StyledInput type="date" name="checkIn" ref={register} required />
               </StyledLabel>
               {/* 
       // @ts-ignore */
-              errors.message && <ErrorMessage>{errors.message.message}</ErrorMessage>}
+              errors.checkIn && <ErrorMessage>{errors.checkIn.message}</ErrorMessage>}
+              <StyledLabel>
+                <StyledLabelWrapper>
+                  Check-out Date <span>*</span>
+                </StyledLabelWrapper>
+                <StyledInput type="date" name="checkOut" ref={register} required />
+              </StyledLabel>
+              {/* 
+      // @ts-ignore */
+              errors.checkOut && <ErrorMessage>{errors.checkOut.message}</ErrorMessage>}
               <Button size="large" variant="primary" type="submit">
                 {posting ? 'Sending ...' : 'Send'}
               </Button>
@@ -97,4 +114,4 @@ const ContactForm: React.FC<Props> = () => {
   );
 };
 
-export default ContactForm;
+export default BookForm;

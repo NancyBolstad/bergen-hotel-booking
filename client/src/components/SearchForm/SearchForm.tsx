@@ -8,12 +8,15 @@ import {
   SearchResultsWrapper,
 } from './styles';
 import { useHistory } from 'react-router-dom';
-//import { WidthConstraints, VerticalSpacer, HorizontalSpacer } from '../Layout';
 import useIsMobile from '../../hooks/useIsMobile';
-//import { Context } from '../../context/GlobalContext';
+import { Context } from '../../context/GlobalContext';
 import { HotelDetails } from '../../types/response';
-//import Loader from '../../components/Loader';
 import validateUserInput from '../../util/validateUserInput';
+import useFilter, { FilterInterface } from '../../hooks/useFilter';
+import Typography from '../Typography';
+import { HotelCardVariant } from '../HotelCards/index';
+import useOutsideClick from '../../hooks/useOutsideClick';
+import { ButtonInternal } from '../Button/Button';
 
 interface Props {
   dataSet?: HotelDetails[];
@@ -23,25 +26,29 @@ interface Props {
 
 export const SearchForm: React.FunctionComponent<Props> = ({ dataSet, placeHolderText }) => {
   const isMobile = useIsMobile();
-  //const localContext = React.useContext(Context);
-  //const [searchData, setSearchData] = React.useState<HotelDetails[]>([]);
-  const [searchValue, setSearchValue] = React.useState<string>('');
-  const [showResults, setShowResults] = React.useState(false);
-  //const [showDefault, setShowDefault] = React.useState(false);
-  React.useEffect(() => {
-    setShowResults(validateUserInput(searchValue));
-  }, [searchValue]);
   let history = useHistory();
+  const localContext = React.useContext(Context);
+  const [searchFilter, setSearchFilter] = React.useState({ category: '', service: '', name: '' });
+  const { hotels, filter, handleFilter } = useFilter(localContext.default, searchFilter);
+  const [showResults, setShowResults] = React.useState(false);
+  const register = React.useRef(null);
 
-  console.log({ searchValue });
+  function updateUrl(filter: FilterInterface) {
+    history.push(
+      `/search?accommodationName=${filter.name}&category=${filter.category}&service=${filter.service}`,
+    );
+  }
+
+  useOutsideClick(register, () => {
+    setShowResults(false);
+  });
 
   return (
     <Wrapper isMobile={isMobile}>
       <Form
         onSubmit={e => {
           e.preventDefault();
-
-          history.push(`/search?q=${searchValue}`);
+          updateUrl(filter);
         }}
       >
         <SearchInputField
@@ -50,11 +57,15 @@ export const SearchForm: React.FunctionComponent<Props> = ({ dataSet, placeHolde
           type="search"
           autoComplete="off"
           aria-label={placeHolderText ? placeHolderText : 'Search form'}
-          placeholder={placeHolderText ? placeHolderText : 'Search her'}
-          value={searchValue}
+          placeholder={placeHolderText ? placeHolderText : 'Search her ...'}
           onChange={e => {
             e.preventDefault();
-            setSearchValue(e.target.value);
+            if (e.target.value.length > 0 && validateUserInput(e.target.value)) {
+              handleFilter('name', e.target.value);
+              setShowResults(true);
+            } else {
+              setShowResults(false);
+            }
           }}
         />
         <SearchSubmitButton type="submit" aria-label={'Submit search form'} isMobile={isMobile}>
@@ -63,8 +74,23 @@ export const SearchForm: React.FunctionComponent<Props> = ({ dataSet, placeHolde
         </SearchSubmitButton>
       </Form>
       {showResults && (
-        <SearchResultsWrapper isMobile={isMobile}>
-          <h1>Hello</h1>
+        <SearchResultsWrapper isMobile={isMobile} ref={register}>
+          <Typography variant="b2" element="h3" content={`Search results for "${filter.name}"`} />
+          {hotels.slice(0, 4).map(hotel => (
+            <>
+              <HotelCardVariant card={hotel} miniCard />
+            </>
+          ))}
+          {hotels && hotels.length > 5 && (
+            <ButtonInternal
+              to={`/search?accommodationName=${filter.name}&category=${filter.category}&service=${filter.service}`}
+              variant="secondary"
+              size="medium"
+              aria-label="View more search results"
+            >
+              View more search results
+            </ButtonInternal>
+          )}
         </SearchResultsWrapper>
       )}
     </Wrapper>

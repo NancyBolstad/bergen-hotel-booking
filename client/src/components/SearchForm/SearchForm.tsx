@@ -35,7 +35,7 @@ export const SearchForm: React.FunctionComponent<Props> = ({ dataSet, placeHolde
 
   function updateUrl(filter: FilterInterface) {
     history.push(
-      `/search?accommodationName=${filter.name}&category=${filter.category}&service=${filter.service}`,
+      `/search?name=${filter.name}&category=${filter.category}&service=${filter.service}`,
     );
   }
 

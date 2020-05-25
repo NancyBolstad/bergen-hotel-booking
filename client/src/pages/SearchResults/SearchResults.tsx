@@ -195,7 +195,11 @@ const SearchResults: React.FunctionComponent<Props> = () => {
   const [searchFilter, setSearchFilter] = React.useState({ category: '', service: '', name: '' });
   const categories = MockCategories;
   const services = MockServices;
-  const { hotels, letters, filter, handleFilter } = useFilter(localContext.default, searchFilter);
+  const { hotels, letters, filter, handleFilter } = useFilter(
+    localContext.default,
+    searchFilter,
+    true,
+  );
 
   return (
     <main>

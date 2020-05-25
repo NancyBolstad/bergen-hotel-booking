@@ -20,7 +20,7 @@ export const Home: React.FunctionComponent<Props> = () => {
   const mockBannerGrid = {
     backgroundImage: image,
     text: 'Up to 50% off',
-    redirectLink: '/accommodations',
+    redirectLink: `/search?accommodationName=&category=&service=free%20wifi`,
   };
 
   const mockFlexBannerBlog = {

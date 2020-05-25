@@ -83,7 +83,7 @@ export const SearchForm: React.FunctionComponent<Props> = ({ dataSet, placeHolde
           ))}
           {hotels && hotels.length > 5 && (
             <ButtonInternal
-              to={`/search?accommodationName=${filter.name}&category=${filter.category}&service=${filter.service}`}
+              to={`/search?name=${filter.name}&category=${filter.category}&service=${filter.service}`}
               variant="secondary"
               size="medium"
               aria-label="View more search results"

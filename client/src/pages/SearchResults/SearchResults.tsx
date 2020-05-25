@@ -13,6 +13,7 @@ import { PlainBanner } from '../../components/Banner';
 import { search } from '../../util/icons';
 import Loader from '../../components/Loader/Loader';
 import Button from '../../components/Button/Button';
+import useFilter from '../../hooks/useFilter';
 
 const Sections = styled.div`
   flex: 1;
@@ -191,81 +192,14 @@ interface Props {}
 const SearchResults: React.FunctionComponent<Props> = () => {
   const localContext = React.useContext(Context);
   const location = useLocation();
-  const [letters, setLetters] = React.useState([] as string[]);
-  const [filter, setFilter] = React.useState({ category: '', service: '', name: '' });
-  const [hotels, setHotels] = React.useState(localContext.default);
-  const results: HotelDetails[] = localContext.default;
+  const [searchFilter, setSearchFilter] = React.useState({ category: '', service: '', name: '' });
   const categories = MockCategories;
   const services = MockServices;
-
-  console.log(location);
-
-  React.useEffect(() => {
-    setHotels(localContext.default);
-  }, [localContext.default]);
-
-  function extractHotelsInfo(hotels: HotelDetails[]) {
-    const letters: string[] = [];
-
-    for (let i = 0; i < hotels.length; i++) {
-      const hotel = hotels[i];
-
-      if (hotel.name) {
-        const letter = hotel.name.charAt(0).toUpperCase();
-
-        if (!letters.includes(letter)) {
-          letters.push(letter);
-        }
-      }
-    }
-
-    setLetters(letters.sort());
-  }
-
-  function handleFilter(type: 'category' | 'service' | 'name', value: string) {
-    filter[type] = value;
-
-    setHotels(
-      results.filter(e => {
-        let match = true;
-
-        if (filter.category.length > 0) {
-          match = !!e.category && e.category === filter.category;
-        }
-
-        if (match && filter.service.length > 0) {
-          match = !!e.services && e.services.includes(filter.service);
-        }
-
-        if (match && filter.name.length > 0) {
-          match = !!e.name && e.name.toLowerCase().includes(filter.name.toLowerCase());
-        }
-
-        return match;
-      }),
-    );
-
-    setFilter(filter);
-  }
-
-  React.useEffect(() => {
-    extractHotelsInfo(hotels);
-
-    if (hotels.length <= 0 && results.length > 0) {
-      alert('No findings');
-    }
-  }, [hotels, results]);
-
-  console.log(hotels);
+  const { hotels, letters, filter, handleFilter } = useFilter(localContext.default, searchFilter);
 
   return (
-    <>
-      <PlainBanner
-        title={`Search results for ${location.search}`}
-        text="
-        Enjoy the comfort accommodations in prime locations in Bergen. Run by hospitality professionals and equipped by Scandinavian interior designers, they are able to combine the quality standard of a hotel with the advantages of an apartment."
-        isTitleColorRed
-      />
+    <main>
+      <PlainBanner title="Search for accommodations in Bergen" backgroundColor="surface" />
       <VerticalSpacer topSpace="xs" topSpaceDesktop="m" bottomSpace="xs" bottomSpaceDesktop="m">
         <HorizontalSpacer>
           <WidthConstraints size="large">
@@ -273,15 +207,12 @@ const SearchResults: React.FunctionComponent<Props> = () => {
               <InputFieldWrapper>
                 <StyledInput
                   type="text"
-                  placeholder="Search by name"
+                  placeholder="Find by name ..."
                   value={filter.name}
                   onChange={e => {
                     handleFilter('name', e.target.value);
                   }}
                 />
-                <Button size="small" variant="tertiary">
-                  {search}
-                </Button>
               </InputFieldWrapper>
               <SelectWrapper>
                 <Typography element="span" variant="b2" content="Filter by: " />
@@ -322,49 +253,56 @@ const SearchResults: React.FunctionComponent<Props> = () => {
               </SelectWrapper>
             </Filter>
             {!!localContext.loading && <Loader />}
-            <Results>
-              <Sections>
-                {letters.map(letter => (
-                  <Section key={letter} id={letter}>
-                    <SectionTitle>
-                      <Typography element="h2" variant="h2" content={letter} />
-                    </SectionTitle>
-                    {hotels
-                      .filter(hotel => hotel.name.charAt(0) === letter.toLowerCase())
-                      .map((hotel, index) => (
-                        <HotelCardVariant card={hotel} key={index} />
-                      ))}
-                  </Section>
-                ))}
-              </Sections>
-              <LettersWrapper>
-                <Letters>
+            {!!hotels && hotels.length > 0 ? (
+              <Results>
+                <Sections>
                   {letters.map(letter => (
-                    <Letter
-                      key={letter}
-                      href="#"
-                      onClick={e => {
-                        e.preventDefault();
-
-                        const el = document.getElementById(letter);
-
-                        if (el) {
-                          el.scrollIntoView({
-                            behavior: 'smooth',
-                          });
-                        }
-                      }}
-                    >
-                      {letter}
-                    </Letter>
+                    <Section key={letter} id={letter}>
+                      <SectionTitle>
+                        <Typography element="h2" variant="h2" content={letter} />
+                      </SectionTitle>
+                      {hotels
+                        .filter(
+                          hotel =>
+                            hotel.name.charAt(0).toLocaleLowerCase() === letter.toLowerCase(),
+                        )
+                        .map((hotel, index) => (
+                          <HotelCardVariant card={hotel} key={index} />
+                        ))}
+                    </Section>
                   ))}
-                </Letters>
-              </LettersWrapper>
-            </Results>
+                </Sections>
+                <LettersWrapper>
+                  <Letters>
+                    {letters.map(letter => (
+                      <Letter
+                        key={letter}
+                        href="#"
+                        onClick={e => {
+                          e.preventDefault();
+
+                          const el = document.getElementById(letter);
+
+                          if (el) {
+                            el.scrollIntoView({
+                              behavior: 'smooth',
+                            });
+                          }
+                        }}
+                      >
+                        {letter}
+                      </Letter>
+                    ))}
+                  </Letters>
+                </LettersWrapper>
+              </Results>
+            ) : (
+              <Typography variant="b2" element="span" content="No results" />
+            )}
           </WidthConstraints>
         </HorizontalSpacer>
       </VerticalSpacer>
-    </>
+    </main>
   );
 };
 

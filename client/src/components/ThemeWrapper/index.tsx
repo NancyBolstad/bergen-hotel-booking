@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { ThemeProvider } from 'styled-components';
+import { QueryParamProvider } from 'use-query-params';
 import { defaultTheme, darkTheme } from '../../util/defaultTheme';
 import GlobalContext from '../../context/GlobalContext';
 import { GlobalStyle } from './styles';
@@ -16,9 +17,11 @@ const ThemeWrapper: React.FunctionComponent<Props> = ({ children }) => {
       <div>
         <GlobalStyle />
         <UserProvider>
-          <GlobalContext>
-            <div>{children}</div>
-          </GlobalContext>
+          <QueryParamProvider>
+            <GlobalContext>
+              <div>{children}</div>
+            </GlobalContext>
+          </QueryParamProvider>
         </UserProvider>
       </div>
     </ThemeProvider>

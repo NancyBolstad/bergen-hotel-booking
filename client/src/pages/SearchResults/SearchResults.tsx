@@ -1,8 +1,8 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import queryString from 'query-string';
 import { useLocation } from 'react-router-dom';
 import createFontStyles from '../../util/createFontStyles';
-import { HotelDetails } from '../../types/response';
 import createMediaQuery from '../../util/createMediaQuery';
 import { VerticalSpacer, HorizontalSpacer, WidthConstraints } from '../../components/Layout';
 import Typography from '../../components/Typography';
@@ -10,9 +10,7 @@ import { HotelCardVariant } from '../../components/HotelCards';
 import { Context } from '../../context/GlobalContext';
 import { MockCategories, MockServices } from '../../data/data';
 import { PlainBanner } from '../../components/Banner';
-import { search } from '../../util/icons';
 import Loader from '../../components/Loader/Loader';
-import Button from '../../components/Button/Button';
 import useFilter from '../../hooks/useFilter';
 
 const Sections = styled.div`
@@ -191,8 +189,13 @@ interface Props {}
 
 const SearchResults: React.FunctionComponent<Props> = () => {
   const localContext = React.useContext(Context);
+  const values = queryString.parse(window.location.search);
   const location = useLocation();
-  const [searchFilter, setSearchFilter] = React.useState({ category: '', service: '', name: '' });
+  const [searchFilter, setSearchFilter] = React.useState({
+    category: typeof values.category === 'string' ? values.category : '',
+    service: typeof values.service === 'string' ? values.service : '',
+    name: typeof values.name === 'string' ? values.name : '',
+  });
   const categories = MockCategories;
   const services = MockServices;
   const { hotels, letters, filter, handleFilter } = useFilter(
@@ -200,6 +203,10 @@ const SearchResults: React.FunctionComponent<Props> = () => {
     searchFilter,
     true,
   );
+
+  React.useEffect(() => {
+    handleFilter('name', filter.name);
+  }, []);
 
   return (
     <main>

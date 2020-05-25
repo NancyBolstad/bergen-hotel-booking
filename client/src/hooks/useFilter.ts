@@ -9,11 +9,13 @@ export interface FilterInterface {
   name: string;
 }
 
-function useFilter(data: HotelDetails[], userInput: FilterInterface) {
+function useFilter(data: HotelDetails[], userInput: FilterInterface, autoUpdateUrl?: boolean) {
+  const history = useHistory();
   const [filter, setFilter] = React.useState<FilterInterface>(userInput);
   const [hotels, setHotels] = React.useState(data);
   const results: HotelDetails[] = data;
   const [letters, setLetters] = React.useState([] as string[]);
+  const [message, setMessage] = React.useState<string>('');
 
   function extractLetters(hotels: HotelDetails[]) {
     const letters: string[] = [];
@@ -34,7 +36,6 @@ function useFilter(data: HotelDetails[], userInput: FilterInterface) {
   }
 
   function handleFilter(type: 'category' | 'service' | 'name', value: string) {
-    console.log(value);
     filter[type] = value;
 
     setHotels(
@@ -55,22 +56,26 @@ function useFilter(data: HotelDetails[], userInput: FilterInterface) {
           match = !!e.name && e.name.toLowerCase().includes(filter.name.toLowerCase());
         }
 
-        console.log(match);
-
-        console.log(results);
-
         return match;
       }),
     );
 
     setFilter(filter);
+
+    if (autoUpdateUrl) {
+      updateUrl(filter);
+    }
   }
 
-  console.log(hotels);
+  function updateUrl(filter: FilterInterface): void {
+    history.push(
+      `/search?accommodationName=${filter.name}&category=${filter.category}&service=${filter.service}`,
+    );
+  }
 
   React.useEffect(() => {
     extractLetters(hotels);
-  }, [hotels, results]);
+  }, [hotels]);
 
   return {
     hotels,
@@ -78,6 +83,7 @@ function useFilter(data: HotelDetails[], userInput: FilterInterface) {
     letters,
     filter,
     handleFilter,
+    updateUrl,
   };
 }
 

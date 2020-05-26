@@ -43,7 +43,7 @@ export const HotelDetails: React.FunctionComponent<Props> = () => {
   React.useEffect(() => {
     console.log(error);
     history.push('/');
-  }, [error]);
+  }, [history, error]);
 
   return (
     <>

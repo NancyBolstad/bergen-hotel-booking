@@ -72,8 +72,6 @@ function useFilter({ data, currentFilter, autoUpdateUrl }: FilterProps) {
           match = !!e.name && e.name.toLowerCase().includes(filter.name.toLowerCase());
         }
 
-        console.log(value);
-
         return match;
       }),
     );
@@ -97,18 +95,22 @@ function useFilter({ data, currentFilter, autoUpdateUrl }: FilterProps) {
     extractLetters(hotels);
   }, [hotels]);
 
-  React.useEffect(() => {
-    if (results && currentQueryString.name) {
-      handleFilter('name', currentQueryString.name);
-    }
+  React.useEffect(
+    () => {
+      if (results && currentQueryString.name) {
+        handleFilter('name', currentQueryString.name);
+      }
 
-    if (results && currentQueryString.category) {
-      handleFilter('category', currentQueryString.category);
-    }
-    if (results && currentQueryString.service) {
-      handleFilter('service', currentQueryString.service);
-    }
-  }, [currentQueryString, results]);
+      if (results && currentQueryString.category) {
+        handleFilter('category', currentQueryString.category);
+      }
+      if (results && currentQueryString.service) {
+        handleFilter('service', currentQueryString.service);
+      }
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [currentQueryString, results],
+  );
 
   return {
     hotels,

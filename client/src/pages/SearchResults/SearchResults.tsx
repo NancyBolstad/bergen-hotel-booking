@@ -216,7 +216,7 @@ const SearchResults: React.FunctionComponent<Props> = () => {
       window.location.reload();
       setEntryPath(location.pathname);
     }
-  }, []);
+  }, [entryPath, location.pathname]);
 
   return (
     <>

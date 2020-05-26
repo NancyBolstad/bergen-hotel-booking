@@ -38,7 +38,7 @@ const SectionTitle = styled.div`
 
 const LettersWrapper = styled.div``;
 
-const Letters = styled.ul`
+const Letters = styled.nav`
   list-style: none;
   margin: 0;
   padding: 0;
@@ -139,7 +139,6 @@ export const Arrow = styled.div`
   )}
 `;
 
-export const SearchForm = styled.form``;
 export const SelectWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -198,7 +197,7 @@ const SearchResults: React.FunctionComponent<Props> = () => {
   });
   const categories = MockCategories;
   const services = MockServices;
-  const { hotels, letters, filter, handleFilter } = useFilter({
+  const { hotels, letters, filter, handleFilter, currentQueryString } = useFilter({
     data: localContext.default,
     currentFilter: searchFilter,
     autoUpdateUrl: true,
@@ -206,7 +205,7 @@ const SearchResults: React.FunctionComponent<Props> = () => {
 
   return (
     <>
-      <PlainBanner title="Search for accommodations in Bergen" backgroundColor="surface" />
+      <PlainBanner title="Search, find and book" isTitleColorRed />
       <VerticalSpacer topSpace="xs" topSpaceDesktop="m" bottomSpace="xs" bottomSpaceDesktop="m">
         <HorizontalSpacer>
           <WidthConstraints size="large">
@@ -231,6 +230,7 @@ const SearchResults: React.FunctionComponent<Props> = () => {
                       onChange={e => {
                         handleFilter('category', e.target.value);
                       }}
+                      aria-label="Filter accommodations by category type"
                     >
                       <option value="">All categories</option>
                       {(categories || []).map((c, k) => (
@@ -249,6 +249,7 @@ const SearchResults: React.FunctionComponent<Props> = () => {
                       onChange={e => {
                         handleFilter('service', e.target.value);
                       }}
+                      aria-label="Filter accommodations by service type"
                     >
                       <option value="">All services</option>
                       {(services || []).map((s, k) => (
@@ -262,6 +263,15 @@ const SearchResults: React.FunctionComponent<Props> = () => {
                 </InputFieldWrapper>
               </SelectWrapper>
             </Filter>
+            <Typography
+              variant="b2"
+              element="h2"
+              content={`Find ${hotels.length} results for "${
+                currentQueryString.name
+              }" filtered by "${
+                currentQueryString.category ? currentQueryString.category : 'All Accommodations'
+              }" and "${currentQueryString.service ? currentQueryString.service : 'All services'}"`}
+            />
             {!!localContext.loading && <Loader />}
             {!!hotels && hotels.length > 0 ? (
               <Results>

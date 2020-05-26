@@ -32,9 +32,14 @@ const Layout: React.FunctionComponent<Props> = () => {
             <Switch>
               <PrivateRoute path="/dashboard/" component={DashBoard} exact />
               <PrivateRoute path="/dashboard/:slug" component={DashBoard} exact />
-              <Route path="/login">
+              <Route exact path="/login">
                 <Suspense fallback={<Loader />}>
                   <Login />
+                </Suspense>
+              </Route>
+              <Route exact path="/search">
+                <Suspense fallback={<Loader />}>
+                  <SearchResults />
                 </Suspense>
               </Route>
               <Route exact path="/book/:id">

@@ -5,6 +5,7 @@ import createFontStyles from '../../util/createFontStyles';
 import createMediaQuery from '../../util/createMediaQuery';
 import { VerticalSpacer, HorizontalSpacer, WidthConstraints } from '../../components/Layout';
 import Typography from '../../components/Typography';
+import { SearchInput } from '../../components/FormElement';
 import { HotelCardVariant } from '../../components/HotelCards';
 import { Context } from '../../context/GlobalContext';
 import { MockCategories, MockServices } from '../../data/data';
@@ -210,13 +211,14 @@ const SearchResults: React.FunctionComponent<Props> = () => {
           <WidthConstraints size="large">
             <Filter>
               <InputFieldWrapper>
-                <StyledInput
+                <SearchInput
                   type="text"
                   placeholder="Find by name ..."
                   value={filter.name}
                   onChange={e => {
                     handleFilter('name', e.target.value);
                   }}
+                  iconPosition="18%"
                 />
               </InputFieldWrapper>
               <SelectWrapper>

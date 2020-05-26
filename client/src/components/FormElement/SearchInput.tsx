@@ -34,14 +34,14 @@ const Icon = styled.div`
   fill: ${props => props.theme.colors.onSurface};
 `;
 
-const SearchIconButton = styled.button`
+const SearchIconButton = styled.button<{ customTop?: string }>`
   width: 0;
   right: 2rem;
   outline: none;
   border: transparent;
   background: none;
   position: absolute;
-  top: -22%;
+  top: ${props => (props.customTop ? props.customTop : '-22%')};
   width: 1rem;
 `;
 
@@ -54,13 +54,14 @@ const SearchInputWrapper = styled.div`
 
 interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {
   type: string;
+  iconPosition?: string;
 }
 
-function SearchInput({ type, ...htmlProps }: IProps) {
+function SearchInput({ type, iconPosition, ...htmlProps }: IProps) {
   return (
     <SearchInputWrapper>
       <StyledInput type={type} {...htmlProps} aria-label="Search" />
-      <SearchIconButton type="submit" aria-label="Submit search">
+      <SearchIconButton type="submit" aria-label="Submit search" customTop={iconPosition}>
         <Icon>{search}</Icon>
       </SearchIconButton>
     </SearchInputWrapper>

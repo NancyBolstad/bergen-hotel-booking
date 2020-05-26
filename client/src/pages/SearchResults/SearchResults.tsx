@@ -31,8 +31,8 @@ const Section = styled.div``;
 const SectionTitle = styled.div`
   position: sticky;
   top: 0;
-  border-bottom: 2px solid #28303f;
-  background: white;
+  border-bottom: 2px solid ${props => props.theme.colors.onBackground};
+  background: ${props => props.theme.colors.background};
   z-index: 900;
 `;
 
@@ -44,7 +44,7 @@ const Letters = styled.ul`
   padding: 0;
   text-align: center;
   position: sticky;
-  top: 5.5625rem;
+  top: 6.8625rem;
   margin-top: ${props => props.theme.spacing.m}rem;
 `;
 
@@ -198,11 +198,11 @@ const SearchResults: React.FunctionComponent<Props> = () => {
   });
   const categories = MockCategories;
   const services = MockServices;
-  const { hotels, letters, filter, handleFilter } = useFilter(
-    localContext.default,
-    searchFilter,
-    true,
-  );
+  const { hotels, letters, filter, handleFilter } = useFilter({
+    data: localContext.default,
+    currentFilter: searchFilter,
+    autoUpdateUrl: true,
+  });
 
   return (
     <>

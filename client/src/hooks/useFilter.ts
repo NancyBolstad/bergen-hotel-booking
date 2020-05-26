@@ -8,14 +8,24 @@ export interface FilterInterface {
   name: string;
 }
 
-function useFilter(data: HotelDetails[], userInput: FilterInterface, autoUpdateUrl?: boolean) {
+export interface FilterProps {
+  data: HotelDetails[];
+  currentFilter?: FilterInterface;
+  autoUpdateUrl?: boolean;
+}
+
+const defaultFilter: FilterInterface = { category: '', service: '', name: '' };
+
+function useFilter({ data, currentFilter, autoUpdateUrl }: FilterProps) {
   const [hotels, setHotels] = React.useState(data);
   const [currentQueryString, setCurrentQueryString] = useQueryParams({
     name: StringParam,
     category: StringParam,
     service: StringParam,
   });
-  const [filter, setFilter] = React.useState<FilterInterface>(userInput);
+  const [filter, setFilter] = React.useState<FilterInterface>(
+    currentFilter ? currentFilter : defaultFilter,
+  );
   const results: HotelDetails[] = data;
   const [letters, setLetters] = React.useState([] as string[]);
 

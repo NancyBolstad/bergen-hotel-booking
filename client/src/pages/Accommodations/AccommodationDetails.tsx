@@ -41,8 +41,9 @@ export const HotelDetails: React.FunctionComponent<Props> = () => {
   });
 
   React.useEffect(() => {
-    console.log(error);
-    history.push('/');
+    if (error) {
+      history.push('/');
+    }
   }, [history, error]);
 
   return (

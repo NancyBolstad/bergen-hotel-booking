@@ -51,7 +51,10 @@ const HotelCardVariant: React.FunctionComponent<Props> = ({ card, miniCard }) =>
   }
 
   return (
-    <CardVariant to={`/accommodation/details/${card.id}`}>
+    <CardVariant
+      to={`/accommodation/details/${card.id}`}
+      aria-label={`View details about ${card.name}`}
+    >
       {!!card.featuredImages && !miniCard && (
         <CardVariantLeft>
           <FeaturedImages slides={card.featuredImages} />
@@ -71,6 +74,8 @@ const HotelCardVariant: React.FunctionComponent<Props> = ({ card, miniCard }) =>
                 e.preventDefault();
                 handleLikeDispatch();
               }}
+              aria-label={`${like ? 'Dislike' : 'Like'} this accommodation`}
+              title={`${like ? 'Dislike' : 'Like'} this accommodation`}
             >
               {like ? heartSolid : heart}
             </LikeButton>

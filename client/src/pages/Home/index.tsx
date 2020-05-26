@@ -1,7 +1,7 @@
 import React from 'react';
 import { Context } from '../../context/GlobalContext';
 import { SearchBanner } from '../../components/Banner';
-import IconList from '../../components/IconList';
+import IconList from '../../components/IconList/IconList';
 import { BannerGrid, FlexBanner } from '../../components/Banner/';
 import { HotelCardsList } from '../../components/HotelCards';
 import Loader from '../../components/Loader/Loader';

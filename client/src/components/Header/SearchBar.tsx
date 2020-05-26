@@ -56,7 +56,6 @@ const SearchBar: React.FunctionComponent<Props> = ({ toggler }) => {
         aria-label="Close search bar"
         onClick={event => {
           event.preventDefault();
-          console.log(111111);
           toggler(false);
         }}
       >

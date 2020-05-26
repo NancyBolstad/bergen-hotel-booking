@@ -46,16 +46,16 @@ export const SearchForm: React.FunctionComponent<Props> = ({ dataSet, placeHolde
   return (
     <Wrapper isMobile={isMobile}>
       <Form
+        role="search"
         onSubmit={e => {
           e.preventDefault();
           updateUrl(filter);
         }}
       >
         <SearchInputField
-          id="searchForm"
           type="search"
           autoComplete="off"
-          aria-label={placeHolderText ? placeHolderText : 'Search form'}
+          aria-label="Search"
           placeholder={placeHolderText ? placeHolderText : 'Search her ...'}
           onChange={e => {
             e.preventDefault();
@@ -67,7 +67,12 @@ export const SearchForm: React.FunctionComponent<Props> = ({ dataSet, placeHolde
             }
           }}
         />
-        <SearchSubmitButton type="submit" aria-label={'Submit search form'} isMobile={isMobile}>
+        <SearchSubmitButton
+          type="submit"
+          aria-label="Submit search form"
+          title="Submit search form"
+          isMobile={isMobile}
+        >
           {!isMobile && 'Search'}
           {search}
         </SearchSubmitButton>
@@ -87,7 +92,7 @@ export const SearchForm: React.FunctionComponent<Props> = ({ dataSet, placeHolde
               size="medium"
               aria-label="View more search results"
             >
-              View more search results
+              More Results
             </ButtonInternal>
           )}
         </SearchResultsWrapper>

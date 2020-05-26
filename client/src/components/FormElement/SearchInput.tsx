@@ -59,8 +59,8 @@ interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {
 function SearchInput({ type, ...htmlProps }: IProps) {
   return (
     <SearchInputWrapper>
-      <StyledInput type={type} {...htmlProps} />
-      <SearchIconButton type="submit">
+      <StyledInput type={type} {...htmlProps} aria-label="Search" />
+      <SearchIconButton type="submit" aria-label="Submit search">
         <Icon>{search}</Icon>
       </SearchIconButton>
     </SearchInputWrapper>

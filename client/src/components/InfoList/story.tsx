@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import InfoList from './';
+import InfoList from './InfoList';
 
 const checkBoxMockA = {
   title: 'Lorem ipsum dolor',

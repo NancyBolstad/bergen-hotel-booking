@@ -8,6 +8,7 @@ const StyledInput = styled.input<Partial<IProps>>`
   border: 1px solid ${props => props.theme.colors.onSurface};
   height: 2.5rem;
   width: 100%;
+  transition: border-color 0.1s ease-in-out;
   padding: 0 ${props => props.theme.spacing.xs}rem;
   ${props => createFontStyles(props.theme.fonts.b3)};
   color: ${props => props.theme.colors.onBackground};

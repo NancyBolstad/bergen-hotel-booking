@@ -12,6 +12,7 @@ import { MockCategories, MockServices } from '../../data/data';
 import { PlainBanner } from '../../components/Banner';
 import Loader from '../../components/Loader/Loader';
 import useFilter from '../../hooks/useFilter';
+import { solidArrow } from '../../util/icons';
 
 const Sections = styled.div`
   flex: 1;
@@ -82,7 +83,6 @@ const Filter = styled.div`
 `;
 
 export const InputFieldWrapper = styled.div`
-  position: relative;
   transition: opacity 0.1s ease-in-out;
   display: flex;
   align-items: center;
@@ -93,6 +93,7 @@ export const Label = styled.label`
   margin-bottom: ${props => props.theme.spacing.xs}rem;
   display: block;
   color: ${props => props.theme.colors.primary};
+  position: relative;
 `;
 
 export const Select = styled.select`
@@ -110,7 +111,7 @@ export const Select = styled.select`
   transition: border-color 0.1s ease-in-out;
   -webkit-appearance: none;
   -webkit-border-radius: 0px;
-  text-transformation: capitalize;
+  text-transform: capitalize;
 
   &:active,
   &:focus {
@@ -121,7 +122,7 @@ export const Select = styled.select`
 export const Arrow = styled.div`
   position: absolute;
   pointer-events: none;
-  right: 8.7rem;
+  right: 1rem;
   top: 1rem;
 
   svg {
@@ -133,7 +134,7 @@ export const Arrow = styled.div`
   ${createMediaQuery(
     'medium',
     css`
-      right: 0.7rem;
+      right: 1rem;
     `,
   )}
 `;
@@ -238,6 +239,7 @@ const SearchResults: React.FunctionComponent<Props> = () => {
                         </option>
                       ))}
                     </Select>
+                    <Arrow>{solidArrow}</Arrow>
                   </Label>
                 </InputFieldWrapper>
                 <InputFieldWrapper>
@@ -255,6 +257,7 @@ const SearchResults: React.FunctionComponent<Props> = () => {
                         </option>
                       ))}
                     </Select>
+                    <Arrow>{solidArrow}</Arrow>
                   </Label>
                 </InputFieldWrapper>
               </SelectWrapper>

@@ -1,10 +1,6 @@
 import * as React from 'react';
-import { useHistory } from 'react-router-dom';
-import queryString from 'query-string';
 import { useQueryParams, StringParam } from 'use-query-params';
-import { HotelDetails, HotelCategories, HotelServices } from '../types/response';
-import { MockCategories, MockServices } from './../data/data';
-import { Context } from '../context/GlobalContext';
+import { HotelDetails } from '../types/response';
 
 export interface FilterInterface {
   category: string;
@@ -13,7 +9,6 @@ export interface FilterInterface {
 }
 
 function useFilter(data: HotelDetails[], userInput: FilterInterface, autoUpdateUrl?: boolean) {
-  const history = useHistory();
   const [hotels, setHotels] = React.useState(data);
   const [currentQueryString, setCurrentQueryString] = useQueryParams({
     name: StringParam,
@@ -54,8 +49,6 @@ function useFilter(data: HotelDetails[], userInput: FilterInterface, autoUpdateU
     setHotels(
       results.filter(e => {
         let match = true;
-
-        console.log(222222222);
 
         if (filter.category.length > 0) {
           match = !!e.category && e.category === filter.category;

@@ -14,16 +14,14 @@ const ThemeWrapper: React.FunctionComponent<Props> = ({ children }) => {
 
   return (
     <ThemeProvider theme={theme === 'default' ? defaultTheme : darkTheme}>
-      <div>
-        <GlobalStyle />
-        <UserProvider>
-          <QueryParamProvider>
-            <GlobalContext>
-              <div>{children}</div>
-            </GlobalContext>
-          </QueryParamProvider>
-        </UserProvider>
-      </div>
+      <GlobalStyle />
+      <UserProvider>
+        <QueryParamProvider>
+          <GlobalContext>
+            <div>{children}</div>
+          </GlobalContext>
+        </QueryParamProvider>
+      </UserProvider>
     </ThemeProvider>
   );
 };

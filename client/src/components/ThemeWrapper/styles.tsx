@@ -12,7 +12,14 @@ export const GlobalStyle = createGlobalStyle`
     color: ${props => props.theme.colors.onBackground};
     background:${props => props.theme.colors.background};
     transition: background-color 0.5s, color 0.5s;
+    width: 100%;
+    height: 100%;
     ${props => createFontStyles(props.theme.fonts.b1)}
+    input[type="search"]::-webkit-search-decoration,
+    input[type="search"]::-webkit-search-cancel-button,
+    input[type="search"]::-webkit-search-results-button,
+    input[type="search"]::-webkit-search-results-decoration {
+      display: none;
   }
   * {
     box-sizing: border-box;
@@ -20,4 +27,5 @@ export const GlobalStyle = createGlobalStyle`
   main{
     min-height:75vh;
   }
+}
 `;

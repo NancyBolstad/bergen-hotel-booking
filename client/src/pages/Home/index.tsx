@@ -42,7 +42,7 @@ export const Home: React.FunctionComponent<Props> = () => {
   };
 
   return (
-    <main>
+    <>
       <SearchBanner
         figure={image}
         title="Book your holiday in Bergen at best price"
@@ -65,7 +65,7 @@ export const Home: React.FunctionComponent<Props> = () => {
       )}
       <FlexBanner {...mockFlexBannerBlog} backgroundColor="secondaryVariant" />
       <FlexBanner {...mockFlexBannerAboutUs} isImageRight />
-    </main>
+    </>
   );
 };
 

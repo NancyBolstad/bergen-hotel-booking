@@ -73,7 +73,7 @@ export const Book: React.FunctionComponent<Props> = () => {
   // const loading = false;
 
   return (
-    <main>
+    <>
       {loading && <Loader />}
       {!!data && !!id && !loading && (
         <VerticalSpacer topSpace="xs" topSpaceDesktop="m" bottomSpace="xs" bottomSpaceDesktop="m">
@@ -102,7 +102,7 @@ export const Book: React.FunctionComponent<Props> = () => {
           backgroundColor="secondaryVariant"
         />
       )}
-    </main>
+    </>
   );
 };
 

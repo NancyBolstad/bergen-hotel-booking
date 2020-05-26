@@ -25,8 +25,5 @@ export const GlobalStyle = createGlobalStyle`
   * {
     box-sizing: border-box;
   }
-  main{
-    min-height:75vh;
-  }
 }
 `;

@@ -209,7 +209,7 @@ const SearchResults: React.FunctionComponent<Props> = () => {
   }, []);
 
   return (
-    <main>
+    <>
       <PlainBanner title="Search for accommodations in Bergen" backgroundColor="surface" />
       <VerticalSpacer topSpace="xs" topSpaceDesktop="m" bottomSpace="xs" bottomSpaceDesktop="m">
         <HorizontalSpacer>
@@ -313,7 +313,7 @@ const SearchResults: React.FunctionComponent<Props> = () => {
           </WidthConstraints>
         </HorizontalSpacer>
       </VerticalSpacer>
-    </main>
+    </>
   );
 };
 

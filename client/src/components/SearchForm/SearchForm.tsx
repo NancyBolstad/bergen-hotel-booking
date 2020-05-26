@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { search } from '../../util/icons';
+import { useHistory } from 'react-router-dom';
 import {
   Wrapper,
   Form,
@@ -7,7 +7,6 @@ import {
   SearchSubmitButton,
   SearchResultsWrapper,
 } from './styles';
-import { useHistory } from 'react-router-dom';
 import useIsMobile from '../../hooks/useIsMobile';
 import { Context } from '../../context/GlobalContext';
 import { HotelDetails } from '../../types/response';
@@ -17,6 +16,7 @@ import Typography from '../Typography';
 import { HotelCardVariant } from '../HotelCards/index';
 import useOutsideClick from '../../hooks/useOutsideClick';
 import { ButtonInternal } from '../Button/Button';
+import { search } from '../../util/icons';
 
 interface Props {
   dataSet?: HotelDetails[];
@@ -53,7 +53,6 @@ export const SearchForm: React.FunctionComponent<Props> = ({ dataSet, placeHolde
       >
         <SearchInputField
           id="searchForm"
-          className="searchInput"
           type="search"
           autoComplete="off"
           aria-label={placeHolderText ? placeHolderText : 'Search form'}

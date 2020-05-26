@@ -5,7 +5,7 @@ import { search } from '../../util/icons';
 
 const StyledInput = styled.input<Partial<IProps>>`
   background-color: ${props => props.theme.colors.background};
-  border: 1px solid ${props => props.theme.colors.onBackground};
+  border: 1px solid ${props => props.theme.colors.onSurface};
   height: 2.5rem;
   width: 100%;
   padding: 0 ${props => props.theme.spacing.xs}rem;
@@ -19,7 +19,7 @@ const StyledInput = styled.input<Partial<IProps>>`
 
   &:active,
   &:focus {
-    border-color: ${props => props.theme.colors.secondary};
+    border-bottom: 2px solid ${props => props.theme.colors.onBackground};
     outline: none;
   }
 `;
@@ -36,7 +36,7 @@ const SearchIconButton = styled.button`
   border: transparent;
   background: none;
   position: absolute;
-  top: 20%;
+  top: -22%;
   width: 1rem;
 `;
 
@@ -51,7 +51,7 @@ interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {
   type: string;
 }
 
-export default function SearchInput({ type, ...htmlProps }: IProps) {
+function SearchInput({ type, ...htmlProps }: IProps) {
   return (
     <SearchInputWrapper>
       <StyledInput type={type} {...htmlProps} />
@@ -61,3 +61,5 @@ export default function SearchInput({ type, ...htmlProps }: IProps) {
     </SearchInputWrapper>
   );
 }
+
+export default SearchInput;

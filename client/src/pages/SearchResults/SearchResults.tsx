@@ -1,7 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import queryString from 'query-string';
-import { useLocation } from 'react-router-dom';
 import createFontStyles from '../../util/createFontStyles';
 import createMediaQuery from '../../util/createMediaQuery';
 import { VerticalSpacer, HorizontalSpacer, WidthConstraints } from '../../components/Layout';
@@ -190,7 +189,6 @@ interface Props {}
 const SearchResults: React.FunctionComponent<Props> = () => {
   const localContext = React.useContext(Context);
   const values = queryString.parse(window.location.search);
-  const location = useLocation();
   const [searchFilter, setSearchFilter] = React.useState({
     category: typeof values.category === 'string' ? values.category : '',
     service: typeof values.service === 'string' ? values.service : '',
@@ -206,7 +204,7 @@ const SearchResults: React.FunctionComponent<Props> = () => {
 
   React.useEffect(() => {
     handleFilter('name', filter.name);
-  }, []);
+  }, [handleFilter, filter]);
 
   return (
     <>

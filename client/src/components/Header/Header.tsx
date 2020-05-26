@@ -1,11 +1,10 @@
 import * as React from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import {
   HeaderWrapper,
   HeaderNav,
   HeaderMenuLeft,
   HeaderMenuRight,
-  HeaderNavLinkList,
   HeaderNavLink,
   SiteLogo,
   MobileMenuIcon,
@@ -24,7 +23,6 @@ import MainNavMenu from './MainNavMenu';
 
 const Header: React.FunctionComponent = () => {
   const { theme, toggleContrast } = React.useContext(ContrastContext);
-  let history = useHistory();
   const location = useLocation();
   const { favorites } = React.useContext(Context);
   const isMobile = useIsMobile();

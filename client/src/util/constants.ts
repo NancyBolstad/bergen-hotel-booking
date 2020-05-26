@@ -1,5 +1,3 @@
-import { HotelDetails, Root } from '../types/response';
-
 export const APP_NAME: string = 'Holidaze Bergen';
 
 export const FAVORITES_KEY: string = 'favorites';

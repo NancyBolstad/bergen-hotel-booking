@@ -32,9 +32,6 @@ const SearchBar: React.FunctionComponent<Props> = ({ toggler }) => {
           event.preventDefault();
           if (validateUserInput(searchValue)) {
             toggler(false);
-            if (location.pathname === '/search') {
-              window.location.reload();
-            }
             history.push(`/search?name=${searchValue}&category=&service=`);
           }
         }}

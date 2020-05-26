@@ -76,7 +76,7 @@ const Layout: React.FunctionComponent<Props> = () => {
                 </Route>
                 <Route path="/accommodations" exact>
                   <Suspense fallback={<Loader />}>
-                    <Accommodations />
+                    <SearchResults />
                   </Suspense>
                 </Route>
                 <Route exact path="/accommodations/:number">

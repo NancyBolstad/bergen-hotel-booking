@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import { useLocation } from 'react-router-dom';
 import queryString from 'query-string';
 import createFontStyles from '../../util/createFontStyles';
 import createMediaQuery from '../../util/createMediaQuery';
@@ -189,6 +190,7 @@ interface Props {}
 
 const SearchResults: React.FunctionComponent<Props> = () => {
   const localContext = React.useContext(Context);
+  const location = useLocation();
   const values = queryString.parse(window.location.search);
   const [searchFilter, setSearchFilter] = React.useState({
     category: typeof values.category === 'string' ? values.category : '',
@@ -203,9 +205,18 @@ const SearchResults: React.FunctionComponent<Props> = () => {
     autoUpdateUrl: true,
   });
 
+  React.useEffect(() => {
+    setSearchFilter(searchFilter);
+  }, [location.pathname]);
+
   return (
     <>
-      <PlainBanner title="Search, find and book" isTitleColorRed />
+      <PlainBanner
+        title="Search, find and book accommodations in Bergen"
+        text="
+        Enjoy the comfort accommodations in prime locations in Bergen. Run by hospitality professionals and equipped by Scandinavian interior designers, they are able to combine the quality standard of a hotel with the advantages of an apartment."
+        isTitleColorRed
+      />
       <VerticalSpacer topSpace="xs" topSpaceDesktop="m" bottomSpace="xs" bottomSpaceDesktop="m">
         <HorizontalSpacer>
           <WidthConstraints size="large">

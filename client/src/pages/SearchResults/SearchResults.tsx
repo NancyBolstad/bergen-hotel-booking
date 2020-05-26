@@ -70,8 +70,11 @@ const Results = styled.div`
 `;
 
 const Filter = styled.div`
+  border-bottom: 2px solid ${props => props.theme.colors.surface};
+  background: ${props => props.theme.colors.background};
   display: flex;
   flex-direction: column;
+  padding: 1rem 0;
 
   ${createMediaQuery(
     'medium',
@@ -192,6 +195,7 @@ const SearchResults: React.FunctionComponent<Props> = () => {
   const localContext = React.useContext(Context);
   const location = useLocation();
   const values = queryString.parse(window.location.search);
+  const [entryPath, setEntryPath] = React.useState(location.pathname);
   const [searchFilter, setSearchFilter] = React.useState({
     category: typeof values.category === 'string' ? values.category : '',
     service: typeof values.service === 'string' ? values.service : '',
@@ -205,9 +209,14 @@ const SearchResults: React.FunctionComponent<Props> = () => {
     autoUpdateUrl: true,
   });
 
+  console.log(location.pathname);
+
   React.useEffect(() => {
-    setSearchFilter(searchFilter);
-  }, [location.pathname]);
+    if (entryPath !== location.pathname) {
+      window.location.reload();
+      setEntryPath(location.pathname);
+    }
+  }, []);
 
   return (
     <>

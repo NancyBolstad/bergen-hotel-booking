@@ -202,10 +202,6 @@ const SearchResults: React.FunctionComponent<Props> = () => {
     true,
   );
 
-  React.useEffect(() => {
-    handleFilter('name', filter.name);
-  }, [handleFilter, filter]);
-
   return (
     <>
       <PlainBanner title="Search for accommodations in Bergen" backgroundColor="surface" />

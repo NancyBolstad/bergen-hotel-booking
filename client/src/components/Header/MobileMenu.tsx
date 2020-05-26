@@ -3,26 +3,42 @@ import { HeaderNavLink, MobileMenuWrapper, LikeButton, MobileIcons } from './sty
 import { ContrastContext } from '../../context/ContrastContext';
 import { Context } from '../../context/GlobalContext';
 import { heart, sun, moon } from '../../util/icons';
+import useOutsideClick from '../../hooks/useOutsideClick';
 
-const MobileMenu: React.FunctionComponent = () => {
+interface Props {
+  navLinks: string[];
+  toggler: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const MobileMenu: React.FunctionComponent<Props> = ({ navLinks, toggler }) => {
   const { theme, toggleContrast } = React.useContext(ContrastContext);
   const { favorites } = React.useContext(Context);
+  const toggleArea = React.useRef(null);
+
+  useOutsideClick(toggleArea, () => {
+    toggler(false);
+  });
 
   return (
-    <MobileMenuWrapper>
+    <MobileMenuWrapper ref={toggleArea}>
       <MobileIcons>
-        <LikeButton to="/favorites">
+        <LikeButton to="/favorites" title="Go to favorites page" aria-label="Go to favorites page">
           {heart}
           <span>{favorites.length}</span>
         </LikeButton>
-        <HeaderNavLink to="/#" onClick={() => toggleContrast()}>
+        <HeaderNavLink to="/#" onClick={() => toggleContrast()} aria-label="Toggle mode">
           {theme === 'default' ? sun : moon}
         </HeaderNavLink>
       </MobileIcons>
-      <HeaderNavLink to="/accommodations">Accommodations</HeaderNavLink>
-      <HeaderNavLink to="/blog">Blog</HeaderNavLink>
-      <HeaderNavLink to="/about">About</HeaderNavLink>
-      <HeaderNavLink to="/contact">Contact</HeaderNavLink>
+      {(navLinks || []).map((link, index) => (
+        <HeaderNavLink
+          to={`/${link}`}
+          title={`Go to ${link} page`}
+          aria-label={`Go to ${link} page`}
+        >
+          {link}
+        </HeaderNavLink>
+      ))}
     </MobileMenuWrapper>
   );
 };

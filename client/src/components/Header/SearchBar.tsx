@@ -4,6 +4,7 @@ import { SearchBarContainer, CloseSearchButton } from './styles';
 import { SearchInput, Form } from '../FormElement';
 import { cross } from '../../util/icons';
 import validateUserInput from '../../util/validateUserInput';
+import useOutsideClick from '../../hooks/useOutsideClick';
 
 interface Props {
   toggler: React.Dispatch<React.SetStateAction<boolean>>;
@@ -13,15 +14,18 @@ const SearchBar: React.FunctionComponent<Props> = ({ toggler }) => {
   let history = useHistory();
   const location = useLocation();
   const [searchValue, setSearchValue] = React.useState('');
+  const toggleArea = React.useRef(null);
+
+  useOutsideClick(toggleArea, () => {
+    toggler(false);
+  });
 
   React.useEffect(() => {
     setSearchValue('');
   }, [location]);
 
-  console.log(location);
-
   return (
-    <SearchBarContainer>
+    <SearchBarContainer ref={toggleArea}>
       <Form
         role="search"
         onSubmit={event => {

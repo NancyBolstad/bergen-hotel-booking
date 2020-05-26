@@ -6,7 +6,7 @@ import { cross } from '../../util/icons';
 import validateUserInput from '../../util/validateUserInput';
 
 interface Props {
-  toggler: (condition: boolean) => void;
+  toggler: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const SearchBar: React.FunctionComponent<Props> = ({ toggler }) => {
@@ -52,6 +52,7 @@ const SearchBar: React.FunctionComponent<Props> = ({ toggler }) => {
         aria-label="Close search bar"
         onClick={event => {
           event.preventDefault();
+          console.log(111111);
           toggler(false);
         }}
       >

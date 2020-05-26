@@ -26,6 +26,11 @@ const StyledInput = styled.input<Partial<IProps>>`
 
 const Icon = styled.div`
   width: 20px;
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
   fill: ${props => props.theme.colors.onSurface};
 `;
 
@@ -43,8 +48,8 @@ const SearchIconButton = styled.button`
 const SearchInputWrapper = styled.div`
   display: flex;
   align-items: center;
-  width: 100%;
   position: relative;
+  width: 100%;
 `;
 
 interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {

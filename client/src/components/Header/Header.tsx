@@ -15,14 +15,13 @@ import {
   ThemeToggleButton,
   HeaderTop,
 } from './styles';
-import { SearchInput, Form } from '../FormElement';
 import { APP_NAME } from '../../util/constants';
 import { ContrastContext } from '../../context/ContrastContext';
 import { Context } from '../../context/GlobalContext';
 import { hamburger, cross, search, heart, sun, moon } from '../../util/icons';
 import useIsMobile from '../../hooks/useIsMobile';
-import validateUserInput from '../../util/validateUserInput';
 import SearchBar from './SearchBar';
+import MobileMenu from './MobileMenu';
 
 const Header: React.FunctionComponent = () => {
   const { theme, toggleContrast } = React.useContext(ContrastContext);
@@ -32,7 +31,6 @@ const Header: React.FunctionComponent = () => {
   const isMobile = useIsMobile();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState<boolean>(false);
   const [searching, setSearching] = React.useState<boolean>(false);
-  const [searchValue, setSearchValue] = React.useState('');
 
   React.useEffect(() => {
     if (isMobileMenuOpen) {
@@ -47,7 +45,6 @@ const Header: React.FunctionComponent = () => {
   React.useEffect(() => {
     setIsMobileMenuOpen(false);
     setSearching(false);
-    setSearchValue('');
   }, [location]);
 
   return (
@@ -57,18 +54,7 @@ const Header: React.FunctionComponent = () => {
       </HeaderTop>
       <HeaderNav>
         <HeaderMenuLeft>
-          <SiteLogo
-            to="/"
-            onClick={e => {
-              if (isMobile) {
-                e.preventDefault();
-                window.location.assign('/');
-                setIsMobileMenuOpen(false);
-              }
-            }}
-          >
-            {APP_NAME}
-          </SiteLogo>
+          <SiteLogo to="/">{APP_NAME}</SiteLogo>
           {!isMobile && (
             <HeaderNavLinkList>
               <li>
@@ -120,58 +106,7 @@ const Header: React.FunctionComponent = () => {
           )}
         </HeaderMenuRight>
       </HeaderNav>
-      {isMobile && isMobileMenuOpen && (
-        <MobileMenuWrapper>
-          <MobileIcons>
-            <LikeButton to="/favorites">
-              {heart}
-              <span>{favorites.length}</span>
-            </LikeButton>
-            <HeaderNavLink to="/#" onClick={() => toggleContrast()}>
-              {theme === 'default' ? sun : moon}
-            </HeaderNavLink>
-          </MobileIcons>
-          <HeaderNavLink
-            to="/accommodations"
-            onClick={e => {
-              e.preventDefault();
-              window.location.assign('/accommodations');
-              setIsMobileMenuOpen(false);
-            }}
-          >
-            Accommodations
-          </HeaderNavLink>{' '}
-          <HeaderNavLink
-            to="/blog"
-            onClick={e => {
-              e.preventDefault();
-              window.location.assign('/blog');
-            }}
-          >
-            Blog
-          </HeaderNavLink>
-          <HeaderNavLink
-            to="/about"
-            onClick={e => {
-              e.preventDefault();
-              window.location.assign('/about');
-              setIsMobileMenuOpen(false);
-            }}
-          >
-            About
-          </HeaderNavLink>
-          <HeaderNavLink
-            to="/contact"
-            onClick={e => {
-              e.preventDefault();
-              window.location.assign('/contact');
-              setIsMobileMenuOpen(false);
-            }}
-          >
-            Contact
-          </HeaderNavLink>
-        </MobileMenuWrapper>
-      )}
+      {isMobile && isMobileMenuOpen && <MobileMenu />}
       {searching && <SearchBar toggler={setSearching} />}
     </HeaderWrapper>
   );

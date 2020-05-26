@@ -23,7 +23,8 @@ export const HeaderNav = styled.nav`
   padding: ${props => props.theme.spacing.s}rem;
 
   @media (min-width: ${props => props.theme.mediaQueries.large}px) {
-    padding: 0 ${props => props.theme.spacing.l}rem;
+    padding: ${props => props.theme.spacing.xs}rem;
+    ${props => props.theme.spacing.l}rem;
   }
 `;
 
@@ -137,8 +138,12 @@ export const HeaderMenuRight = styled.div`
   justify-content: center;
 `;
 
-export const MobileMenuIcon = styled.a`
+export const MobileMenuIcon = styled.button`
   padding: 0;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: transparent;
   svg {
     margin: 0;
     width: 24px;
@@ -191,6 +196,7 @@ export const ThemeToggleButton = styled.button`
   ${props => createFontStyles(props.theme.fonts.b2)};
   background-color: ${props => props.theme.colors.background};
   border: none;
+  outline: none;
 
   &:hover {
     cursor: pointer;
@@ -237,16 +243,15 @@ export const SearchBarContainer = styled.div`
   display: flex;
   justify-content: center;
   background: ${props => props.theme.colors.background};
-  height: 72px;
+  height: 4.5rem;
   padding: 1.25rem;
   border: 2px solid ${props => props.theme.colors.white};
 
   form {
-    max-width: 100%;
-    width: auto;
-    flex: 0 1 50rem;
     margin: 0;
     padding: 0;
+    width: auto;
+    flex: 0 1 50rem;
   }
 `;
 
@@ -254,7 +259,8 @@ export const CloseSearchButton = styled(Button)`
   background: transparent;
   border: none;
   outline: none;
-  padding: 1rem;
+  padding: 0;
+  width: 48px;
 
   svg {
     width: 24px;

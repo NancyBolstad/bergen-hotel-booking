@@ -14,6 +14,7 @@ export const GlobalStyle = createGlobalStyle`
     transition: background-color 0.5s, color 0.5s;
     width: 100%;
     height: 100%;
+    line-height: 22px;
     ${props => createFontStyles(props.theme.fonts.b1)}
     input[type="search"]::-webkit-search-decoration,
     input[type="search"]::-webkit-search-cancel-button,

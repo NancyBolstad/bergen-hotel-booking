@@ -10,7 +10,7 @@ export const HeaderWrapper = styled.header`
   position: sticky;
   top: 0;
   z-index: 999;
-  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.5);
 `;
 
 export const HeaderNav = styled.nav`
@@ -48,6 +48,7 @@ export const HeaderNavLink = styled(Link)`
   color: ${props => props.theme.colors.onBackground};
   margin-right: ${props => props.theme.spacing.s}rem;
   text-decoration: none;
+  text-transform: capitalize;
   ${props => createFontStyles(props.theme.fonts.b2)};
 
   &:hover {
@@ -106,9 +107,9 @@ export const SiteLogo = styled(HeaderNavLink)`
   color: ${props => props.theme.colors.primary};
   font-family: 'Lobster', cursive;
   font-weight: bold;
-  font-size: 1.5rem;
+  font-size: 1.5rem !important;
 
-  @media (min-width: ${props => props.theme.mediaQueries.large}px) {
+  @media (min-width: ${props => props.theme.mediaQueries.medium}px) {
     font-size: 2.35rem !important;
   }
 
@@ -224,7 +225,7 @@ export const HeaderTop = styled.div`
   line-height: 24px;
   a {
     ${props => createFontStyles(props.theme.fonts.b1)};
-    color: ${props => props.theme.colors.onSurface};
+    color: ${props => props.theme.colors.onBackground};
     padding: 0.2rem 0;
   }
 

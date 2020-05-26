@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useHistory } from 'react-router-dom';
+import queryString from 'query-string';
 import { useQueryParams, StringParam } from 'use-query-params';
 import { HotelDetails, HotelCategories, HotelServices } from '../types/response';
 import { MockCategories, MockServices } from './../data/data';
@@ -12,16 +13,16 @@ export interface FilterInterface {
 
 function useFilter(data: HotelDetails[], userInput: FilterInterface, autoUpdateUrl?: boolean) {
   const history = useHistory();
-  const [filter, setFilter] = React.useState<FilterInterface>(userInput);
   const [hotels, setHotels] = React.useState(data);
-  const results: HotelDetails[] = data;
-  const [letters, setLetters] = React.useState([] as string[]);
-  const [message, setMessage] = React.useState<string>('');
-  const [queryString, setQueryString] = useQueryParams({
+  const [currentQueryString, setCurrentQueryString] = useQueryParams({
     name: StringParam,
     category: StringParam,
     service: StringParam,
   });
+  const [filter, setFilter] = React.useState<FilterInterface>(userInput);
+  const results: HotelDetails[] = data;
+  const [letters, setLetters] = React.useState([] as string[]);
+  const [message, setMessage] = React.useState<string>('');
 
   function extractLetters(hotels: HotelDetails[]) {
     const letters: string[] = [];
@@ -44,6 +45,8 @@ function useFilter(data: HotelDetails[], userInput: FilterInterface, autoUpdateU
   function handleFilter(type: 'category' | 'service' | 'name', value: string) {
     filter[type] = value;
 
+    console.log(222222222);
+
     setHotels(
       results.filter(e => {
         let match = true;
@@ -60,9 +63,15 @@ function useFilter(data: HotelDetails[], userInput: FilterInterface, autoUpdateU
           match = !!e.name && e.name.toLowerCase().includes(filter.name.toLowerCase());
         }
 
+        console.log(hotels);
+
         return match;
       }),
     );
+
+    console.log(333333333);
+
+    console.log(hotels);
 
     setFilter(filter);
 
@@ -72,7 +81,7 @@ function useFilter(data: HotelDetails[], userInput: FilterInterface, autoUpdateU
   }
 
   function updateUrl(filter: FilterInterface): void {
-    setQueryString({
+    setCurrentQueryString({
       name: filter.name,
       category: filter.category,
       service: filter.service,
@@ -83,6 +92,19 @@ function useFilter(data: HotelDetails[], userInput: FilterInterface, autoUpdateU
     extractLetters(hotels);
   }, [hotels]);
 
+  React.useEffect(() => {
+    if (filter.name) {
+      handleFilter('name', filter.name);
+    }
+
+    if (filter.category) {
+      handleFilter('category', filter.category);
+    }
+    if (filter.service) {
+      handleFilter('service', filter.service);
+    }
+  }, []);
+
   return {
     hotels,
     results,
@@ -90,6 +112,7 @@ function useFilter(data: HotelDetails[], userInput: FilterInterface, autoUpdateU
     filter,
     handleFilter,
     updateUrl,
+    queryString,
   };
 }
 

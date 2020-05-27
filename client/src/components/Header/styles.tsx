@@ -44,7 +44,7 @@ export const HeaderNavLinkList = styled.ul`
   margin-inline-end: 0;
 `;
 
-export const HeaderNavLink = styled(Link)`
+export const HeaderNavLink = styled.a`
   color: ${props => props.theme.colors.onBackground};
   margin-right: ${props => props.theme.spacing.s}rem;
   text-decoration: none;

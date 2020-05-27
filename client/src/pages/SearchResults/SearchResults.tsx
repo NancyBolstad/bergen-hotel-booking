@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 import queryString from 'query-string';
 import { VerticalSpacer, HorizontalSpacer, WidthConstraints } from '../../components/Layout';
 import Typography from '../../components/Typography';
@@ -29,6 +29,7 @@ import {
 
 const SearchResults: React.FunctionComponent = () => {
   const localContext = React.useContext(Context);
+  const history = useHistory();
   const location = useLocation();
   const values = queryString.parse(window.location.search);
   const [entryPath, setEntryPath] = React.useState(location.pathname);
@@ -40,12 +41,11 @@ const SearchResults: React.FunctionComponent = () => {
   const categories = MockCategories;
   const services = MockServices;
   const { hotels, letters, filter, handleFilter, currentQueryString } = useFilter({
-    data: localContext.default,
     currentFilter: searchFilter,
     autoUpdateUrl: true,
   });
 
-  console.log(location.pathname);
+  console.log(location);
 
   React.useEffect(() => {
     if (entryPath !== location.pathname) {
@@ -53,6 +53,29 @@ const SearchResults: React.FunctionComponent = () => {
       setEntryPath(location.pathname);
     }
   }, [entryPath, location.pathname]);
+
+  React.useEffect(() => {
+    if (location.pathname === 'accommodations' && location.search.length < 0) {
+      history.push(`/accommodations?name=&category=&service=`);
+    }
+  }, [location]);
+
+  React.useEffect(
+    () => {
+      if (currentQueryString.name) {
+        handleFilter('name', currentQueryString.name);
+      }
+
+      if (currentQueryString.category) {
+        handleFilter('category', currentQueryString.category);
+      }
+      if (currentQueryString.service) {
+        handleFilter('service', currentQueryString.service);
+      }
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [currentQueryString],
+  );
 
   return (
     <>
@@ -70,7 +93,7 @@ const SearchResults: React.FunctionComponent = () => {
                 <SearchInput
                   type="text"
                   placeholder="Find by name ..."
-                  value={filter.name}
+                  value={currentQueryString.name ? currentQueryString.name : filter.name}
                   onChange={e => {
                     handleFilter('name', e.target.value);
                   }}
@@ -82,7 +105,9 @@ const SearchResults: React.FunctionComponent = () => {
                 <InputFieldWrapper>
                   <Label>
                     <Select
-                      value={filter.category}
+                      value={
+                        currentQueryString.category ? currentQueryString.category : filter.category
+                      }
                       onChange={e => {
                         handleFilter('category', e.target.value);
                       }}
@@ -101,7 +126,9 @@ const SearchResults: React.FunctionComponent = () => {
                 <InputFieldWrapper>
                   <Label>
                     <Select
-                      value={filter.service}
+                      value={
+                        currentQueryString.service ? currentQueryString.service : filter.service
+                      }
                       onChange={e => {
                         handleFilter('service', e.target.value);
                       }}

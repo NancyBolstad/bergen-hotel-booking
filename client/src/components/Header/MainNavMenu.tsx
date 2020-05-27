@@ -8,10 +8,19 @@ interface Props {
 const MainNavMenu: React.FunctionComponent<Props> = ({ navLinks }) => {
   return (
     <HeaderNavLinkList>
+      <li>
+        <HeaderNavLink
+          href="/accommodations?name=&category=&service="
+          title="Go to accommodations page"
+          aria-label="Go to accommodations page"
+        >
+          Accommodations
+        </HeaderNavLink>
+      </li>
       {(navLinks || []).map((link, index) => (
         <li key={`navigationLink-${index}`}>
           <HeaderNavLink
-            to={`/${link}`}
+            href={`/${link}`}
             title={`Go to ${link} page`}
             aria-label={`Go to ${link} page`}
           >

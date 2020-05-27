@@ -47,20 +47,21 @@ const Header: React.FunctionComponent = () => {
   return (
     <HeaderWrapper>
       <HeaderTop>
-        <HeaderNavLink to="/login" title="Go to dashboard" aria-label="Go to dashboard">
+        <HeaderNavLink href="/login" title="Go to dashboard" aria-label="Go to dashboard">
           For Admins
         </HeaderNavLink>
       </HeaderTop>
       <HeaderNav>
         <HeaderMenuLeft>
-          <SiteLogo to="/" title="Go to home page" aria-label="Go to home page">
+          <SiteLogo href="/" title="Go to home page" aria-label="Go to home page">
             {APP_NAME}
           </SiteLogo>
           {!isMobile && <MainNavMenu navLinks={MAIN_NAV_LINKS} />}
         </HeaderMenuLeft>
         <HeaderMenuRight>
           <HeaderNavLink
-            to="/#"
+            href="/#"
+            role="button"
             aria-label="Search her"
             title="Search"
             onClick={event => {
@@ -73,7 +74,8 @@ const Header: React.FunctionComponent = () => {
           {!isMobile && (
             <>
               <LikeButton
-                to="/favorites"
+                href="/favorites"
+                role="button"
                 title="Go to favorites page"
                 aria-label="Go to favorites page"
               >

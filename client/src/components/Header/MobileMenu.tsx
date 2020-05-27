@@ -22,17 +22,33 @@ const MobileMenu: React.FunctionComponent<Props> = ({ navLinks, toggler }) => {
   return (
     <MobileMenuWrapper ref={toggleArea}>
       <MobileIcons>
-        <LikeButton to="/favorites" title="Go to favorites page" aria-label="Go to favorites page">
+        <LikeButton
+          href="/favorites"
+          title="Go to favorites page"
+          aria-label="Go to favorites page"
+        >
           {heart}
           <span>{favorites.length}</span>
         </LikeButton>
-        <HeaderNavLink to="/#" onClick={() => toggleContrast()} aria-label="Toggle mode">
+        <HeaderNavLink
+          href="/#"
+          role="button"
+          onClick={() => toggleContrast()}
+          aria-label="Toggle mode"
+        >
           {theme === 'default' ? sun : moon}
         </HeaderNavLink>
       </MobileIcons>
+      <HeaderNavLink
+        href="/accommodations?name=&category=&service="
+        title="Go to accommodations page"
+        aria-label="Go to accommodations page"
+      >
+        Accommodations
+      </HeaderNavLink>
       {(navLinks || []).map((link, index) => (
         <HeaderNavLink
-          to={`/${link}`}
+          href={`/${link}`}
           title={`Go to ${link} page`}
           aria-label={`Go to ${link} page`}
         >

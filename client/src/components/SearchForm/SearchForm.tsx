@@ -28,9 +28,7 @@ export const SearchForm: React.FunctionComponent<Props> = ({ dataSet, placeHolde
   const isMobile = useIsMobile();
   let history = useHistory();
   const localContext = React.useContext(Context);
-  const { hotels, filter, handleFilter } = useFilter({
-    data: localContext.default,
-  });
+  const { hotels, filter, handleFilter } = useFilter({});
   const [showResults, setShowResults] = React.useState(false);
   const register = React.useRef(null);
 

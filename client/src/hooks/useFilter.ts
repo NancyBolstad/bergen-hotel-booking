@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useQueryParams, StringParam } from 'use-query-params';
 import { HotelDetails } from '../types/response';
+import { Context } from '../context/GlobalContext';
 
 export interface FilterInterface {
   category: string;
@@ -9,15 +10,15 @@ export interface FilterInterface {
 }
 
 export interface FilterProps {
-  data: HotelDetails[];
   currentFilter?: FilterInterface;
   autoUpdateUrl?: boolean;
 }
 
 const defaultFilter: FilterInterface = { category: '', service: '', name: '' };
 
-function useFilter({ data, currentFilter, autoUpdateUrl }: FilterProps) {
-  const [hotels, setHotels] = React.useState(data);
+function useFilter({ currentFilter, autoUpdateUrl }: FilterProps) {
+  const localContext = React.useContext(Context);
+  const [hotels, setHotels] = React.useState<HotelDetails[]>([]);
   const [currentQueryString, setCurrentQueryString] = useQueryParams({
     name: StringParam,
     category: StringParam,
@@ -26,13 +27,18 @@ function useFilter({ data, currentFilter, autoUpdateUrl }: FilterProps) {
   const [filter, setFilter] = React.useState<FilterInterface>(
     currentFilter ? currentFilter : defaultFilter,
   );
-  const results: HotelDetails[] = data;
+  const results: HotelDetails[] = localContext.default;
   const [letters, setLetters] = React.useState([] as string[]);
 
   console.log({
     hotels: hotels,
     results: results,
   });
+
+  React.useEffect(() => {
+    console.log(55555555);
+    setHotels(results);
+  }, [results]);
 
   function extractLetters(hotels: HotelDetails[]) {
     const letters: string[] = [];

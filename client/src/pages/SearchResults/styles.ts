@@ -50,6 +50,11 @@ export const Letter = styled.a`
       margin-right: ${props => props.theme.spacing.xs}rem;
     `,
   )}
+
+  &:hover,
+  &:active {
+    color: ${props => props.theme.colors.primary};
+  }
 `;
 
 export const Results = styled.div`

@@ -9,7 +9,7 @@ const MainNavMenu: React.FunctionComponent<Props> = ({ navLinks }) => {
   return (
     <HeaderNavLinkList>
       {(navLinks || []).map((link, index) => (
-        <li>
+        <li key={`navigationLink-${index}`}>
           <HeaderNavLink
             to={`/${link}`}
             title={`Go to ${link} page`}

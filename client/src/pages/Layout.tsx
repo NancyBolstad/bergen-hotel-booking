@@ -7,7 +7,6 @@ import Loader from '../components/Loader/Loader';
 import Home from './Home';
 import Favorites from './Favorites';
 import ContrastProvider from '../context/ContrastContext';
-import Accommodations from './Accommodations/Accommodations';
 import Blog from './Blog/Blog';
 import BlogDetails from './Blog/BlogDetails';
 import PrivateRoute from '../routes/PrivateRoute';
@@ -77,11 +76,6 @@ const Layout: React.FunctionComponent<Props> = () => {
                 <Route path="/accommodations" exact>
                   <Suspense fallback={<Loader />}>
                     <SearchResults />
-                  </Suspense>
-                </Route>
-                <Route exact path="/accommodations/:number">
-                  <Suspense fallback={<Loader />}>
-                    <Accommodations />
                   </Suspense>
                 </Route>
                 <Route path="/blog" exact>

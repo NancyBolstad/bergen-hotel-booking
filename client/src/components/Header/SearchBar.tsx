@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { SearchBarContainer, CloseSearchButton } from './styles';
 import { SearchInput, Form } from '../FormElement';
 import { cross } from '../../util/icons';
@@ -11,7 +11,6 @@ interface Props {
 }
 
 const SearchBar: React.FunctionComponent<Props> = ({ toggler }) => {
-  let history = useHistory();
   const location = useLocation();
   const [searchValue, setSearchValue] = React.useState('');
   const toggleArea = React.useRef(null);

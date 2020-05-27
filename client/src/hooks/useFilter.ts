@@ -95,31 +95,39 @@ function useFilter({ autoUpdateUrl }: FilterProps) {
     setHotels(results);
   }, [results]);
 
-  React.useEffect(() => {
-    if (results && filter.name) {
-      handleFilter('name', filter.name);
-    }
+  React.useEffect(
+    () => {
+      if (results && filter.name) {
+        handleFilter('name', filter.name);
+      }
 
-    if (results && filter.category) {
-      handleFilter('category', filter.category);
-    }
-    if (results && filter.service) {
-      handleFilter('service', filter.service);
-    }
-  }, [filter, results]);
+      if (results && filter.category) {
+        handleFilter('category', filter.category);
+      }
+      if (results && filter.service) {
+        handleFilter('service', filter.service);
+      }
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [filter, results],
+  );
 
-  React.useEffect(() => {
-    if (results && currentQueryString.name) {
-      handleFilter('name', filter.name);
-    }
+  React.useEffect(
+    () => {
+      if (results && currentQueryString.name) {
+        handleFilter('name', filter.name);
+      }
 
-    if (results && currentQueryString.category) {
-      handleFilter('category', filter.category);
-    }
-    if (results && currentQueryString.service) {
-      handleFilter('service', filter.service);
-    }
-  }, [currentQueryString, results]);
+      if (results && currentQueryString.category) {
+        handleFilter('category', filter.category);
+      }
+      if (results && currentQueryString.service) {
+        handleFilter('service', filter.service);
+      }
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [currentQueryString, results],
+  );
 
   return {
     hotels,

@@ -31,16 +31,6 @@ function useFilter({ autoUpdateUrl }: FilterProps) {
   const results: HotelDetails[] = localContext.default;
   const [letters, setLetters] = React.useState([] as string[]);
 
-  console.log({
-    hotels: hotels,
-    results: results,
-  });
-
-  console.log({
-    filter: filter,
-    currentQueryString: currentQueryString,
-  });
-
   function extractLetters(hotels: HotelDetails[]) {
     const letters: string[] = [];
 
@@ -61,7 +51,6 @@ function useFilter({ autoUpdateUrl }: FilterProps) {
 
   function handleFilter(type: 'category' | 'service' | 'name', value: string) {
     filter[type] = value;
-    console.log(filter[type]);
 
     setHotels(
       results.filter(e => {
@@ -107,7 +96,6 @@ function useFilter({ autoUpdateUrl }: FilterProps) {
   }, [results]);
 
   React.useEffect(() => {
-    console.log(10101010101010);
     if (results && filter.name) {
       handleFilter('name', filter.name);
     }
@@ -121,7 +109,6 @@ function useFilter({ autoUpdateUrl }: FilterProps) {
   }, [filter, results]);
 
   React.useEffect(() => {
-    console.log(199999999);
     if (results && currentQueryString.name) {
       handleFilter('name', filter.name);
     }

@@ -40,7 +40,6 @@ function useApi<T>(opts: Opts<T>): UseApiInterface<T> {
     } catch (error) {
       setLoading(false);
       setError(error);
-      console.error(error);
     }
   }
 

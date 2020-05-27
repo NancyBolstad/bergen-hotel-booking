@@ -1,6 +1,4 @@
 import React from 'react';
-import { useLocation, useHistory } from 'react-router-dom';
-import queryString from 'query-string';
 import { VerticalSpacer, HorizontalSpacer, WidthConstraints } from '../../components/Layout';
 import Typography from '../../components/Typography';
 import { SearchInput } from '../../components/FormElement';
@@ -29,14 +27,7 @@ import {
 
 const SearchResults: React.FunctionComponent = () => {
   const localContext = React.useContext(Context);
-  const history = useHistory();
-  const location = useLocation();
-  const values = queryString.parse(window.location.search);
-  const [searchFilter, setSearchFilter] = React.useState({
-    category: typeof values.category === 'string' ? values.category : '',
-    service: typeof values.service === 'string' ? values.service : '',
-    name: typeof values.name === 'string' ? values.name : '',
-  });
+
   const categories = MockCategories;
   const services = MockServices;
   const { hotels, letters, filter, handleFilter, currentQueryString } = useFilter({
@@ -112,15 +103,19 @@ const SearchResults: React.FunctionComponent = () => {
                 </InputFieldWrapper>
               </SelectWrapper>
             </Filter>
-            <Typography
-              variant="b2"
-              element="h2"
-              content={`Find ${hotels.length} results for "${
-                currentQueryString.name
-              }" filtered by "${
-                currentQueryString.category ? currentQueryString.category : 'All Accommodations'
-              }" and "${currentQueryString.service ? currentQueryString.service : 'All services'}"`}
-            />
+            {!localContext.loading && (
+              <Typography
+                variant="b2"
+                element="h2"
+                content={`Find ${hotels.length} results for "${
+                  currentQueryString.name
+                }" filtered by "${
+                  currentQueryString.category ? currentQueryString.category : 'All categories'
+                }" and "${
+                  currentQueryString.service ? currentQueryString.service : 'All services'
+                }"`}
+              />
+            )}
             {!!localContext.loading && <Loader />}
             {!!hotels && hotels.length > 0 ? (
               <Results>
@@ -166,7 +161,7 @@ const SearchResults: React.FunctionComponent = () => {
                 </LettersWrapper>
               </Results>
             ) : (
-              <Typography variant="b2" element="span" content="No results" />
+              <Typography variant="b2" element="span" content="Search tips????" />
             )}
           </WidthConstraints>
         </HorizontalSpacer>

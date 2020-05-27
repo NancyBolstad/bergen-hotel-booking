@@ -32,7 +32,7 @@ const SearchBar: React.FunctionComponent<Props> = ({ toggler }) => {
           event.preventDefault();
           if (validateUserInput(searchValue)) {
             toggler(false);
-            history.push(`/search?name=${searchValue}&category=&service=`);
+            window.location.href = `/search?name=${searchValue}&category=&service=`;
           }
         }}
       >

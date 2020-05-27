@@ -8,7 +8,6 @@ import {
   SearchResultsWrapper,
 } from './styles';
 import useIsMobile from '../../hooks/useIsMobile';
-import { Context } from '../../context/GlobalContext';
 import { HotelDetails } from '../../types/response';
 import validateUserInput from '../../util/validateUserInput';
 import useFilter, { FilterInterface } from '../../hooks/useFilter';
@@ -27,7 +26,6 @@ interface Props {
 export const SearchForm: React.FunctionComponent<Props> = ({ dataSet, placeHolderText }) => {
   const isMobile = useIsMobile();
   let history = useHistory();
-  const localContext = React.useContext(Context);
   const { hotels, filter, handleFilter } = useFilter({});
   const [showResults, setShowResults] = React.useState(false);
   const register = React.useRef(null);

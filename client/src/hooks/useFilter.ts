@@ -14,8 +14,6 @@ export interface FilterProps {
   autoUpdateUrl?: boolean;
 }
 
-const defaultFilter: FilterInterface = { category: '', service: '', name: '' };
-
 function useFilter({ autoUpdateUrl }: FilterProps) {
   const localContext = React.useContext(Context);
   const values = queryString.parse(window.location.search);
@@ -121,6 +119,20 @@ function useFilter({ autoUpdateUrl }: FilterProps) {
       handleFilter('service', filter.service);
     }
   }, [filter, results]);
+
+  React.useEffect(() => {
+    console.log(199999999);
+    if (results && currentQueryString.name) {
+      handleFilter('name', filter.name);
+    }
+
+    if (results && currentQueryString.category) {
+      handleFilter('category', filter.category);
+    }
+    if (results && currentQueryString.service) {
+      handleFilter('service', filter.service);
+    }
+  }, [currentQueryString, results]);
 
   return {
     hotels,

@@ -72,6 +72,8 @@ const PlainBanner: React.FunctionComponent<Props> = ({
               variant={buttonVariant ? buttonVariant : 'primary'}
               size="medium"
               to={redirectLink}
+              aria-label={buttonText}
+              title={buttonText}
             >
               {buttonText}
             </ButtonInternal>

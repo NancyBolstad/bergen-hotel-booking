@@ -10,7 +10,6 @@ import { HotelCardsList } from '../../components/HotelCards';
 import { Context } from '../../context/GlobalContext';
 import BookForm from '../../components/Book/BookForm';
 import { HotelCard } from '../../components/HotelCards';
-//import { MockHotels } from '../../data/data';
 import createMediaQuery from '../../util/createMediaQuery';
 
 interface Props {}
@@ -69,11 +68,8 @@ export const Book: React.FunctionComponent<Props> = () => {
     },
   });
 
-  // const data = MockHotels[1];
-  // const loading = false;
-
   return (
-    <main>
+    <>
       {loading && <Loader />}
       {!!data && !!id && !loading && (
         <VerticalSpacer topSpace="xs" topSpaceDesktop="m" bottomSpace="xs" bottomSpaceDesktop="m">
@@ -102,7 +98,7 @@ export const Book: React.FunctionComponent<Props> = () => {
           backgroundColor="secondaryVariant"
         />
       )}
-    </main>
+    </>
   );
 };
 

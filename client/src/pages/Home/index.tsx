@@ -1,7 +1,7 @@
 import React from 'react';
 import { Context } from '../../context/GlobalContext';
 import { SearchBanner } from '../../components/Banner';
-import IconList from '../../components/IconList';
+import IconList from '../../components/IconList/IconList';
 import { BannerGrid, FlexBanner } from '../../components/Banner/';
 import { HotelCardsList } from '../../components/HotelCards';
 import Loader from '../../components/Loader/Loader';
@@ -20,7 +20,7 @@ export const Home: React.FunctionComponent<Props> = () => {
   const mockBannerGrid = {
     backgroundImage: image,
     text: 'Up to 50% off',
-    redirectLink: '/accommodations',
+    redirectLink: `/accommodations?category=hotel&name=&service=free%20breakfast`,
   };
 
   const mockFlexBannerBlog = {
@@ -42,7 +42,7 @@ export const Home: React.FunctionComponent<Props> = () => {
   };
 
   return (
-    <main>
+    <>
       <SearchBanner
         figure={image}
         title="Book your holiday in Bergen at best price"
@@ -65,7 +65,7 @@ export const Home: React.FunctionComponent<Props> = () => {
       )}
       <FlexBanner {...mockFlexBannerBlog} backgroundColor="secondaryVariant" />
       <FlexBanner {...mockFlexBannerAboutUs} isImageRight />
-    </main>
+    </>
   );
 };
 

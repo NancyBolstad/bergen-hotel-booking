@@ -8,6 +8,7 @@ import {
   CardVariantRight,
   LikeButton,
   LikeButtonWrapper,
+  MiniImage,
 } from './styles';
 import { HotelDetails } from '../../types/response';
 import useIsMobile from '../../hooks/useIsMobile';
@@ -17,9 +18,10 @@ import { Types } from '../../reducer/favoriteCardsReducer';
 
 interface Props {
   card: HotelDetails;
+  miniCard?: boolean;
 }
 
-const HotelCardVariant: React.FunctionComponent<Props> = ({ card }) => {
+const HotelCardVariant: React.FunctionComponent<Props> = ({ card, miniCard }) => {
   const isMobile = useIsMobile();
   const { favorites, dispatch } = React.useContext(Context);
   const [like, setLike] = React.useState<boolean>(() => {
@@ -49,29 +51,41 @@ const HotelCardVariant: React.FunctionComponent<Props> = ({ card }) => {
   }
 
   return (
-    <CardVariant to={`/accommodation/details/${card.id}`}>
-      {!!card.featuredImages && (
+    <CardVariant
+      to={`/accommodation/details/${card.id}`}
+      aria-label={`View details about ${card.name}`}
+    >
+      {!!card.featuredImages && !miniCard && (
         <CardVariantLeft>
           <FeaturedImages slides={card.featuredImages} />
         </CardVariantLeft>
       )}
+      {!!card.featuredImages && miniCard && (
+        <MiniImage src={card.featuredImages[0].url} alt={card.featuredImages[0].alt} />
+      )}
       <CardVariantRight>
-        <LikeButtonWrapper>
-          <LikeButton
-            variant="primary"
-            size="small"
-            isLiked={like}
-            onClick={e => {
-              e.preventDefault();
-              handleLikeDispatch();
-            }}
-          >
-            {like ? heartSolid : heart}
-          </LikeButton>
-        </LikeButtonWrapper>
-        {!!card.category && <Typography element="span" variant="b2" content={card.category} />}
+        {!miniCard && (
+          <LikeButtonWrapper>
+            <LikeButton
+              variant="primary"
+              size="small"
+              isLiked={like}
+              onClick={e => {
+                e.preventDefault();
+                handleLikeDispatch();
+              }}
+              aria-label={`${like ? 'Dislike' : 'Like'} this accommodation`}
+              title={`${like ? 'Dislike' : 'Like'} this accommodation`}
+            >
+              {like ? heartSolid : heart}
+            </LikeButton>
+          </LikeButtonWrapper>
+        )}
         {!!card.name && <Typography element="span" variant="b2" content={card.name} />}
-        {!!card.descriptions && (
+        {!!card.category && !miniCard && (
+          <Typography element="span" variant="b2" content={card.category} />
+        )}
+        {!!card.descriptions && !miniCard && (
           <Typography
             element="p"
             variant="b1"

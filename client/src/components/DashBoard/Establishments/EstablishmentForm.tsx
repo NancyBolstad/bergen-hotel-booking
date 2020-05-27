@@ -28,18 +28,13 @@ const EstablishmentForm: React.FC<Props> = () => {
   let history = useHistory();
 
   async function sendForm(data: Object, endpoint: 'establishments') {
-    console.log(2222222);
-
     setPosting(true);
-    console.log(data);
     const response = await postData({
       endpoint: endpoint,
       data: {
         ...data,
       },
     });
-
-    console.log(response);
 
     if (response.status === 200) {
       setPosting(false);

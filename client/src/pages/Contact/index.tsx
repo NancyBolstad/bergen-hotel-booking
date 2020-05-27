@@ -5,9 +5,9 @@ interface Props {}
 
 export const Contact: React.FunctionComponent<Props> = () => {
   return (
-    <main>
+    <>
       <ContactForm />
-    </main>
+    </>
   );
 };
 

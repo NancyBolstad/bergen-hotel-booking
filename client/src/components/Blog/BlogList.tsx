@@ -43,7 +43,13 @@ export const BlogList: React.FunctionComponent<Props> = ({
               </CardsList>
               {!!ctaText && !!ctaUrl && (
                 <More>
-                  <ButtonInternal to={ctaUrl} size="medium" variant="secondary">
+                  <ButtonInternal
+                    to={ctaUrl}
+                    size="medium"
+                    variant="secondary"
+                    aria-label={ctaText}
+                    title={ctaText}
+                  >
                     {ctaText}
                   </ButtonInternal>
                 </More>

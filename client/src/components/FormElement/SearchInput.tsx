@@ -5,9 +5,10 @@ import { search } from '../../util/icons';
 
 const StyledInput = styled.input<Partial<IProps>>`
   background-color: ${props => props.theme.colors.background};
-  border: 1px solid ${props => props.theme.colors.onBackground};
+  border: 1px solid ${props => props.theme.colors.onSurface};
   height: 2.5rem;
   width: 100%;
+  transition: border-color 0.1s ease-in-out;
   padding: 0 ${props => props.theme.spacing.xs}rem;
   ${props => createFontStyles(props.theme.fonts.b3)};
   color: ${props => props.theme.colors.onBackground};
@@ -19,45 +20,53 @@ const StyledInput = styled.input<Partial<IProps>>`
 
   &:active,
   &:focus {
-    border-color: ${props => props.theme.colors.secondary};
+    border-bottom: 2px solid ${props => props.theme.colors.onBackground};
     outline: none;
   }
 `;
 
 const Icon = styled.div`
   width: 20px;
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
   fill: ${props => props.theme.colors.onSurface};
 `;
 
-const SearchIconButton = styled.button`
+const SearchIconButton = styled.button<{ customTop?: string }>`
   width: 0;
   right: 2rem;
   outline: none;
   border: transparent;
   background: none;
   position: absolute;
-  top: 20%;
+  top: ${props => (props.customTop ? props.customTop : '-22%')};
   width: 1rem;
 `;
 
 const SearchInputWrapper = styled.div`
   display: flex;
   align-items: center;
-  width: 100%;
   position: relative;
+  width: 100%;
 `;
 
 interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {
   type: string;
+  iconPosition?: string;
 }
 
-export default function SearchInput({ type, ...htmlProps }: IProps) {
+function SearchInput({ type, iconPosition, ...htmlProps }: IProps) {
   return (
     <SearchInputWrapper>
-      <StyledInput type={type} {...htmlProps} />
-      <SearchIconButton type="submit">
+      <StyledInput type={type} {...htmlProps} aria-label="Search" />
+      <SearchIconButton type="submit" aria-label="Submit search" customTop={iconPosition}>
         <Icon>{search}</Icon>
       </SearchIconButton>
     </SearchInputWrapper>
   );
 }
+
+export default SearchInput;

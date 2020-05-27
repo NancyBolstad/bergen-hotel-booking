@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
-//import createFontStyles from '../../util/createFontStyles';
 import Typography from '../Typography';
 import { IColors } from '../../types/theme';
 import Slider from '../Slider';
@@ -155,6 +154,11 @@ const LikeButton = styled(Button)<{ isLiked: boolean }>`
   }
 `;
 
+const MiniImage = styled.img`
+  height: 5.5rem;
+  width: 5.5rem;
+`;
+
 export {
   Section,
   Wrapper,
@@ -169,4 +173,5 @@ export {
   SliderVariant,
   LikeButton,
   LikeButtonWrapper,
+  MiniImage,
 };

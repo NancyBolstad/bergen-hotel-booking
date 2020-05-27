@@ -73,6 +73,8 @@ const BannerGrid: React.FunctionComponent<BannerGridProps> = ({ sectionTitle, ba
                   <InnerTextWrapper
                     to={banner.redirectLink ? banner.redirectLink : ''}
                     large={index === 0 ? 'true' : 'false'}
+                    aria-label={`View more about ${banner.text}`}
+                    title={`View more about ${banner.text}`}
                   >
                     <Typography
                       variant="h2"

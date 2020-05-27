@@ -26,8 +26,7 @@ export const Form = styled.form`
 
 export const SearchInputField = styled.input`
   background: ${props => props.theme.colors.background};
-  border: 2px solid ${props => props.theme.colors.white};
-  color: ${props => props.theme.colors.primary};
+  border: 2px solid white;
   white-space: nowrap;
   padding: 0.55rem 0.75rem;
   font-size: 1rem;
@@ -43,10 +42,10 @@ export const SearchInputField = styled.input`
   }
 
   &:focus {
-    background: #ffffff;
-    color: black;
     outline: none;
-    border: 1px solid ${props => props.theme.colors.primary};
+    border: 2px solid ${props => props.theme.colors.primary};
+    background: ${props => props.theme.colors.background};
+    color: ${props => props.theme.colors.onBackground};
   }
 
   @media screen and (min-width: 1080px) {
@@ -91,8 +90,8 @@ export const SearchSubmitButton = styled.button<{ isMobile?: boolean }>`
 
 export const SearchResultsWrapper = styled.div<{ isMobile?: boolean }>`
   height: 500px;
-  background-color: ${props => props.theme.colors.secondaryVariant};
-  border: 2px solid ${props => props.theme.colors.secondary};
+  background-color: ${props => props.theme.colors.background};
+  border: 2px solid ${props => props.theme.colors.white};
   box-shadow: 0 3px 4px 0 rgba(71, 68, 69, 0.14), 0 3px 3px -2px rgba(71, 68, 69, 0.2),
     0 1px 8px 0 rgba(71, 68, 69, 0.12);
   max-width: 650px;
@@ -100,6 +99,7 @@ export const SearchResultsWrapper = styled.div<{ isMobile?: boolean }>`
   list-style: none;
   width: 100%;
   border-radius: 0 0 8px 8px;
+  padding: ${props => (props.isMobile ? props.theme.spacing.s : props.theme.spacing.m)}rem;
 
   ${props =>
     props.isMobile &&
@@ -110,43 +110,4 @@ export const SearchResultsWrapper = styled.div<{ isMobile?: boolean }>`
       right: 0;
       z-index: 2;
     `}
-
-  li {
-    &:not(:last-child) {
-      margin-bottom: ${props => props.theme.spacing.s}px;
-    }
-  }
-`;
-
-export const Result = styled.li`
-  &:not(:last-child) {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-    padding-bottom: ${props => props.theme.spacing.s}px;
-  }
-`;
-
-export const ResultName = styled.span`
-  margin: 0;
-  ${props => createFontStyles(props.theme.fonts.h4)}
-`;
-
-export const ResultBody = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  @media screen and (min-width: 1280px) {
-    flex-direction: row;
-  }
-`;
-
-export const ResultInfo = styled.div`
-  flex: 1;
-
-  span {
-    margin: 4px 0 0;
-  }
-
-  a {
-    color: ${props => props.theme.colors.primary};
-  }
 `;

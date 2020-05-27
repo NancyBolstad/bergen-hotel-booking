@@ -8,7 +8,7 @@ interface Props {}
 export const Favorites: React.FunctionComponent<Props> = () => {
   const { favorites } = React.useContext(Context);
   return (
-    <main>
+    <>
       {!!favorites && favorites.length > 0 ? (
         <>
           <PlainBanner title="My Favorites" backgroundColor="surface" />
@@ -23,7 +23,7 @@ export const Favorites: React.FunctionComponent<Props> = () => {
           redirectLink="/accommodations"
         />
       )}
-    </main>
+    </>
   );
 };
 

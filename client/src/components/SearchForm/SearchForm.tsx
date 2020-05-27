@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { search } from '../../util/icons';
+import { useHistory } from 'react-router-dom';
 import {
   Wrapper,
   Form,
@@ -7,13 +7,15 @@ import {
   SearchSubmitButton,
   SearchResultsWrapper,
 } from './styles';
-import { useHistory } from 'react-router-dom';
-//import { WidthConstraints, VerticalSpacer, HorizontalSpacer } from '../Layout';
 import useIsMobile from '../../hooks/useIsMobile';
-//import { Context } from '../../context/GlobalContext';
 import { HotelDetails } from '../../types/response';
-//import Loader from '../../components/Loader';
 import validateUserInput from '../../util/validateUserInput';
+import useFilter, { FilterInterface } from '../../hooks/useFilter';
+import Typography from '../Typography';
+import { HotelCardVariant } from '../HotelCards/index';
+import useOutsideClick from '../../hooks/useOutsideClick';
+import { ButtonInternal } from '../Button/Button';
+import { search } from '../../util/icons';
 
 interface Props {
   dataSet?: HotelDetails[];
@@ -23,48 +25,74 @@ interface Props {
 
 export const SearchForm: React.FunctionComponent<Props> = ({ dataSet, placeHolderText }) => {
   const isMobile = useIsMobile();
-  //const localContext = React.useContext(Context);
-  //const [searchData, setSearchData] = React.useState<HotelDetails[]>([]);
-  const [searchValue, setSearchValue] = React.useState<string>('');
-  const [showResults, setShowResults] = React.useState(false);
-  //const [showDefault, setShowDefault] = React.useState(false);
-  React.useEffect(() => {
-    setShowResults(validateUserInput(searchValue));
-  }, [searchValue]);
   let history = useHistory();
+  const { hotels, filter, handleFilter } = useFilter({});
+  const [showResults, setShowResults] = React.useState(false);
+  const register = React.useRef(null);
 
-  console.log({ searchValue });
+  function updateUrl(filter: FilterInterface) {
+    history.push(
+      `/search?name=${filter.name}&category=${filter.category}&service=${filter.service}`,
+    );
+  }
+
+  useOutsideClick(register, () => {
+    setShowResults(false);
+  });
 
   return (
     <Wrapper isMobile={isMobile}>
       <Form
+        role="search"
         onSubmit={e => {
           e.preventDefault();
-
-          history.push(`/search?q=${searchValue}`);
+          updateUrl(filter);
+          handleFilter('name', filter.name);
         }}
       >
         <SearchInputField
-          id="searchForm"
-          className="searchInput"
           type="search"
           autoComplete="off"
-          aria-label={placeHolderText ? placeHolderText : 'Search form'}
-          placeholder={placeHolderText ? placeHolderText : 'Search her'}
-          value={searchValue}
+          aria-label="Search"
+          placeholder={placeHolderText ? placeHolderText : 'Search her ...'}
           onChange={e => {
             e.preventDefault();
-            setSearchValue(e.target.value);
+            if (e.target.value.length > 0 && validateUserInput(e.target.value)) {
+              handleFilter('name', e.target.value);
+              setShowResults(true);
+            } else {
+              setShowResults(false);
+            }
           }}
         />
-        <SearchSubmitButton type="submit" aria-label={'Submit search form'} isMobile={isMobile}>
+        <SearchSubmitButton
+          type="submit"
+          aria-label="Submit search form"
+          title="Submit search form"
+          isMobile={isMobile}
+        >
           {!isMobile && 'Search'}
           {search}
         </SearchSubmitButton>
       </Form>
       {showResults && (
-        <SearchResultsWrapper isMobile={isMobile}>
-          <h1>Hello</h1>
+        <SearchResultsWrapper isMobile={isMobile} ref={register}>
+          <Typography variant="b2" element="h3" content={`Search results for "${filter.name}"`} />
+          {hotels.slice(0, 4).map(hotel => (
+            <>
+              <HotelCardVariant card={hotel} miniCard />
+            </>
+          ))}
+          {hotels && hotels.length > 5 && (
+            <ButtonInternal
+              to={`/search?name=${filter.name}&category=${filter.category}&service=${filter.service}`}
+              variant="secondary"
+              size="medium"
+              aria-label="View more search results"
+            >
+              More Results
+            </ButtonInternal>
+          )}
         </SearchResultsWrapper>
       )}
     </Wrapper>

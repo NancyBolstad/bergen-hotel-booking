@@ -11,13 +11,14 @@ interface UseApiInterface<T> {
   data: T;
   loading: boolean;
   hasFetched: boolean;
+  error: string;
 }
 
 function useApi<T>(opts: Opts<T>): UseApiInterface<T> {
   const [data, setData] = useState(opts.initialData);
   const [hasFetched, setHasFetched] = useState(false);
   const [loading, setLoading] = useState(false);
-
+  const [error, setError] = useState('');
   async function fetchData() {
     setLoading(true);
     setHasFetched(true);
@@ -38,7 +39,7 @@ function useApi<T>(opts: Opts<T>): UseApiInterface<T> {
       setData(data as T);
     } catch (error) {
       setLoading(false);
-      console.error(error);
+      setError(error);
     }
   }
 
@@ -52,6 +53,7 @@ function useApi<T>(opts: Opts<T>): UseApiInterface<T> {
     data,
     loading,
     hasFetched,
+    error,
   };
 }
 

@@ -1,30 +1,33 @@
 import * as React from 'react';
+import { useLocation } from 'react-router-dom';
 import {
   HeaderWrapper,
   HeaderNav,
   HeaderMenuLeft,
   HeaderMenuRight,
-  HeaderNavLinkList,
   HeaderNavLink,
   SiteLogo,
   MobileMenuIcon,
-  MobileMenuWrapper,
   LikeButton,
-  MobileIcons,
   ThemeToggleButton,
   HeaderTop,
 } from './styles';
-import { APP_NAME } from '../../util/constants';
+import { APP_NAME, MAIN_NAV_LINKS } from '../../util/constants';
 import { ContrastContext } from '../../context/ContrastContext';
 import { Context } from '../../context/GlobalContext';
 import { hamburger, cross, search, heart, sun, moon } from '../../util/icons';
 import useIsMobile from '../../hooks/useIsMobile';
+import SearchBar from './SearchBar';
+import MobileMenu from './MobileMenu';
+import MainNavMenu from './MainNavMenu';
 
 const Header: React.FunctionComponent = () => {
   const { theme, toggleContrast } = React.useContext(ContrastContext);
+  const location = useLocation();
   const { favorites } = React.useContext(Context);
   const isMobile = useIsMobile();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState<boolean>(false);
+  const [searching, setSearching] = React.useState<boolean>(false);
 
   React.useEffect(() => {
     if (isMobileMenuOpen) {
@@ -36,125 +39,77 @@ const Header: React.FunctionComponent = () => {
     }
   }, [isMobileMenuOpen]);
 
+  React.useEffect(() => {
+    setIsMobileMenuOpen(false);
+    setSearching(false);
+  }, [location]);
+
   return (
-    <>
+    <HeaderWrapper>
       <HeaderTop>
-        <HeaderNavLink to="/login">For Admins</HeaderNavLink>
+        <HeaderNavLink href="/login" title="Go to dashboard" aria-label="Go to dashboard">
+          For Admins
+        </HeaderNavLink>
       </HeaderTop>
-      <HeaderWrapper>
-        <HeaderNav>
-          <HeaderMenuLeft>
-            <SiteLogo
-              to="/"
-              onClick={e => {
-                if (isMobile) {
-                  e.preventDefault();
-                  window.location.assign('/');
-                  setIsMobileMenuOpen(false);
-                }
-              }}
-            >
-              {APP_NAME}
-            </SiteLogo>
-            {!isMobile && (
-              <HeaderNavLinkList>
-                <li>
-                  <HeaderNavLink to="/accommodations">Accommodations</HeaderNavLink>
-                </li>
-                <li>
-                  <HeaderNavLink to="/blog">Blog</HeaderNavLink>
-                </li>
-                <li>
-                  <HeaderNavLink to="/about">About</HeaderNavLink>
-                </li>
-                <li>
-                  <HeaderNavLink to="/contact">Contact</HeaderNavLink>
-                </li>
-              </HeaderNavLinkList>
-            )}
-          </HeaderMenuLeft>
-          <HeaderMenuRight>
-            <HeaderNavLink to="/#" aria-label="Search her">
-              {search}
-            </HeaderNavLink>
-            {!isMobile && (
-              <>
-                <LikeButton to="/favorites">
-                  {heart}
-                  <span>{favorites.length}</span>
-                </LikeButton>
-                <ThemeToggleButton onClick={() => toggleContrast()} aria-label="Toggle mode">
-                  {theme === 'default' ? sun : moon}
-                </ThemeToggleButton>
-              </>
-            )}
-            {isMobile && (
-              <MobileMenuIcon
-                onClick={e => {
-                  e.preventDefault();
-                  setIsMobileMenuOpen(!isMobileMenuOpen);
-                }}
+      <HeaderNav>
+        <HeaderMenuLeft>
+          <SiteLogo href="/" title="Go to home page" aria-label="Go to home page">
+            {APP_NAME}
+          </SiteLogo>
+          {!isMobile && <MainNavMenu navLinks={MAIN_NAV_LINKS} />}
+        </HeaderMenuLeft>
+        <HeaderMenuRight>
+          <HeaderNavLink
+            href="/#"
+            role="button"
+            aria-label="Search her"
+            title="Search"
+            onClick={event => {
+              event.preventDefault();
+              setSearching(true);
+            }}
+          >
+            {search}
+          </HeaderNavLink>
+          {!isMobile && (
+            <>
+              <LikeButton
+                href="/favorites"
+                role="button"
+                title="Go to favorites page"
+                aria-label="Go to favorites page"
               >
-                {isMobileMenuOpen ? cross : hamburger}
-              </MobileMenuIcon>
-            )}
-          </HeaderMenuRight>
-        </HeaderNav>
-      </HeaderWrapper>
+                {heart}
+                <span>{favorites.length}</span>
+              </LikeButton>
+              <ThemeToggleButton
+                onClick={() => toggleContrast()}
+                aria-label="Toggle mode"
+                title="Toggle mode"
+              >
+                {theme === 'default' ? sun : moon}
+              </ThemeToggleButton>
+            </>
+          )}
+          {isMobile && (
+            <MobileMenuIcon
+              onClick={e => {
+                e.preventDefault();
+                setIsMobileMenuOpen(!isMobileMenuOpen);
+              }}
+              title="Open navigation menu"
+              aria-label="Open navigation menu"
+            >
+              {isMobileMenuOpen ? cross : hamburger}
+            </MobileMenuIcon>
+          )}
+        </HeaderMenuRight>
+      </HeaderNav>
       {isMobile && isMobileMenuOpen && (
-        <MobileMenuWrapper>
-          <MobileIcons>
-            <LikeButton to="/favorites">
-              {heart}
-              <span>{favorites.length}</span>
-            </LikeButton>
-            <HeaderNavLink to="/#" onClick={() => toggleContrast()}>
-              {theme === 'default' ? sun : moon}
-            </HeaderNavLink>
-          </MobileIcons>
-          <HeaderNavLink
-            to="/accommodations"
-            onClick={e => {
-              e.preventDefault();
-              window.location.assign('/accommodations');
-              setIsMobileMenuOpen(false);
-            }}
-          >
-            Accommodations
-          </HeaderNavLink>{' '}
-          <HeaderNavLink
-            to="/blog"
-            onClick={e => {
-              e.preventDefault();
-              window.location.assign('/blog');
-              setIsMobileMenuOpen(false);
-            }}
-          >
-            Blog
-          </HeaderNavLink>
-          <HeaderNavLink
-            to="/about"
-            onClick={e => {
-              e.preventDefault();
-              window.location.assign('/about');
-              setIsMobileMenuOpen(false);
-            }}
-          >
-            About
-          </HeaderNavLink>
-          <HeaderNavLink
-            to="/contact"
-            onClick={e => {
-              e.preventDefault();
-              window.location.assign('/contact');
-              setIsMobileMenuOpen(false);
-            }}
-          >
-            Contact
-          </HeaderNavLink>
-        </MobileMenuWrapper>
+        <MobileMenu navLinks={MAIN_NAV_LINKS} toggler={setIsMobileMenuOpen} />
       )}
-    </>
+      {searching && <SearchBar toggler={setSearching} />}
+    </HeaderWrapper>
   );
 };
 

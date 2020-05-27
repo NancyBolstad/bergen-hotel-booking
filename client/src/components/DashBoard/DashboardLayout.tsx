@@ -82,7 +82,6 @@ const DashboardLayout: React.FunctionComponent<Props> = ({ user }) => {
       history.push(`/dashboard/my-account`);
     }
   }, [location, history]);
-  console.log(location);
 
   return (
     <BackgroundWrapper>

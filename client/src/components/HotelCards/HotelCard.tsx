@@ -54,6 +54,7 @@ const HotelCard: React.FunctionComponent<HotelCard> = ({ card }) => {
             handleLikeDispatch();
           }}
           aria-label={`${like ? 'Dislike' : 'Like'} this accommodation`}
+          title={`${like ? 'Dislike' : 'Like'} this accommodation`}
         >
           {like ? heartSolid : heart}
         </LikeButton>

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import PageHero from '../../components/PageHero';
 import useApi from '../../hooks/useApi';
 import Loader from '../../components/Loader/Loader';
@@ -17,7 +17,8 @@ interface Props {}
 export const HotelDetails: React.FunctionComponent<Props> = () => {
   const localContext = React.useContext(Context);
   let { id } = useParams();
-  const { data, loading } = useApi<HotelDetailsRoot>({
+  const history = useHistory();
+  const { data, loading, error } = useApi<HotelDetailsRoot>({
     endpoint: `${process.env.REACT_APP_API_URL}establishments/${id}`,
     fetchOnMount: true,
     initialData: {
@@ -38,6 +39,12 @@ export const HotelDetails: React.FunctionComponent<Props> = () => {
       },
     },
   });
+
+  React.useEffect(() => {
+    if (error) {
+      history.push('/');
+    }
+  }, [history, error]);
 
   return (
     <>

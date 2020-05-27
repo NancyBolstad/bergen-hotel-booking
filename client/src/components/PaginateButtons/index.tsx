@@ -1,5 +1,5 @@
 import React from 'react';
-import { ButtonExternal } from '../Button/Button';
+import { ButtonLink } from '../Button/Button';
 import { ButtonsWrapper, JumpPageButton } from './styles';
 
 interface Props {
@@ -29,7 +29,7 @@ export const PaginateButtons: React.FunctionComponent<Props> = ({
   return (
     <ButtonsWrapper>
       {displayPrev && (
-        <ButtonExternal
+        <ButtonLink
           size="small"
           variant="primary"
           href="#"
@@ -41,7 +41,7 @@ export const PaginateButtons: React.FunctionComponent<Props> = ({
           }}
         >
           Prev
-        </ButtonExternal>
+        </ButtonLink>
       )}
       {pageNumbers.map((number, index) => (
         <JumpPageButton
@@ -61,7 +61,7 @@ export const PaginateButtons: React.FunctionComponent<Props> = ({
         </JumpPageButton>
       ))}
       {displayNext && (
-        <ButtonExternal
+        <ButtonLink
           size="small"
           variant="secondary"
           aria-label="Go to next page"
@@ -73,7 +73,7 @@ export const PaginateButtons: React.FunctionComponent<Props> = ({
           }}
         >
           Next
-        </ButtonExternal>
+        </ButtonLink>
       )}
     </ButtonsWrapper>
   );

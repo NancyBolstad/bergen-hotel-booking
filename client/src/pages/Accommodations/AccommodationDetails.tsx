@@ -9,7 +9,7 @@ import Typography from '../../components/Typography';
 import { Flex, FlexKid } from '../../components/Flex';
 import { HotelCardsList } from '../../components/HotelCards';
 import { Context } from '../../context/GlobalContext';
-import { ButtonInternal } from '../../components/Button/Button';
+import { ButtonLink } from '../../components/Button/Button';
 import Slider from '../../components/Slider';
 
 interface Props {}
@@ -82,9 +82,15 @@ export const HotelDetails: React.FunctionComponent<Props> = () => {
                     >
                       <Slider slides={data.data.featuredImages} defaultIndex={2} />
                     </VerticalSpacer>
-                    <ButtonInternal variant="primary" size="large" to={`/book/${id}`}>
+                    <ButtonLink
+                      variant="primary"
+                      size="large"
+                      href={`/book/${id}`}
+                      aria-label="Go to book page"
+                      title="Go to book page"
+                    >
                       Book
-                    </ButtonInternal>
+                    </ButtonLink>
                   </FlexKid>
                   <FlexKid>
                     {!!data.data.rating && (

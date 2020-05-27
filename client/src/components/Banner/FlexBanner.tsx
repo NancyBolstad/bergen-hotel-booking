@@ -3,7 +3,7 @@ import { Image as ImageType } from '../../types/types';
 import { WidthConstraints, HorizontalSpacer, VerticalSpacer } from '../Layout';
 import Typography from '../Typography';
 import useIsMobile from '../../hooks/useIsMobile';
-import { ButtonVariant, ButtonInternal } from '../Button/Button';
+import { ButtonVariant, ButtonLink } from '../Button/Button';
 import { FlexParent, FlexKid } from './styles';
 
 interface Props {
@@ -48,15 +48,15 @@ const FlexBanner: React.FunctionComponent<Props> = ({
                 {!!subTitle && <Typography variant="h3" element="h3" content={subTitle} />}
                 {!!descriptions && <Typography variant="b1" element="p" content={descriptions} />}
                 {!!buttonText && !!redirectLink && (
-                  <ButtonInternal
+                  <ButtonLink
                     variant={buttonVariant ? buttonVariant : 'primary'}
                     size="medium"
-                    to={redirectLink}
+                    href={redirectLink}
                     aria-label={buttonText}
                     title={buttonText}
                   >
                     {buttonText}
-                  </ButtonInternal>
+                  </ButtonLink>
                 )}
               </HorizontalSpacer>
             </FlexKid>

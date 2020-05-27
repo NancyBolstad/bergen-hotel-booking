@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Image as ImageType } from '../../types/types';
 import { WidthConstraints, HorizontalSpacer } from '../Layout';
 import { PlainBannerTitle, PlainBannerContent } from './styles';
-import { ButtonVariant, ButtonInternal } from '../Button/Button';
+import { ButtonVariant, ButtonLink } from '../Button/Button';
 
 interface Props {
   title?: string;
@@ -68,15 +68,15 @@ const PlainBanner: React.FunctionComponent<Props> = ({
             />
           )}
           {!!buttonText && !!redirectLink && (
-            <ButtonInternal
+            <ButtonLink
               variant={buttonVariant ? buttonVariant : 'primary'}
               size="medium"
-              to={redirectLink}
+              href={redirectLink}
               aria-label={buttonText}
               title={buttonText}
             >
               {buttonText}
-            </ButtonInternal>
+            </ButtonLink>
           )}
         </HorizontalSpacer>
       </WidthConstraints>

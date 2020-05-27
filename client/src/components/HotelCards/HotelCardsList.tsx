@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Section, Wrapper, SectionTitle, More } from './styles';
-import { ButtonInternal } from '../Button/Button';
+import { ButtonLink } from '../Button/Button';
 import { IColors } from '../../types/theme';
 import { WidthConstraints, VerticalSpacer, HorizontalSpacer, CardsList } from '../Layout';
 import HotelCard from './HotelCard';
@@ -48,9 +48,9 @@ export const HotelCardsList: React.FunctionComponent<Props> = ({
               </CardsList>
               {!!ctaText && !!ctaUrl && (
                 <More>
-                  <ButtonInternal to={ctaUrl} size="medium" variant="secondary">
+                  <ButtonLink href={ctaUrl} size="medium" variant="secondary">
                     {ctaText}
-                  </ButtonInternal>
+                  </ButtonLink>
                 </More>
               )}
             </Wrapper>

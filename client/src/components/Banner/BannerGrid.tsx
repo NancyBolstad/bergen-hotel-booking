@@ -1,6 +1,5 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 import { Image } from '../../types/types';
 import { Grid, GridItem, WidthConstraints, VerticalSpacer, HorizontalSpacer } from '../Layout';
 import Typography from '../Typography';
@@ -16,7 +15,7 @@ interface BannerGridProps {
   banners: Banner[];
 }
 
-const InnerTextWrapper = styled(Link)<{ large?: string }>`
+const InnerTextWrapper = styled.a<{ large?: string }>`
   background-color: ${props => props.theme.colors.secondary};
   width: 15.6875rem;
   height: 8.3125rem;
@@ -71,7 +70,7 @@ const BannerGrid: React.FunctionComponent<BannerGridProps> = ({ sectionTitle, ba
               >
                 {!!banner.text && (
                   <InnerTextWrapper
-                    to={banner.redirectLink ? banner.redirectLink : ''}
+                    href={banner.redirectLink ? banner.redirectLink : ''}
                     large={index === 0 ? 'true' : 'false'}
                     aria-label={`View more about ${banner.text}`}
                     title={`View more about ${banner.text}`}

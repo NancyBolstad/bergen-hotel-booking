@@ -9,9 +9,9 @@ export interface ButtonProps {
   variant: ButtonVariant;
 }
 
-const ButtonExternal = Button.withComponent('a');
+const ButtonLink = Button.withComponent('a');
 const ButtonInternal = Button.withComponent(Link);
 const ButtonInput = Button.withComponent('input');
 
 export default Button;
-export { ButtonExternal, ButtonInternal, ButtonInput };
+export { ButtonLink, ButtonInternal, ButtonInput };

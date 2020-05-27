@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Section, Wrapper, SectionTitle, More } from './styles';
 import BlogCard from './BlogCard';
 import { Blog } from '../../types/response';
-import { ButtonInternal } from '../Button/Button';
+import { ButtonLink } from '../Button/Button';
 import { IColors } from '../../types/theme';
 import { WidthConstraints, VerticalSpacer, HorizontalSpacer, CardsList } from '../Layout';
 
@@ -43,15 +43,15 @@ export const BlogList: React.FunctionComponent<Props> = ({
               </CardsList>
               {!!ctaText && !!ctaUrl && (
                 <More>
-                  <ButtonInternal
-                    to={ctaUrl}
+                  <ButtonLink
+                    href={ctaUrl}
                     size="medium"
                     variant="secondary"
                     aria-label={ctaText}
                     title={ctaText}
                   >
                     {ctaText}
-                  </ButtonInternal>
+                  </ButtonLink>
                 </More>
               )}
             </Wrapper>

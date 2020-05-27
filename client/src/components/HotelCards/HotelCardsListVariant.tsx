@@ -1,14 +1,11 @@
 import * as React from 'react';
-import { useParams } from 'react-router-dom';
 import { Section, Wrapper, SectionTitle, More } from './styles';
-import { ButtonInternal } from '../Button/Button';
+import { ButtonLink } from '../Button/Button';
 import { IColors } from '../../types/theme';
 import { WidthConstraints, VerticalSpacer, HorizontalSpacer } from '../Layout';
 import { HotelDetails } from '../../types/response';
 import HotelCardVariant from './HotelCardVariant';
 import { Flex } from '../Flex';
-import PaginateButtons from '../PaginateButtons';
-import usePagination from '../../hooks/usePagination';
 
 export interface Props {
   sectionTitle?: string;
@@ -40,9 +37,9 @@ export const HotelCardsList: React.FunctionComponent<Props> = ({
               </Flex>
               {!!ctaText && !!ctaUrl && (
                 <More>
-                  <ButtonInternal to={ctaUrl} size="medium" variant="secondary">
+                  <ButtonLink href={ctaUrl} size="medium" variant="secondary">
                     {ctaText}
-                  </ButtonInternal>
+                  </ButtonLink>
                 </More>
               )}
             </Wrapper>

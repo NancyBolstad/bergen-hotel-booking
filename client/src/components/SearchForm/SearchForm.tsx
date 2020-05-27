@@ -14,7 +14,7 @@ import useFilter, { FilterInterface } from '../../hooks/useFilter';
 import Typography from '../Typography';
 import { HotelCardVariant } from '../HotelCards/index';
 import useOutsideClick from '../../hooks/useOutsideClick';
-import { ButtonInternal } from '../Button/Button';
+import { ButtonLink } from '../Button/Button';
 import { search } from '../../util/icons';
 
 interface Props {
@@ -84,14 +84,14 @@ export const SearchForm: React.FunctionComponent<Props> = ({ dataSet, placeHolde
             </>
           ))}
           {hotels && hotels.length > 5 && (
-            <ButtonInternal
-              to={`/search?name=${filter.name}&category=${filter.category}&service=${filter.service}`}
+            <ButtonLink
+              href={`/search?name=${filter.name}&category=${filter.category}&service=${filter.service}`}
               variant="secondary"
               size="medium"
               aria-label="View more search results"
             >
               More Results
-            </ButtonInternal>
+            </ButtonLink>
           )}
         </SearchResultsWrapper>
       )}

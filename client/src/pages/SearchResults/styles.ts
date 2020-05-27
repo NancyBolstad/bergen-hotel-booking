@@ -124,7 +124,7 @@ export const Arrow = styled.div`
   svg {
     width: 10px;
     height: 10px;
-    fill: ${props => props.theme.colors.primary};
+    fill: ${props => props.theme.colors.onBackground};
   }
 
   ${createMediaQuery(

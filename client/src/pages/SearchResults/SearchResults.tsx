@@ -32,7 +32,6 @@ const SearchResults: React.FunctionComponent = () => {
   const history = useHistory();
   const location = useLocation();
   const values = queryString.parse(window.location.search);
-  const [entryPath, setEntryPath] = React.useState(location.pathname);
   const [searchFilter, setSearchFilter] = React.useState({
     category: typeof values.category === 'string' ? values.category : '',
     service: typeof values.service === 'string' ? values.service : '',
@@ -41,41 +40,8 @@ const SearchResults: React.FunctionComponent = () => {
   const categories = MockCategories;
   const services = MockServices;
   const { hotels, letters, filter, handleFilter, currentQueryString } = useFilter({
-    currentFilter: searchFilter,
     autoUpdateUrl: true,
   });
-
-  console.log(location);
-
-  React.useEffect(() => {
-    if (entryPath !== location.pathname) {
-      window.location.reload();
-      setEntryPath(location.pathname);
-    }
-  }, [entryPath, location.pathname]);
-
-  React.useEffect(() => {
-    if (location.pathname === 'accommodations' && location.search.length < 0) {
-      history.push(`/accommodations?name=&category=&service=`);
-    }
-  }, [location]);
-
-  React.useEffect(
-    () => {
-      if (currentQueryString.name) {
-        handleFilter('name', currentQueryString.name);
-      }
-
-      if (currentQueryString.category) {
-        handleFilter('category', currentQueryString.category);
-      }
-      if (currentQueryString.service) {
-        handleFilter('service', currentQueryString.service);
-      }
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [currentQueryString],
-  );
 
   return (
     <>

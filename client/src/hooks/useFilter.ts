@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useQueryParams, StringParam } from 'use-query-params';
+import queryString from 'query-string';
 import { HotelDetails } from '../types/response';
 import { Context } from '../context/GlobalContext';
 
@@ -10,23 +11,25 @@ export interface FilterInterface {
 }
 
 export interface FilterProps {
-  currentFilter?: FilterInterface;
   autoUpdateUrl?: boolean;
 }
 
 const defaultFilter: FilterInterface = { category: '', service: '', name: '' };
 
-function useFilter({ currentFilter, autoUpdateUrl }: FilterProps) {
+function useFilter({ autoUpdateUrl }: FilterProps) {
   const localContext = React.useContext(Context);
+  const values = queryString.parse(window.location.search);
   const [hotels, setHotels] = React.useState<HotelDetails[]>([]);
   const [currentQueryString, setCurrentQueryString] = useQueryParams({
     name: StringParam,
     category: StringParam,
     service: StringParam,
   });
-  const [filter, setFilter] = React.useState<FilterInterface>(
-    currentFilter ? currentFilter : defaultFilter,
-  );
+  const [filter, setFilter] = React.useState<FilterInterface>({
+    category: typeof values.category === 'string' ? values.category : '',
+    service: typeof values.service === 'string' ? values.service : '',
+    name: typeof values.name === 'string' ? values.name : '',
+  });
   const results: HotelDetails[] = localContext.default;
   const [letters, setLetters] = React.useState([] as string[]);
 
@@ -35,10 +38,10 @@ function useFilter({ currentFilter, autoUpdateUrl }: FilterProps) {
     results: results,
   });
 
-  React.useEffect(() => {
-    console.log(55555555);
-    setHotels(results);
-  }, [results]);
+  console.log({
+    filter: filter,
+    currentQueryString: currentQueryString,
+  });
 
   function extractLetters(hotels: HotelDetails[]) {
     const letters: string[] = [];
@@ -100,6 +103,24 @@ function useFilter({ currentFilter, autoUpdateUrl }: FilterProps) {
   React.useEffect(() => {
     extractLetters(hotels);
   }, [hotels]);
+
+  React.useEffect(() => {
+    setHotels(results);
+  }, [results]);
+
+  React.useEffect(() => {
+    console.log(10101010101010);
+    if (results && filter.name) {
+      handleFilter('name', filter.name);
+    }
+
+    if (results && filter.category) {
+      handleFilter('category', filter.category);
+    }
+    if (results && filter.service) {
+      handleFilter('service', filter.service);
+    }
+  }, [filter, results]);
 
   return {
     hotels,

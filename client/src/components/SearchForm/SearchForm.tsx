@@ -49,6 +49,7 @@ export const SearchForm: React.FunctionComponent<Props> = ({ dataSet, placeHolde
         onSubmit={e => {
           e.preventDefault();
           updateUrl(filter);
+          handleFilter('name', filter.name);
         }}
       >
         <SearchInputField

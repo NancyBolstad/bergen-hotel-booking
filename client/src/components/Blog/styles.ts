@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import createFontStyles from '../../util/createFontStyles';
 import Typography from '../Typography';
 

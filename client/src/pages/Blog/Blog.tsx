@@ -9,7 +9,7 @@ import usePagination from '../../hooks/usePagination';
 import PaginateButtons from '../../components/PaginateButtons';
 
 const Blog: React.FunctionComponent = () => {
-  const { data, loading } = useApi<BlogListTypes>({
+  const { results, loading } = useApi<BlogListTypes>({
     endpoint: `${process.env.REACT_APP_API_URL}blog`,
     fetchOnMount: true,
     initialData: {
@@ -18,9 +18,9 @@ const Blog: React.FunctionComponent = () => {
     },
   });
   const { number = '1' } = useParams();
-  const maxPage = Math.ceil(data.data.length / 6);
+  const maxPage = Math.ceil(results.data.length / 6);
   const currentPage = parseInt(number) <= maxPage && parseInt(number) > 0 ? parseInt(number) : 1;
-  const { next, prev, jump, currentData } = usePagination(data.data, 6, currentPage, maxPage);
+  const { next, prev, jump, currentData } = usePagination(results.data, 6, currentPage, maxPage);
   return (
     <>
       <PlainBanner

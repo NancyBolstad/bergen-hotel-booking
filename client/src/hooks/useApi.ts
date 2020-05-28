@@ -8,14 +8,14 @@ interface Opts<T> {
 }
 
 interface UseApiInterface<T> {
-  data: T;
+  results: T;
   loading: boolean;
   hasFetched: boolean;
   error: string;
 }
 
 function useApi<T>(opts: Opts<T>): UseApiInterface<T> {
-  const [data, setData] = useState(opts.initialData);
+  const [results, setResults] = useState(opts.initialData);
   const [hasFetched, setHasFetched] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -36,7 +36,7 @@ function useApi<T>(opts: Opts<T>): UseApiInterface<T> {
       const data = await response.json();
 
       setLoading(false);
-      setData(data as T);
+      setResults(data as T);
     } catch (error) {
       setLoading(false);
       setError(error);
@@ -50,7 +50,7 @@ function useApi<T>(opts: Opts<T>): UseApiInterface<T> {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return {
-    data,
+    results,
     loading,
     hasFetched,
     error,

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { VerticalSpacer, HorizontalSpacer, WidthConstraints, CardsList, Section } from '../Layout';
+import { VerticalSpacer, HorizontalSpacer, WidthConstraints, Section } from '../Layout';
 import Typography from '../Typography';
 import { ContentWrapper, Item, ServiceListWrapper } from './styles';
 import { service, topRated, bestPrice } from '../../util/icons';

@@ -33,7 +33,7 @@ export const RichText = styled.div`
 export const BlogDetails: React.FunctionComponent<Props> = () => {
   const localContext = React.useContext(Context);
   let { id } = useParams();
-  const { data, loading } = useApi<BlogDetailsRoot>({
+  const { results, loading } = useApi<BlogDetailsRoot>({
     endpoint: `${process.env.REACT_APP_API_URL}blog/${id}`,
     fetchOnMount: true,
     initialData: {
@@ -49,8 +49,8 @@ export const BlogDetails: React.FunctionComponent<Props> = () => {
   return (
     <>
       {loading && <Loader />}
-      {!!data && !loading && (
-        <PageHero figure={data.data.images[0]}>
+      {!!results && !loading && (
+        <PageHero figure={results.data.images[0]}>
           <VerticalSpacer topSpace="xs" topSpaceDesktop="m" bottomSpace="xs" bottomSpaceDesktop="m">
             <HorizontalSpacer>
               <WidthConstraints size="medium">
@@ -58,26 +58,26 @@ export const BlogDetails: React.FunctionComponent<Props> = () => {
                   <Typography
                     variant="h1"
                     element="h1"
-                    content={data.data.title}
+                    content={results.data.title}
                     textTransform="capitalize"
                   />
-                  {data.data.author && (
+                  {results.data.author && (
                     <Typography
                       variant="b3"
                       element="span"
-                      content={`Author: ${data.data.author}`}
+                      content={`Author: ${results.data.author}`}
                       bottom={20}
                     />
                   )}
-                  {data.data.createdAt && (
+                  {results.data.createdAt && (
                     <Typography
                       variant="b3"
                       element="span"
-                      content={`Published at: ${data.data.createdAt}`}
+                      content={`Published at: ${results.data.createdAt}`}
                     />
                   )}
-                  {data.data.content && (
-                    <RichText dangerouslySetInnerHTML={{ __html: data.data.content }} />
+                  {results.data.content && (
+                    <RichText dangerouslySetInnerHTML={{ __html: results.data.content }} />
                   )}
                 </Flex>
               </WidthConstraints>
@@ -92,8 +92,7 @@ export const BlogDetails: React.FunctionComponent<Props> = () => {
           sectionTitle="Related accommodations"
           ctaText="Explore more"
           ctaUrl="/accommodations"
-          list={localContext.default.slice(0, 3)}
-          backgroundColor="secondaryVariant"
+          list={localContext.default.slice(0, 4)}
         />
       )}
     </>

@@ -5,7 +5,7 @@ import { HotelDetails, Root } from '../types/response';
 import { FAVORITES_KEY } from '../util/constants';
 import isBrowser from '../util/isBrowser';
 import storage from '../util/storage';
-//import { MockHotels } from '../data/data';
+import { MockHotels } from '../data/data';
 
 interface Props {}
 
@@ -24,7 +24,7 @@ export const Context = React.createContext<GlobalDataProps>({
 });
 
 export const GlobalContext: React.FunctionComponent<Props> = ({ children }) => {
-  const { data, loading } = useApi<Root>({
+  const { results, loading } = useApi<Root>({
     endpoint: `${process.env.REACT_APP_API_URL}establishments`,
     fetchOnMount: true,
     initialData: {
@@ -50,7 +50,7 @@ export const GlobalContext: React.FunctionComponent<Props> = ({ children }) => {
   return (
     <Context.Provider
       value={{
-        default: data.data,
+        default: results.data,
         favorites: state,
         dispatch: dispatch,
         loading: loading,

@@ -18,7 +18,7 @@ export const HotelDetails: React.FunctionComponent<Props> = () => {
   const localContext = React.useContext(Context);
   let { id } = useParams();
   const history = useHistory();
-  const { data, loading, error } = useApi<HotelDetailsRoot>({
+  const { results, loading, error } = useApi<HotelDetailsRoot>({
     endpoint: `${process.env.REACT_APP_API_URL}establishments/${id}`,
     fetchOnMount: true,
     initialData: {
@@ -49,8 +49,8 @@ export const HotelDetails: React.FunctionComponent<Props> = () => {
   return (
     <>
       {loading && <Loader />}
-      {!!data && !loading && (
-        <PageHero figure={data.data.featuredImages[0]}>
+      {!!results && !loading && (
+        <PageHero figure={results.data.featuredImages[0]}>
           <VerticalSpacer topSpace="xs" topSpaceDesktop="m" bottomSpace="xs" bottomSpaceDesktop="m">
             <HorizontalSpacer>
               <WidthConstraints custom="980px">
@@ -59,28 +59,28 @@ export const HotelDetails: React.FunctionComponent<Props> = () => {
                     <Typography
                       variant="b2"
                       element="h1"
-                      content={data.data.category}
+                      content={results.data.category}
                       textTransform="capitalize"
                     />
                     <Typography
                       variant="h1"
                       element="h1"
-                      content={data.data.name}
+                      content={results.data.name}
                       textTransform="capitalize"
                     />
                     <Typography
                       variant="h2"
                       element="h2"
-                      content={`Price from ${data.data.price}`}
+                      content={`Price from ${results.data.price}`}
                     />
-                    <Typography variant="b3" element="p" content={data.data.descriptions} />
+                    <Typography variant="b3" element="p" content={results.data.descriptions} />
                     <VerticalSpacer
                       topSpace="xs"
                       topSpaceDesktop="m"
                       bottomSpace="xs"
                       bottomSpaceDesktop="m"
                     >
-                      <Slider slides={data.data.featuredImages} defaultIndex={2} />
+                      <Slider slides={results.data.featuredImages} defaultIndex={2} />
                     </VerticalSpacer>
                     <ButtonLink
                       variant="primary"
@@ -93,22 +93,22 @@ export const HotelDetails: React.FunctionComponent<Props> = () => {
                     </ButtonLink>
                   </FlexKid>
                   <FlexKid>
-                    {!!data.data.rating && (
+                    {!!results.data.rating && (
                       <Typography
                         variant="h3"
                         element="h3"
-                        content={`Rating: ${data.data.rating.toString()}`}
+                        content={`Rating: ${results.data.rating.toString()}`}
                       />
                     )}
                     <Typography variant="h3" element="h3" content="Features" />
                     <ul>
-                      {(data.data.features || []).map((feature, key) => (
+                      {(results.data.features || []).map((feature, key) => (
                         <li key={key}>{feature}</li>
                       ))}
                     </ul>
                     <Typography variant="h3" element="h3" content="Services" />
                     <ul>
-                      {(data.data.services || []).map((service, key) => (
+                      {(results.data.services || []).map((service, key) => (
                         <li key={key}>{service}</li>
                       ))}
                     </ul>

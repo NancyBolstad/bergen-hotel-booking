@@ -20,7 +20,7 @@ const stableColors: Partial<IColors> = {
 
 const defaultColors: IColors = {
   primary: '#C2003D',
-  primaryVariant: '#C2003D',
+  primaryVariant: '#ffffff',
   onPrimary: '#ffffff',
   secondary: '#FFEBE4',
   secondaryVariant: '#FFEBE4',

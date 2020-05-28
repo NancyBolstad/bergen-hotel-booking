@@ -11,6 +11,10 @@ export const HeaderWrapper = styled.header`
   z-index: 999;
   box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
   border-bottom: 1px solid ${props => props.theme.colors.white};
+
+  span {
+    color: inherit;
+  }
 `;
 
 export const HeaderNav = styled.nav`
@@ -203,10 +207,6 @@ export const MobileIcons = styled.div`
   position: absolute;
   bottom: 76px;
   background-color: ${props => props.theme.colors.surface};
-
-  a {
-    margin: ${props => props.theme.spacing.s}rem auto;
-  }
 `;
 
 export const ThemeToggleButton = styled.button`
@@ -219,8 +219,10 @@ export const ThemeToggleButton = styled.button`
   outline: none;
 
   svg {
-    stroke: ${props => props.theme.colors.onBackground};
-    fill: white;
+    path {
+      stroke: ${props => props.theme.colors.onBackground};
+    }
+    fill: ${props => props.theme.colors.white};
     width: 24px;
     height: 24px;
   }
@@ -229,8 +231,10 @@ export const ThemeToggleButton = styled.button`
     cursor: pointer;
     color: ${props => props.theme.colors.primary};
     svg {
-      stroke: ${props => props.theme.colors.primary};
-      fill: white;
+      path {
+        stroke: ${props => props.theme.colors.primary};
+      }
+      fill: ${props => props.theme.colors.primaryVariant};
     }
   }
 

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Typography from '../../components/Typography/Typography';
-import MainContent from '../../components/MainContent';
+import MainContent from '../../components/MainContent/Main';
 import InfoList, { InfoListProps } from '../../components/InfoList/InfoList';
 
 interface Props {}

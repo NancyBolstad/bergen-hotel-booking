@@ -10,6 +10,7 @@ export const Button = styled.button<ButtonProps>`
   cursor: pointer;
   width: fit-content;
   text-decoration: none;
+  border-radius: 3px;
   border: 2px solid transparent;
   transition: border-color 0.15s ease-in-out, background-color 0.15s ease-in-out;
   &:disabled {

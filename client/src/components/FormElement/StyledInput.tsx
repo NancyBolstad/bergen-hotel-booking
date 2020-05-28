@@ -6,6 +6,7 @@ import setColorOpacity from '../../util/setColorOpacity';
 export const StyledInput = styled.input<Partial<React.InputHTMLAttributes<HTMLInputElement>>>`
   border: 1px solid ${props => props.theme.colors.onBackground};
   color: ${props => props.theme.colors.onBackground};
+  background-color: ${props => props.theme.colors.background};
   height: 2.5rem;
   width: 100%;
   padding: 0 ${props => props.theme.spacing.xs}rem;

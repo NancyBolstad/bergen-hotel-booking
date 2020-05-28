@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Image as ImageType } from '../../types/types';
-import { WidthConstraints, HorizontalSpacer, VerticalSpacer } from '../Layout';
+import { WidthConstraints, HorizontalSpacer, VerticalSpacer, Section } from '../Layout';
 import Typography from '../Typography';
 import useIsMobile from '../../hooks/useIsMobile';
 import { ButtonVariant, ButtonLink } from '../Button/Button';
@@ -31,39 +31,41 @@ const FlexBanner: React.FunctionComponent<Props> = ({
 }) => {
   const isMobile = useIsMobile();
   return (
-    <VerticalSpacer>
-      <HorizontalSpacer>
-        <WidthConstraints size="large">
-          <FlexParent isMobile={isMobile} isImageRight={isImageRight}>
-            <FlexKid
-              backgroundColor={backgroundColor}
-              isMobile={isMobile}
-              imageUrl={figure?.url}
-              role="img"
-              aria-label={figure?.alt}
-            />
-            <FlexKid backgroundColor={backgroundColor} isMobile={isMobile}>
-              <HorizontalSpacer>
-                {!!title && <Typography variant="h2" element="h2" content={title} />}
-                {!!subTitle && <Typography variant="h3" element="h3" content={subTitle} />}
-                {!!descriptions && <Typography variant="b1" element="p" content={descriptions} />}
-                {!!buttonText && !!redirectLink && (
-                  <ButtonLink
-                    variant={buttonVariant ? buttonVariant : 'primary'}
-                    size="medium"
-                    href={redirectLink}
-                    aria-label={buttonText}
-                    title={buttonText}
-                  >
-                    {buttonText}
-                  </ButtonLink>
-                )}
-              </HorizontalSpacer>
-            </FlexKid>
-          </FlexParent>
-        </WidthConstraints>
-      </HorizontalSpacer>
-    </VerticalSpacer>
+    <Section>
+      <VerticalSpacer>
+        <HorizontalSpacer>
+          <WidthConstraints size="large">
+            <FlexParent isMobile={isMobile} isImageRight={isImageRight}>
+              <FlexKid
+                backgroundColor={backgroundColor}
+                isMobile={isMobile}
+                imageUrl={figure?.url}
+                role="img"
+                aria-label={figure?.alt}
+              />
+              <FlexKid backgroundColor={backgroundColor} isMobile={isMobile}>
+                <HorizontalSpacer>
+                  {!!title && <Typography variant="h2" element="h2" content={title} />}
+                  {!!subTitle && <Typography variant="h3" element="h3" content={subTitle} />}
+                  {!!descriptions && <Typography variant="b1" element="p" content={descriptions} />}
+                  {!!buttonText && !!redirectLink && (
+                    <ButtonLink
+                      variant={buttonVariant ? buttonVariant : 'primary'}
+                      size="medium"
+                      href={redirectLink}
+                      aria-label={buttonText}
+                      title={buttonText}
+                    >
+                      {buttonText}
+                    </ButtonLink>
+                  )}
+                </HorizontalSpacer>
+              </FlexKid>
+            </FlexParent>
+          </WidthConstraints>
+        </HorizontalSpacer>
+      </VerticalSpacer>
+    </Section>
   );
 };
 

@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { Section, Wrapper, SectionTitle, More } from './styles';
+import { Wrapper, SectionTitle, More } from './styles';
 import { ButtonLink } from '../Button/Button';
 import { IColors } from '../../types/theme';
-import { WidthConstraints, VerticalSpacer, HorizontalSpacer } from '../Layout';
+import { WidthConstraints, VerticalSpacer, HorizontalSpacer, Section } from '../Layout';
 import { HotelDetails } from '../../types/response';
 import HotelCardVariant from './HotelCardVariant';
 import { Flex } from '../Flex';

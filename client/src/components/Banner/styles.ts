@@ -79,3 +79,29 @@ export const SearchBannerContent = styled(BackgroundImage)<{ isDesktop?: boolean
       padding: ${props => props.theme.spacing.m}rem 0;
     `}
 `;
+
+export const InnerTextWrapper = styled.a<{ large?: string }>`
+  background-color: ${props => props.theme.colors.secondary};
+  width: 15.6875rem;
+  height: 8.3125rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  opacity: 0.8;
+
+  $:hover {
+    opacity: 0.3;
+  }
+
+  h2,
+  h3 {
+    color: ${props => props.theme.colors.dark};
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: ${props => (props.large === 'true' ? '30rem' : '18rem')};
+    height: ${props => (props.large === 'true' ? '20rem' : '12rem')};
+  }
+`;

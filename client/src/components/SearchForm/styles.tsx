@@ -60,7 +60,6 @@ export const SearchSubmitButton = styled.button<{ isMobile?: boolean }>`
   background-color: ${props => props.theme.colors.primary};
   color: ${props => props.theme.colors.onPrimary};
   border: 2px solid transparent;
-  transition: background-color 0.3s;
   cursor: pointer;
   flex-grow: 1;
   height: 3rem;

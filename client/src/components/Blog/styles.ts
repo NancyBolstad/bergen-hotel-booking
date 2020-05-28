@@ -1,18 +1,6 @@
 import styled, { css } from 'styled-components';
 import createFontStyles from '../../util/createFontStyles';
 import Typography from '../Typography';
-import { IColors } from '../../types/theme';
-
-const Section = styled.section<{ backgroundColor?: keyof IColors }>`
-  background-color: ${props => props.theme.colors.background};
-  overflow: auto;
-
-  ${props =>
-    props.backgroundColor &&
-    css`
-      background-color: ${props.theme.colors[props.backgroundColor]};
-    `}
-`;
 
 const Wrapper = styled.div`
   display: flex;
@@ -84,4 +72,4 @@ const More = styled.div`
   }
 `;
 
-export { Section, Wrapper, BlogCard, BlogImage, BlogTitle, BlogIntroText, SectionTitle, More };
+export { Wrapper, BlogCard, BlogImage, BlogTitle, BlogIntroText, SectionTitle, More };

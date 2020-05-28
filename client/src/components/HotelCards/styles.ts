@@ -5,17 +5,6 @@ import { IColors } from '../../types/theme';
 import Slider from '../Slider';
 import Button from '../Button/Button';
 
-const Section = styled.section<{ backgroundColor?: keyof IColors }>`
-  background-color: ${props => props.theme.colors.background};
-  overflow: auto;
-
-  ${props =>
-    props.backgroundColor &&
-    css`
-      background-color: ${props.theme.colors[props.backgroundColor]};
-    `}
-`;
-
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
@@ -160,7 +149,6 @@ const MiniImage = styled.img`
 `;
 
 export {
-  Section,
   Wrapper,
   Card,
   HotelName,

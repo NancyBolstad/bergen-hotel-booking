@@ -2,12 +2,13 @@ import React from 'react';
 import { VerticalSpacer, HorizontalSpacer, WidthConstraints } from '../../components/Layout';
 import Typography from '../../components/Typography';
 import { SearchInput } from '../../components/FormElement';
-import { HotelCardVariant } from '../../components/HotelCards';
+import { HotelCardVariant, HotelCard } from '../../components/HotelCards';
 import { Context } from '../../context/GlobalContext';
 import { MockCategories, MockServices } from '../../data/data';
 import { PlainBanner } from '../../components/Banner';
 import Loader from '../../components/Loader/Loader';
 import useFilter from '../../hooks/useFilter';
+import useIsMobile from '../../hooks/useIsMobile';
 import { solidArrow } from '../../util/icons';
 import {
   Sections,
@@ -27,7 +28,7 @@ import {
 
 const SearchResults: React.FunctionComponent = () => {
   const localContext = React.useContext(Context);
-
+  const isMobile = useIsMobile();
   const categories = MockCategories;
   const services = MockServices;
   const { hotels, letters, filter, handleFilter, currentQueryString } = useFilter({
@@ -36,12 +37,7 @@ const SearchResults: React.FunctionComponent = () => {
 
   return (
     <>
-      <PlainBanner
-        title="Search, find and book accommodations in Bergen"
-        text="
-        Enjoy the comfort accommodations in prime locations in Bergen. Run by hospitality professionals and equipped by Scandinavian interior designers, they are able to combine the quality standard of a hotel with the advantages of an apartment."
-        isTitleColorRed
-      />
+      <PlainBanner title="Search, find and book accommodations in Bergen" isTitleColorRed />
       <VerticalSpacer topSpace="xs" topSpaceDesktop="m" bottomSpace="xs" bottomSpaceDesktop="m">
         <HorizontalSpacer>
           <WidthConstraints size="large">
@@ -58,7 +54,6 @@ const SearchResults: React.FunctionComponent = () => {
                 />
               </InputFieldWrapper>
               <SelectWrapper>
-                <Typography element="span" variant="b2" content="Filter by: " />
                 <InputFieldWrapper>
                   <Label>
                     <Select
@@ -103,20 +98,24 @@ const SearchResults: React.FunctionComponent = () => {
                 </InputFieldWrapper>
               </SelectWrapper>
             </Filter>
+            {!!localContext.loading && (
+              <Results>
+                <Loader />
+              </Results>
+            )}
             {!localContext.loading && (
               <Typography
                 variant="b2"
                 element="h2"
-                content={`Find ${hotels.length} results for "${
-                  currentQueryString.name
-                }" filtered by "${
-                  currentQueryString.category ? currentQueryString.category : 'All categories'
+                content={`Find ${hotels.length} accommodations${
+                  currentQueryString.name ? ` for name "${currentQueryString.name}"` : ' '
+                } filtered by "${
+                  currentQueryString.category ? currentQueryString.category : 'all categories'
                 }" and "${
-                  currentQueryString.service ? currentQueryString.service : 'All services'
+                  currentQueryString.service ? currentQueryString.service : 'all services'
                 }"`}
               />
             )}
-            {!!localContext.loading && <Loader />}
             {!!hotels && hotels.length > 0 ? (
               <Results>
                 <Sections>
@@ -130,9 +129,13 @@ const SearchResults: React.FunctionComponent = () => {
                           hotel =>
                             hotel.name.charAt(0).toLocaleLowerCase() === letter.toLowerCase(),
                         )
-                        .map((hotel, index) => (
-                          <HotelCardVariant card={hotel} key={index} />
-                        ))}
+                        .map(hotel =>
+                          isMobile ? (
+                            <HotelCard card={hotel} key={hotel.id} />
+                          ) : (
+                            <HotelCardVariant card={hotel} key={hotel.id} />
+                          ),
+                        )}
                     </Section>
                   ))}
                 </Sections>

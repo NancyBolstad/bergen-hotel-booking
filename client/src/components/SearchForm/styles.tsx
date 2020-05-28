@@ -59,7 +59,8 @@ export const SearchSubmitButton = styled.button<{ isMobile?: boolean }>`
   justify-content: center;
   background-color: ${props => props.theme.colors.primary};
   color: ${props => props.theme.colors.onPrimary};
-  border: none;
+  border: 2px solid transparent;
+  transition: background-color 0.3s;
   cursor: pointer;
   flex-grow: 1;
   height: 3rem;
@@ -78,10 +79,13 @@ export const SearchSubmitButton = styled.button<{ isMobile?: boolean }>`
 
   ${props => createFontStyles(props.theme.fonts.b2)}
 
-  &:focus,
-  &:hover {
-    background-color: ${props => props.theme.colors.hoverColor};
+  &:hover,
+  &:active,
+  &:focus {
+    background-color: ${props => props.theme.colors.dark};
     color: ${props => props.theme.colors.white};
+    border: 2px solid ${props => props.theme.colors.onBackground};
+
     svg {
       fill: ${props => props.theme.colors.white};
     }

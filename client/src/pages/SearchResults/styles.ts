@@ -2,6 +2,8 @@ import styled, { css } from 'styled-components';
 import createFontStyles from '../../util/createFontStyles';
 import createMediaQuery from '../../util/createMediaQuery';
 
+export const Section = styled.section``;
+
 export const Sections = styled.div`
   flex: 1;
   margin-right: ${props => props.theme.spacing.xs}rem;
@@ -14,14 +16,13 @@ export const Sections = styled.div`
   )}
 `;
 
-export const Section = styled.section``;
-
 export const SectionTitle = styled.div`
   position: sticky;
   top: 0;
-  border-bottom: 2px solid ${props => props.theme.colors.onBackground};
+  border-bottom: 2px solid ${props => props.theme.colors.onSurface};
   background: ${props => props.theme.colors.background};
   z-index: 900;
+  margin-bottom: ${props => props.theme.spacing.m}rem;
 `;
 
 export const LettersWrapper = styled.div``;
@@ -62,7 +63,6 @@ export const Results = styled.div`
 `;
 
 export const Filter = styled.div`
-  border-bottom: 2px solid ${props => props.theme.colors.surface};
   background: ${props => props.theme.colors.background};
   display: flex;
   flex-direction: column;
@@ -100,7 +100,7 @@ export const Select = styled.select`
   color: ${props => props.theme.colors.onBackground};
   background-size: 20px 20px;
   ${props => createFontStyles(props.theme.fonts.b1)};
-  border: 1px solid ${props => props.theme.colors.onBackground};
+  border: 1px solid ${props => props.theme.colors.onSurface};
   padding: 0 16px;
   margin-top: ${props => props.theme.spacing.xs}rem;
   outline: none;
@@ -111,7 +111,7 @@ export const Select = styled.select`
 
   &:active,
   &:focus {
-    border-bottom: 2px solid ${props => props.theme.colors.primary};
+    border-bottom: 2px solid ${props => props.theme.colors.onBackground};
   }
 `;
 
@@ -138,7 +138,7 @@ export const Arrow = styled.div`
 export const SelectWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: ${props => props.theme.spacing.s}rem;
+  margin-top: ${props => props.theme.spacing.xs}rem;
 
   ${createMediaQuery(
     'medium',
@@ -146,10 +146,6 @@ export const SelectWrapper = styled.div`
       flex-direction: row;
       align-items: center;
       margin-top: 0;
-
-      span {
-        margin-right: ${props => props.theme.spacing.xs}rem;
-      }
     `,
   )}
 `;

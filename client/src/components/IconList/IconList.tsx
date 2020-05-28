@@ -12,29 +12,17 @@ export const IconList: React.FunctionComponent<FeaturesListProps> = ({ sectionTi
   return (
     <ContentWrapper direction="column">
       <WidthConstraints size="large">
-        <VerticalSpacer topSpace="xs" topSpaceDesktop="s" bottomSpace="xs" bottomSpaceDesktop="m">
+        <VerticalSpacer topSpace="xs" bottomSpace="xs">
           <HorizontalSpacer>
             {!!sectionTitle && <Typography element="h2" variant="h2" content={sectionTitle} />}
             <CardsList>
               <Item>
                 {bestPrice}
-                <Typography
-                  element="span"
-                  variant="b2"
-                  content="Best Price Guarantee"
-                  top={16}
-                  topDesktop={32}
-                />
+                <Typography element="span" variant="b2" content="Best Price Guarantee" top={16} />
               </Item>
               <Item>
                 {service}
-                <Typography
-                  element="span"
-                  variant="b2"
-                  content="24/7 Service"
-                  top={16}
-                  topDesktop={32}
-                />
+                <Typography element="span" variant="b2" content="24/7 Service" top={16} />
               </Item>
               <Item>
                 {topRated}
@@ -43,7 +31,6 @@ export const IconList: React.FunctionComponent<FeaturesListProps> = ({ sectionTi
                   variant="b2"
                   content="Most Popular Travel Platform"
                   top={16}
-                  topDesktop={32}
                 />
               </Item>
             </CardsList>

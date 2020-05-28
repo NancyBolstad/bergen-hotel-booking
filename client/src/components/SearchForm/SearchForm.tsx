@@ -77,7 +77,11 @@ export const SearchForm: React.FunctionComponent<Props> = ({ dataSet, placeHolde
       </Form>
       {showResults && (
         <SearchResultsWrapper isMobile={isMobile} ref={register}>
-          <Typography variant="b2" element="h3" content={`Search results for "${filter.name}"`} />
+          <Typography
+            variant="b2"
+            element="h3"
+            content={`Find ${hotels.length} search results for "${filter.name}"`}
+          />
           {hotels.slice(0, 4).map(hotel => (
             <>
               <HotelCardVariant card={hotel} miniCard />

@@ -19,6 +19,7 @@ const Login = lazy(() => import('./Login/Login'));
 const Success = lazy(() => import('./Success'));
 const AccommodationDetails = lazy(() => import('./Accommodations/AccommodationDetails'));
 const SearchResults = lazy(() => import('./SearchResults/SearchResults'));
+const About = lazy(() => import('./About/About'));
 
 interface Props {}
 
@@ -41,6 +42,11 @@ const Layout: React.FunctionComponent<Props> = () => {
                 <Route exact path="/search">
                   <Suspense fallback={<Loader />}>
                     <SearchResults />
+                  </Suspense>
+                </Route>
+                <Route exact path="/about">
+                  <Suspense fallback={<Loader />}>
+                    <About />
                   </Suspense>
                 </Route>
                 <Route exact path="/book/:id">

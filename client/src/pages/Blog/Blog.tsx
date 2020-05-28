@@ -1,7 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { VerticalSpacer, HorizontalSpacer, WidthConstraints } from '../../components/Layout';
-import MainContent from '../../components/MainContent';
 import { PlainBanner } from '../../components/Banner';
 import BlogList from '../../components/Blog';
 import useApi from '../../hooks/useApi';
@@ -32,30 +31,22 @@ const Blog: React.FunctionComponent<Props> = () => {
         text="Stay updated with the latest travel stories, tips and insights shared by our community."
         isTitleColorRed
       />
-      <MainContent>
-        <VerticalSpacer topSpace="xs" topSpaceDesktop="m" bottomSpace="xs" bottomSpaceDesktop="m">
-          <HorizontalSpacer>
-            <WidthConstraints size="large">
-              {loading ? (
-                <Loader />
-              ) : (
-                <>
-                  <BlogList list={currentData()} />
-                  <PaginateButtons
-                    totalPages={maxPage}
-                    preHandler={prev}
-                    nextHandler={next}
-                    jumpHandler={jump}
-                    displayNext={currentPage < maxPage}
-                    displayPrev={currentPage > 1}
-                    currentPage={currentPage}
-                  />
-                </>
-              )}
-            </WidthConstraints>
-          </HorizontalSpacer>
-        </VerticalSpacer>
-      </MainContent>
+      {loading ? (
+        <Loader />
+      ) : (
+        <>
+          <BlogList list={currentData()} />
+          <PaginateButtons
+            totalPages={maxPage}
+            preHandler={prev}
+            nextHandler={next}
+            jumpHandler={jump}
+            displayNext={currentPage < maxPage}
+            displayPrev={currentPage > 1}
+            currentPage={currentPage}
+          />
+        </>
+      )}
     </>
   );
 };

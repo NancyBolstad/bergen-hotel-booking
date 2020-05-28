@@ -11,7 +11,7 @@ import Blog from './Blog/Blog';
 import BlogDetails from './Blog/BlogDetails';
 import PrivateRoute from '../routes/PrivateRoute';
 import DashBoard from './Dashboard/Dashboard';
-import MainContent from '../components/MainContent';
+import Main from '../components/Layout/MainContent/Main';
 
 const Contact = lazy(() => import('./Contact'));
 const Book = lazy(() => import('./Book/Book'));
@@ -30,7 +30,7 @@ const Layout: React.FunctionComponent<Props> = () => {
         <BrowserRouter>
           <>
             <Header />
-            <MainContent>
+            <Main>
               <Switch>
                 <PrivateRoute path="/dashboard/" component={DashBoard} exact />
                 <PrivateRoute path="/dashboard/:slug" component={DashBoard} exact />
@@ -105,7 +105,7 @@ const Layout: React.FunctionComponent<Props> = () => {
                   </Suspense>
                 </Route>
               </Switch>
-            </MainContent>
+            </Main>
             <Footer />
           </>
         </BrowserRouter>

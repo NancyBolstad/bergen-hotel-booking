@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Typography from '../../components/Typography/Typography';
-import MainContent from '../../components/Layout/MainContent/Main';
 import InfoList, { InfoListProps } from '../../components/InfoList/InfoList';
 
 interface Props {}
@@ -25,10 +24,10 @@ export const Success: React.FunctionComponent<Props> = () => {
     ],
   };
   return (
-    <MainContent>
+    <>
       <Typography element="h1" variant="h1" content="Thank you for contacting us!" isPrimaryColor />
       <InfoList {...data} />
-    </MainContent>
+    </>
   );
 };
 

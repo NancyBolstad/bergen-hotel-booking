@@ -1,6 +1,5 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { VerticalSpacer, HorizontalSpacer, WidthConstraints } from '../../components/Layout';
 import { PlainBanner } from '../../components/Banner';
 import BlogList from '../../components/Blog';
 import useApi from '../../hooks/useApi';
@@ -9,9 +8,7 @@ import Loader from '../../components/Loader/Loader';
 import usePagination from '../../hooks/usePagination';
 import PaginateButtons from '../../components/PaginateButtons';
 
-interface Props {}
-
-const Blog: React.FunctionComponent<Props> = () => {
+const Blog: React.FunctionComponent = () => {
   const { data, loading } = useApi<BlogListTypes>({
     endpoint: `${process.env.REACT_APP_API_URL}blog`,
     fetchOnMount: true,

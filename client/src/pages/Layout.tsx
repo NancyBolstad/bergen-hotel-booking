@@ -11,7 +11,7 @@ import Blog from './Blog/Blog';
 import BlogDetails from './Blog/BlogDetails';
 import PrivateRoute from '../routes/PrivateRoute';
 import DashBoard from './Dashboard/Dashboard';
-import Main from '../components/Layout/MainContent/Main';
+import { Main } from '../components/Layout/Main';
 
 const Contact = lazy(() => import('./Contact'));
 const Book = lazy(() => import('./Book/Book'));

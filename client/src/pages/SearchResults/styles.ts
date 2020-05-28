@@ -2,7 +2,9 @@ import styled, { css } from 'styled-components';
 import createFontStyles from '../../util/createFontStyles';
 import createMediaQuery from '../../util/createMediaQuery';
 
-export const Section = styled.section``;
+export const Section = styled.section`
+  background: ${props => props.theme.colors.background};
+`;
 
 export const Sections = styled.div`
   flex: 1;
@@ -60,6 +62,7 @@ export const Letter = styled.a`
 
 export const Results = styled.div`
   display: flex;
+  background: ${props => props.theme.colors.background};
 `;
 
 export const Filter = styled.div`

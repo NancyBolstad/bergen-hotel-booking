@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { addDecorator, configure } from '@storybook/react';
 import { BrowserRouter } from 'react-router-dom';
-import ThemeWrapper from '../src/components/ThemeWrapper';
+import ThemeWrapper from '../src/components/ThemeWrapper/ThemeWrapper';
 import defaultTheme from '../src/util/defaultTheme';
 import ContrastProvider from '../src/context/ContrastContext';
 

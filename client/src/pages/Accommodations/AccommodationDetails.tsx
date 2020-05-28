@@ -126,8 +126,7 @@ export const HotelDetails: React.FunctionComponent<Props> = () => {
           sectionTitle="You may also interest"
           ctaText="Explore more"
           ctaUrl="/accommodations"
-          list={localContext.default.slice(0, 3)}
-          backgroundColor="secondaryVariant"
+          list={localContext.default.slice(0, 4)}
         />
       )}
     </>

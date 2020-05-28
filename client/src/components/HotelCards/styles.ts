@@ -3,18 +3,21 @@ import { Link } from 'react-router-dom';
 import Typography from '../Typography';
 import Slider from '../Slider';
 import Button from '../Button/Button';
+import { IColors } from '../../types/theme';
 
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
 
-  h2 {
-    padding-bottom: ${props => props.theme.spacing.xl}rem;
+  @media screen and (min-width: 1280px) {
+    h2 {
+      padding-bottom: 3rem;
+    }
   }
 `;
 
-const Card = styled.a`
+const Card = styled.a<{ extraSpace?: boolean; backgroundColor?: keyof IColors }>`
   background: ${props => props.theme.colors.background};
   display: flex;
   flex-direction: column;
@@ -29,6 +32,14 @@ const Card = styled.a`
   &:hover,
   &:focus {
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.15);
+    background-color: ${props => props.theme.colors.secondary};
+    border: 1px solid ${props => props.theme.colors.secondary};
+    h2,
+    h3,
+    span,
+    p {
+      color: ${props => props.theme.colors.dark};
+    }
   }
 
   @media screen and (min-width: 768px) {
@@ -36,23 +47,21 @@ const Card = styled.a`
   }
 
   @media screen and (min-width: 1280px) {
-    width: calc(33.333% - ${props => props.theme.spacing.s}rem);
-    margin-bottom: ${props => props.theme.spacing.xs}rem;
+    width: calc(25% - ${props => props.theme.spacing.s}rem);
+    margin-bottom: ${props => props.theme.spacing.s}rem;
   }
-`;
 
-const HotelName = styled(Typography)<{ element: 'h3' | 'h4' }>`
-  margin: ${props => props.theme.spacing.xs}rem 0 ${props => props.theme.spacing.s}rem;
-  text-align: left;
-  transition: all 0.15s ease-in-out;
-  text-decoration: underline;
-  text-decoration-color: transparent;
-  text-transform: capitalize;
+  ${props =>
+    props.extraSpace &&
+    css`
+      padding: ${props => props.theme.spacing.s}rem;
+    `}
 
-  ${Card}:hover &,
-  ${Card}:focus & {
-    text-decoration-color: ${props => props.theme.colors.onBackground};
-  }
+  ${props =>
+    props.backgroundColor &&
+    css`
+      background-color: ${props.theme.colors[props.backgroundColor]};
+    `}
 `;
 
 const FeaturedImages = styled(Slider)`
@@ -65,8 +74,12 @@ const SectionTitle = styled(Typography)<{ element: 'h2' }>`
 
 const More = styled.div`
   margin: ${props => props.theme.spacing.s}rem auto;
+  @media screen and (min-width: 768px) {
+    padding-top: ${props => props.theme.spacing.l}rem;
+  }
+
   @media screen and (min-width: 1280px) {
-    margin: ${props => props.theme.spacing.xl}rem auto;
+    margin: ${props => props.theme.spacing.m}rem auto;
   }
 `;
 
@@ -85,6 +98,19 @@ const CardVariant = styled(Link)`
   &:hover,
   &:focus {
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.15);
+    background-color: ${props => props.theme.colors.secondary};
+    border: 1px solid ${props => props.theme.colors.secondary};
+    h2,
+    h3,
+    span,
+    p {
+      color: ${props => props.theme.colors.dark};
+    }
+  }
+
+  @media screen and (min-width: 1280px) {
+    margin: ${props => props.theme.spacing.s}rem 0;
+    padding: 0;
   }
 `;
 
@@ -188,7 +214,6 @@ const ServiceLabel = styled(Typography)`
 export {
   Wrapper,
   Card,
-  HotelName,
   SectionTitle,
   More,
   FeaturedImages,

@@ -39,7 +39,7 @@ const BannerGrid: React.FunctionComponent<BannerGridProps> = ({ sectionTitle, ba
                 bottomSpace="xs"
                 bottomSpaceDesktop="xl"
               >
-                <Typography variant="h2" element="h2" content={sectionTitle} />
+                <Typography variant="h2" element="h2" content={sectionTitle} top={48} bottom={48} />
               </VerticalSpacer>
             )}
             <Grid>

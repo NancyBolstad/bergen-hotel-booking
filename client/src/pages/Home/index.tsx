@@ -31,7 +31,7 @@ export const Home: React.FunctionComponent<Props> = () => {
           sectionTitle="Most popular hotels"
           ctaText="Explore more"
           ctaUrl="/accommodations"
-          list={localContext.default.slice(0, 6)}
+          list={localContext.default.slice(0, 8)}
         />
       )}
       <FlexBanner {...FLEX_BANNER_A} backgroundColor="secondaryVariant" />

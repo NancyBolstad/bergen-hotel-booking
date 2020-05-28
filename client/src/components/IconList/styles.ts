@@ -47,5 +47,6 @@ export const Item = styled(FlexKid)`
 
   @media screen and (min-width: 768px) {
     width: 33.333%;
+    padding: ${props => props.theme.spacing.m}rem;
   }
 `;

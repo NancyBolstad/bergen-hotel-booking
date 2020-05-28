@@ -77,7 +77,7 @@ export const Book: React.FunctionComponent<Props> = () => {
             <WidthConstraints size="large">
               <Layout>
                 <FlexLeft flex={1}>
-                  <HotelCard card={data.data} />
+                  <HotelCard card={data.data} extraSpace backgroundColor="secondaryVariant" />
                 </FlexLeft>
                 <FlexKid flex={2}>
                   <BookForm establishmentId={id} establishmentName={data.data.name} />

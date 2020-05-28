@@ -14,13 +14,15 @@ import { Context } from '../../context/GlobalContext';
 import { Types } from '../../reducer/favoriteCardsReducer';
 import { HotelDetails } from '../../types/response';
 import { Flex } from '../Flex';
-import { Article } from '../Layout/';
+import { IColors } from '../../types/theme';
 
 export interface HotelCard {
   card: HotelDetails;
+  extraSpace?: boolean;
+  backgroundColor?: keyof IColors;
 }
 
-const HotelCard: React.FunctionComponent<HotelCard> = ({ card }) => {
+const HotelCard: React.FunctionComponent<HotelCard> = ({ card, extraSpace, backgroundColor }) => {
   const { favorites, dispatch } = React.useContext(Context);
   const [like, setLike] = React.useState<boolean>(() => {
     const found = favorites.find(item => {
@@ -52,6 +54,8 @@ const HotelCard: React.FunctionComponent<HotelCard> = ({ card }) => {
       href={`/accommodation/details/${card.id}`}
       aria-label={`View details about ${card.name}`}
       title={`View details about ${card.name}`}
+      extraSpace={extraSpace}
+      backgroundColor={backgroundColor}
     >
       {!!card.featuredImages && <FeaturedImages slides={card.featuredImages} />}
       <LikeButtonWrapper>

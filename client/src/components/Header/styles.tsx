@@ -10,7 +10,7 @@ export const HeaderWrapper = styled.header`
   top: 0;
   z-index: 999;
   box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
-  border-bottom: 1px solid ${props => props.theme.colors.white};
+  border-bottom: 1px solid ${props => props.theme.colors.surface};
 
   span {
     color: inherit;
@@ -271,14 +271,13 @@ export const HeaderTop = styled.div`
   )};
 `;
 
-export const SearchBarContainer = styled.div`
+export const SearchBarContainer = styled.div<{ open?: boolean }>`
   position: relative;
   display: flex;
   justify-content: center;
-  background: ${props => props.theme.colors.background};
-  height: 4.5rem;
+  background: ${props => props.theme.colors.surface};
   padding: 1.25rem;
-  border: 2px solid ${props => props.theme.colors.white};
+  height: 4.5rem;
 
   form {
     margin: 0;
@@ -298,7 +297,7 @@ export const CloseSearchButton = styled(Button)`
   svg {
     width: 24px;
     height: 24px;
-    fill: ${props => props.theme.colors.onBackground};
+    fill: ${props => props.theme.colors.dark};
   }
 
   &:hover,

@@ -36,9 +36,9 @@ export const HotelCardsList: React.FunctionComponent<Props> = ({
                   variant="h2"
                   content={sectionTitle}
                   top={24}
-                  topDesktop={36}
+                  topDesktop={48}
                   bottom={24}
-                  bottomDesktop={36}
+                  bottomDesktop={48}
                 />
               )}
               <CardsList>

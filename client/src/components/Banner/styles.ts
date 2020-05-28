@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 import { BackgroundImage } from '../Image';
 import Typography from '../Typography';
+import createMediaQuery from '../../util/createMediaQuery';
 
 type alignVariant = 'flex-start' | 'center' | 'flex-end';
 
@@ -22,7 +23,14 @@ export const FlexKid = styled(BackgroundImage)<{ isMobile: boolean }>`
   align-items: flex-start;
   width: ${props => (props.isMobile ? '100%' : '50%')};
   flex-grow: 1;
-  min-height: 23.75rem;
+  min-height: 15.75rem;
+
+  ${createMediaQuery(
+    'large',
+    css`
+      min-height: 23.75rem;
+    `,
+  )}
 `;
 
 export const PlainBannerContent = styled(BackgroundImage)<{

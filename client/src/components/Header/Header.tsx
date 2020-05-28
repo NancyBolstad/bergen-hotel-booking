@@ -123,7 +123,7 @@ const Header: React.FunctionComponent = () => {
       {isMobile && isMobileMenuOpen && (
         <MobileMenu navLinks={MAIN_NAV_LINKS} toggler={setIsMobileMenuOpen} />
       )}
-      {searching && <SearchBar toggler={setSearching} />}
+      {searching && <SearchBar toggler={setSearching} isActive={searching} />}
     </HeaderWrapper>
   );
 };

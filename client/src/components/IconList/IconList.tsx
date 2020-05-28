@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { VerticalSpacer, HorizontalSpacer, WidthConstraints, CardsList, Section } from '../Layout';
 import Typography from '../Typography';
-import { ContentWrapper, Item } from './styles';
+import { ContentWrapper, Item, ServiceListWrapper } from './styles';
 import { service, topRated, bestPrice } from '../../util/icons';
 
 export interface FeaturesListProps {
@@ -13,10 +13,10 @@ export const IconList: React.FunctionComponent<FeaturesListProps> = ({ sectionTi
     <Section>
       <ContentWrapper direction="column">
         <WidthConstraints size="large">
-          <VerticalSpacer topSpace="xs" bottomSpace="xs">
+          <VerticalSpacer topSpace="s" bottomSpace="s" topSpaceDesktop="s" bottomSpaceDesktop="s">
             <HorizontalSpacer>
               {!!sectionTitle && <Typography element="h2" variant="h2" content={sectionTitle} />}
-              <CardsList>
+              <ServiceListWrapper>
                 <Item>
                   {bestPrice}
                   <Typography element="span" variant="b2" content="Best Price Guarantee" top={16} />
@@ -34,7 +34,7 @@ export const IconList: React.FunctionComponent<FeaturesListProps> = ({ sectionTi
                     top={16}
                   />
                 </Item>
-              </CardsList>
+              </ServiceListWrapper>
             </HorizontalSpacer>
           </VerticalSpacer>
         </WidthConstraints>

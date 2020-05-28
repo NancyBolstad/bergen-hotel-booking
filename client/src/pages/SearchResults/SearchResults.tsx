@@ -8,7 +8,7 @@ import { MockCategories, MockServices } from '../../data/data';
 import { PlainBanner } from '../../components/Banner';
 import Loader from '../../components/Loader/Loader';
 import useFilter from '../../hooks/useFilter';
-import useIsMobile from '../../hooks/useIsMobile';
+import useIsTablet from '../../hooks/useIsTablet';
 import { solidArrow } from '../../util/icons';
 import {
   Sections,
@@ -28,7 +28,7 @@ import {
 
 const SearchResults: React.FunctionComponent = () => {
   const localContext = React.useContext(Context);
-  const isMobile = useIsMobile();
+  const isTablet = useIsTablet();
   const categories = MockCategories;
   const services = MockServices;
   const { hotels, letters, filter, handleFilter, currentQueryString } = useFilter({
@@ -130,7 +130,7 @@ const SearchResults: React.FunctionComponent = () => {
                             hotel.name.charAt(0).toLocaleLowerCase() === letter.toLowerCase(),
                         )
                         .map(hotel =>
-                          isMobile ? (
+                          isTablet ? (
                             <HotelCard card={hotel} key={hotel.id} />
                           ) : (
                             <HotelCardVariant card={hotel} key={hotel.id} />

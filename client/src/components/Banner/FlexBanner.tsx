@@ -45,20 +45,32 @@ const FlexBanner: React.FunctionComponent<Props> = ({
               />
               <FlexKid backgroundColor={backgroundColor} isMobile={isMobile}>
                 <HorizontalSpacer>
-                  {!!title && <Typography variant="h2" element="h2" content={title} />}
-                  {!!subTitle && <Typography variant="h3" element="h3" content={subTitle} />}
-                  {!!descriptions && <Typography variant="b1" element="p" content={descriptions} />}
-                  {!!buttonText && !!redirectLink && (
-                    <ButtonLink
-                      variant={buttonVariant ? buttonVariant : 'primary'}
-                      size="medium"
-                      href={redirectLink}
-                      aria-label={buttonText}
-                      title={buttonText}
-                    >
-                      {buttonText}
-                    </ButtonLink>
-                  )}
+                  <WidthConstraints size="small">
+                    {!!title && (
+                      <Typography variant="h2" element="h2" content={title} bottom={32} />
+                    )}
+                    {!!subTitle && <Typography variant="h3" element="h3" content={subTitle} />}
+                    {!!descriptions && (
+                      <Typography
+                        variant="b3"
+                        element="p"
+                        content={descriptions}
+                        bottom={16}
+                        top={12}
+                      />
+                    )}
+                    {!!buttonText && !!redirectLink && (
+                      <ButtonLink
+                        variant={buttonVariant ? buttonVariant : 'primary'}
+                        size="medium"
+                        href={redirectLink}
+                        aria-label={buttonText}
+                        title={buttonText}
+                      >
+                        {buttonText}
+                      </ButtonLink>
+                    )}
+                  </WidthConstraints>
                 </HorizontalSpacer>
               </FlexKid>
             </FlexParent>

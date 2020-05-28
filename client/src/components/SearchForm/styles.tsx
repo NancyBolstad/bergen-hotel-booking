@@ -43,7 +43,7 @@ export const SearchInputField = styled.input`
 
   &:focus {
     outline: none;
-    border: 2px solid ${props => props.theme.colors.primary};
+    border-color: ${props => props.theme.colors.primaryVariant};
     background: ${props => props.theme.colors.background};
     color: ${props => props.theme.colors.onBackground};
   }

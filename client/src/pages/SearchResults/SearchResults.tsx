@@ -116,7 +116,7 @@ const SearchResults: React.FunctionComponent = () => {
                 }"`}
               />
             )}
-            {!!hotels && hotels.length > 0 ? (
+            {!localContext.loading && !!hotels && hotels.length > 0 ? (
               <Results>
                 <Sections>
                   {letters.map(letter => (
@@ -163,7 +163,7 @@ const SearchResults: React.FunctionComponent = () => {
                   </Letters>
                 </LettersWrapper>
               </Results>
-            ) : (
+            ) : localContext.loading ? null : (
               <Typography variant="b2" element="span" content="Search tips????" />
             )}
           </WidthConstraints>

@@ -1,18 +1,24 @@
 import * as React from 'react';
-import styled from 'styled-components';
 import Typography from '../Typography';
 import transformLangText from '../../util/transformLangText';
-import { Card, FeaturedImages, LikeButton, LikeButtonWrapper } from './styles';
+import {
+  Card,
+  FeaturedImages,
+  LikeButton,
+  LikeButtonWrapper,
+  CategoryBadge,
+  ServiceLabel,
+} from './styles';
 import { heart, heartSolid } from '../../util/icons';
 import { Context } from '../../context/GlobalContext';
 import { Types } from '../../reducer/favoriteCardsReducer';
 import { HotelDetails } from '../../types/response';
+import { Flex } from '../Flex';
+import { Article } from '../Layout/';
 
 export interface HotelCard {
   card: HotelDetails;
 }
-
-export const Category = styled(Typography)<{ element: 'span' }>``;
 
 const HotelCard: React.FunctionComponent<HotelCard> = ({ card }) => {
   const { favorites, dispatch } = React.useContext(Context);
@@ -42,7 +48,11 @@ const HotelCard: React.FunctionComponent<HotelCard> = ({ card }) => {
     }
   }
   return (
-    <Card href={`/accommodation/details/${card.id}`} aria-label={`View details about ${card.name}`}>
+    <Card
+      href={`/accommodation/details/${card.id}`}
+      aria-label={`View details about ${card.name}`}
+      title={`View details about ${card.name}`}
+    >
       {!!card.featuredImages && <FeaturedImages slides={card.featuredImages} />}
       <LikeButtonWrapper>
         <LikeButton
@@ -59,12 +69,43 @@ const HotelCard: React.FunctionComponent<HotelCard> = ({ card }) => {
           {like ? heartSolid : heart}
         </LikeButton>
       </LikeButtonWrapper>
-      {!!card.category && <Typography element="span" variant="b2" content={card.category} />}
-      {!!card.name && <Typography element="span" variant="b2" content={card.name} />}
+      {!!card.category && <CategoryBadge element="span" variant="b1" content={card.category} />}
+      {!!card.services && (
+        <Flex wrap>
+          {(card.services || []).map((service, index) => (
+            <ServiceLabel
+              element="span"
+              variant="b1"
+              content={service}
+              key={`${card.id}-service-${index}`}
+              textTransform="capitalize"
+            />
+          ))}
+        </Flex>
+      )}
+      {!!card.name && (
+        <Typography
+          element="h3"
+          variant="b2"
+          content={card.name}
+          isPrimaryColor
+          textTransform="capitalize"
+        />
+      )}
+      {!!card.location && (
+        <Typography
+          element="span"
+          variant="b1"
+          content={`Location: ${card.location}`}
+          bottom={18}
+        />
+      )}
+      {!!card.price && (
+        <Typography element="span" variant="h2" content={`From ${card.price}`} bottom={16} />
+      )}
       {!!card.descriptions && (
         <Typography element="p" variant="b3" content={transformLangText(card.descriptions, 180)} />
       )}
-      {!!card.price && <Typography element="span" variant="h3" content={`From ${card.price}`} />}
     </Card>
   );
 };

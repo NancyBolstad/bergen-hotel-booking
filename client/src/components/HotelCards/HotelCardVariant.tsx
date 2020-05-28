@@ -9,12 +9,15 @@ import {
   LikeButton,
   LikeButtonWrapper,
   MiniImage,
+  CategoryBadge,
+  ServiceLabel,
 } from './styles';
 import { HotelDetails } from '../../types/response';
 import useIsMobile from '../../hooks/useIsMobile';
 import { heart, heartSolid } from '../../util/icons';
 import { Context } from '../../context/GlobalContext';
 import { Types } from '../../reducer/favoriteCardsReducer';
+import { Flex } from '../Flex';
 
 interface Props {
   card: HotelDetails;
@@ -55,6 +58,14 @@ const HotelCardVariant: React.FunctionComponent<Props> = ({ card, miniCard }) =>
       to={`/accommodation/details/${card.id}`}
       aria-label={`View details about ${card.name}`}
     >
+      {!!card.category && (
+        <CategoryBadge
+          element="span"
+          variant="b1"
+          content={card.category}
+          textTransform="capitalize"
+        />
+      )}
       {!!card.featuredImages && !miniCard && (
         <CardVariantLeft>
           <FeaturedImages slides={card.featuredImages} />
@@ -65,7 +76,7 @@ const HotelCardVariant: React.FunctionComponent<Props> = ({ card, miniCard }) =>
       )}
       <CardVariantRight>
         {!miniCard && (
-          <LikeButtonWrapper>
+          <LikeButtonWrapper positionAbsolute>
             <LikeButton
               variant="primary"
               size="small"
@@ -81,10 +92,37 @@ const HotelCardVariant: React.FunctionComponent<Props> = ({ card, miniCard }) =>
             </LikeButton>
           </LikeButtonWrapper>
         )}
-        {!!card.name && <Typography element="span" variant="b2" content={card.name} />}
-        {!!card.category && !miniCard && (
-          <Typography element="span" variant="b2" content={card.category} />
+        {!!card.services && (
+          <Flex>
+            {(card.services || []).map((service, index) => (
+              <ServiceLabel
+                element="span"
+                variant="b1"
+                content={service}
+                key={`${card.id}-service-${index}`}
+                textTransform="capitalize"
+              />
+            ))}
+          </Flex>
         )}
+        {!!card.name && (
+          <Typography
+            element="h3"
+            variant="b2"
+            content={card.name}
+            isPrimaryColor
+            textTransform="capitalize"
+          />
+        )}
+        {!!card.location && (
+          <Typography
+            element="span"
+            variant="b1"
+            content={`Location: ${card.location}`}
+            bottom={18}
+          />
+        )}
+        {!!card.price && <Typography element="span" variant="h2" content={`From ${card.price}`} />}
         {!!card.descriptions && !miniCard && (
           <Typography
             element="p"
@@ -92,7 +130,6 @@ const HotelCardVariant: React.FunctionComponent<Props> = ({ card, miniCard }) =>
             content={transformLangText(card.descriptions, isMobile ? 150 : 180)}
           />
         )}
-        {!!card.price && <Typography element="span" variant="h3" content={`From ${card.price}`} />}
       </CardVariantRight>
     </CardVariant>
   );

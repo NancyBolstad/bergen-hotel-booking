@@ -17,5 +17,5 @@ export const Section = styled.section<{ backgroundColor?: keyof IColors; overflo
     `}
 `;
 
-export const Article = Section.withComponent('article');
-export const Aside = Section.withComponent('aside');
+export const Article = styled.article``;
+export const Aside = styled.aside``;

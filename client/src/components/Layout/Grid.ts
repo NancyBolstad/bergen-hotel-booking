@@ -62,4 +62,6 @@ const GridItem = styled(BackgroundImage)<GridItemProps>`
     `};
 `;
 
-export { Grid, GridItem };
+const GridItemLink = GridItem.withComponent('a');
+
+export { Grid, GridItem, GridItemLink };

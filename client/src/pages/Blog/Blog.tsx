@@ -7,6 +7,7 @@ import { BlogList as BlogListTypes } from '../../types/response';
 import Loader from '../../components/Loader/Loader';
 import usePagination from '../../hooks/usePagination';
 import PaginateButtons from '../../components/PaginateButtons';
+import { BLOG_LIST_SIZE } from '../../util/constants';
 
 const Blog: React.FunctionComponent = () => {
   const { results, loading } = useApi<BlogListTypes>({
@@ -18,9 +19,14 @@ const Blog: React.FunctionComponent = () => {
     },
   });
   const { number = '1' } = useParams();
-  const maxPage = Math.ceil(results.data.length / 6);
+  const maxPage = Math.ceil(results.data.length / BLOG_LIST_SIZE);
   const currentPage = parseInt(number) <= maxPage && parseInt(number) > 0 ? parseInt(number) : 1;
-  const { next, prev, jump, currentData } = usePagination(results.data, 6, currentPage, maxPage);
+  const { next, prev, jump, currentData } = usePagination(
+    results.data,
+    BLOG_LIST_SIZE,
+    currentPage,
+    maxPage,
+  );
   return (
     <>
       <PlainBanner

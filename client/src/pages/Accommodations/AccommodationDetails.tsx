@@ -3,7 +3,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import PageHero from '../../components/PageHero';
 import useApi from '../../hooks/useApi';
 import Loader from '../../components/Loader/Loader';
-import { HotelDetailsRoot } from '../../types/response';
+import { HotelDetailsRoot, HotelDetails as HotelDetailsTypes } from '../../types/response';
 import { VerticalSpacer, HorizontalSpacer, WidthConstraints } from '../../components/Layout';
 import Typography from '../../components/Typography';
 import { Flex, FlexKid } from '../../components/Flex';
@@ -18,6 +18,7 @@ export const HotelDetails: React.FunctionComponent<Props> = () => {
   const localContext = React.useContext(Context);
   let { id } = useParams();
   const history = useHistory();
+  const [relatedHotels, setRelatedHotels] = React.useState<HotelDetailsTypes[]>();
   const { results, loading, error } = useApi<HotelDetailsRoot>({
     endpoint: `${process.env.REACT_APP_API_URL}establishments/${id}`,
     fetchOnMount: true,
@@ -45,6 +46,22 @@ export const HotelDetails: React.FunctionComponent<Props> = () => {
       history.push('/');
     }
   }, [history, error]);
+
+  React.useEffect(
+    () => {
+      setRelatedHotels(
+        [...localContext.default]
+          .filter(element => {
+            return element.category === results.data.category;
+          })
+          .slice(0, 4),
+      );
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [],
+  );
+
+  console.log(localContext.default, relatedHotels);
 
   return (
     <>
@@ -119,14 +136,16 @@ export const HotelDetails: React.FunctionComponent<Props> = () => {
           </VerticalSpacer>
         </PageHero>
       )}
-      {localContext.loading ? (
-        <Loader />
-      ) : (
+      {!localContext.loading && (
         <HotelCardsList
           sectionTitle="You may also interest"
-          ctaText="Explore more"
-          ctaUrl="/accommodations"
-          list={localContext.default.slice(0, 4)}
+          ctaText={`Explore more ${results.data.category}`}
+          ctaUrl={`/accommodations?name=&category=${results.data.category}&service=`}
+          list={[...localContext.default]
+            .filter(element => {
+              return element.category === results.data.category;
+            })
+            .slice(0, 4)}
         />
       )}
     </>

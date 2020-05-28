@@ -85,16 +85,6 @@ export const BlogDetails: React.FunctionComponent<Props> = () => {
           </VerticalSpacer>
         </PageHero>
       )}
-      {localContext.loading ? (
-        <Loader />
-      ) : (
-        <HotelCardsList
-          sectionTitle="Related accommodations"
-          ctaText="Explore more"
-          ctaUrl="/accommodations"
-          list={localContext.default.slice(0, 4)}
-        />
-      )}
     </>
   );
 };

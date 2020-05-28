@@ -202,13 +202,12 @@ const CategoryBadge = styled(Typography)<{ element: 'span' }>`
 `;
 
 const ServiceLabel = styled(Typography)`
-  padding: ${props => props.theme.spacing.xs}rem;
+  padding: 0 ${props => props.theme.spacing.xs}rem;
   background-color: ${props => props.theme.colors.surface};
   color: ${props => props.theme.colors.onBackground};
   font-size: 14px;
   margin-right: ${props => props.theme.spacing.xs}rem;
   margin-bottom: ${props => props.theme.spacing.xs}rem;
-  border-radius: 5px;
 `;
 
 export {

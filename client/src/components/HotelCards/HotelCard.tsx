@@ -75,7 +75,7 @@ const HotelCard: React.FunctionComponent<HotelCard> = ({ card, extraSpace, backg
       </LikeButtonWrapper>
       {!!card.category && <CategoryBadge element="span" variant="b1" content={card.category} />}
       {!!card.services && (
-        <Flex wrap>
+        <Flex wrap={true}>
           {(card.services || []).map((service, index) => (
             <ServiceLabel
               element="span"
@@ -108,7 +108,7 @@ const HotelCard: React.FunctionComponent<HotelCard> = ({ card, extraSpace, backg
         <Typography element="span" variant="h2" content={`From ${card.price}`} bottom={16} />
       )}
       {!!card.descriptions && (
-        <Typography element="p" variant="b3" content={transformLangText(card.descriptions, 180)} />
+        <Typography element="p" variant="b1" content={transformLangText(card.descriptions, 180)} />
       )}
     </Card>
   );

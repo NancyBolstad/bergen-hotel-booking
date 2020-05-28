@@ -1,5 +1,6 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Flex, FlexKid } from '../Flex/index';
+import createMediaQueries from '../../util/createMediaQuery';
 
 export const ContentWrapper = styled(Flex)`
   background-color: ${props => props.theme.colors.secondaryVariant};
@@ -11,16 +12,21 @@ export const ServiceListWrapper = styled.div`
   justify-content: center;
   margin: calc(-${props => props.theme.spacing.xs}rem / 2);
 
-  @media screen and (min-width: 768px) {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    margin: calc(-${props => props.theme.spacing.l}rem / 2);
-  }
+  ${createMediaQueries(
+    'medium',
+    css`
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+    `,
+  )}
 
-  @media screen and (min-width: 1280px) {
-    justify-content: space-between;
-  }
+  ${createMediaQueries(
+    'large',
+    css`
+      justify-content: space-between;
+    `,
+  )}
 `;
 
 export const Item = styled(FlexKid)`

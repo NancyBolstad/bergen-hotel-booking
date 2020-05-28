@@ -6,7 +6,7 @@ type alignVariant = 'flex-start' | 'center' | 'flex-end';
 
 export const FlexParent = styled.div<{ isImageRight?: boolean; isMobile: boolean }>`
   display: flex;
-  flex-direction: ${props => (props.isImageRight ? 'column' : 'column-reverse')};
+  flex-direction: column-reverse;
 
   ${props =>
     props.isMobile === false &&
@@ -34,6 +34,7 @@ export const PlainBannerContent = styled(BackgroundImage)<{
   justify-content: ${props => (props.align ? props.align : 'center')};
   align-items: ${props => (props.align ? props.align : 'center')};
   width: 100%;
+  min-height: 15vh;
   ${props =>
     props.large &&
     css`
@@ -55,7 +56,7 @@ export const SearchBannerBackground = styled(BackgroundImage)<{ isDesktop?: bool
   ${props =>
     props.isDesktop &&
     css`
-      height: 75vh;
+      height: 60vh;
     `}
 `;
 
@@ -65,15 +66,16 @@ export const SearchBannerContent = styled(BackgroundImage)<{ isDesktop?: boolean
   justify-content: left;
   align-items: left;
   width: 100%;
-  padding: ${props => props.theme.spacing.m}rem 0;
+  padding: 0.5rem 0 1.5rem 0;
 
   ${props =>
     props.isDesktop &&
     css`
-      height: 13rem;
+      height: 11.5625rem;
       padding: 0;
       justify-content: center;
       align-items: center;
       position: relative;
+      padding: ${props => props.theme.spacing.m}rem 0;
     `}
 `;

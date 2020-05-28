@@ -4,6 +4,8 @@ import setColorOpacity from '../../util/setColorOpacity';
 export const FooterWrapper = styled.footer`
   width: 100%;
   background-color: ${props => props.theme.colors.dark};
+  color: ${props => props.theme.colors.onSurface};
+  border-top: 1px solid ${props => props.theme.colors.onBackground};
   display: flex;
   flex-direction: column;
   justify-content: center;

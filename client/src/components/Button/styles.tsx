@@ -53,10 +53,14 @@ export const Button = styled.button<ButtonProps>`
     css`
       background-color: ${props => props.theme.colors.primary};
       color: ${props => props.theme.colors.onPrimary};
+      border: 1px solid transparent;
+      transition: background-color 0.3s;
       &:hover,
       &:active,
       &:focus {
-        background-color: ${props => props.theme.colors.hoverColor};
+        background-color: ${props => props.theme.colors.dark};
+        color: ${props => props.theme.colors.white};
+        border: 1px solid ${props => props.theme.colors.onBackground};
       }
       svg {
         fill: ${props => props.theme.colors.onPrimary};

@@ -146,7 +146,7 @@ const HotelCardVariant: React.FunctionComponent<Props> = ({ card, miniCard, show
             href={`/accommodation/details/${card.id}`}
             aria-label={`View details about ${card.name}`}
             title={`View details about ${card.name}`}
-            variant="readMore"
+            variant="secondaryVariant"
             size="small"
           >
             View Details {navigationArrow}

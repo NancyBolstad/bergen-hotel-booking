@@ -108,7 +108,7 @@ export const Button = styled.button<ButtonProps>`
     `};
 
   ${props =>
-    props.variant === 'readMore' &&
+    props.variant === 'secondaryVariant' &&
     css`
       background-color: transparent;
       border-bottom-color: ${props => props.theme.colors.primary};

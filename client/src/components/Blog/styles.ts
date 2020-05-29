@@ -25,6 +25,7 @@ const BlogCard = styled.a`
   &:hover,
   &:focus {
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.15);
+    background-color: ${props => props.theme.colors.secondaryVariant};
   }
 
   @media screen and (min-width: 768px) {
@@ -46,15 +47,7 @@ const BlogImage = styled.img`
 const BlogTitle = styled(Typography)<{ element: 'h3' | 'h4' }>`
   margin: ${props => props.theme.spacing.xs}rem 0 ${props => props.theme.spacing.s}rem;
   text-align: left;
-  transition: all 0.15s ease-in-out;
-  text-decoration: underline;
-  text-decoration-color: transparent;
   text-transform: capitalize;
-
-  ${BlogCard}:hover &,
-  ${BlogCard}:focus & {
-    text-decoration-color: ${props => props.theme.colors.onBackground};
-  }
 `;
 
 const BlogIntroText = styled(Typography)<{ element: 'p' }>`

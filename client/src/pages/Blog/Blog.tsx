@@ -6,7 +6,7 @@ import useApi from '../../hooks/useApi';
 import { BlogList as BlogListTypes } from '../../types/response';
 import Loader from '../../components/Loader/Loader';
 import usePagination from '../../hooks/usePagination';
-import PaginateButtons from '../../components/PaginateButtons';
+import PaginateButtons from '../../components/Button/PaginateButtons';
 import { BLOG_LIST_SIZE } from '../../util/constants';
 
 const Blog: React.FunctionComponent = () => {

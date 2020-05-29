@@ -202,7 +202,7 @@ const b3: Font = {
       query: defaultMediaQueries.small,
       weight: defaultFontWeight.regular,
       size: 1.25,
-      lineHeight: 1.5,
+      lineHeight: 2,
     },
   ],
 };

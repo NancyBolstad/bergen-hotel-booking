@@ -19,6 +19,8 @@ const BlogCard = styled.a`
   margin: calc(${props => props.theme.spacing.s}rem / 2);
   padding: ${props => props.theme.spacing.xs}rem;
   transition: all 0.15s ease-in-out;
+  box-shadow: rgba(46, 41, 51, 0.08) 0px 1px 2px, rgba(71, 63, 79, 0.08) 0px 2px 4px;
+  border-radius: 4px;
 
   &:hover,
   &:focus {

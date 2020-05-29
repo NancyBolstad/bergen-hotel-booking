@@ -38,6 +38,8 @@ export const BlogList: React.FunctionComponent<Props> = ({
                     title={blog.title}
                     intro={blog.intro}
                     images={blog.images}
+                    author={blog.author}
+                    createdAt={blog.createdAt}
                   />
                 ))}
               </CardsList>

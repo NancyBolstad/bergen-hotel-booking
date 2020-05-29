@@ -12,9 +12,7 @@ import {
 } from './styles';
 import { HotelDetails } from '../../types/response';
 import useIsMobile from '../../hooks/useIsMobile';
-import { heart, heartSolid, navigationArrow } from '../../util/icons';
-import { Context } from '../../context/GlobalContext';
-import { Types } from '../../reducer/favoriteCardsReducer';
+import { navigationArrow } from '../../util/icons';
 import { Flex } from '../Flex';
 import { ButtonLink } from '../Button/Button';
 import LikeButton from '../Button/LikeButton';
@@ -27,32 +25,6 @@ interface Props {
 
 const HotelCardVariant: React.FunctionComponent<Props> = ({ card, miniCard, showReadMore }) => {
   const isMobile = useIsMobile();
-  const { favorites, dispatch } = React.useContext(Context);
-  const [like, setLike] = React.useState<boolean>(() => {
-    const found = favorites.find(item => {
-      return item.id === card.id;
-    });
-
-    return found ? true : false;
-  });
-
-  function handleLikeDispatch() {
-    setLike(!like);
-
-    if (!like === true) {
-      dispatch({
-        type: Types.Like,
-        payload: card,
-      });
-    } else {
-      dispatch({
-        type: Types.Dislike,
-        payload: {
-          id: card.id,
-        },
-      });
-    }
-  }
 
   return (
     <CardVariant

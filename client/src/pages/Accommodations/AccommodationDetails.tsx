@@ -3,7 +3,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import PageHero from '../../components/PageHero';
 import useApi from '../../hooks/useApi';
 import Loader from '../../components/Loader/Loader';
-import { HotelDetailsRoot, HotelDetails as HotelDetailsTypes } from '../../types/response';
+import { HotelDetailsRoot } from '../../types/response';
 import { VerticalSpacer, HorizontalSpacer, WidthConstraints } from '../../components/Layout';
 import Typography from '../../components/Typography';
 import { Flex } from '../../components/Flex';

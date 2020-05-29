@@ -8,8 +8,8 @@ import { BlogDetailsRoot } from '../../types/response';
 import { VerticalSpacer, HorizontalSpacer, WidthConstraints } from '../../components/Layout';
 import Typography from '../../components/Typography';
 import { Flex } from '../../components/Flex';
-import { HotelCardsList } from '../../components/HotelCards';
-import { Context } from '../../context/GlobalContext';
+//import { HotelCardsList } from '../../components/HotelCards';
+//import { Context } from '../../context/GlobalContext';
 
 interface Props {}
 
@@ -31,7 +31,7 @@ export const RichText = styled.div`
 `;
 
 export const BlogDetails: React.FunctionComponent<Props> = () => {
-  const localContext = React.useContext(Context);
+  //const localContext = React.useContext(Context);
   let { id } = useParams();
   const { results, loading } = useApi<BlogDetailsRoot>({
     endpoint: `${process.env.REACT_APP_API_URL}blog/${id}`,

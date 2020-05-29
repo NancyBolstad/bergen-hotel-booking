@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { PlainBanner } from '../../components/Banner';
 import { FlexBanner } from '../../components/Banner/';
-import { ImageGrid } from '../../components/Image';
-import { createList } from '../../util/mockHelpers';
 
 interface Props {}
 

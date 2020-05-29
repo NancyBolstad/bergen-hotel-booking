@@ -22,6 +22,16 @@ export const CAMPAIGN_A = {
   redirectLink: `/accommodations?category=&name=&service=free%20breakfast`,
 };
 
+export const CAMPAIGN_B = {
+  backgroundImage: {
+    url:
+      'https://res.cloudinary.com/dykdxdtuu/image/upload/v1589485086/holidaza/hotel/photo-1496417263034-38ec4f0b665a_psbeaj.jpg',
+    alt: 'campaign image for free breakfast',
+  },
+  text: 'Free breakfast',
+  redirectLink: `/accommodations?category=&name=&service=free%20breakfast`,
+};
+
 export const FLEX_BANNER_A = {
   title: 'Stories from Bergen',
   descriptions:

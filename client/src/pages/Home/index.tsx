@@ -34,7 +34,7 @@ export const Home: React.FunctionComponent<Props> = () => {
           list={localContext.default.slice(0, 8)}
         />
       )}
-      <FlexBanner {...FLEX_BANNER_A} backgroundColor="secondaryVariant" />
+      <FlexBanner {...FLEX_BANNER_A} />
       <FlexBanner {...FLEX_BANNER_B} isImageRight />
     </>
   );

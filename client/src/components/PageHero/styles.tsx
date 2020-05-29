@@ -39,7 +39,7 @@ export const Content = styled.div`
   width: 80vw;
   z-index: 1;
   top: -5.5625rem;
-  padding 5rem 0 0 0;
+  padding 1.5rem 0 0 0;
 
   ${createMediaQueries(
     'medium',
@@ -52,6 +52,8 @@ export const Content = styled.div`
     'large',
     css`
       max-width: 1280px;
+      top: -3.5625rem;
+      padding: 1rem 0 0 0;
     `,
   )}
 `;

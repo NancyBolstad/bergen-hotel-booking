@@ -10,7 +10,6 @@ import { Flex, FlexKid } from '../../components/Flex';
 import { HotelCardsList } from '../../components/HotelCards';
 import { Context } from '../../context/GlobalContext';
 import { ButtonLink } from '../../components/Button/Button';
-import Slider from '../../components/Slider';
 
 interface Props {}
 
@@ -49,89 +48,73 @@ export const HotelDetails: React.FunctionComponent<Props> = () => {
 
   React.useEffect(
     () => {
-      setRelatedHotels(
-        [...localContext.default]
-          .filter(element => {
-            return element.category === results.data.category;
-          })
-          .slice(0, 4),
-      );
+      const relatedHotels = [...localContext.default]
+        .filter(element => {
+          return element.category === results.data.category;
+        })
+        .slice(0, 4);
+
+      setRelatedHotels(relatedHotels);
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [],
   );
-
-  console.log(localContext.default, relatedHotels);
 
   return (
     <>
       {loading && <Loader />}
       {!!results && !loading && (
         <PageHero figure={results.data.featuredImages[0]}>
-          <VerticalSpacer topSpace="xs" topSpaceDesktop="m" bottomSpace="xs" bottomSpaceDesktop="m">
+          <VerticalSpacer topSpace="xs" bottomSpace="xs" bottomSpaceDesktop="m">
             <HorizontalSpacer>
-              <WidthConstraints custom="980px">
-                <Flex direction="column" align="flex-start">
-                  <FlexKid>
-                    <Typography
-                      variant="b2"
-                      element="h1"
-                      content={results.data.category}
-                      textTransform="capitalize"
-                    />
-                    <Typography
-                      variant="h1"
-                      element="h1"
-                      content={results.data.name}
-                      textTransform="capitalize"
-                    />
-                    <Typography
-                      variant="h2"
-                      element="h2"
-                      content={`Price from ${results.data.price}`}
-                    />
-                    <Typography variant="b3" element="p" content={results.data.descriptions} />
-                    <VerticalSpacer
-                      topSpace="xs"
-                      topSpaceDesktop="m"
-                      bottomSpace="xs"
-                      bottomSpaceDesktop="m"
-                    >
-                      <Slider slides={results.data.featuredImages} defaultIndex={2} large />
-                    </VerticalSpacer>
-                    <ButtonLink
-                      variant="primary"
-                      size="large"
-                      href={`/book/${id}`}
-                      aria-label="Go to book page"
-                      title="Go to book page"
-                    >
-                      Book
-                    </ButtonLink>
-                  </FlexKid>
-                  <FlexKid>
-                    {!!results.data.rating && (
-                      <Typography
-                        variant="h3"
-                        element="h3"
-                        content={`Rating: ${results.data.rating.toString()}`}
-                      />
-                    )}
-                    <Typography variant="h3" element="h3" content="Features" />
-                    <ul>
-                      {(results.data.features || []).map((feature, key) => (
-                        <li key={key}>{feature}</li>
-                      ))}
-                    </ul>
-                    <Typography variant="h3" element="h3" content="Services" />
-                    <ul>
-                      {(results.data.services || []).map((service, key) => (
-                        <li key={key}>{service}</li>
-                      ))}
-                    </ul>
-                  </FlexKid>
-                </Flex>
-              </WidthConstraints>
+              <Flex direction="row" align="flex-start">
+                <FlexKid flexBasis="70%">
+                  <Typography
+                    variant="b2"
+                    element="span"
+                    content={results.data.category}
+                    textTransform="capitalize"
+                  />
+                  <Typography
+                    variant="h1"
+                    element="h1"
+                    content={results.data.name}
+                    textTransform="capitalize"
+                    isPrimaryColor
+                  />
+                  <Typography
+                    variant="h2"
+                    element="h2"
+                    content={`Price: ${results.data.price}`}
+                    textTransform="capitalize"
+                  />
+                  <Typography variant="b3" element="p" content={results.data.location} />
+                  <Typography variant="b3" element="p" content={results.data.descriptions} />
+                  <ButtonLink
+                    variant="primary"
+                    size="large"
+                    href={`/book/${id}`}
+                    aria-label="Go to book page"
+                    title="Go to book page"
+                  >
+                    Book Now
+                  </ButtonLink>
+                </FlexKid>
+                <FlexKid>
+                  <Typography variant="h3" element="h3" content="Services" />
+                  <ul>
+                    {(results.data.services || []).map((service, key) => (
+                      <li key={key}>{service}</li>
+                    ))}
+                  </ul>
+                  <Typography variant="h3" element="h3" content="Features" />
+                  <ul>
+                    {(results.data.features || []).map((feature, key) => (
+                      <li key={key}>{feature}</li>
+                    ))}
+                  </ul>
+                </FlexKid>
+              </Flex>
             </HorizontalSpacer>
           </VerticalSpacer>
         </PageHero>
@@ -139,7 +122,9 @@ export const HotelDetails: React.FunctionComponent<Props> = () => {
       {!localContext.loading && (
         <HotelCardsList
           sectionTitle="You may also interest"
-          ctaText={`Explore more ${results.data.category}`}
+          ctaText={`Explore more ${
+            results.data.category === 'hostels' ? 'hostel' : results.data.category
+          }s`}
           ctaUrl={`/accommodations?name=&category=${results.data.category}&service=`}
           list={[...localContext.default]
             .filter(element => {

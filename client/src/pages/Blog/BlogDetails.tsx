@@ -61,23 +61,22 @@ export const BlogDetails: React.FunctionComponent<Props> = () => {
                     content={results.data.title}
                     textTransform="capitalize"
                   />
+                  {results.data.content && (
+                    <RichText dangerouslySetInnerHTML={{ __html: results.data.content }} />
+                  )}
                   {results.data.author && (
                     <Typography
-                      variant="b3"
+                      variant="b1"
                       element="span"
                       content={`Author: ${results.data.author}`}
-                      bottom={20}
                     />
                   )}
                   {results.data.createdAt && (
                     <Typography
-                      variant="b3"
+                      variant="b1"
                       element="span"
                       content={`Published at: ${results.data.createdAt}`}
                     />
-                  )}
-                  {results.data.content && (
-                    <RichText dangerouslySetInnerHTML={{ __html: results.data.content }} />
                   )}
                 </Flex>
               </WidthConstraints>

@@ -111,7 +111,10 @@ export const Select = styled.select`
   -webkit-appearance: none;
   -webkit-border-radius: 0px;
   text-transform: capitalize;
+  box-shadow: rgba(46, 41, 51, 0.08) 0px 1px 2px, rgba(71, 63, 79, 0.08) 0px 2px 4px;
+  border-radius: 4px;
 
+  &:hover,
   &:active,
   &:focus {
     border-bottom: 2px solid ${props => props.theme.colors.onBackground};

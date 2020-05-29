@@ -5,7 +5,7 @@ import { HotelDetails, Root } from '../types/response';
 import { FAVORITES_KEY } from '../util/constants';
 import isBrowser from '../util/isBrowser';
 import storage from '../util/storage';
-//import { MockHotels } from '../data/data';
+import { MockHotels } from '../data/data';
 
 interface Props {}
 
@@ -50,7 +50,7 @@ export const GlobalContext: React.FunctionComponent<Props> = ({ children }) => {
   return (
     <Context.Provider
       value={{
-        default: results.data,
+        default: MockHotels,
         favorites: state,
         dispatch: dispatch,
         loading: loading,

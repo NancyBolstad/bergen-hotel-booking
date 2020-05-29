@@ -40,8 +40,7 @@ const LikeButton: React.FunctionComponent<HotelCard> = ({ card }) => {
   return (
     <LikeButtonWrapper>
       <LikeIcon
-        variant="primary"
-        size="small"
+        role="button"
         isLiked={like}
         onClick={e => {
           e.preventDefault();
@@ -69,16 +68,17 @@ const LikeButtonWrapper = styled.div<{ positionAbsolute?: boolean }>`
     `}
 `;
 
-const LikeIcon = styled(Button)<{ isLiked: boolean }>`
+const LikeIcon = styled.a<{ isLiked: boolean }>`
   background-color: transparent;
   border: none;
+  width: 32px;
+  height: 32px;
 
   svg {
-    width: 24px;
-    height: 24px;
-    stroke-width: 30px;
+    width: 28px;
+    height: 28px;
     fill: ${props => props.theme.colors.onBackground};
-    margin-top: ${props => props.theme.spacing.xs}rem;
+    margin-top: ${props => props.theme.spacing.s}rem;
   }
   ${props =>
     props.isLiked === true &&

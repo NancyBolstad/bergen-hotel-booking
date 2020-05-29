@@ -24,8 +24,7 @@ export const CAMPAIGN_A = {
 
 export const CAMPAIGN_B = {
   backgroundImage: {
-    url:
-      'https://res.cloudinary.com/dykdxdtuu/image/upload/v1589485086/holidaza/hotel/photo-1496417263034-38ec4f0b665a_psbeaj.jpg',
+    url: 'http://localhost:3000/accommodations?category=hostels&name=&service=',
     alt: 'campaign image for free breakfast',
   },
   text: 'Free breakfast',

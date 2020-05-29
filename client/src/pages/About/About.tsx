@@ -12,21 +12,21 @@ const image = {
   alt: 'Bergen scenery',
 };
 
-const mockFlexBannerBlog = {
-  title: 'Stories from Bergen',
+const mockFlexBannerAboutUsA = {
+  title: 'Why should you booking with us',
+  descriptions:
+    'Our workers are down-to-earth, trustworthy and reliable. With us you can focus on enjoying the stay, and rest assured that your booked hotel will fullfil your expectations.',
+  figure: image,
+  buttonText: 'Explore our accommodations',
+  redirectLink: '/accommodations?category=&name=&service=',
+};
+
+const mockFlexBannerAboutUsB = {
+  title: 'Our Stories',
   descriptions:
     'Stay updated with the latest travel stories, tips and insights shared by our community.',
   figure: image,
-  buttonText: 'Read our blog',
-  redirectLink: '/blog',
-};
-
-const mockFlexBannerAboutUs = {
-  title: 'Why should you booking with us',
-  descriptions:
-    'We are the customers’ local friends. We help them to find the best accommodation at the best price. Our workers are down-to-earth, trustworthy and reliable. Our hotel booking services are seamless, easy, and reliable. With us you can focus on enjoying the stay, and rest assured that your booked hotel will fullfil your expectations. ',
-  figure: image,
-  buttonText: 'Explore our accommodations',
+  buttonText: 'Read our stories',
   redirectLink: '/accommodations?category=&name=&service=',
 };
 
@@ -37,10 +37,8 @@ export const About: React.FunctionComponent<Props> = () => {
         title="About"
         text="We are your local friends in Bergen. Let us help you to find the best accommodation at the best price."
       />
-      <FlexBanner {...mockFlexBannerAboutUs} isImageRight />
-      <FlexBanner {...mockFlexBannerBlog} />
-      <FlexBanner {...mockFlexBannerAboutUs} isImageRight />
-      <ImageGrid images={createList(image, 10)} />
+      <FlexBanner {...mockFlexBannerAboutUsA} isImageRight />
+      <FlexBanner {...mockFlexBannerAboutUsB} />
     </>
   );
 };

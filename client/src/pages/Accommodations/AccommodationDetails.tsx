@@ -97,7 +97,7 @@ export const HotelDetails: React.FunctionComponent<Props> = () => {
                       bottomSpace="xs"
                       bottomSpaceDesktop="m"
                     >
-                      <Slider slides={results.data.featuredImages} defaultIndex={2} />
+                      <Slider slides={results.data.featuredImages} defaultIndex={2} large />
                     </VerticalSpacer>
                     <ButtonLink
                       variant="primary"

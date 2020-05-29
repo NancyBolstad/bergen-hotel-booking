@@ -1,67 +1,66 @@
 import styled, { css } from 'styled-components';
-import { Link } from 'react-router-dom';
 import Typography from '../Typography';
-import { IColors } from '../../types/theme';
 import Slider from '../Slider';
 import Button from '../Button/Button';
-
-const Section = styled.section<{ backgroundColor?: keyof IColors }>`
-  background-color: ${props => props.theme.colors.background};
-  overflow: auto;
-
-  ${props =>
-    props.backgroundColor &&
-    css`
-      background-color: ${props.theme.colors[props.backgroundColor]};
-    `}
-`;
+import { IColors } from '../../types/theme';
 
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
+
+  @media screen and (min-width: 1280px) {
+    h2 {
+      padding-bottom: 3rem;
+    }
+  }
 `;
 
-const Card = styled.a`
+const Card = styled.a<{ extraSpace?: boolean; backgroundColor?: keyof IColors }>`
   background: ${props => props.theme.colors.background};
   display: flex;
   flex-direction: column;
   text-decoration: none;
   color: ${props => props.theme.colors.onBackground};
   border: 1px solid white;
-  margin: calc(${props => props.theme.spacing.s}rem / 2);
   padding: ${props => props.theme.spacing.xs}rem;
+  margin-bottom: ${props => props.theme.spacing.xs}rem;
   transition: all 0.15s ease-in-out;
+  position: relative;
+  box-shadow: rgba(46, 41, 51, 0.08) 0px 1px 2px, rgba(71, 63, 79, 0.08) 0px 2px 4px;
+  border-radius: 4px;
 
   &:hover,
   &:focus {
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.15);
+    background-color: ${props => props.theme.colors.secondaryVariant};
+    border: 1px solid ${props => props.theme.colors.secondaryVariant};
+    span,
+    p {
+      color: ${props => props.theme.colors.dark};
+    }
   }
 
   @media screen and (min-width: 768px) {
     width: calc(47% - ${props => props.theme.spacing.xs}rem);
-    margin: calc(${props => props.theme.spacing.m}rem / 2);
   }
 
   @media screen and (min-width: 1280px) {
-    width: calc(31.333% - ${props => props.theme.spacing.m}rem);
-    margin: calc(${props => props.theme.spacing.m}rem / 2);
-    padding: ${props => props.theme.spacing.s}rem;
+    width: calc(25% - ${props => props.theme.spacing.s}rem);
+    margin-bottom: ${props => props.theme.spacing.s}rem;
   }
-`;
 
-const HotelName = styled(Typography)<{ element: 'h3' | 'h4' }>`
-  margin: ${props => props.theme.spacing.xs}rem 0 ${props => props.theme.spacing.s}rem;
-  text-align: left;
-  transition: all 0.15s ease-in-out;
-  text-decoration: underline;
-  text-decoration-color: transparent;
-  text-transform: capitalize;
+  ${props =>
+    props.extraSpace &&
+    css`
+      padding: ${props => props.theme.spacing.s}rem;
+    `}
 
-  ${Card}:hover &,
-  ${Card}:focus & {
-    text-decoration-color: ${props => props.theme.colors.onBackground};
-  }
+  ${props =>
+    props.backgroundColor &&
+    css`
+      background-color: ${props.theme.colors[props.backgroundColor]};
+    `}
 `;
 
 const FeaturedImages = styled(Slider)`
@@ -74,12 +73,16 @@ const SectionTitle = styled(Typography)<{ element: 'h2' }>`
 
 const More = styled.div`
   margin: ${props => props.theme.spacing.s}rem auto;
+  @media screen and (min-width: 768px) {
+    padding-top: ${props => props.theme.spacing.l}rem;
+  }
+
   @media screen and (min-width: 1280px) {
-    margin: ${props => props.theme.spacing.xl}rem auto;
+    margin: ${props => props.theme.spacing.m}rem auto;
   }
 `;
 
-const CardVariant = styled(Link)`
+const CardVariant = styled.a<{ miniCard?: boolean; isMobile?: boolean }>`
   display: flex;
   flex-direction: row;
   flex: 1;
@@ -89,11 +92,33 @@ const CardVariant = styled(Link)`
   margin: calc(${props => props.theme.spacing.s}rem / 2);
   padding: ${props => props.theme.spacing.xs}rem;
   transition: all 0.15s ease-in-out;
+  position: relative;
+  box-shadow: rgba(46, 41, 51, 0.08) 0px 1px 2px, rgba(71, 63, 79, 0.08) 0px 2px 4px;
+  border-radius: 4px;
 
   &:hover,
   &:focus {
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.15);
+    background-color: ${props => props.theme.colors.secondaryVariant};
+    border: 1px solid ${props => props.theme.colors.secondaryVariant};
+
+    span,
+    p {
+      color: ${props => props.theme.colors.dark};
+    }
   }
+
+  @media screen and (min-width: 1280px) {
+    margin: ${props => props.theme.spacing.s}rem 0;
+    padding: 0;
+  }
+
+  ${props =>
+    props.miniCard &&
+    props.isMobile &&
+    css`
+      flex-direction: column;
+    `}
 `;
 
 const SliderVariant = styled(Slider)`
@@ -115,23 +140,29 @@ const CardVariantRight = styled.div`
   justify-content: flex-start;
   flex: 2;
   padding: 0 ${props => props.theme.spacing.xs}rem;
+  position: relative;
 
   @media screen and (min-width: 1280px) {
     padding: ${props => props.theme.spacing.m}rem;
   }
-
-  span {
-    font-weight: normal;
-  }
 `;
 
-const LikeButtonWrapper = styled.div`
+const LikeButtonWrapper = styled.div<{ positionAbsolute?: boolean }>`
   display: flex;
   justify-content: flex-end;
+
+  ${props =>
+    props.positionAbsolute &&
+    css`
+      position: absolute;
+      top: 0px;
+      right: 0;
+    `}
 `;
 
-const LikeButton = styled(Button)<{ isLiked: boolean }>`
+const LikeIcon = styled(Button)<{ isLiked: boolean }>`
   background-color: transparent;
+  border: none;
 
   svg {
     width: 24px;
@@ -151,19 +182,63 @@ const LikeButton = styled(Button)<{ isLiked: boolean }>`
   &:hover,
   &:focus {
     background-color: transparent;
+    border: none;
+    svg {
+      fill: ${props => props.theme.colors.primary};
+    }
   }
 `;
 
 const MiniImage = styled.img`
-  height: 5.5rem;
-  width: 5.5rem;
+  height: 11.4375rem;
+  width: 100%;
+`;
+
+const CategoryBadge = styled(Typography)<{ element: 'span'; miniCard?: boolean }>`
+  background-color: ${props => props.theme.colors.secondary};
+  color: ${props => props.theme.colors.onSecondary};
+  text-transform: capitalize;
+  padding: ${props => props.theme.spacing.xs}rem;
+  position: absolute;
+  display: block;
+  font-size: 14px;
+  top: 24px;
+  left: 24px;
+  border-radius: 4px;
+  z-index: 900;
+
+  ${props =>
+    props.miniCard &&
+    css`
+      top: 0px;
+      left: 0px;
+      border-radius: 0px;
+    `}
+`;
+
+const ServiceLabel = styled(Typography)`
+  padding: 0 ${props => props.theme.spacing.xs}rem;
+  background-color: ${props => props.theme.colors.secondary};
+  color: ${props => props.theme.colors.dark};
+  font-size: 14px;
+  margin-right: ${props => props.theme.spacing.xs}rem;
+  margin-bottom: ${props => props.theme.spacing.xs}rem;
+  border-radius: 4px;
+
+  ${Card}:hover && {
+    background-color: ${props => props.theme.colors.dark};
+    color: ${props => props.theme.colors.white};
+  }
+
+  ${CardVariant}:hover & {
+    background-color: ${props => props.theme.colors.dark};
+    color: ${props => props.theme.colors.white};
+  }
 `;
 
 export {
-  Section,
   Wrapper,
   Card,
-  HotelName,
   SectionTitle,
   More,
   FeaturedImages,
@@ -171,7 +246,9 @@ export {
   CardVariantLeft,
   CardVariantRight,
   SliderVariant,
-  LikeButton,
+  LikeIcon,
   LikeButtonWrapper,
   MiniImage,
+  CategoryBadge,
+  ServiceLabel,
 };

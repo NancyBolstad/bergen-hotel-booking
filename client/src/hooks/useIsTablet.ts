@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 import { defaultMediaQueries } from '../util/defaultTheme';
 
-function useIsMobile(): boolean {
-  const [isMobile, setIsMobile] = useState(window.innerWidth < defaultMediaQueries.large);
+function useIsTablet(): boolean {
+  const [isTablet, setIsMobile] = useState(window.innerWidth < defaultMediaQueries.medium);
 
   useEffect(() => {
     function handleWindowSizeChange(): void {
       if (typeof window !== 'undefined') {
-        setIsMobile(window.innerWidth < defaultMediaQueries.large);
+        setIsMobile(window.innerWidth < defaultMediaQueries.medium);
       }
     }
 
@@ -18,7 +18,7 @@ function useIsMobile(): boolean {
     };
   }, []);
 
-  return isMobile;
+  return isTablet;
 }
 
-export default useIsMobile;
+export default useIsTablet;

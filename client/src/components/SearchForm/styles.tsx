@@ -36,6 +36,7 @@ export const SearchInputField = styled.input`
   cursor: pointer;
   flex-grow: 2;
   max-width: 60vw;
+  box-shadow: rgba(46, 41, 51, 0.08) 0px 1px 2px, rgba(71, 63, 79, 0.08) 0px 2px 4px;
 
   ::placeholder {
     color: ${props => props.theme.colors.onSurface};
@@ -43,13 +44,14 @@ export const SearchInputField = styled.input`
 
   &:focus {
     outline: none;
-    border: 2px solid ${props => props.theme.colors.primary};
+    border-color: ${props => props.theme.colors.primaryVariant};
     background: ${props => props.theme.colors.background};
     color: ${props => props.theme.colors.onBackground};
   }
 
   @media screen and (min-width: 1080px) {
     height: 3.5rem;
+    border-radius: 4px 0px 0px 4px;
   }
 `;
 
@@ -59,10 +61,12 @@ export const SearchSubmitButton = styled.button<{ isMobile?: boolean }>`
   justify-content: center;
   background-color: ${props => props.theme.colors.primary};
   color: ${props => props.theme.colors.onPrimary};
-  border: none;
+  border: 2px solid transparent;
   cursor: pointer;
   flex-grow: 1;
   height: 3rem;
+  box-shadow: rgba(46, 41, 51, 0.08) 0px 1px 2px, rgba(71, 63, 79, 0.08) 0px 2px 4px;
+
   svg {
     height: 1.5rem;
     width: 1.5rem;
@@ -74,14 +78,18 @@ export const SearchSubmitButton = styled.button<{ isMobile?: boolean }>`
     flex-grow: 1;
     width: 3rem;
     height: 3.5rem;
+    border-radius: 0px 4px 4px 0px;
   }
 
   ${props => createFontStyles(props.theme.fonts.b2)}
 
-  &:focus,
-  &:hover {
-    background-color: ${props => props.theme.colors.hoverColor};
+  &:hover,
+  &:active,
+  &:focus {
+    background-color: ${props => props.theme.colors.dark};
     color: ${props => props.theme.colors.white};
+    border: 2px solid ${props => props.theme.colors.onBackground};
+
     svg {
       fill: ${props => props.theme.colors.white};
     }

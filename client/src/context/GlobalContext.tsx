@@ -24,7 +24,7 @@ export const Context = React.createContext<GlobalDataProps>({
 });
 
 export const GlobalContext: React.FunctionComponent<Props> = ({ children }) => {
-  const { data, loading } = useApi<Root>({
+  const { results, loading } = useApi<Root>({
     endpoint: `${process.env.REACT_APP_API_URL}establishments`,
     fetchOnMount: true,
     initialData: {
@@ -50,7 +50,7 @@ export const GlobalContext: React.FunctionComponent<Props> = ({ children }) => {
   return (
     <Context.Provider
       value={{
-        default: data.data,
+        default: results.data,
         favorites: state,
         dispatch: dispatch,
         loading: loading,

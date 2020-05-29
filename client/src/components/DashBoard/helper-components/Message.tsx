@@ -38,8 +38,8 @@ const MessageCard = styled.div<{ isOwner?: boolean }>`
         right: 0px;
         bottom: -20px;
         border: 12px solid;
-        border-color: ${props => props.theme.colors.primaryVariant}
-          ${props => props.theme.colors.primaryVariant} transparent transparent;
+        border-color: ${props => props.theme.colors.primary} ${props => props.theme.colors.primary}
+          transparent transparent;
       }
     `};
 `;

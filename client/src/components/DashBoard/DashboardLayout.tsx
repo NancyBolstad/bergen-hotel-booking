@@ -2,7 +2,12 @@ import * as React from 'react';
 import styled, { css } from 'styled-components';
 import { Route, useLocation, useHistory } from 'react-router-dom';
 import createMediaQuery from '../../util/createMediaQuery';
-import { WidthConstraints, HorizontalSpacer } from '../../components/Layout';
+import {
+  WidthConstraints,
+  VerticalSpacer,
+  HorizontalSpacer,
+  Section,
+} from '../../components/Layout';
 import Menu from './helper-components/Menu';
 import Account from './Account/Account';
 import Enquiries from './Enquiries/Enquiries';
@@ -11,12 +16,11 @@ import Messages from './Messages/Messages';
 import { UserState } from '../../context/UserContext';
 import Typography from '../../components/Typography';
 
-const BackgroundWrapper = styled.main`
+const BackgroundWrapper = styled(Section)`
   background-color: ${props => props.theme.colors.secondaryVariant};
-  padding: ${props => props.theme.spacing.s}rem 0;
+  overflow: auto;
+  min-height: 75vh;
 `;
-
-const Wrapper = styled.div``;
 
 const Sections = styled.div`
   display: flex;
@@ -31,7 +35,7 @@ const Sections = styled.div`
   )}
 `;
 
-const Section = styled.div<{ aside?: boolean }>`
+const Content = styled.div<{ aside?: boolean }>`
   margin: ${props => props.theme.spacing.xs}rem 0;
 
   ${createMediaQuery(
@@ -85,8 +89,8 @@ const DashboardLayout: React.FunctionComponent<Props> = ({ user }) => {
 
   return (
     <BackgroundWrapper>
-      <HorizontalSpacer>
-        <Wrapper>
+      <VerticalSpacer>
+        <HorizontalSpacer>
           <WidthConstraints size="large">
             <Typography
               variant="h1"
@@ -96,10 +100,10 @@ const DashboardLayout: React.FunctionComponent<Props> = ({ user }) => {
               isPrimaryColor
             />
             <Sections>
-              <Section aside>
+              <Content aside>
                 <Menu />
-              </Section>
-              <Section>
+              </Content>
+              <Content>
                 <Route
                   path="/dashboard/:step"
                   render={({ match }) => {
@@ -116,11 +120,11 @@ const DashboardLayout: React.FunctionComponent<Props> = ({ user }) => {
                     }
                   }}
                 />
-              </Section>
+              </Content>
             </Sections>
           </WidthConstraints>
-        </Wrapper>
-      </HorizontalSpacer>
+        </HorizontalSpacer>
+      </VerticalSpacer>
     </BackgroundWrapper>
   );
 };

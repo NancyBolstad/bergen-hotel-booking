@@ -1,15 +1,20 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import createFontStyles from '../../util/createFontStyles';
+import createMediaQueries from '../../util/createMediaQuery';
 import Button from '../Button/Button';
 
 export const HeaderWrapper = styled.header`
   width: 100%;
   background: ${props => props.theme.colors.background};
-  color: ${props => props.theme.colors.onSecondary};
   position: sticky;
   top: 0;
   z-index: 999;
-  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid ${props => props.theme.colors.surface};
+
+  span {
+    color: inherit;
+  }
 `;
 
 export const HeaderNav = styled.nav`
@@ -21,10 +26,13 @@ export const HeaderNav = styled.nav`
   align-items: center;
   padding: ${props => props.theme.spacing.s}rem;
 
-  @media (min-width: ${props => props.theme.mediaQueries.large}px) {
-    padding: ${props => props.theme.spacing.xs}rem;
-    ${props => props.theme.spacing.l}rem;
-  }
+  ${createMediaQueries(
+    'large',
+    css`
+      padding: ${props => props.theme.spacing.xs}rem;
+      ${props => props.theme.spacing.l}rem;
+    `,
+  )};
 `;
 
 export const HeaderNavLinkList = styled.ul`
@@ -56,15 +64,19 @@ export const HeaderNavLink = styled.a`
       fill: ${props => props.theme.colors.primary};
     }
   }
-  @media (min-width: ${props => props.theme.mediaQueries.large}px) {
-    padding: 0.5rem 1rem;
-  }
 
   svg {
     fill: ${props => props.theme.colors.onBackground};
     width: 24px;
     height: 24px;
   }
+
+  ${createMediaQueries(
+    'large',
+    css`
+      padding: 0.5rem 1rem;
+    `,
+  )};
 `;
 
 export const LikeButton = styled(HeaderNavLink)`
@@ -73,33 +85,36 @@ export const LikeButton = styled(HeaderNavLink)`
   svg {
     fill: ${props => props.theme.colors.onBackground};
   }
+`;
 
-  span {
-    font-size: 12px;
-    background-color: ${props => props.theme.colors.dark};
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    display: inline-flex;
-    justify-content: center;
-    position: absolute;
-    left: 16px;
-    color: ${props => props.theme.colors.white};
-  }
+export const Badge = styled.span`
+  background-color: ${props => props.theme.colors.surface};
+  color: ${props => props.theme.colors.onBackground};
+  border: 1px solid ${props => props.theme.colors.surface};
+  position: absolute;
+  top: -4px;
+  left: 39px;
+  width: 16px;
+  height: 16px;
+  display: block;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 16px;
+  text-align: center;
+  border-radius: 50%;
 
-  @media all and (min-width: ${props => props.theme.mediaQueries.large}px) {
-    span {
+  ${createMediaQueries(
+    'large',
+    css`
       display: flex;
       justify-content: center;
       align-items: center;
-      left: 33px;
-      top: 1px;
+      top: 4px;
+      left: 50px;
       width: 18px;
       height: 18px;
-      background-color: ${props => props.theme.colors.surface};
-      color: ${props => props.theme.colors.dark};
-    }
-  }
+    `,
+  )};
 `;
 
 export const SiteLogo = styled(HeaderNavLink)`
@@ -108,13 +123,16 @@ export const SiteLogo = styled(HeaderNavLink)`
   font-weight: bold;
   font-size: 1.5rem !important;
 
-  @media (min-width: ${props => props.theme.mediaQueries.medium}px) {
-    font-size: 2.35rem !important;
-  }
-
   &:hover {
     opacity: 0.8;
   }
+
+  ${createMediaQueries(
+    'medium',
+    css`
+      font-size: 2.35rem !important;
+    `,
+  )};
 `;
 
 export const HeaderButton = styled(HeaderNavLink)`
@@ -122,9 +140,12 @@ export const HeaderButton = styled(HeaderNavLink)`
   list-text-style: none;
   padding: 0.2rem 0.5rem;
 
-  @media (min-width: ${props => props.theme.mediaQueries.large}px) {
-    padding: 0.5rem 1rem;
-  }
+  ${createMediaQueries(
+    'large',
+    css`
+      padding: 0.5rem 1rem;
+    `,
+  )};
 `;
 
 export const HeaderMenuLeft = styled.div`
@@ -170,6 +191,7 @@ export const MobileMenuWrapper = styled.div`
   z-index: 999;
   border-bottom: 2px solid ${props => props.theme.colors.secondary};
   ${props => createFontStyles(props.theme.fonts.h1)};
+  position: relative;
 
   a {
     margin: ${props => props.theme.spacing.l}rem auto;
@@ -182,11 +204,9 @@ export const MobileIcons = styled.div`
   justify-content: space-around;
   align-items: center;
   width: 100%;
+  position: absolute;
+  bottom: 76px;
   background-color: ${props => props.theme.colors.surface};
-
-  a {
-    margin: ${props => props.theme.spacing.s}rem auto;
-  }
 `;
 
 export const ThemeToggleButton = styled.button`
@@ -198,22 +218,32 @@ export const ThemeToggleButton = styled.button`
   border: none;
   outline: none;
 
+  svg {
+    path {
+      stroke: ${props => props.theme.colors.onBackground};
+    }
+    fill: ${props => props.theme.colors.white};
+    width: 24px;
+    height: 24px;
+  }
+
   &:hover {
     cursor: pointer;
     color: ${props => props.theme.colors.primary};
     svg {
-      fill: ${props => props.theme.colors.primary};
+      path {
+        stroke: ${props => props.theme.colors.primary};
+      }
+      fill: ${props => props.theme.colors.primaryVariant};
     }
   }
-  @media (min-width: ${props => props.theme.mediaQueries.large}px) {
-    padding: 0.5rem 1rem;
-  }
 
-  svg {
-    fill: ${props => props.theme.colors.onBackground};
-    width: 24px;
-    height: 24px;
-  }
+  ${createMediaQueries(
+    'large',
+    css`
+      padding: 0.5rem 1rem;
+    `,
+  )};
 `;
 
 export const HeaderTop = styled.div`
@@ -228,24 +258,26 @@ export const HeaderTop = styled.div`
     padding: 0.2rem 0;
   }
 
-  @media (min-width: ${props => props.theme.mediaQueries.large}px) {
-    padding: 0;
-    font-size: 0.225rem;
-    height: 24px;
-    a {
+  ${createMediaQueries(
+    'large',
+    css`
       padding: 0;
-    }
-  }
+      font-size: 0.225rem;
+      height: 24px;
+      a {
+        padding: 0;
+      }
+    `,
+  )};
 `;
 
-export const SearchBarContainer = styled.div`
+export const SearchBarContainer = styled.div<{ open?: boolean }>`
   position: relative;
   display: flex;
   justify-content: center;
-  background: ${props => props.theme.colors.background};
-  height: 4.5rem;
+  background: ${props => props.theme.colors.surface};
   padding: 1.25rem;
-  border: 2px solid ${props => props.theme.colors.white};
+  height: 4.5rem;
 
   form {
     margin: 0;
@@ -265,7 +297,7 @@ export const CloseSearchButton = styled(Button)`
   svg {
     width: 24px;
     height: 24px;
-    fill: ${props => props.theme.colors.onBackground};
+    fill: ${props => props.theme.colors.dark};
   }
 
   &:hover,

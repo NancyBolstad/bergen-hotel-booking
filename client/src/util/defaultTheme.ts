@@ -20,7 +20,7 @@ const stableColors: Partial<IColors> = {
 
 const defaultColors: IColors = {
   primary: '#C2003D',
-  primaryVariant: '#C2003D',
+  primaryVariant: '#ffffff',
   onPrimary: '#ffffff',
   secondary: '#FFEBE4',
   secondaryVariant: '#FFEBE4',
@@ -37,7 +37,7 @@ const darkThemeColors: IColors = {
   primaryVariant: '#FFEBE4',
   onPrimary: '#000000',
   secondary: '#FFEBE4',
-  secondaryVariant: '#000000',
+  secondaryVariant: '#888888',
   onSecondary: '#000000',
   background: '#000000',
   surface: '#888888',
@@ -202,7 +202,7 @@ const b3: Font = {
       query: defaultMediaQueries.small,
       weight: defaultFontWeight.regular,
       size: 1.25,
-      lineHeight: 1.5,
+      lineHeight: 2,
     },
   ],
 };

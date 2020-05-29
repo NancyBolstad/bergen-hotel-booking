@@ -12,6 +12,8 @@ const StyledInput = styled.input<Partial<IProps>>`
   padding: 0 ${props => props.theme.spacing.xs}rem;
   ${props => createFontStyles(props.theme.fonts.b3)};
   color: ${props => props.theme.colors.onBackground};
+  box-shadow: rgba(46, 41, 51, 0.08) 0px 1px 2px, rgba(71, 63, 79, 0.08) 0px 2px 4px;
+  border-radius: 4px;
 
   ::placeholder {
     color: ${props => props.theme.colors.onSurface};

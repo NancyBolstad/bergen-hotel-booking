@@ -1,8 +1,15 @@
 import * as React from 'react';
-import { Swipeable } from 'react-swipeable';
 import { arrow } from '../../util/icons';
 import { Image } from '../../types/types';
-import { Slide, SliderNav, SliderButtonWrapper, Dots, Dot, PrevNextButton } from './styles';
+import {
+  Slide,
+  SliderNav,
+  SliderButtonWrapper,
+  Dots,
+  Dot,
+  PrevNextButton,
+  StyledSwipeableSliderWrapper,
+} from './styles';
 
 interface Props {
   defaultIndex?: number;
@@ -45,7 +52,7 @@ export const Slider: React.FunctionComponent<Props> = ({
   }
 
   return (
-    <Swipeable
+    <StyledSwipeableSliderWrapper
       onSwipedLeft={() => changeIndex(index - 1)}
       onSwipedRight={() => changeIndex(index + 1)}
     >
@@ -81,7 +88,7 @@ export const Slider: React.FunctionComponent<Props> = ({
           </SliderNav>
         )}
       </Slide>
-    </Swipeable>
+    </StyledSwipeableSliderWrapper>
   );
 };
 

@@ -14,8 +14,8 @@ import useFilter, { FilterInterface } from '../../hooks/useFilter';
 import Typography from '../Typography';
 import { HotelCardVariant } from '../HotelCards/index';
 import useOutsideClick from '../../hooks/useOutsideClick';
-import { ButtonInternal } from '../Button/Button';
-import { search } from '../../util/icons';
+import { ButtonLink } from '../Button/Button';
+import { search, navigationArrow } from '../../util/icons';
 
 interface Props {
   dataSet?: HotelDetails[];
@@ -77,21 +77,25 @@ export const SearchForm: React.FunctionComponent<Props> = ({ dataSet, placeHolde
       </Form>
       {showResults && (
         <SearchResultsWrapper isMobile={isMobile} ref={register}>
-          <Typography variant="b2" element="h3" content={`Search results for "${filter.name}"`} />
+          <Typography
+            variant="b2"
+            element="h3"
+            content={`Find ${hotels.length} search results for "${filter.name}"`}
+          />
           {hotels.slice(0, 4).map(hotel => (
             <>
-              <HotelCardVariant card={hotel} miniCard />
+              <HotelCardVariant card={hotel} miniCard showReadMore />
             </>
           ))}
           {hotels && hotels.length > 5 && (
-            <ButtonInternal
-              to={`/search?name=${filter.name}&category=${filter.category}&service=${filter.service}`}
-              variant="secondary"
-              size="medium"
+            <ButtonLink
+              href={`/search?name=${filter.name}&category=${filter.category}&service=${filter.service}`}
+              variant="primary"
+              size="small"
               aria-label="View more search results"
             >
-              More Results
-            </ButtonInternal>
+              View More Results {navigationArrow}
+            </ButtonLink>
           )}
         </SearchResultsWrapper>
       )}

@@ -5,53 +5,24 @@ import IconList from '../../components/IconList/IconList';
 import { BannerGrid, FlexBanner } from '../../components/Banner/';
 import { HotelCardsList } from '../../components/HotelCards';
 import Loader from '../../components/Loader/Loader';
+import { PAGE_HERO_IMG, FLEX_BANNER_A, FLEX_BANNER_B, CAMPAIGN_A } from '../../data/content';
 
 interface Props {}
 
 export const Home: React.FunctionComponent<Props> = () => {
   const localContext = React.useContext(Context);
 
-  const image = {
-    url:
-      'https://res.cloudinary.com/dykdxdtuu/image/upload/v1589114470/holidaza/photo-1580946443359-1126222f9224_fjvl7g.jpg',
-    alt: 'Bergen scenery',
-  };
-
-  const mockBannerGrid = {
-    backgroundImage: image,
-    text: 'Up to 50% off',
-    redirectLink: `/accommodations?category=hotel&name=&service=free%20breakfast`,
-  };
-
-  const mockFlexBannerBlog = {
-    title: 'Stories from Bergen',
-    descriptions:
-      'Stay updated with the latest travel stories, tips and insights shared by our community.',
-    figure: image,
-    buttonText: 'Read our blog',
-    redirectLink: '/blog',
-  };
-
-  const mockFlexBannerAboutUs = {
-    title: 'About Us',
-    descriptions:
-      'Holidaze Berge is a boutique design and software development company. We have 50+ JS and design experts on board and 6+ years of experience in building digital projects from scratch or refreshing existing ones.',
-    figure: image,
-    buttonText: 'Learn more',
-    redirectLink: '/about',
-  };
-
   return (
     <>
       <SearchBanner
-        figure={image}
+        figure={PAGE_HERO_IMG}
         title="Book your holiday in Bergen at best price"
         placeHolderText="Search for hotels"
       />
       <IconList />
       <BannerGrid
         sectionTitle="We selected best deals for you."
-        banners={[mockBannerGrid, mockBannerGrid, mockBannerGrid]}
+        banners={[CAMPAIGN_A, CAMPAIGN_A, CAMPAIGN_A]}
       />
       {localContext.loading ? (
         <Loader />
@@ -60,11 +31,11 @@ export const Home: React.FunctionComponent<Props> = () => {
           sectionTitle="Most popular hotels"
           ctaText="Explore more"
           ctaUrl="/accommodations"
-          list={localContext.default.slice(0, 6)}
+          list={localContext.default.slice(0, 8)}
         />
       )}
-      <FlexBanner {...mockFlexBannerBlog} backgroundColor="secondaryVariant" />
-      <FlexBanner {...mockFlexBannerAboutUs} isImageRight />
+      <FlexBanner {...FLEX_BANNER_A} />
+      <FlexBanner {...FLEX_BANNER_B} isImageRight />
     </>
   );
 };

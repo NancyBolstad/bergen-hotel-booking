@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Image as ImageType } from '../../types/types';
-import { WidthConstraints, HorizontalSpacer } from '../Layout';
+import { WidthConstraints, HorizontalSpacer, Section } from '../Layout';
 import Typography from '../Typography';
 import SearchForm from '../SearchForm/SearchForm';
 import useIsMobile from '../../hooks/useIsMobile';
@@ -23,7 +23,7 @@ const SearchBanner: React.FunctionComponent<Props> = ({
 }) => {
   const isMobile = useIsMobile();
   return (
-    <>
+    <Section>
       {isMobile && (
         <SearchBannerContent backgroundColor="secondaryVariant" isDesktop={!isMobile}>
           <WidthConstraints size="medium">
@@ -54,7 +54,7 @@ const SearchBanner: React.FunctionComponent<Props> = ({
           </SearchBannerContent>
         )}
       </SearchBannerBackground>
-    </>
+    </Section>
   );
 };
 

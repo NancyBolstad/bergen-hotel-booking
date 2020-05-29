@@ -1,10 +1,11 @@
 import * as React from 'react';
-import { Section, Wrapper, SectionTitle, More } from './styles';
-import { ButtonInternal } from '../Button/Button';
+import { Wrapper, SectionTitle, More } from './styles';
+import { ButtonLink } from '../Button/Button';
 import { IColors } from '../../types/theme';
-import { WidthConstraints, VerticalSpacer, HorizontalSpacer, CardsList } from '../Layout';
+import { WidthConstraints, VerticalSpacer, HorizontalSpacer, CardsList, Section } from '../Layout';
 import HotelCard from './HotelCard';
 import { HotelDetails } from '../../types/response';
+import { navigationArrow } from '../../util/icons';
 
 export interface Props {
   sectionTitle?: string;
@@ -36,9 +37,9 @@ export const HotelCardsList: React.FunctionComponent<Props> = ({
                   variant="h2"
                   content={sectionTitle}
                   top={24}
-                  topDesktop={36}
+                  topDesktop={48}
                   bottom={24}
-                  bottomDesktop={36}
+                  bottomDesktop={48}
                 />
               )}
               <CardsList>
@@ -48,9 +49,9 @@ export const HotelCardsList: React.FunctionComponent<Props> = ({
               </CardsList>
               {!!ctaText && !!ctaUrl && (
                 <More>
-                  <ButtonInternal to={ctaUrl} size="medium" variant="secondary">
-                    {ctaText}
-                  </ButtonInternal>
+                  <ButtonLink href={ctaUrl} size="medium" variant="secondary">
+                    {ctaText} {navigationArrow}
+                  </ButtonLink>
                 </More>
               )}
             </Wrapper>

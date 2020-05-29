@@ -46,7 +46,7 @@ const FlexLeft = styled(FlexKid)`
 export const Book: React.FunctionComponent<Props> = () => {
   const localContext = React.useContext(Context);
   let { id } = useParams();
-  const { data, loading } = useApi<HotelDetailsRoot>({
+  const { results, loading } = useApi<HotelDetailsRoot>({
     endpoint: `${process.env.REACT_APP_API_URL}establishments/${id}`,
     fetchOnMount: true,
     initialData: {
@@ -71,16 +71,16 @@ export const Book: React.FunctionComponent<Props> = () => {
   return (
     <>
       {loading && <Loader />}
-      {!!data && !!id && !loading && (
+      {!!results && !!id && !loading && (
         <VerticalSpacer topSpace="xs" topSpaceDesktop="m" bottomSpace="xs" bottomSpaceDesktop="m">
           <HorizontalSpacer>
             <WidthConstraints size="large">
               <Layout>
                 <FlexLeft flex={1}>
-                  <HotelCard card={data.data} />
+                  <HotelCard card={results.data} extraSpace backgroundColor="secondaryVariant" />
                 </FlexLeft>
                 <FlexKid flex={2}>
-                  <BookForm establishmentId={id} establishmentName={data.data.name} />
+                  <BookForm establishmentId={id} establishmentName={results.data.name} />
                 </FlexKid>
               </Layout>
             </WidthConstraints>

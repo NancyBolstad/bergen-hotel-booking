@@ -1,1 +1,1 @@
-export const COPY_RIGHTS: string = '© 2020 - Designed And Developed By Nancy Y. Bolstad';
+export const COPY_RIGHTS: string = '© 2020 - Developed By Nancy Bolstad';

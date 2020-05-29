@@ -11,6 +11,7 @@ import {
   LikeButton,
   ThemeToggleButton,
   HeaderTop,
+  Badge,
 } from './styles';
 import { APP_NAME, MAIN_NAV_LINKS } from '../../util/constants';
 import { ContrastContext } from '../../context/ContrastContext';
@@ -20,6 +21,8 @@ import useIsMobile from '../../hooks/useIsMobile';
 import SearchBar from './SearchBar';
 import MobileMenu from './MobileMenu';
 import MainNavMenu from './MainNavMenu';
+import { Flex } from '../Flex/';
+import Typography from '../Typography';
 
 const Header: React.FunctionComponent = () => {
   const { theme, toggleContrast } = React.useContext(ContrastContext);
@@ -69,25 +72,37 @@ const Header: React.FunctionComponent = () => {
               setSearching(true);
             }}
           >
-            {search}
+            <Flex direction="column" justify="center" align="center">
+              {search}
+              <Typography variant="b1" element="span" content="Search" />
+            </Flex>
           </HeaderNavLink>
           {!isMobile && (
             <>
               <LikeButton
                 href="/favorites"
-                role="button"
                 title="Go to favorites page"
                 aria-label="Go to favorites page"
               >
-                {heart}
-                <span>{favorites.length}</span>
+                <Flex direction="column" justify="center" align="center">
+                  {heart}
+                  <Badge>{favorites.length}</Badge>
+                  <Typography variant="b1" element="span" content="Favorites" />
+                </Flex>
               </LikeButton>
               <ThemeToggleButton
                 onClick={() => toggleContrast()}
                 aria-label="Toggle mode"
                 title="Toggle mode"
               >
-                {theme === 'default' ? sun : moon}
+                <Flex direction="column" justify="center" align="center">
+                  {theme === 'default' ? moon : sun}
+                  <Typography
+                    variant="b1"
+                    element="span"
+                    content={`${theme === 'default' ? 'Dark' : 'Light'} Mode`}
+                  />
+                </Flex>
               </ThemeToggleButton>
             </>
           )}
@@ -108,7 +123,7 @@ const Header: React.FunctionComponent = () => {
       {isMobile && isMobileMenuOpen && (
         <MobileMenu navLinks={MAIN_NAV_LINKS} toggler={setIsMobileMenuOpen} />
       )}
-      {searching && <SearchBar toggler={setSearching} />}
+      {searching && <SearchBar toggler={setSearching} isActive={searching} />}
     </HeaderWrapper>
   );
 };

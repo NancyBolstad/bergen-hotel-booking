@@ -10,7 +10,7 @@ import Loader from '../../Loader/Loader';
 interface Props {}
 
 const Messages: React.FC<Props> = () => {
-  const { data, loading } = useApi<ContactResponse>({
+  const { results, loading } = useApi<ContactResponse>({
     endpoint: `${process.env.REACT_APP_API_URL}contact`,
     fetchOnMount: true,
     initialData: {
@@ -33,7 +33,7 @@ const Messages: React.FC<Props> = () => {
           <Typography variant="h2" element="h2" content="Messages" />
         </Card>
       </Section>
-      {data.data.length === 0 ? (
+      {results.data.length === 0 ? (
         <Section>
           <Card>
             <Typography variant="h2" element="h2" content="There are no messages for the moment." />
@@ -46,7 +46,7 @@ const Messages: React.FC<Props> = () => {
               <Loader />
             </Card>
           )}
-          {(data.data || []).map((contact, index) => (
+          {(results.data || []).map(contact => (
             <SingleContact key={contact.id} contact={contact} />
           ))}
         </>

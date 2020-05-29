@@ -10,7 +10,7 @@ import Loader from '../../Loader/Loader';
 interface Props {}
 
 const Enquiries: React.FC<Props> = () => {
-  const { data, loading } = useApi<EnquiriesResponse>({
+  const { results, loading } = useApi<EnquiriesResponse>({
     endpoint: `${process.env.REACT_APP_API_URL}enquiries`,
     fetchOnMount: true,
     initialData: {
@@ -35,7 +35,7 @@ const Enquiries: React.FC<Props> = () => {
           <Typography variant="h2" element="h2" content="Enquiries" />
         </Card>
       </Section>
-      {data.data.length === 0 ? (
+      {results.data.length === 0 ? (
         <Section>
           <Card>
             <Typography
@@ -52,7 +52,7 @@ const Enquiries: React.FC<Props> = () => {
               <Loader />
             </Card>
           )}
-          {(data.data || []).map((enquiry, index) => (
+          {(results.data || []).map(enquiry => (
             <SingleEnquiry key={enquiry.id} enquiry={enquiry} />
           ))}
         </>

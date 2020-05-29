@@ -8,8 +8,8 @@ import { BlogDetailsRoot } from '../../types/response';
 import { VerticalSpacer, HorizontalSpacer, WidthConstraints } from '../../components/Layout';
 import Typography from '../../components/Typography';
 import { Flex } from '../../components/Flex';
-import { HotelCardsList } from '../../components/HotelCards';
-import { Context } from '../../context/GlobalContext';
+//import { HotelCardsList } from '../../components/HotelCards';
+//import { Context } from '../../context/GlobalContext';
 
 interface Props {}
 
@@ -31,9 +31,9 @@ export const RichText = styled.div`
 `;
 
 export const BlogDetails: React.FunctionComponent<Props> = () => {
-  const localContext = React.useContext(Context);
+  //const localContext = React.useContext(Context);
   let { id } = useParams();
-  const { data, loading } = useApi<BlogDetailsRoot>({
+  const { results, loading } = useApi<BlogDetailsRoot>({
     endpoint: `${process.env.REACT_APP_API_URL}blog/${id}`,
     fetchOnMount: true,
     initialData: {
@@ -49,8 +49,8 @@ export const BlogDetails: React.FunctionComponent<Props> = () => {
   return (
     <>
       {loading && <Loader />}
-      {!!data && !loading && (
-        <PageHero figure={data.data.images[0]}>
+      {!!results && !loading && (
+        <PageHero figure={results.data.images[0]}>
           <VerticalSpacer topSpace="xs" topSpaceDesktop="m" bottomSpace="xs" bottomSpaceDesktop="m">
             <HorizontalSpacer>
               <WidthConstraints size="medium">
@@ -58,43 +58,31 @@ export const BlogDetails: React.FunctionComponent<Props> = () => {
                   <Typography
                     variant="h1"
                     element="h1"
-                    content={data.data.title}
+                    content={results.data.title}
                     textTransform="capitalize"
                   />
-                  {data.data.author && (
+                  {results.data.content && (
+                    <RichText dangerouslySetInnerHTML={{ __html: results.data.content }} />
+                  )}
+                  {results.data.author && (
                     <Typography
-                      variant="b3"
+                      variant="b1"
                       element="span"
-                      content={`Author: ${data.data.author}`}
-                      bottom={20}
+                      content={`Author: ${results.data.author}`}
                     />
                   )}
-                  {data.data.createdAt && (
+                  {results.data.createdAt && (
                     <Typography
-                      variant="b3"
+                      variant="b1"
                       element="span"
-                      content={`Published at: ${data.data.createdAt}`}
+                      content={`Published at: ${results.data.createdAt}`}
                     />
-                  )}
-                  {data.data.content && (
-                    <RichText dangerouslySetInnerHTML={{ __html: data.data.content }} />
                   )}
                 </Flex>
               </WidthConstraints>
             </HorizontalSpacer>
           </VerticalSpacer>
         </PageHero>
-      )}
-      {localContext.loading ? (
-        <Loader />
-      ) : (
-        <HotelCardsList
-          sectionTitle="Related accommodations"
-          ctaText="Explore more"
-          ctaUrl="/accommodations"
-          list={localContext.default.slice(0, 3)}
-          backgroundColor="secondaryVariant"
-        />
       )}
     </>
   );

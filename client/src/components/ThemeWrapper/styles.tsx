@@ -1,8 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import createFontStyles from '../../util/createFontStyles';
 
-export interface Props {}
-
 export const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
@@ -11,7 +9,6 @@ export const GlobalStyle = createGlobalStyle`
     overflow-x:hidden;
     color: ${props => props.theme.colors.onBackground};
     background:${props => props.theme.colors.background};
-    transition: background-color 0.5s, color 0.5s;
     width: 100%;
     height: 100%;
     line-height: 22px;

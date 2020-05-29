@@ -1,6 +1,6 @@
 import React, { lazy, Suspense } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import ThemeWrapper from '../components/ThemeWrapper';
+import ThemeWrapper from '../components/ThemeWrapper/ThemeWrapper';
 import Header from '../components/Header/Header';
 import Footer from '../components/Footer';
 import Loader from '../components/Loader/Loader';
@@ -11,7 +11,7 @@ import Blog from './Blog/Blog';
 import BlogDetails from './Blog/BlogDetails';
 import PrivateRoute from '../routes/PrivateRoute';
 import DashBoard from './Dashboard/Dashboard';
-import MainContent from '../components/MainContent';
+import { Main } from '../components/Layout/Main';
 
 const Contact = lazy(() => import('./Contact'));
 const Book = lazy(() => import('./Book/Book'));
@@ -19,6 +19,7 @@ const Login = lazy(() => import('./Login/Login'));
 const Success = lazy(() => import('./Success'));
 const AccommodationDetails = lazy(() => import('./Accommodations/AccommodationDetails'));
 const SearchResults = lazy(() => import('./SearchResults/SearchResults'));
+const About = lazy(() => import('./About/About'));
 
 interface Props {}
 
@@ -29,7 +30,7 @@ const Layout: React.FunctionComponent<Props> = () => {
         <BrowserRouter>
           <>
             <Header />
-            <MainContent>
+            <Main>
               <Switch>
                 <PrivateRoute path="/dashboard/" component={DashBoard} exact />
                 <PrivateRoute path="/dashboard/:slug" component={DashBoard} exact />
@@ -41,6 +42,11 @@ const Layout: React.FunctionComponent<Props> = () => {
                 <Route exact path="/search">
                   <Suspense fallback={<Loader />}>
                     <SearchResults />
+                  </Suspense>
+                </Route>
+                <Route exact path="/about">
+                  <Suspense fallback={<Loader />}>
+                    <About />
                   </Suspense>
                 </Route>
                 <Route exact path="/book/:id">
@@ -99,7 +105,7 @@ const Layout: React.FunctionComponent<Props> = () => {
                   </Suspense>
                 </Route>
               </Switch>
-            </MainContent>
+            </Main>
             <Footer />
           </>
         </BrowserRouter>

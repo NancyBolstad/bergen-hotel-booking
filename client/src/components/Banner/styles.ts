@@ -1,12 +1,13 @@
 import styled, { css } from 'styled-components';
 import { BackgroundImage } from '../Image';
 import Typography from '../Typography';
+import createMediaQuery from '../../util/createMediaQuery';
 
 type alignVariant = 'flex-start' | 'center' | 'flex-end';
 
 export const FlexParent = styled.div<{ isImageRight?: boolean; isMobile: boolean }>`
   display: flex;
-  flex-direction: ${props => (props.isImageRight ? 'column' : 'column-reverse')};
+  flex-direction: column-reverse;
 
   ${props =>
     props.isMobile === false &&
@@ -22,7 +23,14 @@ export const FlexKid = styled(BackgroundImage)<{ isMobile: boolean }>`
   align-items: flex-start;
   width: ${props => (props.isMobile ? '100%' : '50%')};
   flex-grow: 1;
-  min-height: 23.75rem;
+  min-height: 15.75rem;
+
+  ${createMediaQuery(
+    'large',
+    css`
+      min-height: 23.75rem;
+    `,
+  )}
 `;
 
 export const PlainBannerContent = styled(BackgroundImage)<{
@@ -34,6 +42,7 @@ export const PlainBannerContent = styled(BackgroundImage)<{
   justify-content: ${props => (props.align ? props.align : 'center')};
   align-items: ${props => (props.align ? props.align : 'center')};
   width: 100%;
+  min-height: 15vh;
   ${props =>
     props.large &&
     css`
@@ -55,7 +64,7 @@ export const SearchBannerBackground = styled(BackgroundImage)<{ isDesktop?: bool
   ${props =>
     props.isDesktop &&
     css`
-      height: 75vh;
+      height: 60vh;
     `}
 `;
 
@@ -65,15 +74,42 @@ export const SearchBannerContent = styled(BackgroundImage)<{ isDesktop?: boolean
   justify-content: left;
   align-items: left;
   width: 100%;
-  padding: ${props => props.theme.spacing.m}rem 0;
+  padding: 0.5rem 0 1.5rem 0;
 
   ${props =>
     props.isDesktop &&
     css`
-      height: 13rem;
+      height: 11.5625rem;
       padding: 0;
       justify-content: center;
       align-items: center;
       position: relative;
+      padding: ${props => props.theme.spacing.m}rem 0;
     `}
+`;
+
+export const InnerTextWrapper = styled.a<{ large?: string }>`
+  background-color: ${props => props.theme.colors.secondary};
+  width: 15.6875rem;
+  height: 8.3125rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  opacity: 0.8;
+
+  $:hover {
+    opacity: 0.3;
+  }
+
+  h2,
+  h3 {
+    color: ${props => props.theme.colors.dark};
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: ${props => (props.large === 'true' ? '30rem' : '18rem')};
+    height: ${props => (props.large === 'true' ? '20rem' : '12rem')};
+  }
 `;

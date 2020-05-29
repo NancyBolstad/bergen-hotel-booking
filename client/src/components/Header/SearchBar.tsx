@@ -8,9 +8,10 @@ import useOutsideClick from '../../hooks/useOutsideClick';
 
 interface Props {
   toggler: React.Dispatch<React.SetStateAction<boolean>>;
+  isActive: boolean;
 }
 
-const SearchBar: React.FunctionComponent<Props> = ({ toggler }) => {
+const SearchBar: React.FunctionComponent<Props> = ({ toggler, isActive }) => {
   const location = useLocation();
   const [searchValue, setSearchValue] = React.useState('');
   const toggleArea = React.useRef(null);
@@ -24,7 +25,7 @@ const SearchBar: React.FunctionComponent<Props> = ({ toggler }) => {
   }, [location]);
 
   return (
-    <SearchBarContainer ref={toggleArea}>
+    <SearchBarContainer ref={toggleArea} open={isActive}>
       <Form
         role="search"
         onSubmit={event => {

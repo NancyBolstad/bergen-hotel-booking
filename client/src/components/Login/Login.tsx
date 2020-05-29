@@ -5,7 +5,7 @@ import { StyledInput, StyledLabelWrapper, Form, StyledLabel, ErrorMessage } from
 import Button from '../Button/Button';
 import Typography from '../Typography/Typography';
 import LoginSchema from './login.schema';
-import { WidthConstraints, VerticalSpacer, HorizontalSpacer } from '../Layout';
+import { WidthConstraints, VerticalSpacer, HorizontalSpacer, Section } from '../Layout';
 import { Flex } from '../Flex';
 import { UserContext } from '../../context/UserContext';
 
@@ -26,72 +26,74 @@ const Login: React.FC<Props> = () => {
   }, [user.loggedIn, history]);
 
   return (
-    <VerticalSpacer>
-      <HorizontalSpacer>
-        <WidthConstraints size="large">
-          <Flex direction="column">
-            <Typography element="h1" variant="h1" content="Log Into Admin Dashboard" />
-            <Form
-              onSubmit={e => {
-                e.preventDefault();
-                setUser({
-                  name: userName,
-                  loggedIn: true,
-                });
-              }}
-              noValidate
-            >
-              <StyledLabel>
-                <StyledLabelWrapper>
-                  Username <span>*</span>
-                </StyledLabelWrapper>
-                <StyledInput
-                  type="text"
-                  name="userName"
-                  placeholder="Your username"
-                  ref={register}
-                  required
-                  onChange={e => setUserName(e.target.value)}
-                />
-              </StyledLabel>
-              {/* 
+    <Section>
+      <VerticalSpacer>
+        <HorizontalSpacer>
+          <WidthConstraints size="large">
+            <Flex direction="column">
+              <Typography element="h1" variant="h1" content="Log Into Admin Dashboard" />
+              <Form
+                onSubmit={e => {
+                  e.preventDefault();
+                  setUser({
+                    name: userName,
+                    loggedIn: true,
+                  });
+                }}
+                noValidate
+              >
+                <StyledLabel>
+                  <StyledLabelWrapper>
+                    Username <span>*</span>
+                  </StyledLabelWrapper>
+                  <StyledInput
+                    type="text"
+                    name="userName"
+                    placeholder="Your username"
+                    ref={register}
+                    required
+                    onChange={e => setUserName(e.target.value)}
+                  />
+                </StyledLabel>
+                {/* 
       // @ts-ignore */
-              errors.userName && <ErrorMessage>{errors.userName.message}</ErrorMessage>}
-              <StyledLabel>
-                <StyledLabelWrapper>
-                  Password <span>*</span>
-                </StyledLabelWrapper>
-                <StyledInput
-                  type="password"
-                  name="password"
-                  placeholder="Your password"
-                  ref={register}
-                  required
-                />
-              </StyledLabel>
-              {/* 
+                errors.userName && <ErrorMessage>{errors.userName.message}</ErrorMessage>}
+                <StyledLabel>
+                  <StyledLabelWrapper>
+                    Password <span>*</span>
+                  </StyledLabelWrapper>
+                  <StyledInput
+                    type="password"
+                    name="password"
+                    placeholder="Your password"
+                    ref={register}
+                    required
+                  />
+                </StyledLabel>
+                {/* 
       // @ts-ignore */
-              errors.password && <ErrorMessage>{errors.password.message}</ErrorMessage>}
-              <Button size="large" variant="primary" type="submit">
-                Login
-              </Button>
-              {!!user.loggedIn && (
-                <Button
-                  size="large"
-                  variant="secondary"
-                  onClick={e => {
-                    e.preventDefault();
-                    logOut();
-                  }}
-                >
-                  Log out
+                errors.password && <ErrorMessage>{errors.password.message}</ErrorMessage>}
+                <Button size="large" variant="primary" type="submit">
+                  Login
                 </Button>
-              )}
-            </Form>
-          </Flex>
-        </WidthConstraints>
-      </HorizontalSpacer>
-    </VerticalSpacer>
+                {!!user.loggedIn && (
+                  <Button
+                    size="large"
+                    variant="secondary"
+                    onClick={e => {
+                      e.preventDefault();
+                      logOut();
+                    }}
+                  >
+                    Log out
+                  </Button>
+                )}
+              </Form>
+            </Flex>
+          </WidthConstraints>
+        </HorizontalSpacer>
+      </VerticalSpacer>
+    </Section>
   );
 };
 

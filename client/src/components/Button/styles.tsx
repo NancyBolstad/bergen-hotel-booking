@@ -10,6 +10,7 @@ export const Button = styled.button<ButtonProps>`
   cursor: pointer;
   width: fit-content;
   text-decoration: none;
+  border-radius: 4px;
   border: 2px solid transparent;
   transition: border-color 0.15s ease-in-out, background-color 0.15s ease-in-out;
   &:disabled {
@@ -53,10 +54,17 @@ export const Button = styled.button<ButtonProps>`
     css`
       background-color: ${props => props.theme.colors.primary};
       color: ${props => props.theme.colors.onPrimary};
+      border: 1px solid transparent;
+      transition: background-color 0.3s;
       &:hover,
       &:active,
       &:focus {
-        background-color: ${props => props.theme.colors.hoverColor};
+        background-color: ${props => props.theme.colors.dark};
+        color: ${props => props.theme.colors.white};
+        border: 1px solid ${props => props.theme.colors.onBackground};
+        svg {
+          fill: ${props => props.theme.colors.white};
+        }
       }
       svg {
         fill: ${props => props.theme.colors.onPrimary};
@@ -74,7 +82,13 @@ export const Button = styled.button<ButtonProps>`
       &:hover,
       &:active,
       &:focus {
-        opacity: 0.8;
+        background-color: ${props => props.theme.colors.secondary};
+        border-color: ${props => props.theme.colors.secondary};
+        color: ${props => props.theme.colors.dark};
+
+        svg {
+          fill: ${props => props.theme.colors.dark};
+        }
       }
     `};
   ${props =>
@@ -90,6 +104,28 @@ export const Button = styled.button<ButtonProps>`
       }
       svg {
         fill: ${props => props.theme.colors.background};
+      }
+    `};
+
+  ${props =>
+    props.variant === 'secondaryVariant' &&
+    css`
+      background-color: transparent;
+      border-bottom-color: ${props => props.theme.colors.primary};
+      padding: 0;
+      justify-content: flex-start;
+      width: fit-content;
+      font-size: 14px;
+      color: ${props => props.theme.colors.primary};
+      svg {
+        fill: ${props => props.theme.colors.primary};
+        width: 18px;
+        height: 18px;
+      }
+      &:hover,
+      &:active,
+      &:focus {
+        opacity: 0.8;
       }
     `};
 `;

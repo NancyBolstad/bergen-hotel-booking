@@ -1,14 +1,11 @@
 import styled from 'styled-components';
+import { Section } from '../Layout';
 
-export const InfoListWrapper = styled.div`
+export const InfoListWrapper = styled(Section)`
   width: 100%;
   background: ${props => props.theme.colors.background};
   color: ${props => props.theme.colors.onSurface};
   overflow: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 `;
 
 export const InfoListFlexParent = styled.ul`

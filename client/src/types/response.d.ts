@@ -30,7 +30,7 @@ export interface HotelDetails {
   category: HotelCategories | '';
   featuredImages: ImageType[];
   descriptions: string;
-  location?: string;
+  location: string;
   price?: number;
   onSale?: boolean;
   salePrice?: number;

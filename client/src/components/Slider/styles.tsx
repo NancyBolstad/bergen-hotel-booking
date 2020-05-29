@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { Swipeable } from 'react-swipeable';
 import { BackgroundImage } from '../Image/BackgroundImage';
 
 export const Slide = styled(BackgroundImage)<{ large?: boolean }>`
@@ -92,4 +93,8 @@ export const SliderButtonWrapper = styled.div`
   width: 100%;
   display: inline-flex;
   justify-content: space-between;
+`;
+
+export const StyledSwipeableSliderWrapper = styled(Swipeable)`
+  height: 100%;
 `;

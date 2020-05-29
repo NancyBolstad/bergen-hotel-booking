@@ -5,6 +5,7 @@ import { IColors } from '../../types/theme';
 import { WidthConstraints, VerticalSpacer, HorizontalSpacer, CardsList, Section } from '../Layout';
 import HotelCard from './HotelCard';
 import { HotelDetails } from '../../types/response';
+import { navigationArrow } from '../../util/icons';
 
 export interface Props {
   sectionTitle?: string;
@@ -49,7 +50,7 @@ export const HotelCardsList: React.FunctionComponent<Props> = ({
               {!!ctaText && !!ctaUrl && (
                 <More>
                   <ButtonLink href={ctaUrl} size="medium" variant="secondary">
-                    {ctaText}
+                    {ctaText} {navigationArrow}
                   </ButtonLink>
                 </More>
               )}

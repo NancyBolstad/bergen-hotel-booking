@@ -79,7 +79,13 @@ export const Button = styled.button<ButtonProps>`
       &:hover,
       &:active,
       &:focus {
-        opacity: 0.8;
+        background-color: ${props => props.theme.colors.secondary};
+        border-color: ${props => props.theme.colors.secondary};
+        color: ${props => props.theme.colors.dark};
+
+        svg {
+          fill: ${props => props.theme.colors.dark};
+        }
       }
     `};
   ${props =>

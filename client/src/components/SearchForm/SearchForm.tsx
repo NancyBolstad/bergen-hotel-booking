@@ -15,7 +15,7 @@ import Typography from '../Typography';
 import { HotelCardVariant } from '../HotelCards/index';
 import useOutsideClick from '../../hooks/useOutsideClick';
 import { ButtonLink } from '../Button/Button';
-import { search } from '../../util/icons';
+import { search, navigationArrow } from '../../util/icons';
 
 interface Props {
   dataSet?: HotelDetails[];
@@ -84,17 +84,17 @@ export const SearchForm: React.FunctionComponent<Props> = ({ dataSet, placeHolde
           />
           {hotels.slice(0, 4).map(hotel => (
             <>
-              <HotelCardVariant card={hotel} miniCard />
+              <HotelCardVariant card={hotel} miniCard showReadMore />
             </>
           ))}
           {hotels && hotels.length > 5 && (
             <ButtonLink
               href={`/search?name=${filter.name}&category=${filter.category}&service=${filter.service}`}
-              variant="secondary"
-              size="medium"
+              variant="primary"
+              size="small"
               aria-label="View more search results"
             >
-              More Results
+              View More Results {navigationArrow}
             </ButtonLink>
           )}
         </SearchResultsWrapper>

@@ -6,6 +6,7 @@ import { WidthConstraints, VerticalSpacer, HorizontalSpacer, Section } from '../
 import { HotelDetails } from '../../types/response';
 import HotelCardVariant from './HotelCardVariant';
 import { Flex } from '../Flex';
+import { navigationArrow } from '../../util/icons';
 
 export interface Props {
   sectionTitle?: string;
@@ -38,7 +39,7 @@ export const HotelCardsList: React.FunctionComponent<Props> = ({
               {!!ctaText && !!ctaUrl && (
                 <More>
                   <ButtonLink href={ctaUrl} size="medium" variant="secondary">
-                    {ctaText}
+                    {ctaText} {navigationArrow}
                   </ButtonLink>
                 </More>
               )}

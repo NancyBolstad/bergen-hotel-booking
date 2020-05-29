@@ -23,9 +23,10 @@ import { ButtonLink } from '../Button/Button';
 interface Props {
   card: HotelDetails;
   miniCard?: boolean;
+  showReadMore?: boolean;
 }
 
-const HotelCardVariant: React.FunctionComponent<Props> = ({ card, miniCard }) => {
+const HotelCardVariant: React.FunctionComponent<Props> = ({ card, miniCard, showReadMore }) => {
   const isMobile = useIsMobile();
   const { favorites, dispatch } = React.useContext(Context);
   const [like, setLike] = React.useState<boolean>(() => {
@@ -140,7 +141,7 @@ const HotelCardVariant: React.FunctionComponent<Props> = ({ card, miniCard }) =>
             content={transformLangText(card.descriptions, isMobile ? 150 : 180)}
           />
         )}
-        {isMobile && (
+        {isMobile && showReadMore && (
           <ButtonLink
             href={`/accommodation/details/${card.id}`}
             aria-label={`View details about ${card.name}`}

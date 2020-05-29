@@ -5,6 +5,7 @@ import Typography from '../Typography';
 import useIsMobile from '../../hooks/useIsMobile';
 import { ButtonVariant, ButtonLink } from '../Button/Button';
 import { FlexParent, FlexKid } from './styles';
+import { navigationArrow } from '../../util/icons';
 
 interface Props {
   title?: string;
@@ -67,7 +68,7 @@ const FlexBanner: React.FunctionComponent<Props> = ({
                         aria-label={buttonText}
                         title={buttonText}
                       >
-                        {buttonText}
+                        {buttonText} {navigationArrow}
                       </ButtonLink>
                     )}
                   </WidthConstraints>

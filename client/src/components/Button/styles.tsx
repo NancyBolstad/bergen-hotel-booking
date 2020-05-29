@@ -10,7 +10,7 @@ export const Button = styled.button<ButtonProps>`
   cursor: pointer;
   width: fit-content;
   text-decoration: none;
-  border-radius: 3px;
+  border-radius: 4px;
   border: 2px solid transparent;
   transition: border-color 0.15s ease-in-out, background-color 0.15s ease-in-out;
   &:disabled {
@@ -95,6 +95,28 @@ export const Button = styled.button<ButtonProps>`
       }
       svg {
         fill: ${props => props.theme.colors.background};
+      }
+    `};
+
+  ${props =>
+    props.variant === 'readMore' &&
+    css`
+      background-color: transparent;
+      border-bottom-color: ${props => props.theme.colors.primary};
+      padding: 0;
+      justify-content: flex-start;
+      width: fit-content;
+      font-size: 14px;
+      color: ${props => props.theme.colors.primary};
+      svg {
+        fill: ${props => props.theme.colors.primary};
+        width: 18px;
+        height: 18px;
+      }
+      &:hover,
+      &:active,
+      &:focus {
+        opacity: 0.8;
       }
     `};
 `;

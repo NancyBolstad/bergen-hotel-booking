@@ -6,8 +6,6 @@ import {
   FeaturedImages,
   CardVariantLeft,
   CardVariantRight,
-  LikeButton,
-  LikeButtonWrapper,
   CategoryBadge,
   ServiceLabel,
   MiniImage,
@@ -19,6 +17,7 @@ import { Context } from '../../context/GlobalContext';
 import { Types } from '../../reducer/favoriteCardsReducer';
 import { Flex } from '../Flex';
 import { ButtonLink } from '../Button/Button';
+import LikeButton from '../Button/LikeButton';
 
 interface Props {
   card: HotelDetails;
@@ -79,27 +78,11 @@ const HotelCardVariant: React.FunctionComponent<Props> = ({ card, miniCard, show
         )}
       </CardVariantLeft>
       <CardVariantRight>
-        {!miniCard && (
-          <LikeButtonWrapper positionAbsolute>
-            <LikeButton
-              variant="primary"
-              size="small"
-              isLiked={like}
-              onClick={e => {
-                e.preventDefault();
-                handleLikeDispatch();
-              }}
-              aria-label={`${like ? 'Dislike' : 'Like'} this accommodation`}
-              title={`${like ? 'Dislike' : 'Like'} this accommodation`}
-            >
-              {like ? heartSolid : heart}
-            </LikeButton>
-          </LikeButtonWrapper>
-        )}
+        {!miniCard && <LikeButton card={card} />}
         {!!card.name && (
           <Typography
             element="h3"
-            variant={miniCard ? 'b2' : 'h3'}
+            variant={miniCard ? 'b2' : 'h2'}
             content={card.name}
             isPrimaryColor
             textTransform="capitalize"

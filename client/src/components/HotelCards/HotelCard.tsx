@@ -1,20 +1,11 @@
 import * as React from 'react';
 import Typography from '../Typography';
 import transformLangText from '../../util/transformLangText';
-import {
-  Card,
-  FeaturedImages,
-  LikeButton,
-  LikeButtonWrapper,
-  CategoryBadge,
-  ServiceLabel,
-} from './styles';
-import { heart, heartSolid } from '../../util/icons';
-import { Context } from '../../context/GlobalContext';
-import { Types } from '../../reducer/favoriteCardsReducer';
+import { Card, FeaturedImages, CategoryBadge, ServiceLabel } from './styles';
 import { HotelDetails } from '../../types/response';
 import { Flex } from '../Flex';
 import { IColors } from '../../types/theme';
+import LikeButton from '../Button/LikeButton';
 
 export interface HotelCard {
   card: HotelDetails;
@@ -23,32 +14,6 @@ export interface HotelCard {
 }
 
 const HotelCard: React.FunctionComponent<HotelCard> = ({ card, extraSpace, backgroundColor }) => {
-  const { favorites, dispatch } = React.useContext(Context);
-  const [like, setLike] = React.useState<boolean>(() => {
-    const found = favorites.find(item => {
-      return item.id === card.id;
-    });
-
-    return found ? true : false;
-  });
-
-  function handleLikeDispatch() {
-    setLike(!like);
-
-    if (!like === true) {
-      dispatch({
-        type: Types.Like,
-        payload: card,
-      });
-    } else {
-      dispatch({
-        type: Types.Dislike,
-        payload: {
-          id: card.id,
-        },
-      });
-    }
-  }
   return (
     <Card
       href={`/accommodation/details/${card.id}`}
@@ -58,21 +23,7 @@ const HotelCard: React.FunctionComponent<HotelCard> = ({ card, extraSpace, backg
       backgroundColor={backgroundColor}
     >
       {!!card.featuredImages && <FeaturedImages slides={card.featuredImages} />}
-      <LikeButtonWrapper>
-        <LikeButton
-          variant="primary"
-          size="small"
-          isLiked={like}
-          onClick={e => {
-            e.preventDefault();
-            handleLikeDispatch();
-          }}
-          aria-label={`${like ? 'Dislike' : 'Like'} this accommodation`}
-          title={`${like ? 'Dislike' : 'Like'} this accommodation`}
-        >
-          {like ? heartSolid : heart}
-        </LikeButton>
-      </LikeButtonWrapper>
+      <LikeButton card={card} />
       {!!card.category && <CategoryBadge element="span" variant="b2" content={card.category} />}
       {!!card.name && (
         <Typography

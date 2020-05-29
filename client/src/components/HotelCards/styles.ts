@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-import { Link } from 'react-router-dom';
 import Typography from '../Typography';
 import Slider from '../Slider';
 import Button from '../Button/Button';
@@ -161,7 +160,7 @@ const LikeButtonWrapper = styled.div<{ positionAbsolute?: boolean }>`
     `}
 `;
 
-const LikeButton = styled(Button)<{ isLiked: boolean }>`
+const LikeIcon = styled(Button)<{ isLiked: boolean }>`
   background-color: transparent;
   border: none;
 
@@ -226,7 +225,12 @@ const ServiceLabel = styled(Typography)`
   margin-bottom: ${props => props.theme.spacing.xs}rem;
   border-radius: 4px;
 
-  ${Card}:hover, ${CardVariant}:hover & {
+  ${Card}:hover && {
+    background-color: ${props => props.theme.colors.dark};
+    color: ${props => props.theme.colors.white};
+  }
+
+  ${CardVariant}:hover & {
     background-color: ${props => props.theme.colors.dark};
     color: ${props => props.theme.colors.white};
   }
@@ -242,7 +246,7 @@ export {
   CardVariantLeft,
   CardVariantRight,
   SliderVariant,
-  LikeButton,
+  LikeIcon,
   LikeButtonWrapper,
   MiniImage,
   CategoryBadge,

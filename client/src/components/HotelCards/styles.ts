@@ -36,8 +36,6 @@ const Card = styled.a<{ extraSpace?: boolean; backgroundColor?: keyof IColors }>
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.15);
     background-color: ${props => props.theme.colors.secondaryVariant};
     border: 1px solid ${props => props.theme.colors.secondaryVariant};
-    h2,
-    h3,
     span,
     p {
       color: ${props => props.theme.colors.dark};
@@ -104,8 +102,7 @@ const CardVariant = styled.a<{ miniCard?: boolean; isMobile?: boolean }>`
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.15);
     background-color: ${props => props.theme.colors.secondaryVariant};
     border: 1px solid ${props => props.theme.colors.secondaryVariant};
-    h2,
-    h3,
+
     span,
     p {
       color: ${props => props.theme.colors.dark};
@@ -222,12 +219,17 @@ const CategoryBadge = styled(Typography)<{ element: 'span'; miniCard?: boolean }
 
 const ServiceLabel = styled(Typography)`
   padding: 0 ${props => props.theme.spacing.xs}rem;
-  background-color: ${props => props.theme.colors.surface};
-  color: ${props => props.theme.colors.onBackground};
+  background-color: ${props => props.theme.colors.secondary};
+  color: ${props => props.theme.colors.dark};
   font-size: 14px;
   margin-right: ${props => props.theme.spacing.xs}rem;
   margin-bottom: ${props => props.theme.spacing.xs}rem;
   border-radius: 4px;
+
+  ${Card}:hover, ${CardVariant}:hover & {
+    background-color: ${props => props.theme.colors.dark};
+    color: ${props => props.theme.colors.white};
+  }
 `;
 
 export {

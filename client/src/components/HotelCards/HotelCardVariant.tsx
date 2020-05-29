@@ -66,7 +66,7 @@ const HotelCardVariant: React.FunctionComponent<Props> = ({ card, miniCard, show
       {!!card.category && (
         <CategoryBadge
           element="span"
-          variant="b1"
+          variant="b2"
           content={card.category}
           textTransform="capitalize"
           miniCard={miniCard}
@@ -95,19 +95,6 @@ const HotelCardVariant: React.FunctionComponent<Props> = ({ card, miniCard, show
               {like ? heartSolid : heart}
             </LikeButton>
           </LikeButtonWrapper>
-        )}
-        {!!card.services && !isMobile && (
-          <Flex wrap={true}>
-            {(card.services || []).map((service, index) => (
-              <ServiceLabel
-                element="span"
-                variant="b1"
-                content={service}
-                key={`${card.id}-service-${index}`}
-                textTransform="capitalize"
-              />
-            ))}
-          </Flex>
         )}
         {!!card.name && (
           <Typography
@@ -140,6 +127,19 @@ const HotelCardVariant: React.FunctionComponent<Props> = ({ card, miniCard, show
             variant="b1"
             content={transformLangText(card.descriptions, isMobile ? 150 : 180)}
           />
+        )}
+        {!!card.services && !isMobile && (
+          <Flex wrap={true}>
+            {(card.services || []).map((service, index) => (
+              <ServiceLabel
+                element="span"
+                variant="b1"
+                content={service}
+                key={`${card.id}-service-${index}`}
+                textTransform="capitalize"
+              />
+            ))}
+          </Flex>
         )}
         {isMobile && showReadMore && (
           <ButtonLink

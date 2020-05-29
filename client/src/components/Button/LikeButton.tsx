@@ -20,6 +20,8 @@ const LikeButton: React.FunctionComponent<HotelCard> = ({ card }) => {
     return found ? true : false;
   });
 
+  console.log(like);
+
   function handleLikeDispatch() {
     setLike(!like);
 
@@ -68,11 +70,13 @@ const LikeButtonWrapper = styled.div<{ positionAbsolute?: boolean }>`
     `}
 `;
 
-const LikeIcon = styled.a<{ isLiked: boolean }>`
+const LikeIcon = styled.button<{ isLiked: boolean }>`
   background-color: transparent;
   border: none;
   width: 32px;
   height: 32px;
+  outline: none;
+  cursor: pointer;
 
   svg {
     width: 28px;

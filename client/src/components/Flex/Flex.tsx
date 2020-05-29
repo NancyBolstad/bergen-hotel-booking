@@ -13,16 +13,11 @@ const Flex = styled.div<FlexProps>`
   display: flex;
   align-items: ${props => props.align || 'center'};
   justify-content: ${props => props.justify || 'flex-start'};
+  flex-wrap: wrap;
   ${props =>
     props.direction &&
     css`
       flex-direction: ${props.direction};
-    `};
-
-  ${props =>
-    props.wrap &&
-    css`
-      flex-wrap: wrap;
     `};
 `;
 

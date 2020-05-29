@@ -196,7 +196,7 @@ const b3: Font = {
   family: defaultFontFamily.primary,
   weight: defaultFontWeight.regular,
   size: 1.125,
-  lineHeight: 1.15,
+  lineHeight: 1.5,
   mediaQueries: [
     {
       query: defaultMediaQueries.small,

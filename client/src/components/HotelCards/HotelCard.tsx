@@ -6,6 +6,7 @@ import { HotelDetails } from '../../types/response';
 import { Flex } from '../Flex';
 import { IColors } from '../../types/theme';
 import LikeButton from '../Button/LikeButton';
+import { HorizontalSpacer } from '../Layout';
 
 export interface HotelCard {
   card: HotelDetails;
@@ -23,44 +24,45 @@ const HotelCard: React.FunctionComponent<HotelCard> = ({ card, extraSpace, backg
       backgroundColor={backgroundColor}
     >
       {!!card.featuredImages && <FeaturedImages slides={card.featuredImages} />}
-      <LikeButton card={card} />
-      {!!card.category && <CategoryBadge element="span" variant="b2" content={card.category} />}
-      {!!card.name && (
-        <Typography
-          element="h3"
-          variant="b2"
-          content={card.name}
-          isPrimaryColor
-          textTransform="capitalize"
-        />
-      )}
-      {!!card.location && (
-        <Typography
-          element="span"
-          variant="b1"
-          content={`Location: ${card.location}`}
-          bottom={18}
-        />
-      )}
-      {!!card.price && (
-        <Typography element="span" variant="h2" content={`From ${card.price}`} bottom={16} />
-      )}
-      {!!card.descriptions && (
-        <Typography element="p" variant="b1" content={transformLangText(card.descriptions, 180)} />
-      )}
-      {!!card.services && (
-        <Flex wrap={true}>
-          {(card.services || []).map((service, index) => (
-            <ServiceLabel
-              element="span"
-              variant="b2"
-              content={service}
-              key={`${card.id}-service-${index}`}
-              textTransform="capitalize"
-            />
-          ))}
-        </Flex>
-      )}
+      <HorizontalSpacer>
+        <LikeButton card={card} />
+        {!!card.category && <CategoryBadge element="span" variant="b2" content={card.category} />}
+        {!!card.name && (
+          <Typography
+            element="h3"
+            variant="b2"
+            content={card.name}
+            isPrimaryColor
+            textTransform="capitalize"
+          />
+        )}
+        {!!card.location && (
+          <Typography element="p" variant="b1" content={`Location: ${card.location}`} bottom={18} />
+        )}
+        {!!card.price && (
+          <Typography element="span" variant="h2" content={`From ${card.price}`} bottom={16} />
+        )}
+        {!!card.descriptions && (
+          <Typography
+            element="p"
+            variant="b1"
+            content={transformLangText(card.descriptions, 180)}
+          />
+        )}
+        {!!card.services && (
+          <Flex>
+            {(card.services || []).map((service, index) => (
+              <ServiceLabel
+                element="span"
+                variant="b2"
+                content={service}
+                key={`${card.id}-service-${index}`}
+                textTransform="capitalize"
+              />
+            ))}
+          </Flex>
+        )}
+      </HorizontalSpacer>
     </Card>
   );
 };

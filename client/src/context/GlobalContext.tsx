@@ -50,7 +50,7 @@ export const GlobalContext: React.FunctionComponent<Props> = ({ children }) => {
   return (
     <Context.Provider
       value={{
-        default: MockHotels,
+        default: results.data,
         favorites: state,
         dispatch: dispatch,
         loading: loading,

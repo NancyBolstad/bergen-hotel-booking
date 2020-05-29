@@ -3,14 +3,14 @@ import Typography from '../Typography';
 import Slider from '../Slider';
 import Button from '../Button/Button';
 import { IColors } from '../../types/theme';
+import { Flex } from '../Flex';
 
-const Wrapper = styled.div`
-  display: flex;
-  align-items: center;
+const Wrapper = styled(Flex)`
   flex-direction: column;
 
   @media screen and (min-width: 1280px) {
     h2 {
+      padding-top: 2rem;
       padding-bottom: 3rem;
     }
   }
@@ -166,7 +166,6 @@ const LikeIcon = styled(Button)<{ isLiked: boolean }>`
   svg {
     width: 24px;
     height: 24px;
-    stroke-width: 30px;
     fill: ${props => props.theme.colors.onBackground};
     margin-top: ${props => props.theme.spacing.xs}rem;
   }

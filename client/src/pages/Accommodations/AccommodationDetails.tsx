@@ -71,7 +71,7 @@ export const HotelDetails: React.FunctionComponent<Props> = () => {
           <VerticalSpacer topSpace="xs" topSpaceDesktop="m" bottomSpace="xs" bottomSpaceDesktop="m">
             <HorizontalSpacer>
               <WidthConstraints custom="980px">
-                <Flex direction="row" align="flex-start">
+                <Flex direction="column" align="flex-start">
                   <FlexKid>
                     <Typography
                       variant="b2"

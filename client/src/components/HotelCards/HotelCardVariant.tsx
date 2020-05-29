@@ -8,16 +8,17 @@ import {
   CardVariantRight,
   LikeButton,
   LikeButtonWrapper,
-  MiniImage,
   CategoryBadge,
   ServiceLabel,
+  MiniImage,
 } from './styles';
 import { HotelDetails } from '../../types/response';
 import useIsMobile from '../../hooks/useIsMobile';
-import { heart, heartSolid } from '../../util/icons';
+import { heart, heartSolid, navigationArrow } from '../../util/icons';
 import { Context } from '../../context/GlobalContext';
 import { Types } from '../../reducer/favoriteCardsReducer';
 import { Flex } from '../Flex';
+import { ButtonLink } from '../Button/Button';
 
 interface Props {
   card: HotelDetails;
@@ -55,8 +56,11 @@ const HotelCardVariant: React.FunctionComponent<Props> = ({ card, miniCard }) =>
 
   return (
     <CardVariant
-      to={`/accommodation/details/${card.id}`}
+      href={`/accommodation/details/${card.id}`}
       aria-label={`View details about ${card.name}`}
+      title={`View details about ${card.name}`}
+      isMobile={isMobile}
+      miniCard={miniCard}
     >
       {!!card.category && (
         <CategoryBadge
@@ -64,16 +68,15 @@ const HotelCardVariant: React.FunctionComponent<Props> = ({ card, miniCard }) =>
           variant="b1"
           content={card.category}
           textTransform="capitalize"
+          miniCard={miniCard}
         />
       )}
-      {!!card.featuredImages && !miniCard && (
-        <CardVariantLeft>
-          <FeaturedImages slides={card.featuredImages} />
-        </CardVariantLeft>
-      )}
-      {!!card.featuredImages && miniCard && (
-        <MiniImage src={card.featuredImages[0].url} alt={card.featuredImages[0].alt} />
-      )}
+      <CardVariantLeft>
+        {!!card.featuredImages && !miniCard && <FeaturedImages slides={card.featuredImages} />}
+        {!!card.featuredImages && miniCard && (
+          <MiniImage src={card.featuredImages[0].url} alt={card.featuredImages[0].alt} />
+        )}
+      </CardVariantLeft>
       <CardVariantRight>
         {!miniCard && (
           <LikeButtonWrapper positionAbsolute>
@@ -92,8 +95,8 @@ const HotelCardVariant: React.FunctionComponent<Props> = ({ card, miniCard }) =>
             </LikeButton>
           </LikeButtonWrapper>
         )}
-        {!!card.services && (
-          <Flex>
+        {!!card.services && !isMobile && (
+          <Flex wrap={true}>
             {(card.services || []).map((service, index) => (
               <ServiceLabel
                 element="span"
@@ -108,13 +111,13 @@ const HotelCardVariant: React.FunctionComponent<Props> = ({ card, miniCard }) =>
         {!!card.name && (
           <Typography
             element="h3"
-            variant="b2"
+            variant={miniCard ? 'b2' : 'h3'}
             content={card.name}
             isPrimaryColor
             textTransform="capitalize"
           />
         )}
-        {!!card.location && (
+        {!!card.location && !miniCard && (
           <Typography
             element="span"
             variant="b1"
@@ -122,13 +125,31 @@ const HotelCardVariant: React.FunctionComponent<Props> = ({ card, miniCard }) =>
             bottom={18}
           />
         )}
-        {!!card.price && <Typography element="span" variant="h2" content={`From ${card.price}`} />}
+        {!!card.price && (
+          <Typography
+            element="span"
+            variant={isMobile ? 'b2' : 'h4'}
+            content={`From ${card.price}`}
+            bottom={8}
+          />
+        )}
         {!!card.descriptions && !miniCard && (
           <Typography
             element="p"
             variant="b1"
             content={transformLangText(card.descriptions, isMobile ? 150 : 180)}
           />
+        )}
+        {isMobile && (
+          <ButtonLink
+            href={`/accommodation/details/${card.id}`}
+            aria-label={`View details about ${card.name}`}
+            title={`View details about ${card.name}`}
+            variant="readMore"
+            size="small"
+          >
+            View Details {navigationArrow}
+          </ButtonLink>
         )}
       </CardVariantRight>
     </CardVariant>

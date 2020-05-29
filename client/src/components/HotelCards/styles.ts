@@ -28,6 +28,8 @@ const Card = styled.a<{ extraSpace?: boolean; backgroundColor?: keyof IColors }>
   margin-bottom: ${props => props.theme.spacing.xs}rem;
   transition: all 0.15s ease-in-out;
   position: relative;
+  box-shadow: rgba(46, 41, 51, 0.08) 0px 1px 2px, rgba(71, 63, 79, 0.08) 0px 2px 4px;
+  border-radius: 4px;
 
   &:hover,
   &:focus {
@@ -83,7 +85,7 @@ const More = styled.div`
   }
 `;
 
-const CardVariant = styled(Link)`
+const CardVariant = styled.a<{ miniCard?: boolean; isMobile?: boolean }>`
   display: flex;
   flex-direction: row;
   flex: 1;
@@ -94,6 +96,8 @@ const CardVariant = styled(Link)`
   padding: ${props => props.theme.spacing.xs}rem;
   transition: all 0.15s ease-in-out;
   position: relative;
+  box-shadow: rgba(46, 41, 51, 0.08) 0px 1px 2px, rgba(71, 63, 79, 0.08) 0px 2px 4px;
+  border-radius: 4px;
 
   &:hover,
   &:focus {
@@ -112,6 +116,13 @@ const CardVariant = styled(Link)`
     margin: ${props => props.theme.spacing.s}rem 0;
     padding: 0;
   }
+
+  ${props =>
+    props.miniCard &&
+    props.isMobile &&
+    css`
+      flex-direction: column;
+    `}
 `;
 
 const SliderVariant = styled(Slider)`
@@ -183,11 +194,11 @@ const LikeButton = styled(Button)<{ isLiked: boolean }>`
 `;
 
 const MiniImage = styled.img`
-  height: 5.5rem;
-  width: 5.5rem;
+  height: 11.4375rem;
+  width: 100%;
 `;
 
-const CategoryBadge = styled(Typography)<{ element: 'span' }>`
+const CategoryBadge = styled(Typography)<{ element: 'span'; miniCard?: boolean }>`
   background-color: ${props => props.theme.colors.secondary};
   color: ${props => props.theme.colors.onSecondary};
   text-transform: capitalize;
@@ -197,8 +208,16 @@ const CategoryBadge = styled(Typography)<{ element: 'span' }>`
   font-size: 14px;
   top: 24px;
   left: 24px;
-  border-radius: 5px;
+  border-radius: 4px;
   z-index: 900;
+
+  ${props =>
+    props.miniCard &&
+    css`
+      top: 0px;
+      left: 0px;
+      border-radius: 0px;
+    `}
 `;
 
 const ServiceLabel = styled(Typography)`
@@ -208,6 +227,7 @@ const ServiceLabel = styled(Typography)`
   font-size: 14px;
   margin-right: ${props => props.theme.spacing.xs}rem;
   margin-bottom: ${props => props.theme.spacing.xs}rem;
+  border-radius: 4px;
 `;
 
 export {

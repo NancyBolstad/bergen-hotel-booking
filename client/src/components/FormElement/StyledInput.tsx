@@ -11,6 +11,8 @@ export const StyledInput = styled.input<Partial<React.InputHTMLAttributes<HTMLIn
   width: 100%;
   padding: 0 ${props => props.theme.spacing.xs}rem;
   ${props => createFontStyles(props.theme.fonts.b3)};
+  box-shadow: rgba(46, 41, 51, 0.08) 0px 1px 2px, rgba(71, 63, 79, 0.08) 0px 2px 4px;
+  border-radius: 4px;
 
   &::placeholder {
     color: ${props => setColorOpacity(props.theme.colors.onBackground, '0.6')};

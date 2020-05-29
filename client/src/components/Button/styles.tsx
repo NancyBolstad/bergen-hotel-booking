@@ -62,6 +62,9 @@ export const Button = styled.button<ButtonProps>`
         background-color: ${props => props.theme.colors.dark};
         color: ${props => props.theme.colors.white};
         border: 1px solid ${props => props.theme.colors.onBackground};
+        svg {
+          fill: ${props => props.theme.colors.white};
+        }
       }
       svg {
         fill: ${props => props.theme.colors.onPrimary};

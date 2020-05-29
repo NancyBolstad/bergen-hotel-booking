@@ -37,7 +37,7 @@ const darkThemeColors: IColors = {
   primaryVariant: '#FFEBE4',
   onPrimary: '#000000',
   secondary: '#FFEBE4',
-  secondaryVariant: '#000000',
+  secondaryVariant: '#888888',
   onSecondary: '#000000',
   background: '#000000',
   surface: '#888888',

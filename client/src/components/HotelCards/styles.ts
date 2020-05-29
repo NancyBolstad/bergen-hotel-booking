@@ -34,8 +34,8 @@ const Card = styled.a<{ extraSpace?: boolean; backgroundColor?: keyof IColors }>
   &:hover,
   &:focus {
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.15);
-    background-color: ${props => props.theme.colors.secondary};
-    border: 1px solid ${props => props.theme.colors.secondary};
+    background-color: ${props => props.theme.colors.secondaryVariant};
+    border: 1px solid ${props => props.theme.colors.secondaryVariant};
     h2,
     h3,
     span,
@@ -102,8 +102,8 @@ const CardVariant = styled.a<{ miniCard?: boolean; isMobile?: boolean }>`
   &:hover,
   &:focus {
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.15);
-    background-color: ${props => props.theme.colors.secondary};
-    border: 1px solid ${props => props.theme.colors.secondary};
+    background-color: ${props => props.theme.colors.secondaryVariant};
+    border: 1px solid ${props => props.theme.colors.secondaryVariant};
     h2,
     h3,
     span,

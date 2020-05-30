@@ -18,7 +18,6 @@ interface Props {}
 
 export const HotelDetails: React.FunctionComponent<Props> = () => {
   const localContext = React.useContext(Context);
-  console.log(localContext.favorites);
   let { id } = useParams();
   const history = useHistory();
   const { results, loading, error } = useApi<HotelDetailsRoot>({
@@ -45,7 +44,7 @@ export const HotelDetails: React.FunctionComponent<Props> = () => {
 
   React.useEffect(() => {
     if (error) {
-      history.push('/');
+      history.push('/404');
     }
   }, [history, error]);
 

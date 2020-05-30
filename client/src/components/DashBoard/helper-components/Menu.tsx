@@ -50,10 +50,10 @@ const ListItem = styled.li<{ isActive?: boolean }>`
     display: flex;
     background-color: ${props => setColorOpacity(props.theme.colors.surface, '0.9')};
     padding: ${props => `${props.theme.spacing.xs / 2}rem ${props.theme.spacing.xs}rem`};
-    color: ${props => props.theme.colors.onSurface};
+    color: ${props => props.theme.colors.dark};
     box-shadow: 0px 3px 6px #00000029;
     align-items: center;
-    border-radius: 1rem;
+    border-radius: 4px;
     border: 2px solid ${props => setColorOpacity(props.theme.colors.surface, '0.9')};
     height: 96px;
     transition: background-color 0.15s ease-in-out;
@@ -110,7 +110,7 @@ const MenuIcon = styled.div<{ isActive?: boolean }>`
   ${props =>
     props.isActive &&
     css`
-      background-color: ${props => props.theme.colors.primaryVariant};
+      background-color: ${props => props.theme.colors.primary};
     `};
 
   svg {

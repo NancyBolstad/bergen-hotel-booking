@@ -4,6 +4,7 @@ import { WidthConstraints, HorizontalSpacer, Section, VerticalSpacer } from '../
 import { PlainBannerTitle, PlainBannerContent } from './styles';
 import { ButtonVariant, ButtonLink, Size } from '../Button/Button';
 import { Flex } from '../Flex/';
+import { navigationArrow } from '../../util/icons';
 
 interface Props {
   title?: string;
@@ -18,6 +19,7 @@ interface Props {
   buttonText?: string;
   redirectLink?: string;
   buttonSize?: Size;
+  widthNavigationIcon?: boolean;
 }
 
 const PlainBanner: React.FunctionComponent<Props> = ({
@@ -33,6 +35,7 @@ const PlainBanner: React.FunctionComponent<Props> = ({
   buttonText,
   redirectLink,
   buttonSize,
+  widthNavigationIcon,
 }) => {
   return (
     <Section>
@@ -83,6 +86,7 @@ const PlainBanner: React.FunctionComponent<Props> = ({
                     title={buttonText}
                   >
                     {buttonText}
+                    {widthNavigationIcon ? navigationArrow : null}
                   </ButtonLink>
                 )}
               </Flex>

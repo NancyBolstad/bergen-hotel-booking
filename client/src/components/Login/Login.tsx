@@ -18,7 +18,7 @@ interface Props {}
 
 const Login: React.FC<Props> = () => {
   const history = useHistory();
-  const { user, setUser, logOut } = React.useContext(UserContext);
+  const { user, setUser } = React.useContext(UserContext);
   const { register, errors, handleSubmit, setValue } = useForm<LoginFormData>({
     validationSchema: LoginSchema,
   });

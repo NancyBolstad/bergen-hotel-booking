@@ -60,7 +60,7 @@ export const HotelDetails: React.FunctionComponent<Props> = () => {
             subTitle={results.data.category}
             buttonVariant="primary"
           />
-          <Slider slides={results.data.featuredImages} defaultIndex={1} large />
+          <Slider slides={results.data.featuredImages} large />
           <VerticalSpacer topSpace="xs" bottomSpace="xs" bottomSpaceDesktop="xl">
             <HorizontalSpacer>
               <WidthConstraints size="medium">

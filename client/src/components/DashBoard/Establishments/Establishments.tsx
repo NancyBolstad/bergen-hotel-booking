@@ -28,7 +28,7 @@ const Establishments: React.FC<Props> = () => {
           <Card>
             {!!localContext.loading && <Loader />}
             {(localContext.default || []).map(hotel => (
-              <HotelCardVariant key={hotel.id} card={hotel} />
+              <HotelCardVariant key={hotel.id} card={hotel} miniCard />
             ))}
           </Card>
         </VerticalSpacer>

@@ -62,6 +62,7 @@ export interface IColors {
   secondaryVariant: string;
   onSecondary: string;
   background: string;
+  backgroundVariant: string;
   onBackground: string;
   surface: string;
   onSurface: string;

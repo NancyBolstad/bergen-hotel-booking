@@ -19,6 +19,7 @@ import Typography from '../../components/Typography';
 const BackgroundWrapper = styled(Section)`
   overflow: auto;
   min-height: 75vh;
+  background-color: ${props => props.theme.colors.backgroundVariant};
 `;
 
 const Sections = styled.div`

@@ -12,10 +12,6 @@ const PrivateRoute = (props: PrivateRouteProps): JSX.Element => {
   let { component: Component, path, exact, ...rest } = props;
   const { user } = useContext(UserContext);
 
-  if (!user.loggedIn) {
-    alert('Please login first to used the dashboard.');
-  }
-
   return (
     <Route
       {...rest}

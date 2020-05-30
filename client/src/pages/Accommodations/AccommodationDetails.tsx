@@ -13,7 +13,6 @@ import { ServiceLabel } from '../../components/HotelCards/styles';
 import Slider from '../../components/Slider/Slider';
 import { PlainBanner } from '../../components/Banner';
 import LikeButton from '../../components/Button/LikeButton';
-import { heartSolid, heart } from '../../util/icons';
 
 interface Props {}
 

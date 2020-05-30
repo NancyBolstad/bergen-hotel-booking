@@ -15,7 +15,7 @@ const Login: React.FC<Props> = () => {
   const history = useHistory();
   const { user, setUser, logOut } = React.useContext(UserContext);
   const [userName, setUserName] = React.useState<string>(user.name);
-  const { register, errors } = useForm({
+  const { register, errors, handleSubmit } = useForm({
     validationSchema: LoginSchema,
   });
 
@@ -33,13 +33,12 @@ const Login: React.FC<Props> = () => {
             <Flex direction="column">
               <Typography element="h1" variant="h1" content="Log Into Admin Dashboard" />
               <Form
-                onSubmit={e => {
-                  e.preventDefault();
+                onSubmit={handleSubmit((data: Object) => {
                   setUser({
                     name: userName,
                     loggedIn: true,
                   });
-                }}
+                })}
                 noValidate
               >
                 <StyledLabel>

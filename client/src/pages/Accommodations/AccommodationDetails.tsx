@@ -96,7 +96,7 @@ export const HotelDetails: React.FunctionComponent<Props> = () => {
                 </Flex>
                 <Typography variant="h3" element="p" content="Descriptions" />
                 <Typography variant="b3" element="p" content={results.data.descriptions} />
-                <Flex direction="column" justify="flex-start" align="flex-start">
+                <Flex direction="row" justify="flex-start" align="center">
                   <ButtonLink
                     variant="primary"
                     size="large"
@@ -104,31 +104,31 @@ export const HotelDetails: React.FunctionComponent<Props> = () => {
                     aria-label="Go to book page"
                     title="Go to book page"
                   >
-                    Book Now
+                    Book
                   </ButtonLink>
                   <VerticalSpacer topSpace="s" bottomSpace="s">
-                    {!!localContext.favorites && results.data.id && (
-                      <LikeButton card={results.data} withText alginLeft />
-                    )}
+                    <HorizontalSpacer>
+                      {!!localContext.favorites && results.data.id && (
+                        <LikeButton card={results.data} withText alginLeft />
+                      )}
+                    </HorizontalSpacer>
                   </VerticalSpacer>
                 </Flex>
               </WidthConstraints>
             </HorizontalSpacer>
           </VerticalSpacer>
-          <VerticalSpacer topSpace="xs" topSpaceDesktop="xl">
-            <HotelCardsList
-              sectionTitle="You may also interest"
-              ctaText={`Explore more ${
-                results.data.category === 'hostels' ? 'hostel' : results.data.category
-              }s`}
-              ctaUrl={`/accommodations?name=&category=${results.data.category}&service=`}
-              list={[...localContext.default]
-                .filter(element => {
-                  return element.category === results.data.category;
-                })
-                .slice(0, 4)}
-            />
-          </VerticalSpacer>
+          <HotelCardsList
+            sectionTitle={`More from category: ${results.data.category}`}
+            ctaText={`Explore more ${
+              results.data.category === 'hostels' ? 'hostel' : results.data.category
+            }s`}
+            ctaUrl={`/accommodations?name=&category=${results.data.category}&service=`}
+            list={[...localContext.default]
+              .filter(element => {
+                return element.category === results.data.category && element.id !== results.data.id;
+              })
+              .slice(0, 4)}
+          />
         </>
       )}
     </>

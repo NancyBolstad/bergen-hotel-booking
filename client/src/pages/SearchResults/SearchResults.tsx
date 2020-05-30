@@ -107,7 +107,7 @@ const SearchResults: React.FunctionComponent = () => {
               <Typography
                 variant="b2"
                 element="h2"
-                content={`Find ${hotels.length} accommodations${
+                content={`${hotels.length} accommodations${
                   currentQueryString.name ? ` for name "${currentQueryString.name}"` : ' '
                 } filtered by "${
                   currentQueryString.category ? currentQueryString.category : 'all categories'

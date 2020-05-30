@@ -52,7 +52,6 @@ const LikeButton: React.FunctionComponent<HotelCard> = ({ card, withText, alginL
         aria-label={`${like ? 'Dislike' : 'Like'} this accommodation`}
         title={`${like ? 'Dislike' : 'Like'} this accommodation`}
       >
-        {withText ? 'Save to Favorites ' : null}
         {like ? heartSolid : heart}
       </LikeIcon>
     </LikeButtonWrapper>
@@ -74,8 +73,7 @@ const LikeButtonWrapper = styled.div<{ positionAbsolute?: boolean; alignLeft?: b
 
 export const LikeIcon = styled.button<{ isLiked: boolean; withText?: boolean }>`
   background-color: transparent;
-  color: ${props => props.theme.colors.onBackground};
-  border: transparent;
+  border: ${props => props.theme.colors.primary};
   outline: none;
   cursor: pointer;
   transition: border-color 0.15s ease-in-out, background-color 0.15s ease-in-out;
@@ -83,7 +81,6 @@ export const LikeIcon = styled.button<{ isLiked: boolean; withText?: boolean }>`
   svg {
     width: 24px;
     height: 24px;
-    margin-left: ${props => (props.withText ? '1rem' : '0')};
     fill: ${props =>
       props.isLiked ? props.theme.colors.primary : props.theme.colors.onBackground};
   }

@@ -28,7 +28,6 @@ export const Button = styled.button<ButtonProps>`
   ${props =>
     props.size === 'small' &&
     css`
-      width: 100%;
       padding: ${props => props.theme.spacing.xs}rem 32px;
       ${createFontStyles(props.theme.fonts.b2)};
 
@@ -46,7 +45,7 @@ export const Button = styled.button<ButtonProps>`
   ${props =>
     props.size === 'large' &&
     css`
-      padding: ${props => props.theme.spacing.xs}rem 75px;
+      padding: ${props => props.theme.spacing.xs}rem 48px;
       ${createFontStyles(props.theme.fonts.h3)};
     `};
   ${props =>

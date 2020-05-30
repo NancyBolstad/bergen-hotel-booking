@@ -9,13 +9,17 @@ import { WidthConstraints, VerticalSpacer, HorizontalSpacer, Section } from '../
 import { Flex } from '../Flex';
 import { UserContext } from '../../context/UserContext';
 
+type LoginFormData = {
+  userName: string;
+  password: string;
+};
+
 interface Props {}
 
 const Login: React.FC<Props> = () => {
   const history = useHistory();
   const { user, setUser, logOut } = React.useContext(UserContext);
-  const [userName, setUserName] = React.useState<string>(user.name);
-  const { register, errors, handleSubmit } = useForm({
+  const { register, errors, handleSubmit, setValue } = useForm<LoginFormData>({
     validationSchema: LoginSchema,
   });
 
@@ -33,7 +37,7 @@ const Login: React.FC<Props> = () => {
             <Flex direction="column">
               <Typography element="h1" variant="h1" content="Log Into Admin Dashboard" />
               <Form
-                onSubmit={handleSubmit((data: Object) => {
+                onSubmit={handleSubmit(({ userName }) => {
                   setUser({
                     name: userName,
                     loggedIn: true,
@@ -51,7 +55,7 @@ const Login: React.FC<Props> = () => {
                     placeholder="Your username"
                     ref={register}
                     required
-                    onChange={e => setUserName(e.target.value)}
+                    onChange={e => setValue('userName', e.target.value)}
                   />
                 </StyledLabel>
                 {/* 
@@ -75,18 +79,6 @@ const Login: React.FC<Props> = () => {
                 <Button size="large" variant="primary" type="submit">
                   Login
                 </Button>
-                {!!user.loggedIn && (
-                  <Button
-                    size="large"
-                    variant="secondary"
-                    onClick={e => {
-                      e.preventDefault();
-                      logOut();
-                    }}
-                  >
-                    Log out
-                  </Button>
-                )}
               </Form>
             </Flex>
           </WidthConstraints>

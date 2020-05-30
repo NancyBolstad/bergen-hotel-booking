@@ -4,23 +4,23 @@ import { heart, heartSolid } from '../../util/icons';
 import { Context } from '../../context/GlobalContext';
 import { Types } from '../../reducer/favoriteCardsReducer';
 import { HotelDetails } from '../../types/response';
-import Button from './Button';
 
 export interface HotelCard {
   card: HotelDetails;
+  withText?: boolean;
+  alginLeft?: boolean;
 }
 
-const LikeButton: React.FunctionComponent<HotelCard> = ({ card }) => {
+const LikeButton: React.FunctionComponent<HotelCard> = ({ card, withText, alginLeft }) => {
   const { favorites, dispatch } = React.useContext(Context);
   const [like, setLike] = React.useState<boolean>(() => {
     const found = favorites.find(item => {
+      console.log(item.id);
       return item.id === card.id;
     });
 
     return found ? true : false;
   });
-
-  console.log(like);
 
   function handleLikeDispatch() {
     setLike(!like);
@@ -40,10 +40,11 @@ const LikeButton: React.FunctionComponent<HotelCard> = ({ card }) => {
     }
   }
   return (
-    <LikeButtonWrapper>
+    <LikeButtonWrapper alignLeft={alginLeft}>
       <LikeIcon
         role="button"
         isLiked={like}
+        withText={withText}
         onClick={e => {
           e.preventDefault();
           handleLikeDispatch();
@@ -51,15 +52,16 @@ const LikeButton: React.FunctionComponent<HotelCard> = ({ card }) => {
         aria-label={`${like ? 'Dislike' : 'Like'} this accommodation`}
         title={`${like ? 'Dislike' : 'Like'} this accommodation`}
       >
+        {withText ? 'Save to Favorites ' : null}
         {like ? heartSolid : heart}
       </LikeIcon>
     </LikeButtonWrapper>
   );
 };
 
-const LikeButtonWrapper = styled.div<{ positionAbsolute?: boolean }>`
+const LikeButtonWrapper = styled.div<{ positionAbsolute?: boolean; alignLeft?: boolean }>`
   display: flex;
-  justify-content: flex-end;
+  justify-content: ${props => (props.alignLeft ? 'flex-start' : 'flex-end')};
 
   ${props =>
     props.positionAbsolute &&
@@ -70,36 +72,48 @@ const LikeButtonWrapper = styled.div<{ positionAbsolute?: boolean }>`
     `}
 `;
 
-const LikeIcon = styled.button<{ isLiked: boolean }>`
+export const LikeIcon = styled.button<{ isLiked: boolean; withText?: boolean }>`
   background-color: transparent;
-  border: none;
-  width: 32px;
-  height: 32px;
+  color: ${props => props.theme.colors.onBackground};
+  border: transparent;
   outline: none;
   cursor: pointer;
+  transition: border-color 0.15s ease-in-out, background-color 0.15s ease-in-out;
 
   svg {
-    width: 28px;
-    height: 28px;
-    fill: ${props => props.theme.colors.onBackground};
-    margin-top: ${props => props.theme.spacing.s}rem;
+    width: 24px;
+    height: 24px;
+    margin-left: ${props => (props.withText ? '1rem' : '0')};
+    fill: ${props =>
+      props.isLiked ? props.theme.colors.primary : props.theme.colors.onBackground};
   }
-  ${props =>
-    props.isLiked === true &&
-    css`
-      svg {
-        fill: ${props => props.theme.colors.primary};
-      }
-    `}
 
   &:hover,
   &:focus {
-    background-color: transparent;
+    background-color: ${props => (props.withText ? props.theme.colors.secondary : 'transparent')};
+    color: ${props => (props.withText ? props.theme.colors.dark : props.theme.colors.onBackground)};
     border: none;
+
     svg {
-      fill: ${props => props.theme.colors.primary};
+      fill: ${props => (props.withText ? props.theme.colors.dark : props.theme.colors.primary)};
     }
   }
+
+  ${props =>
+    props.withText &&
+    css`
+      display: flex;
+      align-items: center;
+      border: 2px solid ${props => props.theme.colors.primary};
+      padding: ${props => props.theme.spacing.xs}rem 20px;
+      border-radius: 4px;
+      font-size: 1rem;
+      color:${props => props.theme.colors.primary}
+      hover {
+        background-color: ${props => props.theme.colors.secondary};
+        color:${props => props.theme.colors.primary}
+      }
+    `}
 `;
 
 export default LikeButton;

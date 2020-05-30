@@ -13,11 +13,13 @@ import { ServiceLabel } from '../../components/HotelCards/styles';
 import Slider from '../../components/Slider/Slider';
 import { PlainBanner } from '../../components/Banner';
 import LikeButton from '../../components/Button/LikeButton';
+import { heartSolid, heart } from '../../util/icons';
 
 interface Props {}
 
 export const HotelDetails: React.FunctionComponent<Props> = () => {
   const localContext = React.useContext(Context);
+  console.log(localContext.favorites);
   let { id } = useParams();
   const history = useHistory();
   const { results, loading, error } = useApi<HotelDetailsRoot>({
@@ -63,7 +65,6 @@ export const HotelDetails: React.FunctionComponent<Props> = () => {
           <VerticalSpacer topSpace="xs" bottomSpace="xs" bottomSpaceDesktop="xl">
             <HorizontalSpacer>
               <WidthConstraints size="medium">
-                <LikeButton card={results.data} />
                 <Typography variant="h3" element="p" content={`Price`} />
                 <Typography
                   variant="b3"
@@ -96,7 +97,7 @@ export const HotelDetails: React.FunctionComponent<Props> = () => {
                 </Flex>
                 <Typography variant="h3" element="p" content="Descriptions" />
                 <Typography variant="b3" element="p" content={results.data.descriptions} />
-                <VerticalSpacer bottomSpace="xs" bottomSpaceDesktop="xl">
+                <Flex direction="column" justify="flex-start" align="flex-start">
                   <ButtonLink
                     variant="primary"
                     size="large"
@@ -106,7 +107,12 @@ export const HotelDetails: React.FunctionComponent<Props> = () => {
                   >
                     Book Now
                   </ButtonLink>
-                </VerticalSpacer>
+                  <VerticalSpacer topSpace="s" bottomSpace="s">
+                    {!!localContext.favorites && results.data.id && (
+                      <LikeButton card={results.data} withText alginLeft />
+                    )}
+                  </VerticalSpacer>
+                </Flex>
               </WidthConstraints>
             </HorizontalSpacer>
           </VerticalSpacer>

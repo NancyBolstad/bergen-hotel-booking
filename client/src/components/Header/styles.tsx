@@ -198,12 +198,10 @@ export const MobileMenuWrapper = styled.div`
 
 export const MobileIcons = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   width: 100%;
-  position: absolute;
-  bottom: 76px;
-  background-color: ${props => props.theme.colors.surface};
+  border-top: 1px solid ${props => props.theme.colors.onSurface};
 `;
 
 export const ThemeToggleButton = styled.button`

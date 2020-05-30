@@ -6,9 +6,6 @@ import Button from '../Button/Button';
 export const HeaderWrapper = styled.header`
   width: 100%;
   background: ${props => props.theme.colors.background};
-  position: sticky;
-  top: 0;
-  z-index: 999;
   box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
   border-bottom: 1px solid ${props => props.theme.colors.surface};
 

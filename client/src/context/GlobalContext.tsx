@@ -5,7 +5,7 @@ import { HotelDetails, Root } from '../types/response';
 import { FAVORITES_KEY } from '../util/constants';
 import isBrowser from '../util/isBrowser';
 import storage from '../util/storage';
-import { MockHotels } from '../data/data';
+//import { MockHotels } from '../data/data';
 
 interface Props {}
 

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { PlainBanner } from '../../components/Banner';
 import { FlexBanner, BannerGrid } from '../../components/Banner';
-import { PAGE_HERO_IMG, FLEX_BANNER_A, FLEX_BANNER_B, CAMPAIGN_A } from '../../data/content';
+import { CAMPAIGN_A } from '../../data/content';
 
 interface Props {}
 

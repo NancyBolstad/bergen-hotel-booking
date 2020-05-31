@@ -74,7 +74,7 @@ const Header: React.FunctionComponent = () => {
           >
             <Flex direction="column" justify="center" align="center">
               {search}
-              <Typography variant="b1" element="span" content="Search" />
+              {!isMobile && <Typography variant="b1" element="span" content="Search" />}
             </Flex>
           </HeaderNavLink>
           {!isMobile && (

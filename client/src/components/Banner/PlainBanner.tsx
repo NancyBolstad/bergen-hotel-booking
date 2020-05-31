@@ -51,7 +51,7 @@ const PlainBanner: React.FunctionComponent<Props> = ({
                 {!!subTitle && (
                   <PlainBannerTitle
                     variant="b2"
-                    element="h2"
+                    element="h1"
                     content={subTitle}
                     hasBackgroundImage={backgroundImage ? true : false}
                     textTransform="capitalize"

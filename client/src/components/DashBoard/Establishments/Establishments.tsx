@@ -28,7 +28,7 @@ const Establishments: React.FC<Props> = () => {
           </Card>
         </VerticalSpacer> */}
         <Card>
-          <SearchHotel />
+          <SearchHotel editable />
         </Card>
         {/* <VerticalSpacer>
           <Card>

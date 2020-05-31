@@ -1,15 +1,18 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { SearchInput } from '../FormElement';
 import { solidArrow } from '../../util/icons';
 import { Filter, InputFieldWrapper, Arrow, Label, Select } from './styles';
 import { Flex } from '../Layout';
 import { CATEGORIES, SERVICES } from '../../util/constants';
+import { ButtonLink } from '../Button/Button';
 
 interface Props {
   handler: (type: 'name' | 'category' | 'service', value: string) => void;
   searchDefaultValue: string;
   categoryDefaultValue: string;
   serviceDefaultValue: string;
+  addEstablishment?: boolean;
 }
 
 const HotelFilter: React.FunctionComponent<Props> = ({
@@ -17,7 +20,9 @@ const HotelFilter: React.FunctionComponent<Props> = ({
   searchDefaultValue,
   categoryDefaultValue,
   serviceDefaultValue,
+  addEstablishment,
 }) => {
+  const history = useHistory();
   return (
     <>
       <Filter>
@@ -72,6 +77,18 @@ const HotelFilter: React.FunctionComponent<Props> = ({
               <Arrow>{solidArrow}</Arrow>
             </Label>
           </InputFieldWrapper>
+          {!!addEstablishment && (
+            <ButtonLink
+              variant="primary"
+              size="small"
+              onClick={e => {
+                e.preventDefault();
+                history.push('/dashboard/establishments/new');
+              }}
+            >
+              New
+            </ButtonLink>
+          )}
         </Flex>
       </Filter>
     </>

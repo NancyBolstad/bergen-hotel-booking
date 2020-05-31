@@ -24,9 +24,10 @@ import HotelFilter from '../../components/HotelFilter/HotelFilter';
 
 interface Props {
   alphabeticalSort?: boolean;
+  editable?: boolean;
 }
 
-const SearchHotel: React.FunctionComponent<Props> = ({ alphabeticalSort }) => {
+const SearchHotel: React.FunctionComponent<Props> = ({ alphabeticalSort, editable }) => {
   const localContext = React.useContext(Context);
   const isTablet = useIsTablet();
   const { hotels, letters, filter, handleFilter, currentQueryString } = useFilter({
@@ -40,6 +41,7 @@ const SearchHotel: React.FunctionComponent<Props> = ({ alphabeticalSort }) => {
           <HorizontalSpacer>
             <WidthConstraints size="large">
               <HotelFilter
+                addEstablishment={editable}
                 handler={handleFilter}
                 searchDefaultValue={currentQueryString.name ? currentQueryString.name : filter.name}
                 categoryDefaultValue={

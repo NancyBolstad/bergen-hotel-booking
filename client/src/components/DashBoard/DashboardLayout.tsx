@@ -97,7 +97,8 @@ const DashboardLayout: React.FunctionComponent<Props> = ({ user }) => {
               </Content>
               <Content>
                 <Route
-                  path="/dashboard/:step"
+                  exact
+                  path="/dashboard/:step?/:slug?"
                   render={({ match }) => {
                     const step = match.params.step as string | undefined;
                     switch (step) {

@@ -139,10 +139,10 @@ interface Props {}
 const MyPageMenu: React.FC<Props> = () => {
   const location = useLocation();
   const { logOut } = React.useContext(UserContext);
-  const isMyProfileActive = slugMatch('my-account', location.pathname, true);
-  const isEstablishmentsActive = slugMatch('establishments', location.pathname, true);
-  const isEnquiriesActive = slugMatch('enquiries', location.pathname, true);
-  const isCustomerServiceActive = slugMatch('messages', location.pathname, true);
+  const isMyProfileActive = slugMatch('my-account', location.pathname);
+  const isEstablishmentsActive = slugMatch('establishments', location.pathname);
+  const isEnquiriesActive = slugMatch('enquiries', location.pathname);
+  const isCustomerServiceActive = slugMatch('messages', location.pathname);
 
   return (
     <Wrapper>

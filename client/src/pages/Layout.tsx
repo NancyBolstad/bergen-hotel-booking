@@ -34,7 +34,7 @@ const Layout: React.FunctionComponent<Props> = () => {
             <Main>
               <Switch>
                 <PrivateRoute path="/dashboard/" component={DashBoard} exact />
-                <PrivateRoute path="/dashboard/:slug" component={DashBoard} exact />
+                <PrivateRoute path="/dashboard/:step?/:slug?" component={DashBoard} exact />
                 <Route exact path="/login">
                   <Suspense fallback={<Loader />}>
                     <Login />

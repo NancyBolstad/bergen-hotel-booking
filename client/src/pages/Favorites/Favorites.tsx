@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { PlainBanner } from '../../components/Banner';
+import PlainBanner from '../../components/Banner/PlainBanner';
 import { Context } from '../../context/GlobalContext';
 import { HotelCardsList } from '../../components/HotelCards';
 

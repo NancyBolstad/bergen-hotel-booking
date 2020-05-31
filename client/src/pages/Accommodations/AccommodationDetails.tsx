@@ -10,8 +10,8 @@ import { Context } from '../../context/GlobalContext';
 import { ButtonLink } from '../../components/Button/Button';
 import { ServiceLabel } from '../../components/HotelCards/styles';
 import Slider from '../../components/Slider/Slider';
-import { PlainBanner } from '../../components/Banner';
 import LikeButton from '../../components/Button/LikeButton';
+import PlainBanner from '../../components/Banner/PlainBanner';
 
 interface Props {}
 

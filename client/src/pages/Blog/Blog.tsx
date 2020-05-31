@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { PlainBanner } from '../../components/Banner';
+import PlainBanner from '../../components/Banner/PlainBanner';
 import BlogList from '../../components/Blog';
 import useApi from '../../hooks/useApi';
 import { BlogList as BlogListTypes } from '../../types/response';

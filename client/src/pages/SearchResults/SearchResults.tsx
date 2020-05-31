@@ -8,7 +8,7 @@ import {
 import Typography from '../../components/Typography';
 import { HotelCardVariant, HotelCard } from '../../components/HotelCards';
 import { Context } from '../../context/GlobalContext';
-import { PlainBanner } from '../../components/Banner';
+import PlainBanner from '../../components/Banner/PlainBanner';
 import Loader from '../../components/Loader/Loader';
 import useFilter from '../../hooks/useFilter';
 import useIsTablet from '../../hooks/useIsTablet';

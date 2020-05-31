@@ -1,7 +1,7 @@
 import React from 'react';
 import { UserContext } from '../../context/UserContext';
 import DashboardLayout from '../../components/DashBoard/DashboardLayout';
-import { PlainBanner } from '../../components/Banner';
+import PlainBanner from '../../components/Banner/PlainBanner';
 
 interface Props {}
 

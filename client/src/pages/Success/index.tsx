@@ -1,6 +1,6 @@
 import * as React from 'react';
 import InfoList, { InfoListProps } from '../../components/InfoList/InfoList';
-import { PlainBanner } from '../../components/Banner';
+import PlainBanner from '../../components/Banner/PlainBanner';
 
 interface Props {}
 

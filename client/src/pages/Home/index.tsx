@@ -1,11 +1,12 @@
 import React from 'react';
-import { Context } from '../../context/GlobalContext';
-import { SearchBanner } from '../../components/Banner';
-import IconList from '../../components/IconList/IconList';
-import { BannerGrid, FlexBanner } from '../../components/Banner/';
+import FlexBanner from '../../components/Banner/FlexBanner';
+import SearchBanner from '../../components/Banner/SearchBanner';
+import BannerGrid from '../../components/Banner/BannerGrid';
 import { HotelCardsList } from '../../components/HotelCards';
+import IconList from '../../components/IconList/IconList';
 import Loader from '../../components/Loader/Loader';
-import { PAGE_HERO_IMG, FLEX_BANNER_A, FLEX_BANNER_B, CAMPAIGN_A } from '../../data/content';
+import { Context } from '../../context/GlobalContext';
+import { CAMPAIGN_A, FLEX_BANNER_A, FLEX_BANNER_B, PAGE_HERO_IMG } from '../../data/content';
 
 interface Props {}
 

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Button } from './styles';
 
-type Size = 'small' | 'medium' | 'large';
+export type Size = 'small' | 'medium' | 'large';
 export type ButtonVariant = 'primary' | 'secondary' | 'tertiary' | 'secondaryVariant';
 
 export interface ButtonProps {

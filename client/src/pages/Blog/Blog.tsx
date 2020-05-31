@@ -29,11 +29,7 @@ const Blog: React.FunctionComponent = () => {
   );
   return (
     <>
-      <PlainBanner
-        title="Welcome to our blog"
-        text="Stay updated with the latest travel stories, tips and insights shared by our community."
-        isTitleColorRed
-      />
+      <PlainBanner title="Welcome to our blog" isTitleColorRed />
       {loading ? (
         <Loader />
       ) : (

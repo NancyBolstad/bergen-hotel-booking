@@ -3,14 +3,14 @@ import Typography from '../Typography';
 import Slider from '../Slider';
 import Button from '../Button/Button';
 import { IColors } from '../../types/theme';
+import { Flex } from '../Flex';
 
-const Wrapper = styled.div`
-  display: flex;
-  align-items: center;
+const Wrapper = styled(Flex)`
   flex-direction: column;
 
   @media screen and (min-width: 1280px) {
     h2 {
+      padding-top: 2rem;
       padding-bottom: 3rem;
     }
   }
@@ -23,8 +23,7 @@ const Card = styled.a<{ extraSpace?: boolean; backgroundColor?: keyof IColors }>
   text-decoration: none;
   color: ${props => props.theme.colors.onBackground};
   border: 1px solid white;
-  padding: ${props => props.theme.spacing.xs}rem;
-  margin-bottom: ${props => props.theme.spacing.xs}rem;
+  margin-bottom: ${props => props.theme.spacing.s}rem;
   transition: all 0.15s ease-in-out;
   position: relative;
   box-shadow: rgba(46, 41, 51, 0.08) 0px 1px 2px, rgba(71, 63, 79, 0.08) 0px 2px 4px;
@@ -42,12 +41,12 @@ const Card = styled.a<{ extraSpace?: boolean; backgroundColor?: keyof IColors }>
   }
 
   @media screen and (min-width: 768px) {
-    width: calc(47% - ${props => props.theme.spacing.xs}rem);
+    width: calc(47% - ${props => props.theme.spacing.s}rem);
   }
 
   @media screen and (min-width: 1280px) {
-    width: calc(25% - ${props => props.theme.spacing.s}rem);
-    margin-bottom: ${props => props.theme.spacing.s}rem;
+    width: calc(25% - ${props => props.theme.spacing.m}rem);
+    margin-bottom: ${props => props.theme.spacing.m}rem;
   }
 
   ${props =>
@@ -167,7 +166,6 @@ const LikeIcon = styled(Button)<{ isLiked: boolean }>`
   svg {
     width: 24px;
     height: 24px;
-    stroke-width: 30px;
     fill: ${props => props.theme.colors.onBackground};
     margin-top: ${props => props.theme.spacing.xs}rem;
   }
@@ -217,7 +215,7 @@ const CategoryBadge = styled(Typography)<{ element: 'span'; miniCard?: boolean }
 `;
 
 const ServiceLabel = styled(Typography)`
-  padding: 0 ${props => props.theme.spacing.xs}rem;
+  padding: ${props => props.theme.spacing.xs}rem;
   background-color: ${props => props.theme.colors.secondary};
   color: ${props => props.theme.colors.dark};
   font-size: 14px;

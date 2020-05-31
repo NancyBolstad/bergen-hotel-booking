@@ -167,9 +167,9 @@ export const moon = (
     <path
       d="M15.75 2.25C10.125 2.25 3.375 7.875 3.375 16.875C3.375 25.875 10.125 32.625 19.125 32.625C28.125 32.625 33.75 25.875 33.75 20.25C21.375 28.125 7.875 14.625 15.75 2.25Z"
       stroke="black"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
   </svg>
 );
@@ -180,7 +180,7 @@ export const arrowTransformed = (
       stroke="#ff928e"
       stroke-linecap="round"
       stroke-linejoin="round"
-      stroke-width="3"
+      strokeWidth="3"
       d="M10.74 74.1c3.45 1.21 6.76 2.9 9.98 4.04 1.04.36 6.49 2.54 6.6 3.36M21.92 62.37c-1.2 2.79-3.38 4.88-5.7 6.69-.98.77-1.87 1.81-3.05 2.31-1.08.47-2.07 1.88-3.29 1.98M65.8 13.84c-2.25 10.42-4.9 21.18-10.44 30.38-4.2 7.02-10.58 12.99-16.96 18.02a58.5 58.5 0 0 1-24.94 11.59"
     />
   </svg>
@@ -682,7 +682,7 @@ export const navigationArrow = (
   <svg
     stroke="currentColor"
     fill="currentColor"
-    stroke-width="0"
+    strokeWidth="0"
     viewBox="0 0 24 24"
     height="1em"
     width="1em"

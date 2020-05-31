@@ -26,6 +26,7 @@ const defaultColors: IColors = {
   secondaryVariant: '#FFEBE4',
   onSecondary: '#000000',
   background: '#ffffff',
+  backgroundVariant: '#FFEBE4',
   surface: '#E5E5E5',
   onSurface: '#888888',
   onBackground: '#000000',
@@ -40,6 +41,7 @@ const darkThemeColors: IColors = {
   secondaryVariant: '#888888',
   onSecondary: '#000000',
   background: '#000000',
+  backgroundVariant: '#000000',
   surface: '#888888',
   onSurface: '#ffffff',
   onBackground: '#ffffff',
@@ -196,7 +198,7 @@ const b3: Font = {
   family: defaultFontFamily.primary,
   weight: defaultFontWeight.regular,
   size: 1.125,
-  lineHeight: 1.15,
+  lineHeight: 1.5,
   mediaQueries: [
     {
       query: defaultMediaQueries.small,

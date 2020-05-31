@@ -88,7 +88,7 @@ const HotelCardVariant: React.FunctionComponent<Props> = ({ card, miniCard, show
             {(card.services || []).map((service, index) => (
               <ServiceLabel
                 element="span"
-                variant="b1"
+                variant="b2"
                 content={service}
                 key={`${card.id}-service-${index}`}
                 textTransform="capitalize"

@@ -97,7 +97,7 @@ export const Label = styled.label`
 
 export const Select = styled.select`
   height: 40px;
-  width: 11.8rem;
+  width: 12.8rem;
   margin-right: ${props => props.theme.spacing.xs}rem;
   background-color: ${props => props.theme.colors.background};
   color: ${props => props.theme.colors.onBackground};

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import PageHero from '../../components/PageHero';
 import useApi from '../../hooks/useApi';
 import Loader from '../../components/Loader/Loader';
@@ -8,8 +8,8 @@ import { BlogDetailsRoot } from '../../types/response';
 import { VerticalSpacer, HorizontalSpacer, WidthConstraints } from '../../components/Layout';
 import Typography from '../../components/Typography';
 import { Flex } from '../../components/Flex';
-//import { HotelCardsList } from '../../components/HotelCards';
-//import { Context } from '../../context/GlobalContext';
+import { HotelCardsList } from '../../components/HotelCards';
+import { Context } from '../../context/GlobalContext';
 
 interface Props {}
 
@@ -31,9 +31,10 @@ export const RichText = styled.div`
 `;
 
 export const BlogDetails: React.FunctionComponent<Props> = () => {
-  //const localContext = React.useContext(Context);
+  const localContext = React.useContext(Context);
+  const history = useHistory();
   let { id } = useParams();
-  const { results, loading } = useApi<BlogDetailsRoot>({
+  const { results, loading, error } = useApi<BlogDetailsRoot>({
     endpoint: `${process.env.REACT_APP_API_URL}blog/${id}`,
     fetchOnMount: true,
     initialData: {
@@ -45,6 +46,12 @@ export const BlogDetails: React.FunctionComponent<Props> = () => {
       },
     },
   });
+
+  React.useEffect(() => {
+    if (error) {
+      history.push('/404');
+    }
+  }, [history, error]);
 
   return (
     <>
@@ -83,6 +90,18 @@ export const BlogDetails: React.FunctionComponent<Props> = () => {
             </HorizontalSpacer>
           </VerticalSpacer>
         </PageHero>
+      )}
+      {!localContext.loading && localContext.default && (
+        <HotelCardsList
+          sectionTitle={`Related Accommodations`}
+          ctaText={`Explore more accommodations`}
+          ctaUrl={`/accommodations?name=&category=&service=`}
+          list={[...localContext.default]
+            .filter(element => {
+              return element.name.includes(results.data.title.charAt(0));
+            })
+            .slice(0, 4)}
+        />
       )}
     </>
   );

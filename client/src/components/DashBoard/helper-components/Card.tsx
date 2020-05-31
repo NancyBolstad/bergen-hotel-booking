@@ -7,7 +7,7 @@ const Card = styled.div`
   box-shadow: 0px 3px 6px #00000029;
   background-color: ${props => props.theme.colors.background};
   border: 2px solid ${props => props.theme.colors.white};
-  border-radius: 1rem;
+  border-radius: 4px;
 
   ${createMediaQuery(
     'small',

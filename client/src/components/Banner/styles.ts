@@ -23,7 +23,6 @@ export const FlexKid = styled(BackgroundImage)<{ isMobile: boolean }>`
   align-items: flex-start;
   width: ${props => (props.isMobile ? '100%' : '50%')};
   flex-grow: 1;
-  min-height: 15.75rem;
 
   ${createMediaQuery(
     'large',

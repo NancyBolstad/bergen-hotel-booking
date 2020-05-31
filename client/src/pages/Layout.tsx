@@ -5,12 +5,13 @@ import Header from '../components/Header/Header';
 import Footer from '../components/Footer';
 import Loader from '../components/Loader/Loader';
 import Home from './Home';
-import Favorites from './Favorites';
+import Favorites from './Favorites/Favorites';
 import ContrastProvider from '../context/ContrastContext';
 import Blog from './Blog/Blog';
 import BlogDetails from './Blog/BlogDetails';
 import PrivateRoute from '../routes/PrivateRoute';
 import DashBoard from './Dashboard/Dashboard';
+import NotFind from './NotFind/NotFind';
 import { Main } from '../components/Layout/Main';
 
 const Contact = lazy(() => import('./Contact'));
@@ -59,12 +60,12 @@ const Layout: React.FunctionComponent<Props> = () => {
                     <Success />
                   </Suspense>
                 </Route>
-                <Route path="/favorites">
+                <Route exact path="/favorites">
                   <Suspense fallback={<Loader />}>
                     <Favorites />
                   </Suspense>
                 </Route>
-                <Route path="/contact">
+                <Route exact path="/contact">
                   <Suspense fallback={<Loader />}>
                     <Contact />
                   </Suspense>
@@ -74,22 +75,22 @@ const Layout: React.FunctionComponent<Props> = () => {
                     <Contact />
                   </Suspense>
                 </Route>
-                <Route path="/accommodation/details/:id">
+                <Route exact path="/accommodation/details/:id">
                   <Suspense fallback={<Loader />}>
                     <AccommodationDetails />
                   </Suspense>
                 </Route>
-                <Route path="/accommodations" exact>
+                <Route exact path="/accommodations">
                   <Suspense fallback={<Loader />}>
                     <SearchResults />
                   </Suspense>
                 </Route>
-                <Route path="/blog" exact>
+                <Route exact path="/blog">
                   <Suspense fallback={<Loader />}>
                     <Blog />
                   </Suspense>
                 </Route>
-                <Route path="/blog/:id" exact>
+                <Route exact path="/blog/:id">
                   <Suspense fallback={<Loader />}>
                     <BlogDetails />
                   </Suspense>
@@ -99,11 +100,12 @@ const Layout: React.FunctionComponent<Props> = () => {
                     <Blog />
                   </Suspense>
                 </Route>
-                <Route path="/">
+                <Route exact path="/">
                   <Suspense fallback={<Loader />}>
                     <Home />
                   </Suspense>
                 </Route>
+                <Route component={NotFind} />
               </Switch>
             </Main>
             <Footer />

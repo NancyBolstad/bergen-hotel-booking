@@ -17,9 +17,9 @@ import { UserState } from '../../context/UserContext';
 import Typography from '../../components/Typography';
 
 const BackgroundWrapper = styled(Section)`
-  background-color: ${props => props.theme.colors.secondaryVariant};
   overflow: auto;
   min-height: 75vh;
+  background-color: ${props => props.theme.colors.backgroundVariant};
 `;
 
 const Sections = styled.div`

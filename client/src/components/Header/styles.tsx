@@ -6,11 +6,11 @@ import Button from '../Button/Button';
 export const HeaderWrapper = styled.header`
   width: 100%;
   background: ${props => props.theme.colors.background};
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid ${props => props.theme.colors.surface};
   position: sticky;
   top: 0;
   z-index: 999;
-  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
-  border-bottom: 1px solid ${props => props.theme.colors.surface};
 
   span {
     color: inherit;
@@ -201,12 +201,10 @@ export const MobileMenuWrapper = styled.div`
 
 export const MobileIcons = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   width: 100%;
-  position: absolute;
-  bottom: 76px;
-  background-color: ${props => props.theme.colors.surface};
+  border-top: 1px solid ${props => props.theme.colors.onSurface};
 `;
 
 export const ThemeToggleButton = styled.button`

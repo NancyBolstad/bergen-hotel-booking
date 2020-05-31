@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { useParams, useHistory } from 'react-router-dom';
-import PageHero from '../../components/PageHero';
 import useApi from '../../hooks/useApi';
 import Loader from '../../components/Loader/Loader';
 import { HotelDetailsRoot } from '../../types/response';
@@ -11,6 +10,9 @@ import { HotelCardsList } from '../../components/HotelCards';
 import { Context } from '../../context/GlobalContext';
 import { ButtonLink } from '../../components/Button/Button';
 import { ServiceLabel } from '../../components/HotelCards/styles';
+import Slider from '../../components/Slider/Slider';
+import { PlainBanner } from '../../components/Banner';
+import LikeButton from '../../components/Button/LikeButton';
 
 interface Props {}
 
@@ -42,7 +44,7 @@ export const HotelDetails: React.FunctionComponent<Props> = () => {
 
   React.useEffect(() => {
     if (error) {
-      history.push('/');
+      history.push('/404');
     }
   }, [history, error]);
 
@@ -50,36 +52,25 @@ export const HotelDetails: React.FunctionComponent<Props> = () => {
     <>
       {loading && <Loader />}
       {!!results && !loading && (
-        <PageHero figure={results.data.featuredImages[0]}>
-          <VerticalSpacer topSpace="xs" bottomSpace="xs" bottomSpaceDesktop="m">
+        <>
+          <PlainBanner
+            title={`${results.data.name}`}
+            isTitleColorRed
+            subTitle={results.data.category}
+            buttonVariant="primary"
+          />
+          <Slider slides={results.data.featuredImages} large />
+          <VerticalSpacer topSpace="xs" bottomSpace="xs" bottomSpaceDesktop="xl">
             <HorizontalSpacer>
               <WidthConstraints size="medium">
+                <Typography variant="h3" element="p" content={`Price`} />
                 <Typography
-                  variant="b2"
+                  variant="b3"
                   element="span"
-                  content={results.data.category}
-                  textTransform="capitalize"
-                  top={24}
-                  topDesktop={52}
+                  content={`From ${results.data.price} kr per day`}
                 />
-                <Typography
-                  variant="h1"
-                  element="h1"
-                  content={results.data.name}
-                  textTransform="capitalize"
-                  isPrimaryColor
-                />
-                <Typography
-                  variant="h2"
-                  element="h2"
-                  content={`Price: ${results.data.price}`}
-                  textTransform="capitalize"
-                />
-                <Typography variant="b3" element="p" content={results.data.descriptions} />
-                <Typography variant="h3" element="h3" content="Location" />
-                <Typography variant="b3" element="span" content={results.data.location} />
-                <Typography variant="h3" element="h3" content="Services" />
-                <Flex wrap={true}>
+                <Typography variant="h3" element="p" content="Services" />
+                <Flex>
                   {(results.data.services || []).map((service, key) => (
                     <ServiceLabel
                       key={key}
@@ -90,8 +81,8 @@ export const HotelDetails: React.FunctionComponent<Props> = () => {
                     />
                   ))}
                 </Flex>
-                <Typography variant="h3" element="h3" content="Features" />
-                <Flex wrap>
+                <Typography variant="h3" element="p" content="Features" />
+                <Flex>
                   {(results.data.features || []).map((feature, key) => (
                     <ServiceLabel
                       key={key}
@@ -102,7 +93,9 @@ export const HotelDetails: React.FunctionComponent<Props> = () => {
                     />
                   ))}
                 </Flex>
-                <VerticalSpacer>
+                <Typography variant="h3" element="p" content="Descriptions" />
+                <Typography variant="b3" element="p" content={results.data.descriptions} />
+                <Flex direction="row" justify="flex-start" align="center">
                   <ButtonLink
                     variant="primary"
                     size="large"
@@ -110,27 +103,32 @@ export const HotelDetails: React.FunctionComponent<Props> = () => {
                     aria-label="Go to book page"
                     title="Go to book page"
                   >
-                    Book Now
+                    Book
                   </ButtonLink>
-                </VerticalSpacer>
+                  <VerticalSpacer topSpace="s" bottomSpace="s">
+                    <HorizontalSpacer>
+                      {!!localContext.favorites && results.data.id && (
+                        <LikeButton card={results.data} withText alginLeft />
+                      )}
+                    </HorizontalSpacer>
+                  </VerticalSpacer>
+                </Flex>
               </WidthConstraints>
             </HorizontalSpacer>
           </VerticalSpacer>
-        </PageHero>
-      )}
-      {!localContext.loading && (
-        <HotelCardsList
-          sectionTitle="You may also interest"
-          ctaText={`Explore more ${
-            results.data.category === 'hostels' ? 'hostel' : results.data.category
-          }s`}
-          ctaUrl={`/accommodations?name=&category=${results.data.category}&service=`}
-          list={[...localContext.default]
-            .filter(element => {
-              return element.category === results.data.category;
-            })
-            .slice(0, 4)}
-        />
+          <HotelCardsList
+            sectionTitle={`More from category: ${results.data.category}`}
+            ctaText={`Explore more ${
+              results.data.category === 'hostels' ? 'hostel' : results.data.category
+            }s`}
+            ctaUrl={`/accommodations?name=&category=${results.data.category}&service=`}
+            list={[...localContext.default]
+              .filter(element => {
+                return element.category === results.data.category && element.id !== results.data.id;
+              })
+              .slice(0, 4)}
+          />
+        </>
       )}
     </>
   );

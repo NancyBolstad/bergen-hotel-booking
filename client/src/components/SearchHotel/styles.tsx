@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import createFontStyles from '../../util/createFontStyles';
 import createMediaQuery from '../../util/createMediaQuery';
-import { FlexKid } from '../../components/Layout';
+import { FlexKid } from '../Layout';
 
 export const Sections = styled(FlexKid)`
   margin-right: ${props => props.theme.spacing.xs}rem;
@@ -56,7 +56,7 @@ export const Letter = styled.a`
   }
 `;
 
-export const Results = styled.div`
+export const AlphabeticalResults = styled.div`
   display: flex;
   background: ${props => props.theme.colors.background};
 `;

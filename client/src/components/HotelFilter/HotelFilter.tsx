@@ -38,7 +38,7 @@ const HotelFilter: React.FunctionComponent<Props> = ({
             iconPosition="18%"
           />
         </Flex>
-        <Flex direction="row" wrap>
+        <Flex direction="row">
           <InputFieldWrapper>
             <Label>
               <Select

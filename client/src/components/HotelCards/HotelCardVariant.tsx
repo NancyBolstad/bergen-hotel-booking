@@ -84,7 +84,7 @@ const HotelCardVariant: React.FunctionComponent<Props> = ({ card, miniCard, show
           />
         )}
         {!!card.services && !isMobile && (
-          <Flex wrap={true}>
+          <Flex>
             {(card.services || []).map((service, index) => (
               <ServiceLabel
                 element="span"

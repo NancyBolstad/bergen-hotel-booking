@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Typography from '../../components/Typography/Typography';
 import InfoList, { InfoListProps } from '../../components/InfoList/InfoList';
+import { PlainBanner } from '../../components/Banner';
 
 interface Props {}
 
@@ -25,7 +25,7 @@ export const Success: React.FunctionComponent<Props> = () => {
   };
   return (
     <>
-      <Typography element="h1" variant="h1" content="Thank you for contacting us!" isPrimaryColor />
+      <PlainBanner title="Thank you for contacting us!" isTitleColorRed />
       <InfoList {...data} />
     </>
   );

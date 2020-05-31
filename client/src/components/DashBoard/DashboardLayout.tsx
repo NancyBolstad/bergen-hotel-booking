@@ -14,7 +14,6 @@ import Enquiries from './Enquiries/Enquiries';
 import Establishments from './Establishments/Establishments';
 import Messages from './Messages/Messages';
 import { UserState } from '../../context/UserContext';
-import Typography from '../../components/Typography';
 
 const BackgroundWrapper = styled(Section)`
   overflow: auto;
@@ -92,13 +91,6 @@ const DashboardLayout: React.FunctionComponent<Props> = ({ user }) => {
       <VerticalSpacer>
         <HorizontalSpacer>
           <WidthConstraints size="large">
-            <Typography
-              variant="h1"
-              element="h1"
-              textTransform="capitalize"
-              content={`Welcome back ${user.name}!`}
-              isPrimaryColor
-            />
             <Sections>
               <Content aside>
                 <Menu />

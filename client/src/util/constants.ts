@@ -8,3 +8,20 @@ export const PLACE_HOLDER: string =
 export const MAIN_NAV_LINKS: string[] = ['blog', 'about', 'contact'];
 
 export const BLOG_LIST_SIZE: number = 6;
+
+export const CATEGORIES: string[] = [
+  'hotel',
+  'bed and breakfast',
+  'hostels',
+  'tourist residence',
+  'furnished apartment',
+];
+
+export const SERVICES: string[] = [
+  'free breakfast',
+  'fitness centre',
+  'private bathroom',
+  'free wifi',
+  'room service',
+  'accessible room',
+];

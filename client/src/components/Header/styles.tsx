@@ -8,6 +8,9 @@ export const HeaderWrapper = styled.header`
   background: ${props => props.theme.colors.background};
   box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
   border-bottom: 1px solid ${props => props.theme.colors.surface};
+  position: sticky;
+  top: 0;
+  z-index: 999;
 
   span {
     color: inherit;

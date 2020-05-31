@@ -49,7 +49,7 @@ export const FLEX_BANNER_B = {
   descriptions: 'Our holiday booking system provides the best accommodations at the best price.',
   figure: {
     url:
-      'https://res.cloudinary.com/dykdxdtuu/image/upload/q_auto:good/v1590658612/holidaza/bruce-mars-ieIY61ZHhs8-unsplash_uejrjp.jpg',
+      'https://res.cloudinary.com/dykdxdtuu/image/upload/q_62/v1590658612/holidaza/bruce-mars-ieIY61ZHhs8-unsplash_uejrjp.webp',
     alt: 'Services illustration',
   },
   buttonText: 'More about us',

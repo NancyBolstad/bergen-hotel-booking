@@ -34,7 +34,7 @@ export const About: React.FunctionComponent<Props> = () => {
   return (
     <>
       <PlainBanner title="About" isTitleColorRed />
-      <FlexBanner />
+      <FlexBanner {...mockFlexBannerAboutUsA} />
       <BannerGrid
         banners={[CAMPAIGN_A, CAMPAIGN_A, CAMPAIGN_A, CAMPAIGN_A, CAMPAIGN_A, CAMPAIGN_A]}
       />

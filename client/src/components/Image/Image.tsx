@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Image as ImageType } from '../../types/types';
 import { WidthConstraints, VerticalSpacer, HorizontalSpacer, Flex } from '../Layout';
 import { widthSize } from '../Layout/WidthConstraints';
-import Typography from '../Typography';
+import Typography from '../Typography/Typography';
 import { Image as StyledImage, CaptionWrapper } from './styles';
 
 interface Props {

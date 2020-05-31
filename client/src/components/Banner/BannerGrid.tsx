@@ -8,7 +8,7 @@ import {
   HorizontalSpacer,
   Section,
 } from '../Layout';
-import Typography from '../Typography';
+import Typography from '../Typography/Typography';
 import { InnerTextWrapper } from './styles';
 
 interface Banner {

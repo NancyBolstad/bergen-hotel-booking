@@ -5,7 +5,7 @@ import { user, messages, hotel, enquiry, logout } from '../../../util/icons';
 import createMediaQuery from '../../../util/createMediaQuery';
 import setColorOpacity from '../../../util/setColorOpacity';
 import slugMatch from '../../../util/slugMatch';
-import Typography from '../../../components/Typography';
+import Typography from '../../../components/Typography/Typography';
 import { UserContext } from '../../../context/UserContext';
 
 const Wrapper = styled.aside`

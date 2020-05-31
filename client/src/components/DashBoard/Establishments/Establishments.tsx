@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Card from '../helper-components/Card';
 import Section from '../helper-components/Section';
-import Typography from '../../Typography';
+import Typography from '../../Typography/Typography';
 import EstablishmentForm from './EstablishmentForm';
 import { VerticalSpacer } from '../../Layout';
 import { HotelCardVariant } from '../../HotelCards/';

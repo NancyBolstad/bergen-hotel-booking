@@ -11,7 +11,7 @@ import useIsMobile from '../../hooks/useIsMobile';
 import { HotelDetails } from '../../types/response';
 import validateUserInput from '../../util/validateUserInput';
 import useFilter, { FilterInterface } from '../../hooks/useFilter';
-import Typography from '../Typography';
+import Typography from '../Typography/Typography';
 import { HotelCardVariant } from '../HotelCards/index';
 import useOutsideClick from '../../hooks/useOutsideClick';
 import { ButtonLink } from '../Button/Button';

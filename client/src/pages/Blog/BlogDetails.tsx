@@ -1,12 +1,12 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { useParams, useHistory } from 'react-router-dom';
-import PageHero from '../../components/PageHero';
+import PageHero from '../../components/PageHero/PageHero';
 import useApi from '../../hooks/useApi';
 import Loader from '../../components/Loader/Loader';
 import { BlogDetailsRoot } from '../../types/response';
 import { VerticalSpacer, HorizontalSpacer, WidthConstraints } from '../../components/Layout';
-import Typography from '../../components/Typography';
+import Typography from '../../components/Typography/Typography';
 import { Flex } from '../../components/Layout/';
 import { HotelCardsList } from '../../components/HotelCards';
 import { Context } from '../../context/GlobalContext';

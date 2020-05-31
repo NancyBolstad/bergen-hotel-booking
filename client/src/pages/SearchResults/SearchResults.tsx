@@ -5,7 +5,7 @@ import {
   WidthConstraints,
   Section,
 } from '../../components/Layout';
-import Typography from '../../components/Typography';
+import Typography from '../../components/Typography/Typography';
 import { HotelCardVariant, HotelCard } from '../../components/HotelCards';
 import { Context } from '../../context/GlobalContext';
 import PlainBanner from '../../components/Banner/PlainBanner';
@@ -13,7 +13,7 @@ import Loader from '../../components/Loader/Loader';
 import useFilter from '../../hooks/useFilter';
 import useIsTablet from '../../hooks/useIsTablet';
 import { Sections, SectionTitle, Results, Letter, Letters, LettersWrapper } from './styles';
-import HotelFilter from '../../components/Filter/HotelFilter';
+import HotelFilter from '../../components/HotelFilter/HotelFilter';
 
 const SearchResults: React.FunctionComponent = () => {
   const localContext = React.useContext(Context);

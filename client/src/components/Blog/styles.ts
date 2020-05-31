@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import createFontStyles from '../../util/createFontStyles';
-import Typography from '../Typography';
+import Typography from '../Typography/Typography';
 
 const Wrapper = styled.div`
   display: flex;

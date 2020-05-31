@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import { Image, ImageGrid } from '.';
 import { createList } from '../../util/mockHelpers';
+import Image from './Image';
+import ImageGrid from './ImageGrid';
 
 const image = {
   url:

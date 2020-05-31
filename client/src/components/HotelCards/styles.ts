@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
-import Typography from '../Typography';
-import Slider from '../Slider';
+import Typography from '../Typography/Typography';
+import Slider from '../Slider/Slider';
 import Button from '../Button/Button';
 import { IColors } from '../../types/theme';
 import { Flex } from '../Layout/';

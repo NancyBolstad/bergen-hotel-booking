@@ -22,7 +22,7 @@ import SearchBar from './SearchBar';
 import MobileMenu from './MobileMenu';
 import MainNavMenu from './MainNavMenu';
 import { Flex } from '../Layout/';
-import Typography from '../Typography';
+import Typography from '../Typography/Typography';
 
 const Header: React.FunctionComponent = () => {
   const { theme, toggleContrast } = React.useContext(ContrastContext);

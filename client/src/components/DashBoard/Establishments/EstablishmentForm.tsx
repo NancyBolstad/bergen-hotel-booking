@@ -10,7 +10,7 @@ import {
   ErrorMessage,
 } from '../../../components/FormElement';
 import Button from '../../../components/Button/Button';
-import Typography from '../../../components/Typography';
+import Typography from '../../../components/Typography/Typography';
 import EstablishmentSchema from './establishment.schema';
 import postData from '../../../util/postData';
 import {

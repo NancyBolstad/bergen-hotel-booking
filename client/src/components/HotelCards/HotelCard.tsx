@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Typography from '../Typography';
+import Typography from '../Typography/Typography';
 import transformLangText from '../../util/transformLangText';
 import { Card, FeaturedImages, CategoryBadge, ServiceLabel } from './styles';
 import { HotelDetails } from '../../types/response';

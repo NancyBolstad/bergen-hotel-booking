@@ -1,6 +1,6 @@
 import * as React from 'react';
 import SingleEnquiry from './SingleEnquiry';
-import Typography from '../../../components/Typography';
+import Typography from '../../../components/Typography/Typography';
 import Section from '../helper-components/Section';
 import Card from '../helper-components/Card';
 import useApi from '../../../hooks/useApi';

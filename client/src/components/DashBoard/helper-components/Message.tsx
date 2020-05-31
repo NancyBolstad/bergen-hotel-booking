@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled, { css } from 'styled-components';
 import { Contact } from '../../../types/response';
-import Typography from '../../../components/Typography';
+import Typography from '../../../components/Typography/Typography';
 
 const MessageCard = styled.div<{ isOwner?: boolean }>`
   padding: ${props => props.theme.spacing.xs}rem;

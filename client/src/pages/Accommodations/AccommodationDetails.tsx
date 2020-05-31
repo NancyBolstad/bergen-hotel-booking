@@ -4,7 +4,7 @@ import useApi from '../../hooks/useApi';
 import Loader from '../../components/Loader/Loader';
 import { HotelDetailsRoot } from '../../types/response';
 import { VerticalSpacer, HorizontalSpacer, WidthConstraints, Flex } from '../../components/Layout';
-import Typography from '../../components/Typography';
+import Typography from '../../components/Typography/Typography';
 import { HotelCardsList } from '../../components/HotelCards';
 import { Context } from '../../context/GlobalContext';
 import { ButtonLink } from '../../components/Button/Button';

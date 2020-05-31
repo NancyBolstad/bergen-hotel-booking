@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import PageHero from '.';
+import PageHero from './PageHero';
 import { BlogListStory } from '../Blog/stories';
 
 export const image = {

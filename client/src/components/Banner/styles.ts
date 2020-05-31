@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
-import { BackgroundImage } from '../Image';
-import Typography from '../Typography';
+import { BackgroundImage } from '../Image/BackgroundImage';
+import Typography from '../Typography/Typography';
 import createMediaQuery from '../../util/createMediaQuery';
 
 type alignVariant = 'flex-start' | 'center' | 'flex-end';

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useLocation } from 'react-router-dom';
 import Card from '../helper-components/Card';
 import Section from '../helper-components/Section';
 import Typography from '../../Typography/Typography';
@@ -13,6 +14,14 @@ interface Props {}
 
 const Establishments: React.FC<Props> = () => {
   const localContext = React.useContext(Context);
+  const [createEstablishment, setCreateEstablishment] = React.useState(false);
+  const location = useLocation();
+
+  React.useEffect(() => {
+    if (location.pathname === '/dashboard/establishments/new') {
+      setCreateEstablishment(true);
+    }
+  }, [location]);
 
   return (
     <>
@@ -21,24 +30,20 @@ const Establishments: React.FC<Props> = () => {
           <Typography variant="h2" element="h2" content="Manage Establishments" />
         </Card>
       </Section>
-      <Section>
-        {/* <VerticalSpacer>
+      {createEstablishment && (
+        <Section>
           <Card>
             <EstablishmentForm />
           </Card>
-        </VerticalSpacer> */}
-        <Card>
-          <SearchHotel editable />
-        </Card>
-        {/* <VerticalSpacer>
+        </Section>
+      )}
+      {!createEstablishment && (
+        <Section>
           <Card>
-            {!!localContext.loading && <Loader />}
-            {(localContext.default || []).map(hotel => (
-              <HotelCardVariant key={hotel.id} card={hotel} miniCard />
-            ))}
+            <SearchHotel editable />
           </Card>
-        </VerticalSpacer> */}
-      </Section>
+        </Section>
+      )}
     </>
   );
 };

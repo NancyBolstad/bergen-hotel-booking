@@ -7,6 +7,7 @@ import { VerticalSpacer } from '../../Layout';
 import { HotelCardVariant } from '../../HotelCards/';
 import { Context } from '../../../context/GlobalContext';
 import Loader from '../../Loader/Loader';
+import SearchHotel from '../../SearchHotel/SearchHotel';
 
 interface Props {}
 
@@ -17,21 +18,26 @@ const Establishments: React.FC<Props> = () => {
     <>
       <Section>
         <Card>
-          <Typography variant="h2" element="h2" content="Establishments" />
+          <Typography variant="h2" element="h2" content="Manage Establishments" />
         </Card>
-        <VerticalSpacer>
+      </Section>
+      <Section>
+        {/* <VerticalSpacer>
           <Card>
             <EstablishmentForm />
           </Card>
-        </VerticalSpacer>
-        <VerticalSpacer>
+        </VerticalSpacer> */}
+        <Card>
+          <SearchHotel />
+        </Card>
+        {/* <VerticalSpacer>
           <Card>
             {!!localContext.loading && <Loader />}
             {(localContext.default || []).map(hotel => (
               <HotelCardVariant key={hotel.id} card={hotel} miniCard />
             ))}
           </Card>
-        </VerticalSpacer>
+        </VerticalSpacer> */}
       </Section>
     </>
   );

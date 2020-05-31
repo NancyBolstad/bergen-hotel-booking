@@ -13,8 +13,12 @@ import Button from '../../../components/Button/Button';
 import Typography from '../../../components/Typography';
 import EstablishmentSchema from './establishment.schema';
 import postData from '../../../util/postData';
-import { WidthConstraints, VerticalSpacer, HorizontalSpacer } from '../../../components/Layout';
-import { Flex } from '../../../components//Flex';
+import {
+  WidthConstraints,
+  VerticalSpacer,
+  HorizontalSpacer,
+  Flex,
+} from '../../../components/Layout';
 
 interface Props {}
 

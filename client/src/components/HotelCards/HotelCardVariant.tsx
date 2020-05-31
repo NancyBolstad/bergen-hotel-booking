@@ -13,7 +13,7 @@ import {
 import { HotelDetails } from '../../types/response';
 import useIsMobile from '../../hooks/useIsMobile';
 import { navigationArrow } from '../../util/icons';
-import { Flex } from '../Flex';
+import { Flex } from '../Layout/';
 import { ButtonLink } from '../Button/Button';
 import LikeButton from '../Button/LikeButton';
 

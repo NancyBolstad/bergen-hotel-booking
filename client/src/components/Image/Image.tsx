@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { Image as ImageType } from '../../types/types';
-import { WidthConstraints, VerticalSpacer, HorizontalSpacer } from '../Layout';
+import { WidthConstraints, VerticalSpacer, HorizontalSpacer, Flex } from '../Layout';
 import { widthSize } from '../Layout/WidthConstraints';
-import { Flex } from '../Flex';
 import Typography from '../Typography';
 import { Image as StyledImage, CaptionWrapper } from './styles';
 

@@ -7,7 +7,7 @@ import Loader from '../../components/Loader/Loader';
 import { BlogDetailsRoot } from '../../types/response';
 import { VerticalSpacer, HorizontalSpacer, WidthConstraints } from '../../components/Layout';
 import Typography from '../../components/Typography';
-import { Flex } from '../../components/Flex';
+import { Flex } from '../../components/Layout/';
 import { HotelCardsList } from '../../components/HotelCards';
 import { Context } from '../../context/GlobalContext';
 

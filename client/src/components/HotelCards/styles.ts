@@ -3,7 +3,7 @@ import Typography from '../Typography';
 import Slider from '../Slider';
 import Button from '../Button/Button';
 import { IColors } from '../../types/theme';
-import { Flex } from '../Flex';
+import { Flex } from '../Layout/';
 
 const Wrapper = styled(Flex)`
   flex-direction: column;

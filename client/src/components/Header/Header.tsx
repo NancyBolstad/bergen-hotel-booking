@@ -21,7 +21,7 @@ import useIsMobile from '../../hooks/useIsMobile';
 import SearchBar from './SearchBar';
 import MobileMenu from './MobileMenu';
 import MainNavMenu from './MainNavMenu';
-import { Flex } from '../Flex/';
+import { Flex } from '../Layout/';
 import Typography from '../Typography';
 
 const Header: React.FunctionComponent = () => {

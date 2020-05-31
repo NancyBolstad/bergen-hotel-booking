@@ -1,9 +1,8 @@
 import * as React from 'react';
 import { Image as ImageType } from '../../types/types';
-import { WidthConstraints, HorizontalSpacer, Section, VerticalSpacer } from '../Layout';
+import { WidthConstraints, HorizontalSpacer, Section, VerticalSpacer, Flex } from '../Layout';
 import { PlainBannerTitle, PlainBannerContent } from './styles';
 import { ButtonVariant, ButtonLink, Size } from '../Button/Button';
-import { Flex } from '../Flex/';
 import { navigationArrow } from '../../util/icons';
 
 interface Props {

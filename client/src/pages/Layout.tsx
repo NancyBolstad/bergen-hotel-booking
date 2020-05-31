@@ -2,7 +2,7 @@ import React, { lazy, Suspense } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import ThemeWrapper from '../components/ThemeWrapper/ThemeWrapper';
 import Header from '../components/Header/Header';
-import Footer from '../components/Footer';
+import Footer from '../components/Footer/Footer';
 import Loader from '../components/Loader/Loader';
 import Home from './Home';
 import Favorites from './Favorites/Favorites';

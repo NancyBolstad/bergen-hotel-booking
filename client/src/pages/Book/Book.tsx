@@ -5,7 +5,7 @@ import useApi from '../../hooks/useApi';
 import Loader from '../../components/Loader/Loader';
 import { HotelDetailsRoot } from '../../types/response';
 import { VerticalSpacer, HorizontalSpacer, WidthConstraints } from '../../components/Layout';
-import { Flex, FlexKid } from '../../components/Flex';
+import { Flex, FlexKid } from '../../components/Layout/Flex';
 import { HotelCardsList } from '../../components/HotelCards';
 import { Context } from '../../context/GlobalContext';
 import BookForm from '../../components/Book/BookForm';

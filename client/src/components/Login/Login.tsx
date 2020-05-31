@@ -5,8 +5,7 @@ import { StyledInput, StyledLabelWrapper, Form, StyledLabel, ErrorMessage } from
 import Button from '../Button/Button';
 import Typography from '../Typography/Typography';
 import LoginSchema from './login.schema';
-import { WidthConstraints, VerticalSpacer, HorizontalSpacer, Section } from '../Layout';
-import { Flex } from '../Flex';
+import { WidthConstraints, VerticalSpacer, HorizontalSpacer, Section, Flex } from '../Layout';
 import { UserContext } from '../../context/UserContext';
 
 type LoginFormData = {

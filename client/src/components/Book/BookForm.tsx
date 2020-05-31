@@ -6,8 +6,7 @@ import Button from '../Button/Button';
 import Typography from '../Typography/Typography';
 import BookSchema from './book.schema';
 import postData from '../../util/postData';
-import { WidthConstraints, VerticalSpacer, HorizontalSpacer, Section } from '../Layout';
-import { Flex } from '../Flex';
+import { WidthConstraints, VerticalSpacer, HorizontalSpacer, Section, Flex } from '../Layout';
 
 interface Props {
   establishmentId: string;

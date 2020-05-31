@@ -2,10 +2,9 @@ import * as React from 'react';
 import { Wrapper, SectionTitle, More } from './styles';
 import { ButtonLink } from '../Button/Button';
 import { IColors } from '../../types/theme';
-import { WidthConstraints, VerticalSpacer, HorizontalSpacer, Section } from '../Layout';
+import { WidthConstraints, VerticalSpacer, HorizontalSpacer, Section, Flex } from '../Layout';
 import { HotelDetails } from '../../types/response';
 import HotelCardVariant from './HotelCardVariant';
-import { Flex } from '../Flex';
 import { navigationArrow } from '../../util/icons';
 
 export interface Props {

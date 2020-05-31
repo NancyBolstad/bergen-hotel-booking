@@ -1,7 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { Flex } from '../Flex';
-import { VerticalSpacer, WidthConstraints } from '../Layout';
+import { VerticalSpacer, WidthConstraints, Flex } from '../Layout';
 import { ButtonInternal } from './Button';
 import useIsTablet from '../../hooks/useIsTablet';
 import { arrow } from '../../util/icons';

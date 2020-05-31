@@ -4,7 +4,7 @@ import { ContrastContext } from '../../context/ContrastContext';
 import { Context } from '../../context/GlobalContext';
 import { heart, sun, moon } from '../../util/icons';
 import useOutsideClick from '../../hooks/useOutsideClick';
-import { Flex } from '../Flex/';
+import { Flex } from '../Layout';
 import Typography from '../Typography';
 
 interface Props {

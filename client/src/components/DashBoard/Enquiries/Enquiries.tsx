@@ -1,11 +1,11 @@
 import * as React from 'react';
-import SingleEnquiry from './SingleEnquiry';
 import Typography from '../../../components/Typography/Typography';
-import Section from '../helper-components/Section';
-import Card from '../helper-components/Card';
 import useApi from '../../../hooks/useApi';
 import { EnquiriesResponse } from '../../../types/response';
 import Loader from '../../Loader/Loader';
+import Table from '../../Table/Table';
+import Card from '../helper-components/Card';
+import Section from '../helper-components/Section';
 
 interface Props {}
 
@@ -28,6 +28,20 @@ const Enquiries: React.FC<Props> = () => {
     },
   });
 
+  const [editing, setEditing] = React.useState(false);
+  const [success, setSuccess] = React.useState(false);
+
+  async function deleteEnquiry(id: string) {
+    setEditing(true);
+    const response = await fetch(`${process.env.REACT_APP_API_URL}enquiries/${id}`, {
+      method: 'delete',
+    });
+    if (response.ok) {
+      setSuccess(true);
+    }
+    setEditing(false);
+  }
+
   return (
     <>
       <Section>
@@ -48,13 +62,23 @@ const Enquiries: React.FC<Props> = () => {
       ) : (
         <>
           {!!loading && (
+            <Section>
+              <Card>
+                <Loader />
+              </Card>
+            </Section>
+          )}
+          {!!results.data && (
             <Card>
-              <Loader />
+              <Table
+                headerNames={['name', 'email', 'checkIn', 'checkOut', 'establishmentId']}
+                rows={results.data.reverse()}
+                action={deleteEnquiry}
+                busy={editing}
+                deleted={success}
+              />
             </Card>
           )}
-          {(results.data || []).map(enquiry => (
-            <SingleEnquiry key={enquiry.id} enquiry={enquiry} />
-          ))}
         </>
       )}
     </>

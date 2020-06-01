@@ -39,6 +39,11 @@ export const BackgroundImage = styled.div<BackgroundInterface>`
       position: relative;
       margin-right: ${props => props.theme.spacing.xs}rem;
       margin-bottom: ${props => props.theme.spacing.xs}rem;
+
+      &:hover {
+        cursor: pointer;
+        opacity: 0.8;
+      }
     `};
 
   ${props =>

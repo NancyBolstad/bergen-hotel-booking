@@ -26,6 +26,7 @@ import { ClickableBackgroundImage } from '../../Image/BackgroundImage';
 import { cross, solidArrow } from '../../../util/icons';
 import { SelectLabel, StyledSelectInput, Arrow } from '../../FormElement/StyledSelect';
 import { CATEGORIES } from '../../../util/constants';
+import useIsTablet from '../../../hooks/useIsTablet';
 
 const gridImages: Image[] = [
   {
@@ -68,6 +69,7 @@ const EstablishmentForm: React.FC<Props> = ({ toggleClose }) => {
   const { handleSubmit, register, errors } = useForm({
     validationSchema: EstablishmentSchema,
   });
+  const isTablet = useIsTablet();
   const [selectedImages, setSelectedImages] = React.useState<Image[]>([]);
   const [selectedIndex, setSelectedIndex] = React.useState<number[]>([]);
 
@@ -102,6 +104,7 @@ const EstablishmentForm: React.FC<Props> = ({ toggleClose }) => {
               size="small"
               iconButton
               to="/dashboard/establishments/"
+              aria-label="Close form"
             >
               {cross}
             </ButtonInternal>
@@ -218,13 +221,13 @@ const EstablishmentForm: React.FC<Props> = ({ toggleClose }) => {
                   required
                 />
               </StyledLabel>
-              <Flex direction="row">
+              <Flex direction="row" justify="space-between">
                 {gridImages.map((image, index) => {
                   return (
                     <ClickableBackgroundImage
                       isSelectable
-                      customWidth="180px"
-                      customHeight="180px"
+                      customWidth={isTablet ? '75vw' : '12.25rem'}
+                      customHeight="12.25rem"
                       selected={selectedIndex.includes(index)}
                       imageUrl={image.url}
                       key={index}

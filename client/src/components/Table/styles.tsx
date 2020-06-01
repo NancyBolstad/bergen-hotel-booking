@@ -11,8 +11,7 @@ export const StyledTable = styled.table`
 `;
 
 export const TableHeader = styled.th`
-  padding: ${props => props.theme.spacing.xs}rem 0;
-  height: 3.25rem;
+  padding: ${props => props.theme.spacing.xs}rem;
   background-color: ${props => props.theme.colors.primary};
   color: ${props => props.theme.colors.background};
   ${props => createFontStyles(props.theme.fonts.b2)};
@@ -21,6 +20,7 @@ export const TableHeader = styled.th`
 
 export const TableRow = styled.tr`
   ${props => createFontStyles(props.theme.fonts.b1)};
+  text-align: center;
   &:nth-child(even) {
     background-color: ${props => props.theme.colors.surface};
   }
@@ -33,7 +33,7 @@ export const RemovableRow = styled(TableRow)<{ remove?: boolean; busy?: boolean 
   ${props =>
     props.busy === true &&
     css`
-      opacity: 0.8;
+      opacity: 0.5;
     `};
 
   ${props =>

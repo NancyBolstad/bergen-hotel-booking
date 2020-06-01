@@ -1,11 +1,13 @@
 import * as React from 'react';
 import Typography from '../../../components/Typography/Typography';
 import useApi from '../../../hooks/useApi';
-import { EnquiriesResponse } from '../../../types/response';
+import { EnquiriesResponse, Enquiry } from '../../../types/response';
 import Loader from '../../Loader/Loader';
 import Table from '../../Table/Table';
 import Card from '../helper-components/Card';
 import Section from '../helper-components/Section';
+import useDeleteRequest from '../../../hooks/useDeleteRequest';
+import { API_ENDPOINT } from '../../../util/constants';
 
 interface Props {}
 
@@ -27,20 +29,12 @@ const Enquiries: React.FC<Props> = () => {
       ],
     },
   });
+  const [tableData, setTableData] = React.useState<Enquiry[]>([]);
+  const { deleting, removed, action } = useDeleteRequest(API_ENDPOINT.enquires);
 
-  const [editing, setEditing] = React.useState(false);
-  const [success, setSuccess] = React.useState(false);
-
-  async function deleteEnquiry(id: string) {
-    setEditing(true);
-    const response = await fetch(`${process.env.REACT_APP_API_URL}enquiries/${id}`, {
-      method: 'delete',
-    });
-    if (response.ok) {
-      setSuccess(true);
-    }
-    setEditing(false);
-  }
+  React.useEffect(() => {
+    setTableData(results.data.reverse());
+  }, [results]);
 
   return (
     <>
@@ -61,21 +55,20 @@ const Enquiries: React.FC<Props> = () => {
         </Section>
       ) : (
         <>
-          {!!loading && (
+          {loading ? (
             <Section>
               <Card>
                 <Loader />
               </Card>
             </Section>
-          )}
-          {!!results.data && (
+          ) : (
             <Card>
               <Table
                 headerNames={['name', 'email', 'checkIn', 'checkOut', 'establishmentId']}
-                rows={results.data.reverse()}
-                action={deleteEnquiry}
-                busy={editing}
-                deleted={success}
+                rows={tableData}
+                action={action}
+                busy={deleting}
+                deleted={removed}
               />
             </Card>
           )}

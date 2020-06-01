@@ -1,3 +1,4 @@
+import { Establishment } from './../../../functions/src/services/establishments/establishments.d';
 export const APP_NAME: string = 'Holidaze Bergen';
 
 export const FAVORITES_KEY: string = 'favorites';
@@ -25,3 +26,9 @@ export const SERVICES: string[] = [
   'room service',
   'accessible room',
 ];
+export const API_ENDPOINT = {
+  enquires: 'enquiries',
+  contact: 'contact',
+  establishment: 'establishments',
+  blog: 'blog',
+};

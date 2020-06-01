@@ -29,6 +29,7 @@ export const Table: React.FunctionComponent<Props> = ({
   deleted,
 }) => {
   const localContext = React.useContext(Context);
+  const [removeItem, setRemoveItem] = React.useState('');
 
   return (
     <>
@@ -45,7 +46,11 @@ export const Table: React.FunctionComponent<Props> = ({
         </thead>
         <tbody>
           {(rows || []).map((item: Enquiry, index) => (
-            <RemovableRow key={index} remove={deleted} busy={busy}>
+            <RemovableRow
+              key={index}
+              remove={deleted && item.id === removeItem}
+              busy={busy && item.id === removeItem}
+            >
               {(headerNames || []).map((headerName, index) => {
                 const findHotel = localContext.default.find(element => {
                   return element.id === item[headerName];
@@ -67,7 +72,7 @@ export const Table: React.FunctionComponent<Props> = ({
                     aria-label="Delete"
                     onClick={event => {
                       event.preventDefault();
-
+                      setRemoveItem(item.id);
                       action(item.id);
                     }}
                   >

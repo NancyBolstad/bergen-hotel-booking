@@ -4,8 +4,6 @@ import Card from '../helper-components/Card';
 import Section from '../helper-components/Section';
 import Typography from '../../Typography/Typography';
 import EstablishmentForm from './EstablishmentForm';
-import { VerticalSpacer } from '../../Layout';
-import { HotelCardVariant } from '../../HotelCards/';
 import { Context } from '../../../context/GlobalContext';
 import Loader from '../../Loader/Loader';
 import SearchHotel from '../../SearchHotel/SearchHotel';

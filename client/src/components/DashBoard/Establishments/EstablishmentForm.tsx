@@ -18,11 +18,14 @@ import {
   VerticalSpacer,
   HorizontalSpacer,
   Flex,
+  FlexKid,
 } from '../../../components/Layout';
 import { Image } from '../../../types/response';
 import ImageGrid from '../../Image/ImageGrid';
 import { ClickableBackgroundImage } from '../../Image/BackgroundImage';
-import { cross } from '../../../util/icons';
+import { cross, solidArrow } from '../../../util/icons';
+import { SelectLabel, StyledSelectInput, Arrow } from '../../FormElement/StyledSelect';
+import { CATEGORIES } from '../../../util/constants';
 
 const gridImages: Image[] = [
   {
@@ -122,18 +125,6 @@ const EstablishmentForm: React.FC<Props> = ({ toggleClose }) => {
               </StyledLabel>
               <StyledLabel>
                 <StyledLabelWrapper>
-                  Category <span>*</span>
-                </StyledLabelWrapper>
-                <StyledInput
-                  type="text"
-                  name="category"
-                  placeholder="Category"
-                  ref={register}
-                  required
-                />
-              </StyledLabel>
-              <StyledLabel>
-                <StyledLabelWrapper>
                   Location <span>*</span>
                 </StyledLabelWrapper>
                 <StyledInput
@@ -166,6 +157,27 @@ const EstablishmentForm: React.FC<Props> = ({ toggleClose }) => {
                   ref={register}
                   required
                 />
+              </StyledLabel>
+              <StyledLabel>
+                <StyledLabelWrapper>
+                  Category <span>*</span>
+                </StyledLabelWrapper>
+                <SelectLabel>
+                  <StyledSelectInput
+                    name="category"
+                    placeholder="Category"
+                    ref={register}
+                    required
+                    aria-label="Filter accommodations by category type"
+                  >
+                    {(CATEGORIES || []).map((c, k) => (
+                      <option key={k} value={c}>
+                        {c}
+                      </option>
+                    ))}
+                  </StyledSelectInput>
+                  <Arrow>{solidArrow}</Arrow>
+                </SelectLabel>
               </StyledLabel>
               <StyledLabel>
                 <StyledLabelWrapper>

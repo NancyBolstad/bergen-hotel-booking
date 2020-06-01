@@ -70,30 +70,3 @@ export const SelectWrapper = styled.div`
     `,
   )}
 `;
-
-export const StyledInput = styled.input`
-  height: 40px;
-  width: 11.8rem;
-  background-color: ${props => props.theme.colors.background};
-  border: 1px solid ${props => props.theme.colors.onBackground};
-  padding: 0 16px;
-  outline: none;
-  transition: border-color 0.1s ease-in-out;
-  ${props => createFontStyles(props.theme.fonts.b1)};
-  color: ${props => props.theme.colors.onBackground};
-
-  &::placeholder {
-    color: ${props => props.theme.colors.onSurface};
-  }
-  &:active,
-  &:focus {
-    border-bottom: 2px solid ${props => props.theme.colors.secondary};
-  }
-  &:disabled {
-    opacity: 0.5;
-    pointer-events: none;
-  }
-  &:placeholder-shown {
-    border: 1px solid ${props => props.theme.colors.onBackground};
-  }
-`;

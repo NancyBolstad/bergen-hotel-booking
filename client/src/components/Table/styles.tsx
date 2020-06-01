@@ -26,6 +26,8 @@ export const TableRow = styled.tr`
   }
   &:hover {
     border: 1px solid ${props => props.theme.colors.onBackground};
+    font-weight: 600;
+    cursor: pointer;
   }
 `;
 

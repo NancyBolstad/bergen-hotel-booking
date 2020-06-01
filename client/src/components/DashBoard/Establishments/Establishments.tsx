@@ -18,6 +18,8 @@ const Establishments: React.FC<Props> = () => {
   React.useEffect(() => {
     if (location.pathname === '/dashboard/establishments/new') {
       setCreateEstablishment(true);
+    } else {
+      setCreateEstablishment(false);
     }
   }, [location]);
 

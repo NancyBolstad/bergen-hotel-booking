@@ -7,6 +7,7 @@ export type ButtonVariant = 'primary' | 'secondary' | 'tertiary' | 'secondaryVar
 export interface ButtonProps {
   size: Size;
   variant: ButtonVariant;
+  iconButton?: boolean;
 }
 
 const ButtonLink = Button.withComponent('a');

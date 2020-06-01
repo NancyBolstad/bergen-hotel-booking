@@ -9,7 +9,6 @@ const Card = styled.div`
   background-color: ${props => props.theme.colors.background};
   border: 2px solid ${props => props.theme.colors.white};
   border-radius: 4px;
-  max-height: 50vh;
   overflow: auto;
 
   ${createMediaQuery(

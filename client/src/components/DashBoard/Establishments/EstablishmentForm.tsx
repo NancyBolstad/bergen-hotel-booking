@@ -9,7 +9,7 @@ import {
   StyledLabel,
   ErrorMessage,
 } from '../../../components/FormElement';
-import Button from '../../../components/Button/Button';
+import Button, { ButtonInternal } from '../../../components/Button/Button';
 import Typography from '../../../components/Typography/Typography';
 import EstablishmentSchema from './establishment.schema';
 import postData from '../../../util/postData';
@@ -22,6 +22,7 @@ import {
 import { Image } from '../../../types/response';
 import ImageGrid from '../../Image/ImageGrid';
 import { ClickableBackgroundImage } from '../../Image/BackgroundImage';
+import { cross } from '../../../util/icons';
 
 const gridImages: Image[] = [
   {
@@ -56,9 +57,11 @@ const gridImages: Image[] = [
   },
 ];
 
-interface Props {}
+interface Props {
+  toggleClose?: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
-const EstablishmentForm: React.FC<Props> = () => {
+const EstablishmentForm: React.FC<Props> = ({ toggleClose }) => {
   const { handleSubmit, register, errors } = useForm({
     validationSchema: EstablishmentSchema,
   });
@@ -90,6 +93,16 @@ const EstablishmentForm: React.FC<Props> = () => {
     <VerticalSpacer>
       <HorizontalSpacer>
         <WidthConstraints size="large">
+          <Flex direction="row" align="flex-end" justify="flex-end">
+            <ButtonInternal
+              variant="tertiary"
+              size="small"
+              iconButton
+              to="/dashboard/establishments/"
+            >
+              {cross}
+            </ButtonInternal>
+          </Flex>
           <Flex direction="column">
             <Typography
               element="h2"
@@ -226,7 +239,6 @@ const EstablishmentForm: React.FC<Props> = () => {
                   );
                 })}
               </Flex>
-
               <Button size="large" variant="primary" type="submit">
                 {posting ? 'Sending ...' : 'Send'}
               </Button>

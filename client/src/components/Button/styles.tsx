@@ -23,7 +23,7 @@ export const Button = styled.button<ButtonProps>`
   svg {
     width: 24px;
     height: 24px;
-    margin-left: ${props => props.theme.spacing.xs}rem;
+    margin-left: ${props => (props.iconButton ? '0' : props.theme.spacing.xs)}rem;
   }
   ${props =>
     props.size === 'small' &&

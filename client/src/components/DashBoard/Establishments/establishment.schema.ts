@@ -10,14 +10,14 @@ const EstablishmentSchema = Yup.object().shape({
   //'services[0]': Yup.string().required(),
   features: Yup.array(Yup.string()).required(),
   //'features[0]': Yup.string().required(),
-  featuredImages: Yup.array().of(
-    Yup.object()
-      .shape({
-        url: Yup.string().required(),
-        alt: Yup.string(),
-      })
-      .required(),
-  ),
+  // featuredImages: Yup.array().of(
+  //   Yup.object()
+  //     .shape({
+  //       url: Yup.string().required(),
+  //       alt: Yup.string(),
+  //     })
+  //     .required(),
+  // ),
   // 'featuredImages[0]': Yup.object()
   //   .shape({
   //     url: Yup.string().required(),

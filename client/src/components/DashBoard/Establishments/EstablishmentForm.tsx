@@ -19,6 +19,42 @@ import {
   HorizontalSpacer,
   Flex,
 } from '../../../components/Layout';
+import { Image } from '../../../types/response';
+import ImageGrid from '../../Image/ImageGrid';
+import { ClickableBackgroundImage } from '../../Image/BackgroundImage';
+
+const gridImages: Image[] = [
+  {
+    url:
+      'https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1080&q=80',
+    alt: 'Foo 1',
+  },
+  {
+    url:
+      'https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1080&q=80',
+    alt: 'Foo 2',
+  },
+  {
+    url:
+      'https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1080&q=80',
+    alt: 'Foo 3',
+  },
+  {
+    url:
+      'https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1080&q=80',
+    alt: 'Foo 4',
+  },
+  {
+    url:
+      'https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1080&q=80',
+    alt: 'Foo 5',
+  },
+  {
+    url:
+      'https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1080&q=80',
+    alt: 'Foo 6',
+  },
+];
 
 interface Props {}
 
@@ -26,6 +62,8 @@ const EstablishmentForm: React.FC<Props> = () => {
   const { handleSubmit, register, errors } = useForm({
     validationSchema: EstablishmentSchema,
   });
+  const [selectedImages, setSelectedImages] = React.useState<Image[]>([]);
+  const [selectedIndex, setSelectedIndex] = React.useState<number[]>([]);
 
   const [posting, setPosting] = React.useState<boolean>(false);
 
@@ -33,18 +71,20 @@ const EstablishmentForm: React.FC<Props> = () => {
 
   async function sendForm(data: Object, endpoint: 'establishments') {
     setPosting(true);
-    const response = await postData({
-      endpoint: endpoint,
-      data: {
-        ...data,
-      },
-    });
+    // const response = await postData({
+    //   endpoint: endpoint,
+    //   data: {
+    //     ...data,
+    //     featuredImages: selectedImages,
+    //   },
+    // });
 
-    if (response.status === 200) {
-      setPosting(false);
-      history.push(`/book-success`);
-    }
+    // if (response.status === 200) {
+    //   setPosting(false);
+    //   history.push(`/book-success`);
+    // }
   }
+  console.log(selectedImages);
 
   return (
     <VerticalSpacer>
@@ -153,63 +193,40 @@ const EstablishmentForm: React.FC<Props> = () => {
                   required
                 />
               </StyledLabel>
-              <StyledLabel>
-                <StyledLabelWrapper>
-                  Featured Images<span>*</span>
-                </StyledLabelWrapper>
-                <StyledInput
-                  type="text"
-                  name="featuredImages[0].url"
-                  placeholder="Image url"
-                  ref={register}
-                  required
-                />
-                <StyledInput
-                  type="text"
-                  name="featuredImages[0].alt"
-                  placeholder="Image alt"
-                  ref={register}
-                  required
-                />
-                <StyledInput
-                  type="text"
-                  name="featuredImages[1].url"
-                  placeholder="Image url"
-                  ref={register}
-                  required
-                />
-                <StyledInput
-                  type="text"
-                  name="featuredImages[1].alt"
-                  placeholder="Image alt"
-                  ref={register}
-                  required
-                />
-              </StyledLabel>
-              {/* 
-      // @ts-ignore */
-              errors.name && <ErrorMessage>{errors.name.message}</ErrorMessage>}
-              {/* 
-      // @ts-ignore */
-              errors.price && <ErrorMessage>{errors.price.message}</ErrorMessage>}
-              {/* 
-        // @ts-ignore */
-              errors.category && <ErrorMessage>{errors.category.message}</ErrorMessage>}
-              {/* 
-                  // @ts-ignore */
-              errors.location && <ErrorMessage>{errors.location.message}</ErrorMessage>}
-              {/* 
-                            // @ts-ignore */
-              errors.descriptions && <ErrorMessage>{errors.descriptions.message}</ErrorMessage>}
-              {/* 
-                                      // @ts-ignore */
-              errors.featuredImages && <ErrorMessage>{errors.featuredImages.message}</ErrorMessage>}
-              {/* 
-                                                // @ts-ignore */
-              errors.services && <ErrorMessage>{errors.services.message}</ErrorMessage>}
-              {/* 
-                                                          // @ts-ignore */
-              errors.features && <ErrorMessage>{errors.features.message}</ErrorMessage>}
+              <Flex direction="row">
+                {gridImages.map((image, index) => {
+                  return (
+                    <ClickableBackgroundImage
+                      isSelectable
+                      customWidth="180px"
+                      customHeight="180px"
+                      selected={selectedIndex.includes(index)}
+                      imageUrl={image.url}
+                      key={index}
+                      onClick={e => {
+                        e.preventDefault();
+                        console.log(image.alt);
+                        if (selectedIndex.includes(index)) {
+                          setSelectedIndex(
+                            selectedIndex.filter(s => {
+                              return s != index;
+                            }),
+                          );
+                          setSelectedImages(
+                            selectedImages.filter(s => {
+                              return s != image;
+                            }),
+                          );
+                        } else {
+                          setSelectedIndex([...selectedIndex, index]);
+                          setSelectedImages([...selectedImages, image]);
+                        }
+                      }}
+                    />
+                  );
+                })}
+              </Flex>
+
               <Button size="large" variant="primary" type="submit">
                 {posting ? 'Sending ...' : 'Send'}
               </Button>

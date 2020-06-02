@@ -25,8 +25,14 @@ import ImageGrid from '../../Image/ImageGrid';
 import { ClickableBackgroundImage } from '../../Image/BackgroundImage';
 import { cross, solidArrow } from '../../../util/icons';
 import { SelectLabel, StyledSelectInput, Arrow } from '../../FormElement/StyledSelect';
-import { CATEGORIES } from '../../../util/constants';
+import { CATEGORIES, SERVICES, FEATURES } from '../../../util/constants';
 import useIsTablet from '../../../hooks/useIsTablet';
+import { StyledCheckboxWrapper } from '../../FormElement/StyledCheckbox';
+
+const PLACEHOLDER_IMAGE: Image = {
+  url: 'https://via.placeholder.com/300?text=Holidaze+Bergen',
+  alt: 'Holidaze Bergen placeholder',
+};
 
 const gridImages: Image[] = [
   {
@@ -61,11 +67,9 @@ const gridImages: Image[] = [
   },
 ];
 
-interface Props {
-  toggleClose?: React.Dispatch<React.SetStateAction<boolean>>;
-}
+interface Props {}
 
-const EstablishmentForm: React.FC<Props> = ({ toggleClose }) => {
+const EstablishmentForm: React.FC<Props> = () => {
   const { handleSubmit, register, errors } = useForm({
     validationSchema: EstablishmentSchema,
   });
@@ -79,6 +83,14 @@ const EstablishmentForm: React.FC<Props> = ({ toggleClose }) => {
 
   async function sendForm(data: Object, endpoint: 'establishments') {
     setPosting(true);
+    if (selectedImages.length <= 0) {
+      // @ts-ignore
+      setSelectedImages(selectedImages.push(PLACEHOLDER_IMAGE));
+    }
+    console.log({
+      ...data,
+      featuredImages: selectedImages,
+    });
     // const response = await postData({
     //   endpoint: endpoint,
     //   data: {
@@ -89,10 +101,10 @@ const EstablishmentForm: React.FC<Props> = ({ toggleClose }) => {
 
     // if (response.status === 200) {
     //   setPosting(false);
-    //   history.push(`/book-success`);
+    //   history.push(`/dashboard/establishments/`);
     // }
   }
-  console.log(selectedImages);
+  console.log(errors);
 
   return (
     <VerticalSpacer>
@@ -102,7 +114,6 @@ const EstablishmentForm: React.FC<Props> = ({ toggleClose }) => {
             <ButtonInternal
               variant="tertiary"
               size="small"
-              iconButton
               to="/dashboard/establishments/"
               aria-label="Close form"
             >
@@ -117,7 +128,9 @@ const EstablishmentForm: React.FC<Props> = ({ toggleClose }) => {
               textTransform="capitalize"
             />
             <Form
-              onSubmit={handleSubmit((data: Object) => sendForm(data, 'establishments'))}
+              onSubmit={handleSubmit((data: Object) => {
+                sendForm(data, 'establishments');
+              })}
               noValidate
             >
               <StyledLabel>
@@ -126,6 +139,9 @@ const EstablishmentForm: React.FC<Props> = ({ toggleClose }) => {
                 </StyledLabelWrapper>
                 <StyledInput type="text" name="name" placeholder="Name" ref={register} required />
               </StyledLabel>
+              {/* 
+      // @ts-ignore */
+              errors.name && <ErrorMessage>{errors.name.message}</ErrorMessage>}
               <StyledLabel>
                 <StyledLabelWrapper>
                   Location <span>*</span>
@@ -138,6 +154,9 @@ const EstablishmentForm: React.FC<Props> = ({ toggleClose }) => {
                   required
                 />
               </StyledLabel>
+              {/* 
+      // @ts-ignore */
+              errors.location && <ErrorMessage>{errors.location.message}</ErrorMessage>}
               <StyledLabel>
                 <StyledLabelWrapper>
                   Price <span>*</span>
@@ -150,17 +169,23 @@ const EstablishmentForm: React.FC<Props> = ({ toggleClose }) => {
                   required
                 />
               </StyledLabel>
+              {/* 
+      // @ts-ignore */
+              errors.price && <ErrorMessage>{errors.price.message}</ErrorMessage>}
               <StyledLabel>
                 <StyledLabelWrapper>
-                  Descriptions <span>*</span>
+                  Description <span>*</span>
                 </StyledLabelWrapper>
                 <StyledTextArea
-                  name="descriptions"
+                  name="description"
                   placeholder="Descriptions"
                   ref={register}
                   required
                 />
               </StyledLabel>
+              {/* 
+      // @ts-ignore */
+              errors.description && <ErrorMessage>{errors.description.message}</ErrorMessage>}
               <StyledLabel>
                 <StyledLabelWrapper>
                   Category <span>*</span>
@@ -173,6 +198,7 @@ const EstablishmentForm: React.FC<Props> = ({ toggleClose }) => {
                     required
                     aria-label="Filter accommodations by category type"
                   >
+                    <option value="">Select category ...</option>
                     {(CATEGORIES || []).map((c, k) => (
                       <option key={k} value={c}>
                         {c}
@@ -182,78 +208,61 @@ const EstablishmentForm: React.FC<Props> = ({ toggleClose }) => {
                   <Arrow>{solidArrow}</Arrow>
                 </SelectLabel>
               </StyledLabel>
+              {/* 
+      // @ts-ignore */
+              errors.category && <ErrorMessage>{errors.category.message}</ErrorMessage>}
+              <StyledLabelWrapper>Services</StyledLabelWrapper>
+
+              {SERVICES.map((service, index) => (
+                <StyledCheckboxWrapper key={`service-${index}`}>
+                  <input type="checkbox" name={`services[]`} ref={register} value={service} />
+                  <Typography
+                    variant="b1"
+                    element="p"
+                    content={service}
+                    textTransform="capitalize"
+                  />
+                </StyledCheckboxWrapper>
+              ))}
+              {/* 
+      // @ts-ignore */
+              errors.services && <ErrorMessage>{errors.services.message}</ErrorMessage>}
               <StyledLabel>
-                <StyledLabelWrapper>
-                  Features <span>*</span>
-                </StyledLabelWrapper>
-                <StyledInput
-                  type="text"
-                  name="features[0]"
-                  placeholder="features"
-                  ref={register}
-                  required
-                />
-                <StyledInput type="text" name="features[1]" placeholder="Services" ref={register} />
+                <StyledLabelWrapper>Select some images for the establishment</StyledLabelWrapper>
+                <Flex direction="row" justify="space-between">
+                  {gridImages.map((image, index) => {
+                    return (
+                      <ClickableBackgroundImage
+                        isSelectable
+                        customWidth={isTablet ? '75vw' : '12.25rem'}
+                        customHeight="12.25rem"
+                        selected={selectedIndex.includes(index)}
+                        imageUrl={image.url}
+                        key={index}
+                        onClick={e => {
+                          e.preventDefault();
+                          console.log(image.alt);
+                          if (selectedIndex.includes(index)) {
+                            setSelectedIndex(
+                              selectedIndex.filter(s => {
+                                return s != index;
+                              }),
+                            );
+                            setSelectedImages(
+                              selectedImages.filter(s => {
+                                return s != image;
+                              }),
+                            );
+                          } else {
+                            setSelectedIndex([...selectedIndex, index]);
+                            setSelectedImages([...selectedImages, image]);
+                          }
+                        }}
+                      />
+                    );
+                  })}
+                </Flex>
               </StyledLabel>
-              <StyledLabel>
-                <StyledLabelWrapper>
-                  Services <span>*</span>
-                </StyledLabelWrapper>
-                <StyledInput
-                  type="text"
-                  name="services[0]"
-                  placeholder="Services"
-                  ref={register}
-                  required
-                />
-                <StyledInput
-                  type="text"
-                  name="services[1]"
-                  placeholder="Services"
-                  ref={register}
-                  required
-                />
-                <StyledInput
-                  type="text"
-                  name="services[2]"
-                  placeholder="Services"
-                  ref={register}
-                  required
-                />
-              </StyledLabel>
-              <Flex direction="row" justify="space-between">
-                {gridImages.map((image, index) => {
-                  return (
-                    <ClickableBackgroundImage
-                      isSelectable
-                      customWidth={isTablet ? '75vw' : '12.25rem'}
-                      customHeight="12.25rem"
-                      selected={selectedIndex.includes(index)}
-                      imageUrl={image.url}
-                      key={index}
-                      onClick={e => {
-                        e.preventDefault();
-                        console.log(image.alt);
-                        if (selectedIndex.includes(index)) {
-                          setSelectedIndex(
-                            selectedIndex.filter(s => {
-                              return s != index;
-                            }),
-                          );
-                          setSelectedImages(
-                            selectedImages.filter(s => {
-                              return s != image;
-                            }),
-                          );
-                        } else {
-                          setSelectedIndex([...selectedIndex, index]);
-                          setSelectedImages([...selectedImages, image]);
-                        }
-                      }}
-                    />
-                  );
-                })}
-              </Flex>
               <Button size="large" variant="primary" type="submit">
                 {posting ? 'Sending ...' : 'Send'}
               </Button>

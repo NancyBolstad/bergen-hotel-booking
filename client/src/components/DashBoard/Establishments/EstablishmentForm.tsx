@@ -18,54 +18,19 @@ import {
   VerticalSpacer,
   HorizontalSpacer,
   Flex,
-  FlexKid,
 } from '../../../components/Layout';
 import { Image } from '../../../types/response';
-import ImageGrid from '../../Image/ImageGrid';
 import { ClickableBackgroundImage } from '../../Image/BackgroundImage';
 import { cross, solidArrow } from '../../../util/icons';
 import { SelectLabel, StyledSelectInput, Arrow } from '../../FormElement/StyledSelect';
-import { CATEGORIES, SERVICES, FEATURES } from '../../../util/constants';
+import {
+  CATEGORIES,
+  SERVICES,
+  PLACEHOLDER_IMAGE,
+  ESTABLISHMENTS_GALLERY,
+} from '../../../util/constants';
 import useIsTablet from '../../../hooks/useIsTablet';
 import { StyledCheckboxWrapper } from '../../FormElement/StyledCheckbox';
-
-const PLACEHOLDER_IMAGE: Image = {
-  url: 'https://via.placeholder.com/300?text=Holidaze+Bergen',
-  alt: 'Holidaze Bergen placeholder',
-};
-
-const gridImages: Image[] = [
-  {
-    url:
-      'https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1080&q=80',
-    alt: 'Foo 1',
-  },
-  {
-    url:
-      'https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1080&q=80',
-    alt: 'Foo 2',
-  },
-  {
-    url:
-      'https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1080&q=80',
-    alt: 'Foo 3',
-  },
-  {
-    url:
-      'https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1080&q=80',
-    alt: 'Foo 4',
-  },
-  {
-    url:
-      'https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1080&q=80',
-    alt: 'Foo 5',
-  },
-  {
-    url:
-      'https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1080&q=80',
-    alt: 'Foo 6',
-  },
-];
 
 interface Props {}
 
@@ -87,24 +52,20 @@ const EstablishmentForm: React.FC<Props> = () => {
       // @ts-ignore
       setSelectedImages(selectedImages.push(PLACEHOLDER_IMAGE));
     }
-    console.log({
-      ...data,
-      featuredImages: selectedImages,
-    });
-    // const response = await postData({
-    //   endpoint: endpoint,
-    //   data: {
-    //     ...data,
-    //     featuredImages: selectedImages,
-    //   },
-    // });
 
-    // if (response.status === 200) {
-    //   setPosting(false);
-    //   history.push(`/dashboard/establishments/`);
-    // }
+    const response = await postData({
+      endpoint: endpoint,
+      data: {
+        ...data,
+        featuredImages: selectedImages,
+      },
+    });
+
+    if (response.status === 200) {
+      setPosting(false);
+      history.push(`/dashboard/establishments/`);
+    }
   }
-  console.log(errors);
 
   return (
     <VerticalSpacer>
@@ -112,7 +73,7 @@ const EstablishmentForm: React.FC<Props> = () => {
         <WidthConstraints size="large">
           <Flex direction="row" align="flex-end" justify="flex-end">
             <ButtonInternal
-              variant="tertiary"
+              variant="tertiaryVariant"
               size="small"
               to="/dashboard/establishments/"
               aria-label="Close form"
@@ -177,7 +138,7 @@ const EstablishmentForm: React.FC<Props> = () => {
                   Description <span>*</span>
                 </StyledLabelWrapper>
                 <StyledTextArea
-                  name="description"
+                  name="descriptions"
                   placeholder="Descriptions"
                   ref={register}
                   required
@@ -185,7 +146,7 @@ const EstablishmentForm: React.FC<Props> = () => {
               </StyledLabel>
               {/* 
       // @ts-ignore */
-              errors.description && <ErrorMessage>{errors.description.message}</ErrorMessage>}
+              errors.descriptions && <ErrorMessage>{errors.descriptions.message}</ErrorMessage>}
               <StyledLabel>
                 <StyledLabelWrapper>
                   Category <span>*</span>
@@ -198,7 +159,7 @@ const EstablishmentForm: React.FC<Props> = () => {
                     required
                     aria-label="Filter accommodations by category type"
                   >
-                    <option value="">Select category ...</option>
+                    <option value="">Select ...</option>
                     {(CATEGORIES || []).map((c, k) => (
                       <option key={k} value={c}>
                         {c}
@@ -212,10 +173,9 @@ const EstablishmentForm: React.FC<Props> = () => {
       // @ts-ignore */
               errors.category && <ErrorMessage>{errors.category.message}</ErrorMessage>}
               <StyledLabelWrapper>Services</StyledLabelWrapper>
-
               {SERVICES.map((service, index) => (
                 <StyledCheckboxWrapper key={`service-${index}`}>
-                  <input type="checkbox" name={`services[]`} ref={register} value={service} />
+                  <input type="checkbox" name={`services`} ref={register} value={service} />
                   <Typography
                     variant="b1"
                     element="p"
@@ -229,42 +189,44 @@ const EstablishmentForm: React.FC<Props> = () => {
               errors.services && <ErrorMessage>{errors.services.message}</ErrorMessage>}
               <StyledLabel>
                 <StyledLabelWrapper>Select some images for the establishment</StyledLabelWrapper>
-                <Flex direction="row" justify="space-between">
-                  {gridImages.map((image, index) => {
-                    return (
-                      <ClickableBackgroundImage
-                        isSelectable
-                        customWidth={isTablet ? '75vw' : '12.25rem'}
-                        customHeight="12.25rem"
-                        selected={selectedIndex.includes(index)}
-                        imageUrl={image.url}
-                        key={index}
-                        onClick={e => {
-                          e.preventDefault();
-                          console.log(image.alt);
-                          if (selectedIndex.includes(index)) {
-                            setSelectedIndex(
-                              selectedIndex.filter(s => {
-                                return s != index;
-                              }),
-                            );
-                            setSelectedImages(
-                              selectedImages.filter(s => {
-                                return s != image;
-                              }),
-                            );
-                          } else {
-                            setSelectedIndex([...selectedIndex, index]);
-                            setSelectedImages([...selectedImages, image]);
-                          }
-                        }}
-                      />
-                    );
-                  })}
-                </Flex>
+                <VerticalSpacer topSpace="s">
+                  <Flex direction="row" justify="space-between" maxHeight="480px">
+                    {ESTABLISHMENTS_GALLERY.map((image, index) => {
+                      return (
+                        <ClickableBackgroundImage
+                          isSelectable
+                          customWidth={isTablet ? '75vw' : '12.25rem'}
+                          customHeight="12.25rem"
+                          selected={selectedIndex.includes(index)}
+                          imageUrl={image.url}
+                          key={index}
+                          onClick={e => {
+                            e.preventDefault();
+                            console.log(image.alt);
+                            if (selectedIndex.includes(index)) {
+                              setSelectedIndex(
+                                selectedIndex.filter(s => {
+                                  return s !== index;
+                                }),
+                              );
+                              setSelectedImages(
+                                selectedImages.filter(s => {
+                                  return s !== image;
+                                }),
+                              );
+                            } else {
+                              setSelectedIndex([...selectedIndex, index]);
+                              setSelectedImages([...selectedImages, image]);
+                            }
+                          }}
+                        />
+                      );
+                    })}
+                  </Flex>
+                </VerticalSpacer>
               </StyledLabel>
               <Button size="large" variant="primary" type="submit">
-                {posting ? 'Sending ...' : 'Send'}
+                {posting ? 'Creating ...' : 'Create'}
               </Button>
             </Form>
           </Flex>

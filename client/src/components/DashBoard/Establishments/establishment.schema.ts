@@ -2,33 +2,19 @@ import * as Yup from 'yup';
 
 const EstablishmentSchema = Yup.object().shape({
   name: Yup.string()
-    .required()
-    .min(3),
-  category: Yup.string().required(),
-  description: Yup.string()
-    .required()
-    .max(300),
-  location: Yup.string().required(),
+    .required('Establishment name is required.')
+    .min(3, 'Establishment name is too short.'),
+  category: Yup.string().required('Category is required.'),
+  descriptions: Yup.string()
+    .required('Description is required.')
+    .max(300, 'Description is too long'),
+  location: Yup.string()
+    .required('Location is required')
+    .min(4, 'Invalid location'),
   price: Yup.number()
-    .required()
-    .min(0),
+    .required('Price is required')
+    .min(0, 'Invalid price.'),
   services: Yup.array(Yup.string()),
-  //'services[0]': Yup.boolean(),
-  //'features[0]': Yup.string().required(),
-  // featuredImages: Yup.array().of(
-  //   Yup.object()
-  //     .shape({
-  //       url: Yup.string().required(),
-  //       alt: Yup.string(),
-  //     })
-  //     .required(),
-  // ),
-  // 'featuredImages[0]': Yup.object()
-  //   .shape({
-  //     url: Yup.string().required(),
-  //     alt: Yup.string(),
-  //   })
-  //   .required(),
 });
 
 export default EstablishmentSchema;

@@ -4,14 +4,13 @@ import Card from '../helper-components/Card';
 import Section from '../helper-components/Section';
 import Typography from '../../Typography/Typography';
 import EstablishmentForm from './EstablishmentForm';
-import { Context } from '../../../context/GlobalContext';
-import Loader from '../../Loader/Loader';
+//import { Context } from '../../../context/GlobalContext';
 import SearchHotel from '../../SearchHotel/SearchHotel';
 
 interface Props {}
 
 const Establishments: React.FC<Props> = () => {
-  const localContext = React.useContext(Context);
+  //const localContext = React.useContext(Context);
   const [createEstablishment, setCreateEstablishment] = React.useState(false);
   const location = useLocation();
 

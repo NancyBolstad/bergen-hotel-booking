@@ -16,7 +16,7 @@ export interface Props {
   ctaUrl?: string;
 }
 
-export const HotelCardsList: React.FunctionComponent<Props> = ({
+const HotelCardsList: React.FunctionComponent<Props> = ({
   sectionTitle,
   ctaText,
   ctaUrl,

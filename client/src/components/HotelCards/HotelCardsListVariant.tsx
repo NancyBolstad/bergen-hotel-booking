@@ -16,7 +16,7 @@ export interface Props {
   ctaUrl?: string;
 }
 
-export const HotelCardsList: React.FunctionComponent<Props> = ({
+const HotelCardsListVariant: React.FunctionComponent<Props> = ({
   sectionTitle,
   ctaText,
   ctaUrl,
@@ -50,4 +50,4 @@ export const HotelCardsList: React.FunctionComponent<Props> = ({
   );
 };
 
-export default HotelCardsList;
+export default HotelCardsListVariant;

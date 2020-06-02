@@ -25,17 +25,16 @@ export const EditableWrapper = styled.div`
 
 export const DeleteButton = styled(Button)<{ removed?: boolean }>`
   position: absolute;
-  width: 18px;
-  height: 32px;
   top: 0;
   right: 0;
   z-index: 1;
-
+  background-color: ${props => props.theme.colors.surface};
+  padding: 0;
   ${props =>
     props.removed &&
     css`
       display: none;
-    `}
+    `};
 `;
 
 export default Card;

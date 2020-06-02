@@ -39,7 +39,7 @@ const List = styled.ul`
 `;
 
 const ListItem = styled.li<{ isActive?: boolean }>`
-  width: calc(33% - ${props => props.theme.spacing.xs}rem);
+  width: calc(45% - ${props => props.theme.spacing.xs}rem);
   margin: calc(${props => props.theme.spacing.xs}rem / 2);
 
   &:not(last-child) {

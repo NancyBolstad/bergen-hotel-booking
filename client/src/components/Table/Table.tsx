@@ -9,7 +9,7 @@ import {
   DeleteButton,
 } from './styles';
 import { Context } from '../../context/GlobalContext';
-import { cross } from '../../util/icons';
+import { trash } from '../../util/icons';
 
 type KeyName = keyof Enquiry;
 
@@ -41,7 +41,6 @@ export const Table: React.FunctionComponent<Props> = ({
                 {headerName === 'establishmentId' ? 'Establishment' : headerName}
               </TableHeader>
             ))}
-            {!!action && <TableHeader>Action</TableHeader>}
           </TableRow>
         </thead>
         <tbody>
@@ -76,7 +75,7 @@ export const Table: React.FunctionComponent<Props> = ({
                       action(item.id);
                     }}
                   >
-                    {cross}
+                    {trash}
                   </DeleteButton>
                 </TableDataCell>
               )}

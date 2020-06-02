@@ -3,10 +3,10 @@ import createFontStyles from '../../util/createFontStyles';
 import createMediaQuery from '../../util/createMediaQuery';
 
 export const SelectLabel = styled.label`
-  ${props => createFontStyles(props.theme.fonts.b2)};
+  ${props => createFontStyles(props.theme.fonts.b1)};
   margin-bottom: ${props => props.theme.spacing.xs}rem;
   display: block;
-  color: ${props => props.theme.colors.primary};
+  color: ${props => props.theme.colors.onBackground};
   position: relative;
 `;
 

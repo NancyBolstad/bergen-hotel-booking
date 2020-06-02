@@ -9,12 +9,6 @@ export const Section = styled.section<{ backgroundColor?: keyof IColors; overflo
     css`
       background-color: ${props.theme.colors[props.backgroundColor]};
     `}
-
-  ${props =>
-    props.overflow &&
-    css`
-      overflow: auto;
-    `}
 `;
 
 export const Article = styled.article``;

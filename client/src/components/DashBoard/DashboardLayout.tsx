@@ -46,10 +46,9 @@ const Content = styled.div<{ aside?: boolean }>`
   ${props =>
     props.aside &&
     css`
-      min-width: 312px;
       width: 100%;
       ${createMediaQuery(
-        'small',
+        'large',
         css`
           width: auto;
         `,

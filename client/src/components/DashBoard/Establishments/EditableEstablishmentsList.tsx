@@ -83,7 +83,6 @@ const EditableEstablishmentsList: React.FC<Props> = () => {
             element="span"
             content={`${establishmentsList.length} establishments for "${searchValue}"`}
           />
-
           {establishmentsList.map(establishment => (
             <EditableWrapper>
               <DeleteButton

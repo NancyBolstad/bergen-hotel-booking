@@ -20,7 +20,6 @@ interface Props {}
 const Establishments: React.FC<Props> = () => {
   const [createEstablishment, setCreateEstablishment] = React.useState(false);
   const location = useLocation();
-  const history = useHistory();
 
   React.useEffect(() => {
     if (location.pathname === '/dashboard/establishments/new') {

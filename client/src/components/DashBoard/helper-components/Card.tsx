@@ -1,7 +1,8 @@
 import styled, { css } from 'styled-components';
 import createMediaQuery from '../../../util/createMediaQuery';
+import Button from '../../Button/Button';
 
-const Card = styled.div`
+export const Card = styled.div`
   width: 100%;
   max-width: 1280px;
   padding: ${props => `${props.theme.spacing.s}rem ${props.theme.spacing.xs}rem`};
@@ -17,6 +18,25 @@ const Card = styled.div`
       padding: ${props => props.theme.spacing.m}rem ${props => props.theme.spacing.s}rem;
     `,
   )};
+`;
+
+export const EditableWrapper = styled.div`
+  position: relative;
+`;
+
+export const DeleteButton = styled(Button)<{ removed?: boolean }>`
+  position: absolute;
+  width: 18px;
+  height: 32px;
+  top: 0;
+  right: 0;
+  z-index: 1;
+
+  ${props =>
+    props.removed &&
+    css`
+      display: none;
+    `}
 `;
 
 export default Card;

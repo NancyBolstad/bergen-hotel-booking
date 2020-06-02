@@ -81,7 +81,12 @@ const More = styled.div`
   }
 `;
 
-const CardVariant = styled.a<{ miniCard?: boolean; isMobile?: boolean }>`
+const CardVariant = styled.a<{
+  miniCard?: boolean;
+  isMobile?: boolean;
+  busy?: boolean;
+  removed?: boolean;
+}>`
   display: flex;
   flex-direction: row;
   flex: 1;
@@ -119,6 +124,19 @@ const CardVariant = styled.a<{ miniCard?: boolean; isMobile?: boolean }>`
     css`
       flex-direction: column;
     `}
+
+  ${props =>
+    props.busy &&
+    css`
+      opacity: 0.5;
+    `}
+
+    ${props =>
+      props.removed &&
+      css`
+        display: none;
+      `}
+
 `;
 
 const SliderVariant = styled(Slider)`

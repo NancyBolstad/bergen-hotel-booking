@@ -12,18 +12,29 @@ import {
 } from './styles';
 import { HotelDetails } from '../../types/response';
 import useIsMobile from '../../hooks/useIsMobile';
-import { navigationArrow } from '../../util/icons';
+import { navigationArrow, cross } from '../../util/icons';
 import { Flex } from '../Layout/';
-import { ButtonLink } from '../Button/Button';
+import Button, { ButtonLink } from '../Button/Button';
 import LikeButton from '../Button/LikeButton';
+import useDeleteRequest from '../../hooks/useDeleteRequest';
+import { API_ENDPOINT } from '../../util/constants';
 
 interface Props {
   card: HotelDetails;
   miniCard?: boolean;
   showReadMore?: boolean;
+  editable?: boolean;
+  busy?: boolean;
+  removed?: boolean;
 }
 
-const HotelCardVariant: React.FunctionComponent<Props> = ({ card, miniCard, showReadMore }) => {
+const HotelCardVariant: React.FunctionComponent<Props> = ({
+  card,
+  miniCard,
+  showReadMore,
+  busy,
+  removed,
+}) => {
   const isMobile = useIsMobile();
 
   return (
@@ -33,6 +44,8 @@ const HotelCardVariant: React.FunctionComponent<Props> = ({ card, miniCard, show
       title={`View details about ${card.name}`}
       isMobile={isMobile}
       miniCard={miniCard}
+      busy={busy}
+      removed={removed}
     >
       {!!card.category && (
         <CategoryBadge

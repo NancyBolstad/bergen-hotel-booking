@@ -9,7 +9,6 @@ export const Slide = styled(BackgroundImage)<{ large?: boolean }>`
   align-items: center;
   position: relative;
   min-height: 180px;
-  height: 100%;
 
   @media (min-width: ${props => props.theme.mediaQueries.medium}px) {
     min-height: ${props => (props.large ? '580px' : '280px')};

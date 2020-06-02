@@ -127,10 +127,8 @@ const SliderVariant = styled(Slider)`
 const CardVariantLeft = styled.div`
   flex: 1;
 
-  @media screen and (max-width: 480px) {
-    div[role='img'] {
-      height: 88px;
-    }
+  div[role='img'] {
+    height: 100%;
   }
 `;
 const CardVariantRight = styled.div`

@@ -118,11 +118,12 @@ const CardVariant = styled.a<{
     padding: 0;
   }
 
+
   ${props =>
     props.miniCard &&
     props.isMobile &&
     css`
-      flex-direction: column;
+      flex-direction: row;
     `}
 
   ${props =>

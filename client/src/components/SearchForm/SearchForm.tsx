@@ -91,10 +91,10 @@ export const SearchForm: React.FunctionComponent<Props> = ({ dataSet, placeHolde
             <ButtonLink
               href={`/search?name=${filter.name}&category=${filter.category}&service=${filter.service}`}
               variant="primary"
-              size="small"
-              aria-label="View more search results"
+              size="medium"
+              aria-label="More Results"
             >
-              View More Results {navigationArrow}
+              More Results {navigationArrow}
             </ButtonLink>
           )}
         </SearchResultsWrapper>

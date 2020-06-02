@@ -47,7 +47,7 @@ const HotelCardVariant: React.FunctionComponent<Props> = ({
       busy={busy}
       removed={removed}
     >
-      {!!card.category && (
+      {!!card.category && !miniCard && (
         <CategoryBadge
           element="span"
           variant="b2"
@@ -56,20 +56,19 @@ const HotelCardVariant: React.FunctionComponent<Props> = ({
           miniCard={miniCard}
         />
       )}
-      <CardVariantLeft>
-        {!!card.featuredImages && !miniCard && <FeaturedImages slides={card.featuredImages} />}
-        {!!card.featuredImages && miniCard && (
-          <MiniImage src={card.featuredImages[0].url} alt={card.featuredImages[0].alt} />
-        )}
-      </CardVariantLeft>
+      {!isMobile && (
+        <CardVariantLeft>
+          {!!card.featuredImages && <FeaturedImages slides={card.featuredImages} />}
+        </CardVariantLeft>
+      )}
       <CardVariantRight>
         {!miniCard && <LikeButton card={card} />}
+        {!!miniCard && <Typography element="span" variant="b1" content={card.category} />}
         {!!card.name && (
           <Typography
             element="h3"
             variant={miniCard ? 'b2' : 'h2'}
             content={card.name}
-            isPrimaryColor
             textTransform="capitalize"
           />
         )}
@@ -108,17 +107,6 @@ const HotelCardVariant: React.FunctionComponent<Props> = ({
               />
             ))}
           </Flex>
-        )}
-        {isMobile && showReadMore && (
-          <ButtonLink
-            href={`/accommodation/details/${card.id}`}
-            aria-label={`View details about ${card.name}`}
-            title={`View details about ${card.name}`}
-            variant="secondaryVariant"
-            size="small"
-          >
-            View Details {navigationArrow}
-          </ButtonLink>
         )}
       </CardVariantRight>
     </CardVariant>

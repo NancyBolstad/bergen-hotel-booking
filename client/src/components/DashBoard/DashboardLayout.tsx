@@ -16,8 +16,6 @@ import Messages from './Messages/Messages';
 import { UserState } from '../../context/UserContext';
 
 const BackgroundWrapper = styled(Section)`
-  overflow: auto;
-  min-height: 75vh;
   background-color: ${props => props.theme.colors.backgroundVariant};
 `;
 

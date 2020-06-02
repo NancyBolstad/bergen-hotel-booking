@@ -1,15 +1,7 @@
 import * as React from 'react';
 import { arrow } from '../../util/icons';
 import { Image } from '../../types/types';
-import {
-  Slide,
-  SliderNav,
-  SliderButtonWrapper,
-  Dots,
-  Dot,
-  PrevNextButton,
-  StyledSwipeableSliderWrapper,
-} from './styles';
+import { Slide, SliderNav, SliderButtonWrapper, Dots, Dot, PrevNextButton } from './styles';
 
 interface Props {
   defaultIndex?: number;

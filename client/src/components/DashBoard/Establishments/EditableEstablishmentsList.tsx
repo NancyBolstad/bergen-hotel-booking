@@ -9,10 +9,11 @@ import HotelCardVariant from '../../HotelCards/HotelCardVariant';
 import { ButtonLink } from '../../Button/Button';
 import useDeleteRequest from '../../../hooks/useDeleteRequest';
 import { API_ENDPOINT } from '../../../util/constants';
-import { cross } from '../../../util/icons';
+import { cross, trash } from '../../../util/icons';
 import SearchInput from '../../FormElement/SearchInput';
 import useApi from '../../../hooks/useApi';
 import Loader from '../../Loader/Loader';
+import { MockHotels } from '../../../data/data';
 
 interface Props {}
 
@@ -50,7 +51,7 @@ const EditableEstablishmentsList: React.FC<Props> = () => {
     <>
       <Section>
         <Card>
-          <VerticalSpacer>
+          <VerticalSpacer topSpaceDesktop="m" bottomSpaceDesktop="m">
             <Flex direction="row" align="center" justify="space-between">
               <FlexKid>
                 <SearchInput
@@ -96,31 +97,35 @@ const EditableEstablishmentsList: React.FC<Props> = () => {
                   content={`${establishmentsList.length} establishments "for ${searchValue}"`}
                 />
               )}
-              {establishmentsList.map(establishment => (
-                <EditableWrapper>
-                  <DeleteButton
-                    variant="tertiary"
-                    size="small"
-                    icon
-                    removed={removed && establishment.id === removeItem}
-                    aria-label="Delete establishment"
-                    onClick={e => {
-                      e.preventDefault();
-                      setRemoveItem(establishment.id);
-                      action(establishment.id);
-                    }}
-                  >
-                    {cross}
-                  </DeleteButton>
-                  <HotelCardVariant
-                    miniCard
-                    card={establishment}
-                    key={establishment.id}
-                    busy={deleting && establishment.id === removeItem}
-                    removed={removed && establishment.id === removeItem}
-                  />
-                </EditableWrapper>
-              ))}
+              {!!establishmentsList && (
+                <VerticalSpacer topSpaceDesktop="l">
+                  {establishmentsList.map(establishment => (
+                    <EditableWrapper>
+                      <DeleteButton
+                        variant="tertiaryVariant"
+                        size="small"
+                        icon
+                        removed={removed && establishment.id === removeItem}
+                        aria-label="Delete establishment"
+                        onClick={e => {
+                          e.preventDefault();
+                          setRemoveItem(establishment.id);
+                          action(establishment.id);
+                        }}
+                      >
+                        {trash}
+                      </DeleteButton>
+                      <HotelCardVariant
+                        miniCard
+                        card={establishment}
+                        key={establishment.id}
+                        busy={deleting && establishment.id === removeItem}
+                        removed={removed && establishment.id === removeItem}
+                      />
+                    </EditableWrapper>
+                  ))}
+                </VerticalSpacer>
+              )}
             </>
           )}
         </Card>

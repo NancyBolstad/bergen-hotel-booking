@@ -1,24 +1,31 @@
 import * as React from 'react';
-import { useLocation, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import Card, { DeleteButton, EditableWrapper } from '../helper-components/Card';
 import Section from '../helper-components/Section';
 import Typography from '../../Typography/Typography';
-import EstablishmentForm from './EstablishmentForm';
-import { Context } from '../../../context/GlobalContext';
-import SearchHotel from '../../SearchHotel/SearchHotel';
-import { HotelDetails } from '../../../types/response';
+import { HotelDetails, Root } from '../../../types/response';
 import { Flex, FlexKid, VerticalSpacer } from '../../Layout';
 import HotelCardVariant from '../../HotelCards/HotelCardVariant';
-import Button, { ButtonLink } from '../../Button/Button';
+import { ButtonLink } from '../../Button/Button';
 import useDeleteRequest from '../../../hooks/useDeleteRequest';
 import { API_ENDPOINT } from '../../../util/constants';
 import { cross } from '../../../util/icons';
 import SearchInput from '../../FormElement/SearchInput';
+import useApi from '../../../hooks/useApi';
+import Loader from '../../Loader/Loader';
 
 interface Props {}
 
 const EditableEstablishmentsList: React.FC<Props> = () => {
-  const localContext = React.useContext(Context);
+  const { results, loading } = useApi<Root>({
+    endpoint: `${process.env.REACT_APP_API_URL}establishments`,
+    fetchOnMount: true,
+    initialData: {
+      code: 0,
+      data: [],
+    },
+  });
+
   const history = useHistory();
   const [establishmentsList, setEstablishmentsList] = React.useState<HotelDetails[]>([]);
   const { deleting, removed, action } = useDeleteRequest(API_ENDPOINT.establishment);
@@ -26,13 +33,13 @@ const EditableEstablishmentsList: React.FC<Props> = () => {
   const [searchValue, setSearchValue] = React.useState('');
 
   React.useEffect(() => {
-    setEstablishmentsList(localContext.default);
-  }, [localContext]);
+    setEstablishmentsList(results.data.reverse());
+  }, [results]);
 
   React.useEffect(() => {
     if (removed) {
       setEstablishmentsList(
-        localContext.default.filter(element => {
+        [...establishmentsList].filter(element => {
           return element.id !== removeItem;
         }),
       );
@@ -58,7 +65,7 @@ const EditableEstablishmentsList: React.FC<Props> = () => {
                       }),
                     );
                     if (!e.target.value) {
-                      setEstablishmentsList(localContext.default);
+                      setEstablishmentsList(results.data);
                     }
                   }}
                   iconPosition="18%"
@@ -78,36 +85,44 @@ const EditableEstablishmentsList: React.FC<Props> = () => {
               </FlexKid>
             </Flex>
           </VerticalSpacer>
-          <Typography
-            variant="b2"
-            element="span"
-            content={`${establishmentsList.length} establishments for "${searchValue}"`}
-          />
-          {establishmentsList.map(establishment => (
-            <EditableWrapper>
-              <DeleteButton
-                variant="tertiary"
-                size="small"
-                icon
-                removed={removed && establishment.id === removeItem}
-                aria-label="Delete establishment"
-                onClick={e => {
-                  e.preventDefault();
-                  setRemoveItem(establishment.id);
-                  action(establishment.id);
-                }}
-              >
-                {cross}
-              </DeleteButton>
-              <HotelCardVariant
-                miniCard
-                card={establishment}
-                key={establishment.id}
-                busy={deleting && establishment.id === removeItem}
-                removed={removed && establishment.id === removeItem}
-              />
-            </EditableWrapper>
-          ))}
+          {loading ? (
+            <Loader />
+          ) : (
+            <>
+              {!!searchValue && (
+                <Typography
+                  variant="b2"
+                  element="span"
+                  content={`${establishmentsList.length} establishments "for ${searchValue}"`}
+                />
+              )}
+              {establishmentsList.map(establishment => (
+                <EditableWrapper>
+                  <DeleteButton
+                    variant="tertiary"
+                    size="small"
+                    icon
+                    removed={removed && establishment.id === removeItem}
+                    aria-label="Delete establishment"
+                    onClick={e => {
+                      e.preventDefault();
+                      setRemoveItem(establishment.id);
+                      action(establishment.id);
+                    }}
+                  >
+                    {cross}
+                  </DeleteButton>
+                  <HotelCardVariant
+                    miniCard
+                    card={establishment}
+                    key={establishment.id}
+                    busy={deleting && establishment.id === removeItem}
+                    removed={removed && establishment.id === removeItem}
+                  />
+                </EditableWrapper>
+              ))}
+            </>
+          )}
         </Card>
       </Section>
     </>

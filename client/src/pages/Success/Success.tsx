@@ -1,10 +1,17 @@
 import * as React from 'react';
+import { useLocation } from 'react-router-dom';
 import InfoList, { InfoListProps } from '../../components/InfoList/InfoList';
 import PlainBanner from '../../components/Banner/PlainBanner';
 
-interface Props {}
+interface Props {
+  bookingSuccess?: boolean;
+  contactSuccess?: boolean;
+}
 
-export const Success: React.FunctionComponent<Props> = () => {
+export const Success: React.FunctionComponent<Props> = ({ bookingSuccess, contactSuccess }) => {
+  const location = useLocation();
+
+  console.log(location);
   const data: InfoListProps = {
     list: [
       {
@@ -25,7 +32,8 @@ export const Success: React.FunctionComponent<Props> = () => {
   };
   return (
     <>
-      <PlainBanner title="Thank you for contacting us!" isTitleColorRed />
+      {!!bookingSuccess && <PlainBanner title="Thank you for booking with us!" isTitleColorRed />}
+      {!!contactSuccess && <PlainBanner title="Thank you for contacting us!" isTitleColorRed />}
       <InfoList {...data} />
     </>
   );

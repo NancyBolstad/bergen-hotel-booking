@@ -5,6 +5,7 @@ import Button from '../Button/Button';
 import { IColors } from '../../types/theme';
 import { Flex } from '../Layout/';
 import createMediaQuery from '../../util/createMediaQuery';
+import setColorOpacity from '../../util/setColorOpacity';
 
 const Wrapper = styled(Flex)`
   flex-direction: column;
@@ -265,7 +266,7 @@ const CategoryBadge = styled(Typography)<{ element: 'span'; miniCard?: boolean }
 
 const ServiceLabel = styled(Typography)`
   padding: ${props => props.theme.spacing.xs}rem;
-  background-color: ${props => props.theme.colors.secondary};
+  background-color: ${props => setColorOpacity(props.theme.colors.surface, '0.7')};
   color: ${props => props.theme.colors.dark};
   font-size: 14px;
   margin-right: ${props => props.theme.spacing.xs}rem;

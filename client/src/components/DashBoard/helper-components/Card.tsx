@@ -52,7 +52,7 @@ export const MessageCard = styled(Card)<{ removed?: boolean; busy?: boolean }>`
   ${props =>
     props.busy &&
     css`
-      opacity: 0.8;
+      opacity: 0.5;
     `};
 
   ${props =>
@@ -70,6 +70,7 @@ export const MessageCardHeading = styled.a<{ expanded?: boolean }>`
   text-decoration: none;
   align-items: center;
   justify-content: flex-start;
+  display: relative;
 
   ${props => createFontStyles(props.theme.fonts.b1)}
   p {

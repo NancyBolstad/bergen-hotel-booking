@@ -6,7 +6,7 @@ const SearchResults: React.FunctionComponent = () => {
   return (
     <>
       <PlainBanner title="Search, find and book accommodations in Bergen" isTitleColorRed />
-      <SearchHotel alphabeticalSort />
+      <SearchHotel />
     </>
   );
 };

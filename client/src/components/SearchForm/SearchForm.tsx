@@ -84,7 +84,7 @@ export const SearchForm: React.FunctionComponent<Props> = ({ dataSet, placeHolde
           />
           {hotels.slice(0, 4).map(hotel => (
             <>
-              <HotelCardVariant card={hotel} miniCard showReadMore />
+              <HotelCardVariant card={hotel} miniCard dropdown />
             </>
           ))}
           {hotels && hotels.length > 5 && (

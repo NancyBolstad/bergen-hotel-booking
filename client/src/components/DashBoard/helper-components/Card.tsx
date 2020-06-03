@@ -30,12 +30,12 @@ export const DeleteButton = styled(Button)<{ removed?: boolean }>`
   right: 0;
   z-index: 1;
   background-color: ${props => props.theme.colors.surface};
-  padding: 0;
-  ${props =>
-    props.removed &&
-    css`
-      display: none;
-    `};
+  padding: ${props => props.theme.spacing.xs}rem
+    ${props =>
+      props.removed &&
+      css`
+        display: none;
+      `};
 `;
 
 export default Card;

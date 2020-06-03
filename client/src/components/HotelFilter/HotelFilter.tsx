@@ -12,7 +12,6 @@ interface Props {
   searchDefaultValue: string;
   categoryDefaultValue: string;
   serviceDefaultValue: string;
-  addEstablishment?: boolean;
 }
 
 const HotelFilter: React.FunctionComponent<Props> = ({
@@ -20,7 +19,6 @@ const HotelFilter: React.FunctionComponent<Props> = ({
   searchDefaultValue,
   categoryDefaultValue,
   serviceDefaultValue,
-  addEstablishment,
 }) => {
   const history = useHistory();
   return (
@@ -77,18 +75,6 @@ const HotelFilter: React.FunctionComponent<Props> = ({
               <Arrow>{solidArrow}</Arrow>
             </Label>
           </InputFieldWrapper>
-          {!!addEstablishment && (
-            <ButtonLink
-              variant="primary"
-              size="small"
-              onClick={e => {
-                e.preventDefault();
-                history.push('/dashboard/establishments/new');
-              }}
-            >
-              New
-            </ButtonLink>
-          )}
         </Flex>
       </Filter>
     </>

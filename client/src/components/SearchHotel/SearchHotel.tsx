@@ -22,12 +22,9 @@ import {
 } from './styles';
 import HotelFilter from '../../components/HotelFilter/HotelFilter';
 
-interface Props {
-  alphabeticalSort?: boolean;
-  editable?: boolean;
-}
+interface Props {}
 
-const SearchHotel: React.FunctionComponent<Props> = ({ alphabeticalSort, editable }) => {
+const SearchHotel: React.FunctionComponent<Props> = ({}) => {
   const localContext = React.useContext(Context);
   const isTablet = useIsTablet();
   const { hotels, letters, filter, handleFilter, currentQueryString } = useFilter({
@@ -41,7 +38,6 @@ const SearchHotel: React.FunctionComponent<Props> = ({ alphabeticalSort, editabl
           <HorizontalSpacer>
             <WidthConstraints size="large">
               <HotelFilter
-                addEstablishment={editable}
                 handler={handleFilter}
                 searchDefaultValue={currentQueryString.name ? currentQueryString.name : filter.name}
                 categoryDefaultValue={
@@ -65,7 +61,7 @@ const SearchHotel: React.FunctionComponent<Props> = ({ alphabeticalSort, editabl
                   }"`}
                 />
               )}
-              {!localContext.loading && !!hotels && hotels.length > 0 && !!alphabeticalSort && (
+              {!localContext.loading && !!hotels && hotels.length > 0 && (
                 <AlphabeticalResults>
                   <Sections flex={1}>
                     {letters.map(letter => (
@@ -112,17 +108,6 @@ const SearchHotel: React.FunctionComponent<Props> = ({ alphabeticalSort, editabl
                     </Letters>
                   </LettersWrapper>
                 </AlphabeticalResults>
-              )}
-              {!localContext.loading && !!hotels && hotels.length > 0 && !alphabeticalSort && (
-                <Flex direction="column">
-                  {hotels.map(hotel =>
-                    isTablet ? (
-                      <HotelCard card={hotel} key={hotel.id} />
-                    ) : (
-                      <HotelCardVariant card={hotel} key={hotel.id} />
-                    ),
-                  )}
-                </Flex>
               )}
             </WidthConstraints>
           </HorizontalSpacer>

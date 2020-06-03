@@ -22,18 +22,17 @@ import { API_ENDPOINT } from '../../util/constants';
 interface Props {
   card: HotelDetails;
   miniCard?: boolean;
-  showReadMore?: boolean;
-  editable?: boolean;
   busy?: boolean;
   removed?: boolean;
+  dropdown?: boolean;
 }
 
 const HotelCardVariant: React.FunctionComponent<Props> = ({
   card,
   miniCard,
-  showReadMore,
   busy,
   removed,
+  dropdown,
 }) => {
   const isMobile = useIsMobile();
 
@@ -56,9 +55,11 @@ const HotelCardVariant: React.FunctionComponent<Props> = ({
           miniCard={miniCard}
         />
       )}
-      <CardVariantLeft>
-        {!!card.featuredImages && <FeaturedImages slides={card.featuredImages} />}
-      </CardVariantLeft>
+      {!!dropdown ? null : (
+        <CardVariantLeft>
+          {!!card.featuredImages && !dropdown && <FeaturedImages slides={card.featuredImages} />}
+        </CardVariantLeft>
+      )}
       <CardVariantRight>
         {!miniCard && <LikeButton card={card} />}
         {!!card.name && (
@@ -92,7 +93,7 @@ const HotelCardVariant: React.FunctionComponent<Props> = ({
             content={transformLangText(card.descriptions, isMobile ? 150 : 180)}
           />
         )}
-        {!!card.services && !isMobile && (
+        {!!card.services && (
           <Flex>
             {(card.services || []).map((service, index) => (
               <ServiceLabel

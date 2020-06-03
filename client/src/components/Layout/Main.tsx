@@ -6,7 +6,6 @@ export const StyledMain = styled.main<{ isDashboard?: boolean }>`
   width: 100%;
   height: 100%;
   min-height: 75vh;
-  overflow: auto;
   background-color: ${props =>
     props.isDashboard ? props.theme.colors.secondaryVariant : props.theme.colors.background};
 `;

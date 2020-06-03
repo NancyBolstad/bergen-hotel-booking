@@ -15,11 +15,8 @@ export const Sections = styled(FlexKid)`
 `;
 
 export const SectionTitle = styled.div`
-  position: sticky;
-  top: 0;
   border-bottom: 2px solid ${props => props.theme.colors.onSurface};
   background: ${props => props.theme.colors.background};
-  z-index: 900;
   margin-bottom: ${props => props.theme.spacing.m}rem;
 `;
 

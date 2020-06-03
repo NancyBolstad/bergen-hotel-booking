@@ -1,4 +1,5 @@
 import React from 'react';
+import * as moment from 'moment';
 import { Enquiry } from '../../types/response';
 import {
   StyledTable,
@@ -62,7 +63,13 @@ export const Table: React.FunctionComponent<Props> = ({
                     </TableDataCell>
                   );
                 } else {
-                  return <TableDataCell key={index}>{item[headerName]}</TableDataCell>;
+                  return (
+                    <TableDataCell key={index}>
+                      {headerName === 'checkIn' || headerName === 'checkOut'
+                        ? moment.utc(item[headerName]).format('DD/MM/YY')
+                        : item[headerName]}
+                    </TableDataCell>
+                  );
                 }
               })}
               {!!action && (

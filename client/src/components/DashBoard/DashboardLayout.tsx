@@ -30,6 +30,13 @@ const Sections = styled.div`
       margin: calc(-${props => props.theme.spacing.s}rem / 2);
     `,
   )}
+
+  ${createMediaQuery(
+    'large',
+    css`
+      flex-wrap: nowrap;
+    `,
+  )}
 `;
 
 const Content = styled.div<{ aside?: boolean }>`
@@ -64,6 +71,7 @@ const Content = styled.div<{ aside?: boolean }>`
         'small',
         css`
           flex: 1;
+          max-width: 980px;
         `,
       )}
     `};

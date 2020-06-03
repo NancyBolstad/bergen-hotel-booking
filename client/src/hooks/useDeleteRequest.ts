@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 function useDeleteRequest(endpoint: string) {
+  const [removedItemId, setRemovedItemId] = useState('');
   const [deleting, setDeleting] = useState(false);
   const [removed, setRemoved] = useState(false);
   const [error, setError] = useState('');
@@ -8,6 +9,7 @@ function useDeleteRequest(endpoint: string) {
   async function action(id: string) {
     try {
       setDeleting(true);
+      setRemovedItemId(id);
       const response = await fetch(`${process.env.REACT_APP_API_URL}${endpoint}/${id}`, {
         method: 'DELETE',
       });
@@ -34,6 +36,7 @@ function useDeleteRequest(endpoint: string) {
     removed,
     action,
     error,
+    removedItemId,
   };
 }
 

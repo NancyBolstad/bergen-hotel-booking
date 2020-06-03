@@ -1,9 +1,7 @@
 import * as React from 'react';
 import PlainBanner from '../../components/Banner/PlainBanner';
 
-interface Props {}
-
-export const NotFind: React.FunctionComponent<Props> = () => {
+export const NotFound: React.FunctionComponent = () => {
   return (
     <>
       <PlainBanner
@@ -18,4 +16,4 @@ export const NotFind: React.FunctionComponent<Props> = () => {
   );
 };
 
-export default NotFind;
+export default NotFound;

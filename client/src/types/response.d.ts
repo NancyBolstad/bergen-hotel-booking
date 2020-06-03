@@ -100,7 +100,7 @@ export interface Contact {
   clientName: string;
   email: string;
   message: string;
-  createdAt?: string;
+  createdAt?: number;
 }
 
 export interface EnquiriesResponse {

@@ -47,7 +47,7 @@ const HotelCardVariant: React.FunctionComponent<Props> = ({
       busy={busy}
       removed={removed}
     >
-      {!!card.category && !miniCard && (
+      {!!card.category && (
         <CategoryBadge
           element="span"
           variant="b2"
@@ -56,14 +56,11 @@ const HotelCardVariant: React.FunctionComponent<Props> = ({
           miniCard={miniCard}
         />
       )}
-      {!isMobile && (
-        <CardVariantLeft>
-          {!!card.featuredImages && <FeaturedImages slides={card.featuredImages} />}
-        </CardVariantLeft>
-      )}
+      <CardVariantLeft>
+        {!!card.featuredImages && <FeaturedImages slides={card.featuredImages} />}
+      </CardVariantLeft>
       <CardVariantRight>
         {!miniCard && <LikeButton card={card} />}
-        {!!miniCard && <Typography element="span" variant="b1" content={card.category} />}
         {!!card.name && (
           <Typography
             element="h3"
@@ -72,7 +69,7 @@ const HotelCardVariant: React.FunctionComponent<Props> = ({
             textTransform="capitalize"
           />
         )}
-        {!!card.location && !miniCard && (
+        {!!card.location && (
           <Typography
             element="span"
             variant="b1"
@@ -88,7 +85,7 @@ const HotelCardVariant: React.FunctionComponent<Props> = ({
             bottom={8}
           />
         )}
-        {!!card.descriptions && !miniCard && (
+        {!!card.descriptions && (
           <Typography
             element="p"
             variant="b1"

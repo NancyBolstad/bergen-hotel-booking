@@ -44,16 +44,6 @@ const BookForm: React.FC<Props> = ({ establishmentId, establishmentName }) => {
         <HorizontalSpacer>
           <WidthConstraints size="large">
             <Flex direction="column">
-              <Typography
-                element="h2"
-                variant="h2"
-                content={
-                  establishmentName
-                    ? `Booking your stay at ${establishmentName} `
-                    : `Send in your booking`
-                }
-                textTransform="capitalize"
-              />
               <Form
                 onSubmit={handleSubmit((data: Object) => sendForm(data, 'enquiries'))}
                 noValidate

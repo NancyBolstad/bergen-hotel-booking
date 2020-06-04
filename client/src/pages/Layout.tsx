@@ -106,7 +106,7 @@ const Layout: React.FunctionComponent<Props> = () => {
                     <Home />
                   </Suspense>
                 </Route>
-                <Route exact path="/">
+                <Route path="/">
                   <Suspense fallback={<Loader />}>
                     <NotFound />
                   </Suspense>

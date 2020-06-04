@@ -89,10 +89,10 @@ export const Button = styled.button<ButtonProps>`
       &:focus {
         background-color: ${props => props.theme.colors.secondary};
         border-color: ${props => props.theme.colors.secondary};
-        color: ${props => props.theme.colors.dark};
+        color: ${props => props.theme.colors.primary};
 
         svg {
-          fill: ${props => props.theme.colors.dark};
+          fill: ${props => props.theme.colors.primary};
         }
       }
     `};

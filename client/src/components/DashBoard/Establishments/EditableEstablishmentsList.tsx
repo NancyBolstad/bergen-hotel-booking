@@ -2,18 +2,15 @@ import * as React from 'react';
 import { useHistory } from 'react-router-dom';
 import Card, { DeleteButton, EditableWrapper } from '../helper-components/Card';
 import Section from '../helper-components/Section';
-import Typography from '../../Typography/Typography';
 import { HotelDetails, Root } from '../../../types/response';
 import { Flex, FlexKid, VerticalSpacer } from '../../Layout';
 import HotelCardVariant from '../../HotelCards/HotelCardVariant';
 import { ButtonLink } from '../../Button/Button';
 import useDeleteRequest from '../../../hooks/useDeleteRequest';
 import { API_ENDPOINT } from '../../../util/constants';
-import { cross, trash } from '../../../util/icons';
-import SearchInput from '../../FormElement/SearchInput';
+import { trash } from '../../../util/icons';
 import useApi from '../../../hooks/useApi';
 import Loader from '../../Loader/Loader';
-import { MockHotels } from '../../../data/data';
 
 interface Props {}
 
@@ -43,7 +40,7 @@ const EditableEstablishmentsList: React.FC<Props> = () => {
         }),
       );
     }
-  }, [removed, removedItemId]);
+  }, [removed, removedItemId]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>

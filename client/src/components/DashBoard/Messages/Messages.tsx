@@ -45,7 +45,7 @@ const Messages: React.FC<Props> = () => {
         }),
       );
     }
-  }, [removed, removedItemId]);
+  }, [removed, removedItemId]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>

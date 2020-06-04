@@ -38,7 +38,7 @@ export const Table: React.FunctionComponent<Props> = ({ headerNames, rows }) => 
         }),
       );
     }
-  }, [removed, removedItemId]);
+  }, [removed, removedItemId]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>

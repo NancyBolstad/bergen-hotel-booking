@@ -1,4 +1,3 @@
-import { Success } from './../pages/Success/index';
 export interface IMediaQueries {
   small: number;
   medium: number;

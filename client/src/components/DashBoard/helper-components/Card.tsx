@@ -45,6 +45,7 @@ export const MessageCard = styled(Card)<{ removed?: boolean; busy?: boolean }>`
   flex-direction: column;
   justify-content: flex-start;
   position: relative;
+  margin-bottom: ${props => props.theme.spacing.xs}rem;
   p {
     max-width: 880px;
   }

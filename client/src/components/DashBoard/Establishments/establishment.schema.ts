@@ -7,7 +7,8 @@ const EstablishmentSchema = Yup.object().shape({
   category: Yup.string().required('Category is required.'),
   descriptions: Yup.string()
     .required('Description is required.')
-    .max(300, 'Description is too long'),
+    .min(300, 'Description is too short.')
+    .max(1000, 'Description is too long'),
   location: Yup.string()
     .required('Location is required')
     .min(4, 'Invalid location'),

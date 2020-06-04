@@ -72,66 +72,64 @@ const Messages: React.FC<Props> = () => {
           <Section>
             {(messagesList || []).map(item => {
               return (
-                <>
-                  <MessageCard
-                    key={item.id}
+                <MessageCard
+                  key={item.id}
+                  removed={removed && item.id === removedItemId}
+                  busy={deleting && item.id === removedItemId}
+                >
+                  <DeleteButton
+                    variant="tertiaryVariant"
+                    size="small"
                     removed={removed && item.id === removedItemId}
-                    busy={deleting && item.id === removedItemId}
+                    icon
+                    aria-label="Delete establishment"
+                    onClick={e => {
+                      e.preventDefault();
+                      action(item.id);
+                    }}
                   >
-                    <DeleteButton
-                      variant="tertiaryVariant"
-                      size="small"
-                      removed={removed && item.id === removedItemId}
-                      icon
-                      aria-label="Delete establishment"
-                      onClick={e => {
-                        e.preventDefault();
-                        action(item.id);
-                      }}
-                    >
-                      {trash}
-                    </DeleteButton>
-                    {!!item.createdAt && (
-                      <Typography
-                        variant="b1"
-                        element="span"
-                        content={`${new Date(item.createdAt).toDateString()}`}
-                        bottom={8}
-                      />
-                    )}
-                    <Typography
-                      variant="h2"
-                      element="span"
-                      content={item.clientName ? item.clientName : 'Anonym'}
-                      bottom={16}
-                      bottomDesktop={24}
-                    />
-                    {!!item.email && (
-                      <Typography variant="b1" element="span" content={`Email: ${item.email}`} />
-                    )}
+                    {trash}
+                  </DeleteButton>
+                  {!!item.createdAt && (
                     <Typography
                       variant="b1"
-                      element="p"
-                      content={expanded ? item.message : transformLangText(item.message, 100)}
+                      element="span"
+                      content={`${new Date(item.createdAt).toDateString()}`}
                       bottom={8}
                     />
-                    <MessageCardHeading
-                      expanded={expanded}
-                      href="#"
-                      aria-label={`${expanded ? 'Read less' : 'Read more'} ${transformLangText(
-                        item.message,
-                        120,
-                      )}`}
-                      onClick={e => {
-                        e.preventDefault();
-                        setIsExpanded(!expanded);
-                      }}
-                    >
-                      {expanded ? 'Close' : 'Read More'}
-                      {arrow}
-                    </MessageCardHeading>
-                  </MessageCard>
-                </>
+                  )}
+                  <Typography
+                    variant="h2"
+                    element="span"
+                    content={item.clientName ? item.clientName : 'Anonym'}
+                    bottom={16}
+                    bottomDesktop={24}
+                  />
+                  {!!item.email && (
+                    <Typography variant="b1" element="span" content={`Email: ${item.email}`} />
+                  )}
+                  <Typography
+                    variant="b1"
+                    element="p"
+                    content={expanded ? item.message : transformLangText(item.message, 100)}
+                    bottom={8}
+                  />
+                  <MessageCardHeading
+                    expanded={expanded}
+                    href="#"
+                    aria-label={`${expanded ? 'Read less' : 'Read more'} ${transformLangText(
+                      item.message,
+                      120,
+                    )}`}
+                    onClick={e => {
+                      e.preventDefault();
+                      setIsExpanded(!expanded);
+                    }}
+                  >
+                    {expanded ? 'Close' : 'Read More'}
+                    {arrow}
+                  </MessageCardHeading>
+                </MessageCard>
               );
             })}
           </Section>

@@ -6,6 +6,7 @@ import Footer from '../components/Footer/Footer';
 import Loader from '../components/Loader/Loader';
 import ContrastProvider from '../context/ContrastContext';
 import PrivateRoute from '../routes/PrivateRoute';
+import DashBoard from './Dashboard/Dashboard';
 import { Main } from '../components/Layout/Main';
 
 const Home = lazy(() => import('./Home'));
@@ -16,7 +17,6 @@ const Feedback = lazy(() => import('./Feedback/Feedback'));
 const AccommodationDetails = lazy(() => import('./Accommodations/AccommodationDetails'));
 const SearchResults = lazy(() => import('./SearchResults/SearchResults'));
 const About = lazy(() => import('./About/About'));
-const DashBoard = lazy(() => import('././Dashboard/Dashboard'));
 const NotFound = lazy(() => import('./NotFound/NotFound'));
 const Favorites = lazy(() => import('./Favorites/Favorites'));
 const Blog = lazy(() => import('./Blog/Blog'));
@@ -33,11 +33,9 @@ const Layout: React.FunctionComponent<Props> = () => {
             <Header />
             <Main>
               <Switch>
-                <PrivateRoute path="/dashboard/:step?/:slug?" component={DashBoard} exact>
-                  <Suspense fallback={<Loader />}>
-                    <DashBoard />
-                  </Suspense>
-                </PrivateRoute>
+                <PrivateRoute path="/dashboard/" component={DashBoard} exact />
+                <PrivateRoute path="/dashboard/:slug" component={DashBoard} exact />
+                <PrivateRoute path="/dashboard/:slug/:slug" component={DashBoard} exact />
                 <Route exact path="/login">
                   <Suspense fallback={<Loader />}>
                     <Login />

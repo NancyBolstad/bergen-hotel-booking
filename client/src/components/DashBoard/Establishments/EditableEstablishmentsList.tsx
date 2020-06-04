@@ -29,23 +29,21 @@ const EditableEstablishmentsList: React.FC<Props> = () => {
 
   const history = useHistory();
   const [establishmentsList, setEstablishmentsList] = React.useState<HotelDetails[]>([]);
-  const { deleting, removed, action } = useDeleteRequest(API_ENDPOINT.establishment);
-  const [removeItem, setRemoveItem] = React.useState('');
-  const [searchValue, setSearchValue] = React.useState('');
+  const { deleting, removed, action, removedItemId } = useDeleteRequest(API_ENDPOINT.establishment);
 
   React.useEffect(() => {
     setEstablishmentsList(results.data.reverse());
   }, [results]);
 
   React.useEffect(() => {
-    if (removed) {
+    if (removed && removedItemId) {
       setEstablishmentsList(
-        [...establishmentsList].filter(element => {
-          return element.id !== removeItem;
+        establishmentsList.filter(element => {
+          return element.id !== removedItemId;
         }),
       );
     }
-  }, [removed]);
+  }, [removed, removedItemId]);
 
   return (
     <>
@@ -53,25 +51,6 @@ const EditableEstablishmentsList: React.FC<Props> = () => {
         <Card>
           <VerticalSpacer topSpaceDesktop="m" bottomSpaceDesktop="m">
             <Flex direction="row" align="center" justify="space-between">
-              <FlexKid>
-                <SearchInput
-                  type="text"
-                  placeholder="Find by name ..."
-                  onChange={e => {
-                    e.preventDefault();
-                    setSearchValue(e.target.value);
-                    setEstablishmentsList(
-                      [...establishmentsList].filter(element => {
-                        return element.name.toLowerCase().includes(searchValue.toLowerCase());
-                      }),
-                    );
-                    if (!e.target.value) {
-                      setEstablishmentsList(results.data);
-                    }
-                  }}
-                  iconPosition="18%"
-                />
-              </FlexKid>
               <FlexKid>
                 <ButtonLink
                   variant="primary"
@@ -90,13 +69,6 @@ const EditableEstablishmentsList: React.FC<Props> = () => {
             <Loader />
           ) : (
             <>
-              {!!searchValue && (
-                <Typography
-                  variant="b2"
-                  element="span"
-                  content={`${establishmentsList.length} establishments "for ${searchValue}"`}
-                />
-              )}
               {!!establishmentsList && (
                 <VerticalSpacer topSpaceDesktop="l">
                   {establishmentsList.map(establishment => (
@@ -105,11 +77,10 @@ const EditableEstablishmentsList: React.FC<Props> = () => {
                         variant="tertiaryVariant"
                         size="small"
                         icon
-                        removed={removed && establishment.id === removeItem}
+                        removed={removed && establishment.id === removedItemId}
                         aria-label="Delete establishment"
                         onClick={e => {
                           e.preventDefault();
-                          setRemoveItem(establishment.id);
                           action(establishment.id);
                         }}
                       >
@@ -119,8 +90,8 @@ const EditableEstablishmentsList: React.FC<Props> = () => {
                         miniCard
                         card={establishment}
                         key={establishment.id}
-                        busy={deleting && establishment.id === removeItem}
-                        removed={removed && establishment.id === removeItem}
+                        busy={deleting && establishment.id === removedItemId}
+                        removed={removed && establishment.id === removedItemId}
                       />
                     </EditableWrapper>
                   ))}

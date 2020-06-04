@@ -3,7 +3,7 @@ import { HotelDetails, HotelCategories, HotelServices } from '../types/response'
 export const MockCategories: HotelCategories[] = [
   'hotel',
   'bed and breakfast',
-  'hostels',
+  'hostel',
   'tourist residence',
   'furnished apartment',
 ];

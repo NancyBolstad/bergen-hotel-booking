@@ -30,7 +30,6 @@ const Enquiries: React.FC<Props> = () => {
     },
   });
   const [tableData, setTableData] = React.useState<Enquiry[]>([]);
-  const { deleting, removed, action } = useDeleteRequest(API_ENDPOINT.enquires);
 
   React.useEffect(() => {
     setTableData(results.data.reverse());
@@ -66,9 +65,6 @@ const Enquiries: React.FC<Props> = () => {
               <Table
                 headerNames={['name', 'email', 'checkIn', 'checkOut', 'establishmentId']}
                 rows={tableData}
-                action={action}
-                busy={deleting}
-                deleted={removed}
               />
             </Card>
           )}

@@ -11,26 +11,34 @@ import {
 } from './styles';
 import { Context } from '../../context/GlobalContext';
 import { trash } from '../../util/icons';
+import useDeleteRequest from '../../hooks/useDeleteRequest';
+import { API_ENDPOINT } from '../../util/constants';
 
 type KeyName = keyof Enquiry;
 
 interface Props {
   headerNames: KeyName[];
   rows: Enquiry[];
-  action?: (query: string) => void;
-  busy?: boolean;
-  deleted?: boolean;
 }
 
-export const Table: React.FunctionComponent<Props> = ({
-  headerNames,
-  rows,
-  action,
-  busy,
-  deleted,
-}) => {
+export const Table: React.FunctionComponent<Props> = ({ headerNames, rows }) => {
   const localContext = React.useContext(Context);
-  const [removeItem, setRemoveItem] = React.useState('');
+  const { deleting, removed, action, removedItemId } = useDeleteRequest(API_ENDPOINT.enquires);
+  const [data, setData] = React.useState<Enquiry[]>([]);
+
+  React.useEffect(() => {
+    setData(rows);
+  }, [rows]);
+
+  React.useEffect(() => {
+    if (removed && removedItemId) {
+      setData(
+        data.filter(element => {
+          return element.id !== removedItemId;
+        }),
+      );
+    }
+  }, [removed, removedItemId]);
 
   return (
     <>
@@ -45,11 +53,11 @@ export const Table: React.FunctionComponent<Props> = ({
           </TableRow>
         </thead>
         <tbody>
-          {(rows || []).map((item: Enquiry, index) => (
+          {(data || []).map((item: Enquiry, index) => (
             <RemovableRow
               key={index}
-              remove={deleted && item.id === removeItem}
-              busy={busy && item.id === removeItem}
+              remove={removed && item.id === removedItemId}
+              busy={deleting && item.id === removedItemId}
             >
               {(headerNames || []).map((headerName, index) => {
                 const findHotel = localContext.default.find(element => {
@@ -78,7 +86,6 @@ export const Table: React.FunctionComponent<Props> = ({
                     aria-label="Delete"
                     onClick={event => {
                       event.preventDefault();
-                      setRemoveItem(item.id);
                       action(item.id);
                     }}
                   >

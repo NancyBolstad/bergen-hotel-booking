@@ -4,6 +4,7 @@ import { VerticalSpacer, WidthConstraints, Flex } from '../Layout';
 import { ButtonInternal } from './Button';
 import useIsTablet from '../../hooks/useIsTablet';
 import { arrow } from '../../util/icons';
+import Typography from '../Typography/Typography';
 
 interface Props {
   totalPages: number;
@@ -47,6 +48,7 @@ export const PaginateButtons: React.FunctionComponent<Props> = ({
                 preHandler();
               }}
             >
+              {isTablet && <Typography element="span" variant="b2" content="Prev" />}
               {arrow}
             </PrevNextButton>
           )}
@@ -84,6 +86,7 @@ export const PaginateButtons: React.FunctionComponent<Props> = ({
               next
             >
               {arrow}
+              {isTablet && <Typography element="span" variant="b2" content="Next" />}
             </PrevNextButton>
           )}
         </Flex>
@@ -105,11 +108,12 @@ export const JumpPageButton = styled(ButtonInternal)<{ isActive?: boolean }>`
 
 export const PrevNextButton = styled(ButtonInternal)<{ next?: boolean }>`
   border: none;
+  color: ${props => props.theme.colors.primary};
   svg {
     transform: ${props => (props.next ? 'rotate(-90deg)' : 'rotate(90deg)')};
     width: 36px;
     height: 36px;
-    fill: ${props => props.theme.colors.onBackground};
+    fill: ${props => props.theme.colors.primary};
   }
 `;
 

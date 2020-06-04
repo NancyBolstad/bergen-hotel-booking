@@ -11,6 +11,8 @@ import { API_ENDPOINT } from '../../../util/constants';
 import { trash } from '../../../util/icons';
 import useApi from '../../../hooks/useApi';
 import Loader from '../../Loader/Loader';
+import { Context } from '../../../context/GlobalContext';
+import { Types } from '../../../reducer/favoriteCardsReducer';
 
 interface Props {}
 
@@ -23,10 +25,10 @@ const EditableEstablishmentsList: React.FC<Props> = () => {
       data: [],
     },
   });
-
   const history = useHistory();
   const [establishmentsList, setEstablishmentsList] = React.useState<HotelDetails[]>([]);
   const { deleting, removed, action, removedItemId } = useDeleteRequest(API_ENDPOINT.establishment);
+  const { dispatch } = React.useContext(Context);
 
   React.useEffect(() => {
     setEstablishmentsList(results.data.reverse());
@@ -39,6 +41,12 @@ const EditableEstablishmentsList: React.FC<Props> = () => {
           return element.id !== removedItemId;
         }),
       );
+      dispatch({
+        type: Types.Dislike,
+        payload: {
+          id: removedItemId,
+        },
+      });
     }
   }, [removed, removedItemId]); // eslint-disable-line react-hooks/exhaustive-deps
 

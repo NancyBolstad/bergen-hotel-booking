@@ -6,8 +6,6 @@ import Loader from '../../Loader/Loader';
 import Table from '../../Table/Table';
 import Card from '../helper-components/Card';
 import Section from '../helper-components/Section';
-import useDeleteRequest from '../../../hooks/useDeleteRequest';
-import { API_ENDPOINT } from '../../../util/constants';
 
 interface Props {}
 

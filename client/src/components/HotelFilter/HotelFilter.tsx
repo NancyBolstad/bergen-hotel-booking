@@ -1,11 +1,9 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
 import { SearchInput } from '../FormElement';
 import { solidArrow } from '../../util/icons';
 import { Filter, InputFieldWrapper, Arrow, Label, Select } from './styles';
 import { Flex } from '../Layout';
 import { CATEGORIES, SERVICES } from '../../util/constants';
-import { ButtonLink } from '../Button/Button';
 
 interface Props {
   handler: (type: 'name' | 'category' | 'service', value: string) => void;
@@ -20,7 +18,6 @@ const HotelFilter: React.FunctionComponent<Props> = ({
   categoryDefaultValue,
   serviceDefaultValue,
 }) => {
-  const history = useHistory();
   return (
     <>
       <Filter>

@@ -8,16 +8,11 @@ import {
   CardVariantRight,
   CategoryBadge,
   ServiceLabel,
-  MiniImage,
 } from './styles';
 import { HotelDetails } from '../../types/response';
 import useIsMobile from '../../hooks/useIsMobile';
-import { navigationArrow, cross } from '../../util/icons';
 import { Flex } from '../Layout/';
-import Button, { ButtonLink } from '../Button/Button';
 import LikeButton from '../Button/LikeButton';
-import useDeleteRequest from '../../hooks/useDeleteRequest';
-import { API_ENDPOINT } from '../../util/constants';
 
 interface Props {
   card: HotelDetails;

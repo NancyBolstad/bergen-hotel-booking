@@ -4,7 +4,6 @@ import {
   HorizontalSpacer,
   WidthConstraints,
   Section,
-  Flex,
 } from '../../components/Layout';
 import Typography from '../../components/Typography/Typography';
 import { HotelCardVariant, HotelCard } from '../../components/HotelCards';
@@ -22,9 +21,7 @@ import {
 } from './styles';
 import HotelFilter from '../../components/HotelFilter/HotelFilter';
 
-interface Props {}
-
-const SearchHotel: React.FunctionComponent<Props> = ({}) => {
+const SearchHotel: React.FunctionComponent = () => {
   const localContext = React.useContext(Context);
   const isTablet = useIsTablet();
   const { hotels, letters, filter, handleFilter, currentQueryString } = useFilter({

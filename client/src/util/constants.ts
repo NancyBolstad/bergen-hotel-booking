@@ -14,7 +14,7 @@ export const BLOG_LIST_SIZE: number = 6;
 export const CATEGORIES: string[] = [
   'hotel',
   'bed and breakfast',
-  'hostels',
+  'hostel',
   'tourist residence',
   'furnished apartment',
 ];

@@ -139,7 +139,7 @@ const EstablishmentForm: React.FC<Props> = () => {
                 </StyledLabelWrapper>
                 <StyledTextArea
                   name="descriptions"
-                  placeholder="Descriptions"
+                  placeholder="Description"
                   ref={register}
                   required
                 />

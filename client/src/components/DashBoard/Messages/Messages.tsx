@@ -29,7 +29,7 @@ const Messages: React.FC<Props> = () => {
       ],
     },
   });
-  const [expanded, setIsExpanded] = React.useState(false);
+  const [expanded, setIsExpanded] = React.useState('');
   const [messagesList, setMessagesList] = React.useState<Contact[]>([]);
   const { deleting, removed, action, removedItemId } = useDeleteRequest(API_ENDPOINT.contact);
 
@@ -111,24 +111,36 @@ const Messages: React.FC<Props> = () => {
                   <Typography
                     variant="b1"
                     element="p"
-                    content={expanded ? item.message : transformLangText(item.message, 100)}
+                    content={
+                      expanded
+                        ? item.message
+                        : item.message.length > 100
+                        ? transformLangText(item.message, 100)
+                        : item.message
+                    }
                     bottom={8}
                   />
-                  <MessageCardHeading
-                    expanded={expanded}
-                    href="#"
-                    aria-label={`${expanded ? 'Read less' : 'Read more'} ${transformLangText(
-                      item.message,
-                      120,
-                    )}`}
-                    onClick={e => {
-                      e.preventDefault();
-                      setIsExpanded(!expanded);
-                    }}
-                  >
-                    {expanded ? 'Close' : 'Read More'}
-                    {arrow}
-                  </MessageCardHeading>
+                  {item.message.length > 100 && (
+                    <MessageCardHeading
+                      expanded={expanded === item.id}
+                      href="#"
+                      aria-label={`${expanded ? 'Read less' : 'Read more'} ${transformLangText(
+                        item.message,
+                        120,
+                      )}`}
+                      onClick={e => {
+                        e.preventDefault();
+                        if (expanded) {
+                          setIsExpanded('');
+                        } else {
+                          setIsExpanded(item.id);
+                        }
+                      }}
+                    >
+                      {expanded === item.id ? 'Read Less' : 'Read More'}
+                      {arrow}
+                    </MessageCardHeading>
+                  )}
                 </MessageCard>
               );
             })}

@@ -267,7 +267,7 @@ const CategoryBadge = styled(Typography)<{ element: 'span'; miniCard?: boolean }
 const ServiceLabel = styled(Typography)`
   padding: ${props => props.theme.spacing.xs}rem;
   background-color: ${props => setColorOpacity(props.theme.colors.surface, '0.7')};
-  color: ${props => props.theme.colors.dark};
+  color: ${props => props.theme.colors.onBackground};
   font-size: 14px;
   margin-right: ${props => props.theme.spacing.xs}rem;
   margin-bottom: ${props => props.theme.spacing.xs}rem;

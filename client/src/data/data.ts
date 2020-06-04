@@ -294,7 +294,7 @@ export const MockHotels: HotelDetails[] = [
   },
   {
     id: '-M6tXvCDX47sbVG99wol',
-    category: 'hostels',
+    category: 'hostel',
     descriptions:
       'Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.\n\nMaecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.\n\nCurabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.\n\nInteger tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.',
     featuredImages: [
@@ -324,7 +324,7 @@ export const MockHotels: HotelDetails[] = [
   },
   {
     id: '-M6tXvCDX47sbVG99wor',
-    category: 'hostels',
+    category: 'hostel',
     descriptions:
       'Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.\n\nMaecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.\n\nCurabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.\n\nInteger tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.',
     featuredImages: [

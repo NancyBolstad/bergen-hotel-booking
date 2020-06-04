@@ -107,9 +107,7 @@ export const HotelDetails: React.FunctionComponent<Props> = () => {
           </VerticalSpacer>
           <HotelCardsList
             sectionTitle={`More from category: ${results.data.category}`}
-            ctaText={`Explore more ${
-              results.data.category === 'hostels' ? 'hostel' : results.data.category
-            }s`}
+            ctaText={`Explore more ${results.data.category}s`}
             ctaUrl={`/accommodations?name=&category=${results.data.category}&service=`}
             list={[...localContext.default]
               .filter(element => {

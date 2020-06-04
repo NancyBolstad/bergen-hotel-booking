@@ -295,7 +295,7 @@ export const CloseSearchButton = styled(Button)`
   svg {
     width: 24px;
     height: 24px;
-    fill: ${props => props.theme.colors.dark};
+    fill: ${props => props.theme.colors.onBackground};
   }
 
   &:hover,

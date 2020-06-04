@@ -64,16 +64,7 @@ export const Button = styled.button<ButtonProps>`
       &:hover,
       &:active,
       &:focus {
-        background-color: ${props => props.theme.colors.dark};
-        color: ${props => props.theme.colors.white};
-        border: 1px solid ${props => props.theme.colors.onBackground};
-        svg {
-          fill: ${props => props.theme.colors.white};
-        }
-      }
-      svg {
-        fill: ${props => props.theme.colors.onPrimary};
-      }
+        opacity: 0.8;
     `};
   ${props =>
     props.variant === 'secondary' &&
@@ -87,13 +78,7 @@ export const Button = styled.button<ButtonProps>`
       &:hover,
       &:active,
       &:focus {
-        background-color: ${props => props.theme.colors.secondary};
-        border-color: ${props => props.theme.colors.secondary};
-        color: ${props => props.theme.colors.primary};
-
-        svg {
-          fill: ${props => props.theme.colors.primary};
-        }
+        opacity: 0.8;
       }
     `};
   ${props =>

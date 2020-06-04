@@ -21,8 +21,8 @@ import useIsMobile from '../../hooks/useIsMobile';
 import SearchBar from './SearchBar';
 import MobileMenu from './MobileMenu';
 import MainNavMenu from './MainNavMenu';
-import { Flex } from '../Flex/';
-import Typography from '../Typography';
+import { Flex } from '../Layout/';
+import Typography from '../Typography/Typography';
 
 const Header: React.FunctionComponent = () => {
   const { theme, toggleContrast } = React.useContext(ContrastContext);
@@ -74,7 +74,7 @@ const Header: React.FunctionComponent = () => {
           >
             <Flex direction="column" justify="center" align="center">
               {search}
-              <Typography variant="b1" element="span" content="Search" />
+              {!isMobile && <Typography variant="b1" element="span" content="Search" />}
             </Flex>
           </HeaderNavLink>
           {!isMobile && (

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Image as ImageType } from '../../types/types';
 import { WidthConstraints, HorizontalSpacer, VerticalSpacer, Section } from '../Layout';
-import Typography from '../Typography';
+import Typography from '../Typography/Typography';
 import useIsMobile from '../../hooks/useIsMobile';
 import { ButtonVariant, ButtonLink } from '../Button/Button';
 import { FlexParent, FlexKid } from './styles';

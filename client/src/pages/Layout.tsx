@@ -2,24 +2,25 @@ import React, { lazy, Suspense } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import ThemeWrapper from '../components/ThemeWrapper/ThemeWrapper';
 import Header from '../components/Header/Header';
-import Footer from '../components/Footer';
+import Footer from '../components/Footer/Footer';
 import Loader from '../components/Loader/Loader';
-import Home from './Home';
-import Favorites from './Favorites';
 import ContrastProvider from '../context/ContrastContext';
-import Blog from './Blog/Blog';
-import BlogDetails from './Blog/BlogDetails';
 import PrivateRoute from '../routes/PrivateRoute';
 import DashBoard from './Dashboard/Dashboard';
 import { Main } from '../components/Layout/Main';
 
+const Home = lazy(() => import('./Home'));
 const Contact = lazy(() => import('./Contact'));
 const Book = lazy(() => import('./Book/Book'));
 const Login = lazy(() => import('./Login/Login'));
-const Success = lazy(() => import('./Success'));
+const Feedback = lazy(() => import('./Feedback/Feedback'));
 const AccommodationDetails = lazy(() => import('./Accommodations/AccommodationDetails'));
 const SearchResults = lazy(() => import('./SearchResults/SearchResults'));
 const About = lazy(() => import('./About/About'));
+const NotFound = lazy(() => import('./NotFound/NotFound'));
+const Favorites = lazy(() => import('./Favorites/Favorites'));
+const Blog = lazy(() => import('./Blog/Blog'));
+const BlogDetails = lazy(() => import('./Blog/BlogDetails'));
 
 interface Props {}
 
@@ -34,6 +35,7 @@ const Layout: React.FunctionComponent<Props> = () => {
               <Switch>
                 <PrivateRoute path="/dashboard/" component={DashBoard} exact />
                 <PrivateRoute path="/dashboard/:slug" component={DashBoard} exact />
+                <PrivateRoute path="/dashboard/:slug/:slug" component={DashBoard} exact />
                 <Route exact path="/login">
                   <Suspense fallback={<Loader />}>
                     <Login />
@@ -56,40 +58,40 @@ const Layout: React.FunctionComponent<Props> = () => {
                 </Route>
                 <Route exact path="/book-success">
                   <Suspense fallback={<Loader />}>
-                    <Success />
+                    <Feedback bookingSuccess />
                   </Suspense>
                 </Route>
-                <Route path="/favorites">
+                <Route exact path="/favorites">
                   <Suspense fallback={<Loader />}>
                     <Favorites />
                   </Suspense>
                 </Route>
-                <Route path="/contact">
+                <Route exact path="/contact">
                   <Suspense fallback={<Loader />}>
                     <Contact />
                   </Suspense>
                 </Route>
                 <Route exact path="/contact-success">
                   <Suspense fallback={<Loader />}>
-                    <Contact />
+                    <Feedback contactSuccess />
                   </Suspense>
                 </Route>
-                <Route path="/accommodation/details/:id">
+                <Route exact path="/accommodation/details/:id">
                   <Suspense fallback={<Loader />}>
                     <AccommodationDetails />
                   </Suspense>
                 </Route>
-                <Route path="/accommodations" exact>
+                <Route exact path="/accommodations">
                   <Suspense fallback={<Loader />}>
                     <SearchResults />
                   </Suspense>
                 </Route>
-                <Route path="/blog" exact>
+                <Route exact path="/blog">
                   <Suspense fallback={<Loader />}>
                     <Blog />
                   </Suspense>
                 </Route>
-                <Route path="/blog/:id" exact>
+                <Route exact path="/blog/:id">
                   <Suspense fallback={<Loader />}>
                     <BlogDetails />
                   </Suspense>
@@ -99,9 +101,14 @@ const Layout: React.FunctionComponent<Props> = () => {
                     <Blog />
                   </Suspense>
                 </Route>
-                <Route path="/">
+                <Route exact path="/">
                   <Suspense fallback={<Loader />}>
                     <Home />
+                  </Suspense>
+                </Route>
+                <Route exact path="/">
+                  <Suspense fallback={<Loader />}>
+                    <NotFound />
                   </Suspense>
                 </Route>
               </Switch>

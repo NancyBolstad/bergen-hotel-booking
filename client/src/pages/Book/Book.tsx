@@ -5,12 +5,11 @@ import useApi from '../../hooks/useApi';
 import Loader from '../../components/Loader/Loader';
 import { HotelDetailsRoot } from '../../types/response';
 import { VerticalSpacer, HorizontalSpacer, WidthConstraints } from '../../components/Layout';
-import { Flex, FlexKid } from '../../components/Flex';
-import { HotelCardsList } from '../../components/HotelCards';
-import { Context } from '../../context/GlobalContext';
+import { Flex, FlexKid } from '../../components/Layout/Flex';
 import BookForm from '../../components/Book/BookForm';
 import { HotelCard } from '../../components/HotelCards';
 import createMediaQuery from '../../util/createMediaQuery';
+import PlainBanner from '../../components/Banner/PlainBanner';
 
 interface Props {}
 
@@ -32,7 +31,6 @@ const Layout = styled(Flex)`
 
 const FlexLeft = styled(FlexKid)`
   a {
-    background-color: ${props => props.theme.colors.secondaryVariant};
     margin: 0 auto;
     ${createMediaQuery(
       'large',
@@ -44,9 +42,8 @@ const FlexLeft = styled(FlexKid)`
 `;
 
 export const Book: React.FunctionComponent<Props> = () => {
-  const localContext = React.useContext(Context);
   let { id } = useParams();
-  const { results, loading } = useApi<HotelDetailsRoot>({
+  const { results, loading, error } = useApi<HotelDetailsRoot>({
     endpoint: `${process.env.REACT_APP_API_URL}establishments/${id}`,
     fetchOnMount: true,
     initialData: {
@@ -71,32 +68,32 @@ export const Book: React.FunctionComponent<Props> = () => {
   return (
     <>
       {loading && <Loader />}
-      {!!results && !!id && !loading && (
-        <VerticalSpacer topSpace="xs" topSpaceDesktop="m" bottomSpace="xs" bottomSpaceDesktop="m">
-          <HorizontalSpacer>
-            <WidthConstraints size="large">
-              <Layout>
-                <FlexLeft flex={1}>
-                  <HotelCard card={results.data} extraSpace backgroundColor="secondaryVariant" />
-                </FlexLeft>
-                <FlexKid flex={2}>
-                  <BookForm establishmentId={id} establishmentName={results.data.name} />
-                </FlexKid>
-              </Layout>
-            </WidthConstraints>
-          </HorizontalSpacer>
-        </VerticalSpacer>
-      )}
-      {localContext.loading ? (
-        <Loader />
-      ) : (
-        <HotelCardsList
-          sectionTitle="You may also interest"
-          ctaText="Explore more"
-          ctaUrl="/accommodations"
-          list={localContext.default.slice(0, 3)}
-          backgroundColor="secondaryVariant"
-        />
+      {!!error && !loading && <PlainBanner large title={error} />}
+      {!!results && !!id && !loading && !error && (
+        <>
+          <PlainBanner
+            title={
+              results.data.name
+                ? `Booking your stay at ${results.data.name} `
+                : `Send in your booking`
+            }
+            isTitleColorRed
+          />
+          <VerticalSpacer topSpace="xs" topSpaceDesktop="m" bottomSpace="xs" bottomSpaceDesktop="m">
+            <HorizontalSpacer>
+              <WidthConstraints size="large">
+                <Layout>
+                  <FlexLeft flex={1}>
+                    <HotelCard card={results.data} />
+                  </FlexLeft>
+                  <FlexKid flex={2}>
+                    <BookForm establishmentId={id} establishmentName={results.data.name} />
+                  </FlexKid>
+                </Layout>
+              </WidthConstraints>
+            </HorizontalSpacer>
+          </VerticalSpacer>
+        </>
       )}
     </>
   );

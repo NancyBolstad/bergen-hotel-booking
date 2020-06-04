@@ -39,7 +39,8 @@ function useApi<T>(opts: Opts<T>): UseApiInterface<T> {
       setResults(data as T);
     } catch (error) {
       setLoading(false);
-      setError(error);
+      setError('Something went wrong with the API service.');
+      console.log(error);
     }
   }
 

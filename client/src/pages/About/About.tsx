@@ -1,6 +1,8 @@
 import * as React from 'react';
-import { PlainBanner } from '../../components/Banner';
-import { FlexBanner } from '../../components/Banner/';
+import PlainBanner from '../../components/Banner/PlainBanner';
+import { CAMPAIGN_A } from '../../data/content';
+import FlexBanner from '../../components/Banner/FlexBanner';
+import BannerGrid from '../../components/Banner/BannerGrid';
 
 interface Props {}
 
@@ -11,7 +13,7 @@ const image = {
 };
 
 const mockFlexBannerAboutUsA = {
-  title: 'Why should you booking with us',
+  title: 'Who are we',
   descriptions:
     'Our workers are down-to-earth, trustworthy and reliable. With us you can focus on enjoying the stay, and rest assured that your booked hotel will fullfil your expectations.',
   figure: image,
@@ -31,12 +33,15 @@ const mockFlexBannerAboutUsB = {
 export const About: React.FunctionComponent<Props> = () => {
   return (
     <>
-      <PlainBanner
-        title="About"
-        text="We are your local friends in Bergen. Let us help you to find the best accommodation at the best price."
+      <PlainBanner title="About" isTitleColorRed />
+      <FlexBanner {...mockFlexBannerAboutUsA} />
+      <BannerGrid
+        banners={[CAMPAIGN_A, CAMPAIGN_A, CAMPAIGN_A, CAMPAIGN_A, CAMPAIGN_A, CAMPAIGN_A]}
       />
-      <FlexBanner {...mockFlexBannerAboutUsA} isImageRight />
-      <FlexBanner {...mockFlexBannerAboutUsB} />
+      <FlexBanner {...mockFlexBannerAboutUsB} isImageRight />
+      <BannerGrid
+        banners={[CAMPAIGN_A, CAMPAIGN_A, CAMPAIGN_A, CAMPAIGN_A, CAMPAIGN_A, CAMPAIGN_A]}
+      />
     </>
   );
 };

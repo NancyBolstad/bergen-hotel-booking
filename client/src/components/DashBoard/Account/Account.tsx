@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Card from '../helper-components/Card';
 import Section from '../helper-components/Section';
-import Typography from '../../Typography';
+import Typography from '../../Typography/Typography';
 import { UserContext } from '../../../context/UserContext';
 
 interface Props {}

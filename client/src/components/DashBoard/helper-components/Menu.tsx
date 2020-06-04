@@ -5,7 +5,7 @@ import { user, messages, hotel, enquiry, logout } from '../../../util/icons';
 import createMediaQuery from '../../../util/createMediaQuery';
 import setColorOpacity from '../../../util/setColorOpacity';
 import slugMatch from '../../../util/slugMatch';
-import Typography from '../../../components/Typography';
+import Typography from '../../../components/Typography/Typography';
 import { UserContext } from '../../../context/UserContext';
 
 const Wrapper = styled.aside`
@@ -21,6 +21,7 @@ const List = styled.ul`
   padding: 0;
   list-style: none;
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   margin: calc(-${props => props.theme.spacing.xs}rem / 2);
   justify-content: flex-start;
@@ -39,7 +40,7 @@ const List = styled.ul`
 `;
 
 const ListItem = styled.li<{ isActive?: boolean }>`
-  width: calc(33% - ${props => props.theme.spacing.xs}rem);
+  width: 100%;
   margin: calc(${props => props.theme.spacing.xs}rem / 2);
 
   &:not(last-child) {
@@ -50,16 +51,15 @@ const ListItem = styled.li<{ isActive?: boolean }>`
     display: flex;
     background-color: ${props => setColorOpacity(props.theme.colors.surface, '0.9')};
     padding: ${props => `${props.theme.spacing.xs / 2}rem ${props.theme.spacing.xs}rem`};
-    color: ${props => props.theme.colors.onSurface};
+    color: ${props => props.theme.colors.dark};
     box-shadow: 0px 3px 6px #00000029;
     align-items: center;
-    border-radius: 1rem;
+    border-radius: 4px;
     border: 2px solid ${props => setColorOpacity(props.theme.colors.surface, '0.9')};
-    height: 96px;
     transition: background-color 0.15s ease-in-out;
     text-decoration: none;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: flex-start;
 
     &:hover,
     &:focus,
@@ -79,7 +79,6 @@ const ListItem = styled.li<{ isActive?: boolean }>`
       css`
         display: flex;
         align-items: center;
-        height: 64px;
         width: 100%;
         flex-direction: row;
         justify-content: flex-start;
@@ -105,12 +104,13 @@ const MenuIcon = styled.div<{ isActive?: boolean }>`
   height: 52px;
   background-color: ${props => props.theme.colors.background};
   border-radius: 50%;
+  margin-right: ${props => props.theme.spacing.xs}rem;
   margin-bottom: ${props => props.theme.spacing.xs}rem;
 
   ${props =>
     props.isActive &&
     css`
-      background-color: ${props => props.theme.colors.primaryVariant};
+      background-color: ${props => props.theme.colors.primary};
     `};
 
   svg {
@@ -139,10 +139,10 @@ interface Props {}
 const MyPageMenu: React.FC<Props> = () => {
   const location = useLocation();
   const { logOut } = React.useContext(UserContext);
-  const isMyProfileActive = slugMatch('my-account', location.pathname, true);
-  const isEstablishmentsActive = slugMatch('establishments', location.pathname, true);
-  const isEnquiriesActive = slugMatch('enquiries', location.pathname, true);
-  const isCustomerServiceActive = slugMatch('messages', location.pathname, true);
+  const isMyProfileActive = slugMatch('my-account', location.pathname);
+  const isEstablishmentsActive = slugMatch('establishments', location.pathname);
+  const isEnquiriesActive = slugMatch('enquiries', location.pathname);
+  const isCustomerServiceActive = slugMatch('messages', location.pathname);
 
   return (
     <Wrapper>

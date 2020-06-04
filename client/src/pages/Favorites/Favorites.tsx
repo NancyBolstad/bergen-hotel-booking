@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { PlainBanner } from '../../components/Banner';
+import PlainBanner from '../../components/Banner/PlainBanner';
 import { Context } from '../../context/GlobalContext';
 import { HotelCardsList } from '../../components/HotelCards';
 
@@ -16,11 +16,12 @@ export const Favorites: React.FunctionComponent<Props> = () => {
         </>
       ) : (
         <PlainBanner
-          title="Favorites accommodations"
-          text="You don't have any saved favorite."
+          title="Favorites list is empty."
           large
-          buttonText="Select from accommodations list"
+          buttonText="Explore accommodations"
           redirectLink="/accommodations"
+          widthNavigationIcon
+          isTitleColorRed
         />
       )}
     </>

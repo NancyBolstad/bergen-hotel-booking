@@ -1,9 +1,10 @@
 import * as express from 'express';
-import { getAllContact, createContact } from './controllers';
+import { getAllContact, createContact, DeleteOneContact } from './controllers';
 
 const contact = express();
 
 contact.get('/', getAllContact);
 contact.post('/', createContact);
+contact.delete('/:id', DeleteOneContact);
 
 export default contact;

@@ -1,13 +1,13 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { PlainBanner } from '../../components/Banner';
-import BlogList from '../../components/Blog';
+import PlainBanner from '../../components/Banner/PlainBanner';
 import useApi from '../../hooks/useApi';
 import { BlogList as BlogListTypes } from '../../types/response';
 import Loader from '../../components/Loader/Loader';
 import usePagination from '../../hooks/usePagination';
 import PaginateButtons from '../../components/Button/PaginateButtons';
 import { BLOG_LIST_SIZE } from '../../util/constants';
+import BlogList from '../../components/Blog/BlogList';
 
 const Blog: React.FunctionComponent = () => {
   const { results, loading } = useApi<BlogListTypes>({
@@ -29,11 +29,7 @@ const Blog: React.FunctionComponent = () => {
   );
   return (
     <>
-      <PlainBanner
-        title="Welcome to our blog"
-        text="Stay updated with the latest travel stories, tips and insights shared by our community."
-        isTitleColorRed
-      />
+      <PlainBanner title="Welcome to our blog" isTitleColorRed />
       {loading ? (
         <Loader />
       ) : (

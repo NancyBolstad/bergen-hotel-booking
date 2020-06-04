@@ -1,4 +1,3 @@
-import { Success } from './../pages/Success/index';
 export interface IMediaQueries {
   small: number;
   medium: number;
@@ -62,6 +61,7 @@ export interface IColors {
   secondaryVariant: string;
   onSecondary: string;
   background: string;
+  backgroundVariant: string;
   onBackground: string;
   surface: string;
   onSurface: string;

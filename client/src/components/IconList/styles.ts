@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { Flex, FlexKid } from '../Flex/index';
+import { Flex, FlexKid } from '../Layout/';
 import createMediaQueries from '../../util/createMediaQuery';
 
 export const ContentWrapper = styled(Flex)`

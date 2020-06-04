@@ -5,17 +5,20 @@ import { StyledInput, StyledLabelWrapper, Form, StyledLabel, ErrorMessage } from
 import Button from '../Button/Button';
 import Typography from '../Typography/Typography';
 import LoginSchema from './login.schema';
-import { WidthConstraints, VerticalSpacer, HorizontalSpacer, Section } from '../Layout';
-import { Flex } from '../Flex';
+import { WidthConstraints, VerticalSpacer, HorizontalSpacer, Section, Flex } from '../Layout';
 import { UserContext } from '../../context/UserContext';
+
+type LoginFormData = {
+  userName: string;
+  password: string;
+};
 
 interface Props {}
 
 const Login: React.FC<Props> = () => {
   const history = useHistory();
-  const { user, setUser, logOut } = React.useContext(UserContext);
-  const [userName, setUserName] = React.useState<string>(user.name);
-  const { register, errors } = useForm({
+  const { user, setUser } = React.useContext(UserContext);
+  const { register, errors, handleSubmit, setValue } = useForm<LoginFormData>({
     validationSchema: LoginSchema,
   });
 
@@ -33,13 +36,12 @@ const Login: React.FC<Props> = () => {
             <Flex direction="column">
               <Typography element="h1" variant="h1" content="Log Into Admin Dashboard" />
               <Form
-                onSubmit={e => {
-                  e.preventDefault();
+                onSubmit={handleSubmit(({ userName }) => {
                   setUser({
                     name: userName,
                     loggedIn: true,
                   });
-                }}
+                })}
                 noValidate
               >
                 <StyledLabel>
@@ -52,7 +54,7 @@ const Login: React.FC<Props> = () => {
                     placeholder="Your username"
                     ref={register}
                     required
-                    onChange={e => setUserName(e.target.value)}
+                    onChange={e => setValue('userName', e.target.value)}
                   />
                 </StyledLabel>
                 {/* 
@@ -76,18 +78,6 @@ const Login: React.FC<Props> = () => {
                 <Button size="large" variant="primary" type="submit">
                   Login
                 </Button>
-                {!!user.loggedIn && (
-                  <Button
-                    size="large"
-                    variant="secondary"
-                    onClick={e => {
-                      e.preventDefault();
-                      logOut();
-                    }}
-                  >
-                    Log out
-                  </Button>
-                )}
               </Form>
             </Flex>
           </WidthConstraints>

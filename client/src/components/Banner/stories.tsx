@@ -1,7 +1,10 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import { SearchBanner, PlainBanner, FlexBanner, BannerGrid } from '.';
 import { createList } from '../../util/mockHelpers';
+import SearchBanner from './SearchBanner';
+import PlainBanner from './PlainBanner';
+import FlexBanner from './FlexBanner';
+import BannerGrid from './BannerGrid';
 
 const mockTitleLong: string = 'Lorem ipsum dolor sit amet';
 const mockTitleShort: string = 'Accommodations';

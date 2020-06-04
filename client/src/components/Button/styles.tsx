@@ -24,11 +24,16 @@ export const Button = styled.button<ButtonProps>`
     width: 24px;
     height: 24px;
     margin-left: ${props => props.theme.spacing.xs}rem;
+
+    ${props =>
+      props.icon &&
+      css`
+        margin-left: 0rem;
+      `}
   }
   ${props =>
     props.size === 'small' &&
     css`
-      width: 100%;
       padding: ${props => props.theme.spacing.xs}rem 32px;
       ${createFontStyles(props.theme.fonts.b2)};
 
@@ -46,7 +51,7 @@ export const Button = styled.button<ButtonProps>`
   ${props =>
     props.size === 'large' &&
     css`
-      padding: ${props => props.theme.spacing.xs}rem 75px;
+      padding: ${props => props.theme.spacing.xs}rem 48px;
       ${createFontStyles(props.theme.fonts.h3)};
     `};
   ${props =>
@@ -128,4 +133,23 @@ export const Button = styled.button<ButtonProps>`
         opacity: 0.8;
       }
     `};
+
+  ${props =>
+    props.variant === 'tertiaryVariant' &&
+    css`
+      background-color: transparent;
+      color: ${props => props.theme.colors.onBackground};
+      border: none;
+      &:hover,
+      &:active,
+      &:focus {
+        opacity: 0.8;
+        svg {
+          fill: ${props => props.theme.colors.primary};
+        }
+      }
+      svg {
+        fill: ${props => props.theme.colors.onBackground};
+      }
+    `}
 `;

@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { Image as ImageType } from '../../types/types';
-import { WidthConstraints, HorizontalSpacer, Section } from '../Layout';
+import { WidthConstraints, HorizontalSpacer, Section, VerticalSpacer, Flex } from '../Layout';
 import { PlainBannerTitle, PlainBannerContent } from './styles';
-import { ButtonVariant, ButtonLink } from '../Button/Button';
+import { ButtonVariant, ButtonLink, Size } from '../Button/Button';
+import { navigationArrow } from '../../util/icons';
 
 interface Props {
   title?: string;
@@ -16,6 +17,8 @@ interface Props {
   buttonVariant?: ButtonVariant;
   buttonText?: string;
   redirectLink?: string;
+  buttonSize?: Size;
+  widthNavigationIcon?: boolean;
 }
 
 const PlainBanner: React.FunctionComponent<Props> = ({
@@ -30,6 +33,8 @@ const PlainBanner: React.FunctionComponent<Props> = ({
   buttonVariant,
   buttonText,
   redirectLink,
+  buttonSize,
+  widthNavigationIcon,
 }) => {
   return (
     <Section>
@@ -39,48 +44,54 @@ const PlainBanner: React.FunctionComponent<Props> = ({
         align={center}
         large={large}
       >
-        <WidthConstraints size="large">
+        <VerticalSpacer>
           <HorizontalSpacer>
-            {!!title && (
-              <PlainBannerTitle
-                variant="h1"
-                element="h1"
-                content={title}
-                isPrimaryColor={isTitleColorRed}
-                hasBackgroundImage={backgroundImage ? true : false}
-              />
-            )}
-            {!!subTitle && (
-              <PlainBannerTitle
-                variant="h2"
-                element="h2"
-                content={subTitle}
-                hasBackgroundImage={backgroundImage ? true : false}
-              />
-            )}
-            {!!text && (
-              <PlainBannerTitle
-                variant="b3"
-                element="p"
-                content={text}
-                maxWidth={650}
-                bottom={56}
-                hasBackgroundImage={backgroundImage ? true : false}
-              />
-            )}
-            {!!buttonText && !!redirectLink && (
-              <ButtonLink
-                variant={buttonVariant ? buttonVariant : 'primary'}
-                size="medium"
-                href={redirectLink}
-                aria-label={buttonText}
-                title={buttonText}
-              >
-                {buttonText}
-              </ButtonLink>
-            )}
+            <WidthConstraints size="large">
+              <Flex direction="column" justify="center">
+                {!!subTitle && (
+                  <PlainBannerTitle
+                    variant="b2"
+                    element="h1"
+                    content={subTitle}
+                    hasBackgroundImage={backgroundImage ? true : false}
+                    textTransform="capitalize"
+                  />
+                )}
+                {!!title && (
+                  <PlainBannerTitle
+                    variant="h1"
+                    element="h1"
+                    content={title}
+                    isPrimaryColor={isTitleColorRed}
+                    hasBackgroundImage={backgroundImage ? true : false}
+                    textTransform="capitalize"
+                  />
+                )}
+                {!!text && (
+                  <PlainBannerTitle
+                    variant="b3"
+                    element="p"
+                    content={text}
+                    maxWidth={650}
+                    hasBackgroundImage={backgroundImage ? true : false}
+                  />
+                )}
+                {!!buttonText && !!redirectLink && (
+                  <ButtonLink
+                    variant={buttonVariant ? buttonVariant : 'primary'}
+                    size={buttonSize ? buttonSize : 'medium'}
+                    href={redirectLink}
+                    aria-label={buttonText}
+                    title={buttonText}
+                  >
+                    {buttonText}
+                    {widthNavigationIcon ? navigationArrow : null}
+                  </ButtonLink>
+                )}
+              </Flex>
+            </WidthConstraints>
           </HorizontalSpacer>
-        </WidthConstraints>
+        </VerticalSpacer>
       </PlainBannerContent>
     </Section>
   );

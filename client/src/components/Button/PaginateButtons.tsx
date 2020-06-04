@@ -1,8 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { Flex } from '../Flex';
-import { VerticalSpacer, WidthConstraints } from '../Layout';
-import { ButtonLink } from './Button';
+import { VerticalSpacer, WidthConstraints, Flex } from '../Layout';
+import { ButtonInternal } from './Button';
 import useIsTablet from '../../hooks/useIsTablet';
 import { arrow } from '../../util/icons';
 
@@ -37,10 +36,10 @@ export const PaginateButtons: React.FunctionComponent<Props> = ({
         <Flex direction="row" justify={isTablet ? 'space-around' : 'center'} align="center">
           {displayPrev && (
             <PrevNextButton
+              to="/#"
               role="button"
               size="small"
               variant="secondaryVariant"
-              href="#"
               aria-label="Go to previous page"
               title="Go to previous page"
               onClick={e => {
@@ -61,7 +60,7 @@ export const PaginateButtons: React.FunctionComponent<Props> = ({
                 isActive={index === currentPage - 1}
                 aria-label={`Page ${number}`}
                 title={`Page ${number}`}
-                href="#"
+                to="/#"
                 onClick={e => {
                   e.preventDefault();
                   jumpHandler(number);
@@ -74,10 +73,10 @@ export const PaginateButtons: React.FunctionComponent<Props> = ({
             <PrevNextButton
               role="button"
               size="small"
+              to="/#"
               variant="secondaryVariant"
               aria-label="Go to next page"
               title="Go to next page"
-              href="#"
               onClick={e => {
                 e.preventDefault();
                 nextHandler();
@@ -93,7 +92,7 @@ export const PaginateButtons: React.FunctionComponent<Props> = ({
   );
 };
 
-export const JumpPageButton = styled(ButtonLink)<{ isActive?: boolean }>`
+export const JumpPageButton = styled(ButtonInternal)<{ isActive?: boolean }>`
   margin: 0 ${props => props.theme.spacing.xs}rem;
   border: none;
   ${props =>
@@ -104,7 +103,7 @@ export const JumpPageButton = styled(ButtonLink)<{ isActive?: boolean }>`
     `}
 `;
 
-export const PrevNextButton = styled(ButtonLink)<{ next?: boolean }>`
+export const PrevNextButton = styled(ButtonInternal)<{ next?: boolean }>`
   border: none;
   svg {
     transform: ${props => (props.next ? 'rotate(-90deg)' : 'rotate(90deg)')};

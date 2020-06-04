@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-import { Swipeable } from 'react-swipeable';
 import { BackgroundImage } from '../Image/BackgroundImage';
 
 export const Slide = styled(BackgroundImage)<{ large?: boolean }>`
@@ -9,7 +8,6 @@ export const Slide = styled(BackgroundImage)<{ large?: boolean }>`
   align-items: center;
   position: relative;
   min-height: 180px;
-  height: 100%;
 
   @media (min-width: ${props => props.theme.mediaQueries.medium}px) {
     min-height: ${props => (props.large ? '580px' : '280px')};
@@ -93,8 +91,4 @@ export const SliderButtonWrapper = styled.div`
   width: 100%;
   display: inline-flex;
   justify-content: space-between;
-`;
-
-export const StyledSwipeableSliderWrapper = styled(Swipeable)`
-  height: 100%;
 `;

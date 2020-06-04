@@ -42,7 +42,7 @@ const darkThemeColors: IColors = {
   onSecondary: '#000000',
   background: '#000000',
   backgroundVariant: '#000000',
-  surface: '#333333',
+  surface: '#888888',
   onSurface: '#ffffff',
   onBackground: '#ffffff',
   ...stableColors,

@@ -69,7 +69,7 @@ const EditableEstablishmentsList: React.FC<Props> = () => {
               {!!establishmentsList && (
                 <VerticalSpacer topSpaceDesktop="l">
                   {establishmentsList.map(establishment => (
-                    <EditableWrapper>
+                    <EditableWrapper key={establishment.id}>
                       <DeleteButton
                         variant="tertiaryVariant"
                         size="small"
@@ -86,7 +86,6 @@ const EditableEstablishmentsList: React.FC<Props> = () => {
                       <HotelCardVariant
                         miniCard
                         card={establishment}
-                        key={establishment.id}
                         busy={deleting && establishment.id === removedItemId}
                         removed={removed && establishment.id === removedItemId}
                       />

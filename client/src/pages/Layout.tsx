@@ -12,7 +12,7 @@ const Home = lazy(() => import('./Home'));
 const Contact = lazy(() => import('./Contact'));
 const Book = lazy(() => import('./Book/Book'));
 const Login = lazy(() => import('./Login/Login'));
-const Success = lazy(() => import('./Success/Success'));
+const Feedback = lazy(() => import('./Feedback/Feedback'));
 const AccommodationDetails = lazy(() => import('./Accommodations/AccommodationDetails'));
 const SearchResults = lazy(() => import('./SearchResults/SearchResults'));
 const About = lazy(() => import('./About/About'));
@@ -60,7 +60,7 @@ const Layout: React.FunctionComponent<Props> = () => {
                 </Route>
                 <Route exact path="/book-success">
                   <Suspense fallback={<Loader />}>
-                    <Success bookingSuccess />
+                    <Feedback bookingSuccess />
                   </Suspense>
                 </Route>
                 <Route exact path="/favorites">
@@ -75,7 +75,7 @@ const Layout: React.FunctionComponent<Props> = () => {
                 </Route>
                 <Route exact path="/contact-success">
                   <Suspense fallback={<Loader />}>
-                    <Success contactSuccess />
+                    <Feedback contactSuccess />
                   </Suspense>
                 </Route>
                 <Route exact path="/accommodation/details/:id">

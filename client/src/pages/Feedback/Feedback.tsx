@@ -8,7 +8,7 @@ interface Props {
   contactSuccess?: boolean;
 }
 
-export const Success: React.FunctionComponent<Props> = ({ bookingSuccess, contactSuccess }) => {
+export const Feedback: React.FunctionComponent<Props> = ({ bookingSuccess, contactSuccess }) => {
   const location = useLocation();
 
   console.log(location);
@@ -39,4 +39,4 @@ export const Success: React.FunctionComponent<Props> = ({ bookingSuccess, contac
   );
 };
 
-export default Success;
+export default Feedback;

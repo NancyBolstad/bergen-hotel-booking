@@ -1,19 +1,24 @@
 import styled, { css } from 'styled-components';
-import Typography from '../Typography';
-import Slider from '../Slider';
+import Typography from '../Typography/Typography';
+import Slider from '../Slider/Slider';
 import Button from '../Button/Button';
 import { IColors } from '../../types/theme';
-import { Flex } from '../Flex';
+import { Flex } from '../Layout/';
+import createMediaQuery from '../../util/createMediaQuery';
+import setColorOpacity from '../../util/setColorOpacity';
 
 const Wrapper = styled(Flex)`
   flex-direction: column;
 
-  @media screen and (min-width: 1280px) {
-    h2 {
-      padding-top: 2rem;
-      padding-bottom: 3rem;
-    }
-  }
+  ${createMediaQuery(
+    'large',
+    css`
+      h2 {
+        padding-top: 2rem;
+        padding-bottom: 3rem;
+      }
+    `,
+  )}
 `;
 
 const Card = styled.a<{ extraSpace?: boolean; backgroundColor?: keyof IColors }>`
@@ -40,14 +45,20 @@ const Card = styled.a<{ extraSpace?: boolean; backgroundColor?: keyof IColors }>
     }
   }
 
-  @media screen and (min-width: 768px) {
-    width: calc(47% - ${props => props.theme.spacing.s}rem);
-  }
+  ${createMediaQuery(
+    'medium',
+    css`
+      width: calc(47% - ${props => props.theme.spacing.s}rem);
+    `,
+  )}
 
-  @media screen and (min-width: 1280px) {
-    width: calc(25% - ${props => props.theme.spacing.m}rem);
-    margin-bottom: ${props => props.theme.spacing.m}rem;
-  }
+  ${createMediaQuery(
+    'large',
+    css`
+      width: calc(25% - ${props => props.theme.spacing.m}rem);
+      margin-bottom: ${props => props.theme.spacing.m}rem;
+    `,
+  )}
 
   ${props =>
     props.extraSpace &&
@@ -72,16 +83,28 @@ const SectionTitle = styled(Typography)<{ element: 'h2' }>`
 
 const More = styled.div`
   margin: ${props => props.theme.spacing.s}rem auto;
-  @media screen and (min-width: 768px) {
-    padding-top: ${props => props.theme.spacing.l}rem;
-  }
 
-  @media screen and (min-width: 1280px) {
-    margin: ${props => props.theme.spacing.m}rem auto;
-  }
+  ${createMediaQuery(
+    'medium',
+    css`
+      padding-top: ${props => props.theme.spacing.l}rem;
+    `,
+  )}
+
+  ${createMediaQuery(
+    'large',
+    css`
+      margin: ${props => props.theme.spacing.m}rem auto;
+    `,
+  )}
 `;
 
-const CardVariant = styled.a<{ miniCard?: boolean; isMobile?: boolean }>`
+const CardVariant = styled.a<{
+  miniCard?: boolean;
+  isMobile?: boolean;
+  busy?: boolean;
+  removed?: boolean;
+}>`
   display: flex;
   flex-direction: row;
   flex: 1;
@@ -94,6 +117,7 @@ const CardVariant = styled.a<{ miniCard?: boolean; isMobile?: boolean }>`
   position: relative;
   box-shadow: rgba(46, 41, 51, 0.08) 0px 1px 2px, rgba(71, 63, 79, 0.08) 0px 2px 4px;
   border-radius: 4px;
+  width: 100%;
 
   &:hover,
   &:focus {
@@ -107,17 +131,43 @@ const CardVariant = styled.a<{ miniCard?: boolean; isMobile?: boolean }>`
     }
   }
 
-  @media screen and (min-width: 1280px) {
-    margin: ${props => props.theme.spacing.s}rem 0;
-    padding: 0;
-  }
+  ${createMediaQuery(
+    'large',
+    css`
+      margin: ${props => props.theme.spacing.s}rem 0;
+      padding: 0;
+    `,
+  )}
+
 
   ${props =>
     props.miniCard &&
     props.isMobile &&
     css`
       flex-direction: column;
+      padding: 0;
+      margin: ${props => props.theme.spacing.s}rem 0;
+
+      ${createMediaQuery(
+        'medium',
+        css`
+          flex-direction: row;
+        `,
+      )}
     `}
+
+  ${props =>
+    props.busy &&
+    css`
+      opacity: 0.5;
+    `}
+
+  ${props =>
+    props.removed &&
+    css`
+      display: none;
+    `}
+
 `;
 
 const SliderVariant = styled(Slider)`
@@ -127,10 +177,8 @@ const SliderVariant = styled(Slider)`
 const CardVariantLeft = styled.div`
   flex: 1;
 
-  @media screen and (max-width: 480px) {
-    div[role='img'] {
-      height: 88px;
-    }
+  div[role='img'] {
+    height: 100%;
   }
 `;
 const CardVariantRight = styled.div`
@@ -141,9 +189,12 @@ const CardVariantRight = styled.div`
   padding: 0 ${props => props.theme.spacing.xs}rem;
   position: relative;
 
-  @media screen and (min-width: 1280px) {
-    padding: ${props => props.theme.spacing.m}rem;
-  }
+  ${createMediaQuery(
+    'large',
+    css`
+      padding: ${props => props.theme.spacing.m}rem;
+    `,
+  )}
 `;
 
 const LikeButtonWrapper = styled.div<{ positionAbsolute?: boolean }>`
@@ -200,9 +251,8 @@ const CategoryBadge = styled(Typography)<{ element: 'span'; miniCard?: boolean }
   position: absolute;
   display: block;
   font-size: 14px;
-  top: 24px;
-  left: 24px;
-  border-radius: 4px;
+  top: 0px;
+  left: 0px;
   z-index: 900;
 
   ${props =>
@@ -216,8 +266,8 @@ const CategoryBadge = styled(Typography)<{ element: 'span'; miniCard?: boolean }
 
 const ServiceLabel = styled(Typography)`
   padding: ${props => props.theme.spacing.xs}rem;
-  background-color: ${props => props.theme.colors.secondary};
-  color: ${props => props.theme.colors.dark};
+  background-color: ${props => setColorOpacity(props.theme.colors.surface, '0.7')};
+  color: ${props => props.theme.colors.onBackground};
   font-size: 14px;
   margin-right: ${props => props.theme.spacing.xs}rem;
   margin-bottom: ${props => props.theme.spacing.xs}rem;

@@ -1,8 +1,8 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import createFontStyles from '../../util/createFontStyles';
 
 export const StyledLabelWrapper = styled.div`
-  ${props => createFontStyles(props.theme.fonts.b3)};
+  ${props => createFontStyles(props.theme.fonts.b2)};
   margin-bottom: ${props => props.theme.spacing.xs}rem;
 
   span {
@@ -10,7 +10,7 @@ export const StyledLabelWrapper = styled.div`
   }
 `;
 
-export const StyledLabel = styled.label`
+export const StyledLabel = styled.label<{ isCheckbox?: boolean }>`
   ${props => createFontStyles(props.theme.fonts.b2)};
   display: flex;
   flex-direction: column;
@@ -18,4 +18,22 @@ export const StyledLabel = styled.label`
   align-items: flex-start;
   margin: ${props => props.theme.spacing.s}rem 0;
   width: 100%;
+
+  ${props =>
+    props.isCheckbox &&
+    css`
+      flex-direction: row;
+      align-items: baseline;
+      ${props => createFontStyles(props.theme.fonts.b1)};
+
+      input {
+        margin-right: ${props => props.theme.spacing.xs}rem;
+        @supports (-webkit-touch-callout: none) {
+          border-radius: 0;
+        }
+      }
+      p {
+        margin: 0;
+      }
+    `}
 `;

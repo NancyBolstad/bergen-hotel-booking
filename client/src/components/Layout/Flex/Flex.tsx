@@ -6,7 +6,7 @@ interface FlexProps {
   align?: string;
   justify?: string;
   direction?: direction;
-  wrap?: boolean;
+  maxHeight?: string;
 }
 
 const Flex = styled.div<FlexProps>`
@@ -18,6 +18,13 @@ const Flex = styled.div<FlexProps>`
     props.direction &&
     css`
       flex-direction: ${props.direction};
+    `};
+
+  ${props =>
+    props.maxHeight &&
+    css`
+      max-height: ${props.maxHeight};
+      overflow-y: auto;
     `};
 `;
 

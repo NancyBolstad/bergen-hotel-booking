@@ -28,11 +28,9 @@ const StyledInput = styled.input<Partial<IProps>>`
 `;
 
 const Icon = styled.div`
-  width: 20px;
-
   svg {
-    width: 24px;
-    height: 24px;
+    width: 3rem !important;
+    height: 3rem !important;
   }
   fill: ${props => props.theme.colors.onSurface};
 `;

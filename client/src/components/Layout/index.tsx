@@ -4,6 +4,7 @@ import { CardsList } from './CardsList';
 import { Grid, GridItem, GridItemLink } from './Grid';
 import { Section, Article, Aside } from './Container';
 import { Main } from './Main';
+import { Flex, FlexKid } from './Flex';
 
 export {
   WidthConstraints,
@@ -17,4 +18,6 @@ export {
   Article,
   Aside,
   Main,
+  Flex,
+  FlexKid,
 };

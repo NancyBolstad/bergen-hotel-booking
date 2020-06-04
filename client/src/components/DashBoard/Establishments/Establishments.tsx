@@ -1,38 +1,40 @@
 import * as React from 'react';
+import { useLocation } from 'react-router-dom';
 import Card from '../helper-components/Card';
 import Section from '../helper-components/Section';
-import Typography from '../../Typography';
+import Typography from '../../Typography/Typography';
 import EstablishmentForm from './EstablishmentForm';
-import { VerticalSpacer } from '../../Layout';
-import { HotelCardVariant } from '../../HotelCards/';
-import { Context } from '../../../context/GlobalContext';
-import Loader from '../../Loader/Loader';
+import EditableEstablishmentsList from './EditableEstablishmentsList';
 
 interface Props {}
 
 const Establishments: React.FC<Props> = () => {
-  const localContext = React.useContext(Context);
+  const [createEstablishment, setCreateEstablishment] = React.useState(false);
+  const location = useLocation();
+
+  React.useEffect(() => {
+    if (location.pathname === '/dashboard/establishments/new') {
+      setCreateEstablishment(true);
+    } else {
+      setCreateEstablishment(false);
+    }
+  }, [location]);
 
   return (
     <>
       <Section>
         <Card>
-          <Typography variant="h2" element="h2" content="Establishments" />
+          <Typography variant="h2" element="h2" content="Manage Establishments" />
         </Card>
-        <VerticalSpacer>
+      </Section>
+      {!!createEstablishment && (
+        <Section>
           <Card>
             <EstablishmentForm />
           </Card>
-        </VerticalSpacer>
-        <VerticalSpacer>
-          <Card>
-            {!!localContext.loading && <Loader />}
-            {(localContext.default || []).map(hotel => (
-              <HotelCardVariant key={hotel.id} card={hotel} miniCard />
-            ))}
-          </Card>
-        </VerticalSpacer>
-      </Section>
+        </Section>
+      )}
+      {!createEstablishment && <EditableEstablishmentsList />}
     </>
   );
 };

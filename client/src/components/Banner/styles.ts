@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
-import { BackgroundImage } from '../Image';
-import Typography from '../Typography';
+import { BackgroundImage } from '../Image/BackgroundImage';
+import Typography from '../Typography/Typography';
 import createMediaQuery from '../../util/createMediaQuery';
 
 type alignVariant = 'flex-start' | 'center' | 'flex-end';
@@ -19,15 +19,19 @@ export const FlexParent = styled.div<{ isImageRight?: boolean; isMobile: boolean
 export const FlexKid = styled(BackgroundImage)<{ isMobile: boolean }>`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-start;
   width: ${props => (props.isMobile ? '100%' : '50%')};
   flex-grow: 1;
+  min-height: 13.75rem;
+  padding ${props => props.theme.spacing.s}rem 0;
 
   ${createMediaQuery(
     'large',
     css`
+    justify-content: center;
       min-height: 23.75rem;
+      padding ${props => props.theme.spacing.m}rem;
     `,
   )}
 `;

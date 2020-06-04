@@ -2,7 +2,7 @@ import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { Blog } from '../../types/response';
 import { Props } from './BlogList';
-import BlogList from './';
+import BlogList from './BlogList';
 import { mockImageObject, createList } from '../../util/mockHelpers';
 
 const mockBlog: Blog = {

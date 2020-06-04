@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { PlainBanner } from '../../components/Banner';
-import { FlexBanner, BannerGrid } from '../../components/Banner';
+import PlainBanner from '../../components/Banner/PlainBanner';
 import { CAMPAIGN_A } from '../../data/content';
+import FlexBanner from '../../components/Banner/FlexBanner';
+import BannerGrid from '../../components/Banner/BannerGrid';
 
 interface Props {}
 
@@ -33,7 +34,7 @@ export const About: React.FunctionComponent<Props> = () => {
   return (
     <>
       <PlainBanner title="About" isTitleColorRed />
-      <FlexBanner {...mockFlexBannerAboutUsA} isImageRight />
+      <FlexBanner {...mockFlexBannerAboutUsA} />
       <BannerGrid
         banners={[CAMPAIGN_A, CAMPAIGN_A, CAMPAIGN_A, CAMPAIGN_A, CAMPAIGN_A, CAMPAIGN_A]}
       />

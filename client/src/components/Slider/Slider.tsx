@@ -1,15 +1,7 @@
 import * as React from 'react';
 import { arrow } from '../../util/icons';
 import { Image } from '../../types/types';
-import {
-  Slide,
-  SliderNav,
-  SliderButtonWrapper,
-  Dots,
-  Dot,
-  PrevNextButton,
-  StyledSwipeableSliderWrapper,
-} from './styles';
+import { Slide, SliderNav, SliderButtonWrapper, Dots, Dot, PrevNextButton } from './styles';
 
 interface Props {
   defaultIndex?: number;
@@ -52,43 +44,38 @@ export const Slider: React.FunctionComponent<Props> = ({
   }
 
   return (
-    <StyledSwipeableSliderWrapper
-      onSwipedLeft={() => changeIndex(index - 1)}
-      onSwipedRight={() => changeIndex(index + 1)}
-    >
-      <Slide imageUrl={currentSlide.url} role="img" aria-label={currentSlide.alt} large={large}>
-        {slides.length > 0 && (
-          <SliderNav>
-            <SliderButtonWrapper>
-              <PrevNextButton
-                aria-label="Go to previous slide"
-                onClick={e => {
-                  e.preventDefault();
-                  changeIndex(index - 1);
-                }}
-              >
-                {arrow}
-              </PrevNextButton>
-              <PrevNextButton
-                next
-                aria-label="Go to next slide"
-                onClick={e => {
-                  e.preventDefault();
-                  changeIndex(index + 1);
-                }}
-              >
-                {arrow}
-              </PrevNextButton>
-            </SliderButtonWrapper>
-            <Dots>
-              {slides.map((_, k) => (
-                <Dot key={k} active={k === index} />
-              ))}
-            </Dots>
-          </SliderNav>
-        )}
-      </Slide>
-    </StyledSwipeableSliderWrapper>
+    <Slide imageUrl={currentSlide.url} role="img" aria-label={currentSlide.alt} large={large}>
+      {slides.length > 1 && (
+        <SliderNav>
+          <SliderButtonWrapper>
+            <PrevNextButton
+              aria-label="Go to previous slide"
+              onClick={e => {
+                e.preventDefault();
+                changeIndex(index - 1);
+              }}
+            >
+              {arrow}
+            </PrevNextButton>
+            <PrevNextButton
+              next
+              aria-label="Go to next slide"
+              onClick={e => {
+                e.preventDefault();
+                changeIndex(index + 1);
+              }}
+            >
+              {arrow}
+            </PrevNextButton>
+          </SliderButtonWrapper>
+          <Dots>
+            {slides.map((_, k) => (
+              <Dot key={k} active={k === index} />
+            ))}
+          </Dots>
+        </SliderNav>
+      )}
+    </Slide>
   );
 };
 

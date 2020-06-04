@@ -1,29 +1,21 @@
 import * as Yup from 'yup';
 
 const EstablishmentSchema = Yup.object().shape({
-  name: Yup.string().required(),
-  category: Yup.string().required(),
-  descriptions: Yup.string().required(),
-  location: Yup.string().required(),
-  price: Yup.number().required(),
-  services: Yup.array(Yup.string()).required(),
-  //'services[0]': Yup.string().required(),
-  features: Yup.array(Yup.string()).required(),
-  //'features[0]': Yup.string().required(),
-  featuredImages: Yup.array().of(
-    Yup.object()
-      .shape({
-        url: Yup.string().required(),
-        alt: Yup.string(),
-      })
-      .required(),
-  ),
-  // 'featuredImages[0]': Yup.object()
-  //   .shape({
-  //     url: Yup.string().required(),
-  //     alt: Yup.string(),
-  //   })
-  //   .required(),
+  name: Yup.string()
+    .required('Establishment name is required.')
+    .min(3, 'Establishment name is too short.'),
+  category: Yup.string().required('Category is required.'),
+  descriptions: Yup.string()
+    .required('Description is required.')
+    .min(300, 'Description is too short.')
+    .max(1000, 'Description is too long'),
+  location: Yup.string()
+    .required('Location is required')
+    .min(4, 'Invalid location'),
+  price: Yup.number()
+    .required('Price is required')
+    .min(0, 'Invalid price.'),
+  services: Yup.array(Yup.string()),
 });
 
 export default EstablishmentSchema;

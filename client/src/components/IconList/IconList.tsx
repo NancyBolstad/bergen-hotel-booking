@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { VerticalSpacer, HorizontalSpacer, WidthConstraints, Section } from '../Layout';
-import Typography from '../Typography';
+import Typography from '../Typography/Typography';
 import { ContentWrapper, Item, ServiceListWrapper } from './styles';
 import { service, topRated, bestPrice } from '../../util/icons';
 

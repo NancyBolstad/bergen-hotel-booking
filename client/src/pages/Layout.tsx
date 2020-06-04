@@ -2,25 +2,25 @@ import React, { lazy, Suspense } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import ThemeWrapper from '../components/ThemeWrapper/ThemeWrapper';
 import Header from '../components/Header/Header';
-import Footer from '../components/Footer';
+import Footer from '../components/Footer/Footer';
 import Loader from '../components/Loader/Loader';
-import Home from './Home';
-import Favorites from './Favorites/Favorites';
 import ContrastProvider from '../context/ContrastContext';
-import Blog from './Blog/Blog';
-import BlogDetails from './Blog/BlogDetails';
 import PrivateRoute from '../routes/PrivateRoute';
 import DashBoard from './Dashboard/Dashboard';
-import NotFind from './NotFind/NotFind';
 import { Main } from '../components/Layout/Main';
 
+const Home = lazy(() => import('./Home'));
 const Contact = lazy(() => import('./Contact'));
 const Book = lazy(() => import('./Book/Book'));
 const Login = lazy(() => import('./Login/Login'));
-const Success = lazy(() => import('./Success'));
+const Feedback = lazy(() => import('./Feedback/Feedback'));
 const AccommodationDetails = lazy(() => import('./Accommodations/AccommodationDetails'));
 const SearchResults = lazy(() => import('./SearchResults/SearchResults'));
 const About = lazy(() => import('./About/About'));
+const NotFound = lazy(() => import('./NotFound/NotFound'));
+const Favorites = lazy(() => import('./Favorites/Favorites'));
+const Blog = lazy(() => import('./Blog/Blog'));
+const BlogDetails = lazy(() => import('./Blog/BlogDetails'));
 
 interface Props {}
 
@@ -35,6 +35,7 @@ const Layout: React.FunctionComponent<Props> = () => {
               <Switch>
                 <PrivateRoute path="/dashboard/" component={DashBoard} exact />
                 <PrivateRoute path="/dashboard/:slug" component={DashBoard} exact />
+                <PrivateRoute path="/dashboard/:slug/:slug" component={DashBoard} exact />
                 <Route exact path="/login">
                   <Suspense fallback={<Loader />}>
                     <Login />
@@ -57,7 +58,7 @@ const Layout: React.FunctionComponent<Props> = () => {
                 </Route>
                 <Route exact path="/book-success">
                   <Suspense fallback={<Loader />}>
-                    <Success />
+                    <Feedback bookingSuccess />
                   </Suspense>
                 </Route>
                 <Route exact path="/favorites">
@@ -72,7 +73,7 @@ const Layout: React.FunctionComponent<Props> = () => {
                 </Route>
                 <Route exact path="/contact-success">
                   <Suspense fallback={<Loader />}>
-                    <Contact />
+                    <Feedback contactSuccess />
                   </Suspense>
                 </Route>
                 <Route exact path="/accommodation/details/:id">
@@ -105,7 +106,11 @@ const Layout: React.FunctionComponent<Props> = () => {
                     <Home />
                   </Suspense>
                 </Route>
-                <Route component={NotFind} />
+                <Route exact path="/">
+                  <Suspense fallback={<Loader />}>
+                    <NotFound />
+                  </Suspense>
+                </Route>
               </Switch>
             </Main>
             <Footer />

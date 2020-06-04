@@ -53,3 +53,22 @@ export async function createContact(req: Request, res: Response) {
     res.status(500).send(error);
   }
 }
+
+export async function DeleteOneContact(req: Request, res: Response) {
+  try {
+    const requestValue = req.params.id;
+
+    return database
+      .ref('contact')
+      .child(requestValue)
+      .remove()
+      .then(function() {
+        res.status(200).json({
+          code: 200,
+          message: 'Remove succeeded.',
+        });
+      });
+  } catch (error) {
+    res.status(500).send(error);
+  }
+}

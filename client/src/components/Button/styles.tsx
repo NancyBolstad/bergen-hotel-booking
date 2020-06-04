@@ -24,6 +24,12 @@ export const Button = styled.button<ButtonProps>`
     width: 24px;
     height: 24px;
     margin-left: ${props => props.theme.spacing.xs}rem;
+
+    ${props =>
+      props.icon &&
+      css`
+        margin-left: 0rem;
+      `}
   }
   ${props =>
     props.size === 'small' &&
@@ -127,4 +133,23 @@ export const Button = styled.button<ButtonProps>`
         opacity: 0.8;
       }
     `};
+
+  ${props =>
+    props.variant === 'tertiaryVariant' &&
+    css`
+      background-color: transparent;
+      color: ${props => props.theme.colors.onBackground};
+      border: none;
+      &:hover,
+      &:active,
+      &:focus {
+        opacity: 0.8;
+        svg {
+          fill: ${props => props.theme.colors.primary};
+        }
+      }
+      svg {
+        fill: ${props => props.theme.colors.onBackground};
+      }
+    `}
 `;

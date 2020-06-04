@@ -3,18 +3,16 @@ import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 import { StyledInput, StyledLabelWrapper, Form, StyledLabel, ErrorMessage } from '../FormElement';
 import Button from '../Button/Button';
-import Typography from '../Typography/Typography';
 import BookSchema from './book.schema';
 import postData from '../../util/postData';
-import { WidthConstraints, VerticalSpacer, HorizontalSpacer, Section } from '../Layout';
-import { Flex } from '../Flex';
+import { WidthConstraints, VerticalSpacer, HorizontalSpacer, Section, Flex } from '../Layout';
 
 interface Props {
   establishmentId: string;
   establishmentName?: string;
 }
 
-const BookForm: React.FC<Props> = ({ establishmentId, establishmentName }) => {
+const BookForm: React.FC<Props> = ({ establishmentId }) => {
   const { handleSubmit, register, errors } = useForm({
     validationSchema: BookSchema,
   });
@@ -45,16 +43,6 @@ const BookForm: React.FC<Props> = ({ establishmentId, establishmentName }) => {
         <HorizontalSpacer>
           <WidthConstraints size="large">
             <Flex direction="column">
-              <Typography
-                element="h2"
-                variant="h2"
-                content={
-                  establishmentName
-                    ? `Booking your stay at ${establishmentName} `
-                    : `Send in your booking`
-                }
-                textTransform="capitalize"
-              />
               <Form
                 onSubmit={handleSubmit((data: Object) => sendForm(data, 'enquiries'))}
                 noValidate

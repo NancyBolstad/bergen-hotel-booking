@@ -14,11 +14,8 @@ import Enquiries from './Enquiries/Enquiries';
 import Establishments from './Establishments/Establishments';
 import Messages from './Messages/Messages';
 import { UserState } from '../../context/UserContext';
-import Typography from '../../components/Typography';
 
 const BackgroundWrapper = styled(Section)`
-  overflow: auto;
-  min-height: 75vh;
   background-color: ${props => props.theme.colors.backgroundVariant};
 `;
 
@@ -31,6 +28,13 @@ const Sections = styled.div`
     'small',
     css`
       margin: calc(-${props => props.theme.spacing.s}rem / 2);
+    `,
+  )}
+
+  ${createMediaQuery(
+    'large',
+    css`
+      flex-wrap: nowrap;
     `,
   )}
 `;
@@ -49,10 +53,9 @@ const Content = styled.div<{ aside?: boolean }>`
   ${props =>
     props.aside &&
     css`
-      min-width: 312px;
       width: 100%;
       ${createMediaQuery(
-        'small',
+        'large',
         css`
           width: auto;
         `,
@@ -68,6 +71,7 @@ const Content = styled.div<{ aside?: boolean }>`
         'small',
         css`
           flex: 1;
+          max-width: 980px;
         `,
       )}
     `};
@@ -92,20 +96,14 @@ const DashboardLayout: React.FunctionComponent<Props> = ({ user }) => {
       <VerticalSpacer>
         <HorizontalSpacer>
           <WidthConstraints size="large">
-            <Typography
-              variant="h1"
-              element="h1"
-              textTransform="capitalize"
-              content={`Welcome back ${user.name}!`}
-              isPrimaryColor
-            />
             <Sections>
               <Content aside>
                 <Menu />
               </Content>
               <Content>
                 <Route
-                  path="/dashboard/:step"
+                  exact
+                  path="/dashboard/:step?/:slug?"
                   render={({ match }) => {
                     const step = match.params.step as string | undefined;
                     switch (step) {

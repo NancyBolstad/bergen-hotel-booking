@@ -1,9 +1,9 @@
 import * as React from 'react';
-import Typography from '../Typography';
+import Typography from '../Typography/Typography';
 import transformLangText from '../../util/transformLangText';
 import { Card, FeaturedImages, CategoryBadge, ServiceLabel } from './styles';
 import { HotelDetails } from '../../types/response';
-import { Flex } from '../Flex';
+import { Flex } from '../Layout/';
 import { IColors } from '../../types/theme';
 import LikeButton from '../Button/LikeButton';
 import { HorizontalSpacer, VerticalSpacer } from '../Layout';

@@ -3,16 +3,15 @@ import { useParams, useHistory } from 'react-router-dom';
 import useApi from '../../hooks/useApi';
 import Loader from '../../components/Loader/Loader';
 import { HotelDetailsRoot } from '../../types/response';
-import { VerticalSpacer, HorizontalSpacer, WidthConstraints } from '../../components/Layout';
-import Typography from '../../components/Typography';
-import { Flex } from '../../components/Flex';
+import { VerticalSpacer, HorizontalSpacer, WidthConstraints, Flex } from '../../components/Layout';
+import Typography from '../../components/Typography/Typography';
 import { HotelCardsList } from '../../components/HotelCards';
 import { Context } from '../../context/GlobalContext';
 import { ButtonLink } from '../../components/Button/Button';
 import { ServiceLabel } from '../../components/HotelCards/styles';
 import Slider from '../../components/Slider/Slider';
-import { PlainBanner } from '../../components/Banner';
 import LikeButton from '../../components/Button/LikeButton';
+import PlainBanner from '../../components/Banner/PlainBanner';
 
 interface Props {}
 
@@ -69,7 +68,9 @@ export const HotelDetails: React.FunctionComponent<Props> = () => {
                   element="span"
                   content={`From ${results.data.price} kr per day`}
                 />
-                <Typography variant="h3" element="p" content="Services" />
+                {!!results.data.services && (
+                  <Typography variant="h3" element="p" content="Services" />
+                )}
                 <Flex>
                   {(results.data.services || []).map((service, key) => (
                     <ServiceLabel
@@ -81,19 +82,7 @@ export const HotelDetails: React.FunctionComponent<Props> = () => {
                     />
                   ))}
                 </Flex>
-                <Typography variant="h3" element="p" content="Features" />
-                <Flex>
-                  {(results.data.features || []).map((feature, key) => (
-                    <ServiceLabel
-                      key={key}
-                      variant="b3"
-                      element="span"
-                      content={feature}
-                      textTransform="capitalize"
-                    />
-                  ))}
-                </Flex>
-                <Typography variant="h3" element="p" content="Descriptions" />
+                <Typography variant="h3" element="p" content="Description" />
                 <Typography variant="b3" element="p" content={results.data.descriptions} />
                 <Flex direction="row" justify="flex-start" align="center">
                   <ButtonLink

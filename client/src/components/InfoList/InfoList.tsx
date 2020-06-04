@@ -7,7 +7,7 @@ import {
   InfoItemTitleWrapper,
 } from './styles';
 import Typography from '../Typography/Typography';
-import { Flex } from '../Flex';
+import { Flex } from '../Layout';
 
 interface InfoBox {
   title: string;

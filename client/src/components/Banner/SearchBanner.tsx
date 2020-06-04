@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Image as ImageType } from '../../types/types';
 import { WidthConstraints, HorizontalSpacer, Section } from '../Layout';
-import Typography from '../Typography';
+import Typography from '../Typography/Typography';
 import SearchForm from '../SearchForm/SearchForm';
 import useIsMobile from '../../hooks/useIsMobile';
 import { SearchBannerContent, SearchBannerBackground } from './styles';

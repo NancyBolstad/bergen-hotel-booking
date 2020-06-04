@@ -41,7 +41,7 @@ const Card = styled.a<{ extraSpace?: boolean; backgroundColor?: keyof IColors }>
     border: 1px solid ${props => props.theme.colors.secondaryVariant};
     span,
     p {
-      color: ${props => props.theme.colors.dark};
+      color: ${props => props.theme.colors.onBackground};
     }
   }
 
@@ -127,7 +127,7 @@ const CardVariant = styled.a<{
 
     span,
     p {
-      color: ${props => props.theme.colors.dark};
+      color: ${props => props.theme.colors.onBackground};
     }
   }
 

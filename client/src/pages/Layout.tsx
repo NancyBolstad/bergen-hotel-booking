@@ -9,8 +9,8 @@ import PrivateRoute from '../routes/PrivateRoute';
 import DashBoard from './Dashboard/Dashboard';
 import { Main } from '../components/Layout/Main';
 
-const Home = lazy(() => import('./Home'));
-const Contact = lazy(() => import('./Contact'));
+const Home = lazy(() => import('./Home/Home'));
+const Contact = lazy(() => import('./Contact/Contact'));
 const Book = lazy(() => import('./Book/Book'));
 const Login = lazy(() => import('./Login/Login'));
 const Feedback = lazy(() => import('./Feedback/Feedback'));

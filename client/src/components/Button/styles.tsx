@@ -38,7 +38,6 @@ export const Button = styled.button<ButtonProps>`
       ${createFontStyles(props.theme.fonts.b2)};
 
       @media all and (min-width: ${props => props.theme.mediaQueries.small}px) {
-        width: auto;
         padding: ${props => props.theme.spacing.xs}rem 20px;
       }
     `};
@@ -61,19 +60,13 @@ export const Button = styled.button<ButtonProps>`
       color: ${props => props.theme.colors.onPrimary};
       border: 1px solid transparent;
       transition: background-color 0.3s;
-      &:hover,
-      &:active,
-      &:focus {
-        background-color: ${props => props.theme.colors.dark};
-        color: ${props => props.theme.colors.white};
-        border: 1px solid ${props => props.theme.colors.onBackground};
-        svg {
-          fill: ${props => props.theme.colors.white};
-        }
-      }
       svg {
         fill: ${props => props.theme.colors.onPrimary};
       }
+      &:hover,
+      &:active,
+      &:focus {
+        opacity: 0.8;
     `};
   ${props =>
     props.variant === 'secondary' &&
@@ -87,13 +80,7 @@ export const Button = styled.button<ButtonProps>`
       &:hover,
       &:active,
       &:focus {
-        background-color: ${props => props.theme.colors.secondary};
-        border-color: ${props => props.theme.colors.secondary};
-        color: ${props => props.theme.colors.dark};
-
-        svg {
-          fill: ${props => props.theme.colors.dark};
-        }
+        opacity: 0.8;
       }
     `};
   ${props =>

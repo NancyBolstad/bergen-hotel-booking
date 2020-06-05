@@ -9,7 +9,7 @@ export const DashBoard: React.FunctionComponent<Props> = () => {
   const { user } = React.useContext(UserContext);
   return (
     <>
-      <PlainBanner title={`Welcome back ${user.name}!`} />
+      <PlainBanner title="Holidaze Dashboard" />
       <DashboardLayout user={user} />
     </>
   );

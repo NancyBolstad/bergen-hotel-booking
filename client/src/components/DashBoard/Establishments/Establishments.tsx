@@ -1,10 +1,9 @@
 import * as React from 'react';
 import { useLocation } from 'react-router-dom';
-import Card from '../helper-components/Card';
-import Section from '../helper-components/Section';
 import Typography from '../../Typography/Typography';
 import EstablishmentForm from './EstablishmentForm';
 import EditableEstablishmentsList from './EditableEstablishmentsList';
+import { Block } from '../helper-components/Block';
 
 interface Props {}
 
@@ -22,17 +21,13 @@ const Establishments: React.FC<Props> = () => {
 
   return (
     <>
-      <Section>
-        <Card>
-          <Typography variant="h2" element="h2" content="Manage Establishments" />
-        </Card>
-      </Section>
+      <Block>
+        <Typography variant="h2" element="h2" content="Manage Establishments" />
+      </Block>
       {!!createEstablishment && (
-        <Section>
-          <Card>
-            <EstablishmentForm />
-          </Card>
-        </Section>
+        <Block>
+          <EstablishmentForm />
+        </Block>
       )}
       {!createEstablishment && <EditableEstablishmentsList />}
     </>

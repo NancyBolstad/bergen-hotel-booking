@@ -26,4 +26,15 @@ export const StyledInput = styled.input<Partial<React.InputHTMLAttributes<HTMLIn
     border-bottom: 2px solid ${props => props.theme.colors.onBackground};
     outline: none;
   }
+
+  &:disabled {
+    border: none;
+    outline: none;
+    box-shadow: none;
+    color: ${props => setColorOpacity(props.theme.colors.onBackground, '0.8')};
+    ${props => createFontStyles(props.theme.fonts.b3)};
+    background-color: ${props => props.theme.colors.background};
+    margin: 0;
+    margin-left: 1rem;
+  }
 `;

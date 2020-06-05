@@ -6,11 +6,11 @@ import Footer from '../components/Footer/Footer';
 import Loader from '../components/Loader/Loader';
 import ContrastProvider from '../context/ContrastContext';
 import PrivateRoute from '../routes/PrivateRoute';
-import DashBoard from './Dashboard/Dashboard';
 import { Main } from '../components/Layout/Main';
+import { ROUTES } from '../routes/Routes';
 
-const Home = lazy(() => import('./Home'));
-const Contact = lazy(() => import('./Contact'));
+const Home = lazy(() => import('./Home/Home'));
+const Contact = lazy(() => import('./Contact/Contact'));
 const Book = lazy(() => import('./Book/Book'));
 const Login = lazy(() => import('./Login/Login'));
 const Feedback = lazy(() => import('./Feedback/Feedback'));
@@ -21,6 +21,7 @@ const NotFound = lazy(() => import('./NotFound/NotFound'));
 const Favorites = lazy(() => import('./Favorites/Favorites'));
 const Blog = lazy(() => import('./Blog/Blog'));
 const BlogDetails = lazy(() => import('./Blog/BlogDetails'));
+const DashBoard = lazy(() => import('./Dashboard/Dashboard'));
 
 interface Props {}
 
@@ -32,86 +33,36 @@ const Layout: React.FunctionComponent<Props> = () => {
           <>
             <Header />
             <Main>
-              <Switch>
-                <PrivateRoute path="/dashboard/" component={DashBoard} exact />
-                <PrivateRoute path="/dashboard/:slug" component={DashBoard} exact />
-                <PrivateRoute path="/dashboard/:slug/:slug" component={DashBoard} exact />
-                <Route exact path="/login">
-                  <Suspense fallback={<Loader />}>
-                    <Login />
-                  </Suspense>
-                </Route>
-                <Route exact path="/search">
-                  <Suspense fallback={<Loader />}>
-                    <SearchResults />
-                  </Suspense>
-                </Route>
-                <Route exact path="/about">
-                  <Suspense fallback={<Loader />}>
-                    <About />
-                  </Suspense>
-                </Route>
-                <Route exact path="/book/:id">
-                  <Suspense fallback={<Loader />}>
-                    <Book />
-                  </Suspense>
-                </Route>
-                <Route exact path="/book-success">
-                  <Suspense fallback={<Loader />}>
+              <Suspense fallback={<Loader />}>
+                <Switch>
+                  <PrivateRoute path={ROUTES.DASHBOARD} component={DashBoard} exact />
+                  <PrivateRoute path={ROUTES.DASHBOARD_MAIN} component={DashBoard} exact />
+                  <PrivateRoute path={ROUTES.DASHBOARD_SUB} component={DashBoard} exact />
+                  <Route exact path={ROUTES.LOGIN} component={Login} />
+                  <Route exact path={ROUTES.SEARCH} component={SearchResults} />
+                  <Route exact path={ROUTES.ABOUT} component={About} />
+                  <Route exact path={ROUTES.BOOK} component={Book} />
+                  <Route exact path={ROUTES.BOOK_SUCCESS}>
                     <Feedback bookingSuccess />
-                  </Suspense>
-                </Route>
-                <Route exact path="/favorites">
-                  <Suspense fallback={<Loader />}>
-                    <Favorites />
-                  </Suspense>
-                </Route>
-                <Route exact path="/contact">
-                  <Suspense fallback={<Loader />}>
-                    <Contact />
-                  </Suspense>
-                </Route>
-                <Route exact path="/contact-success">
-                  <Suspense fallback={<Loader />}>
+                  </Route>
+                  <Route exact path={ROUTES.FAVORITES} component={Favorites} />
+                  <Route exact path={ROUTES.CONTACT} component={Contact} />
+                  <Route exact path={ROUTES.CONTACT_SUCCESS}>
                     <Feedback contactSuccess />
-                  </Suspense>
-                </Route>
-                <Route exact path="/accommodation/details/:id">
-                  <Suspense fallback={<Loader />}>
-                    <AccommodationDetails />
-                  </Suspense>
-                </Route>
-                <Route exact path="/accommodations">
-                  <Suspense fallback={<Loader />}>
-                    <SearchResults />
-                  </Suspense>
-                </Route>
-                <Route exact path="/blog">
-                  <Suspense fallback={<Loader />}>
-                    <Blog />
-                  </Suspense>
-                </Route>
-                <Route exact path="/blog/:id">
-                  <Suspense fallback={<Loader />}>
-                    <BlogDetails />
-                  </Suspense>
-                </Route>
-                <Route exact path="/blog/page/:number">
-                  <Suspense fallback={<Loader />}>
-                    <Blog />
-                  </Suspense>
-                </Route>
-                <Route exact path="/">
-                  <Suspense fallback={<Loader />}>
-                    <Home />
-                  </Suspense>
-                </Route>
-                <Route exact path="/">
-                  <Suspense fallback={<Loader />}>
-                    <NotFound />
-                  </Suspense>
-                </Route>
-              </Switch>
+                  </Route>
+                  <Route
+                    exact
+                    path={ROUTES.ACCOMMODATION_DETAILS}
+                    component={AccommodationDetails}
+                  />
+                  <Route exact path={ROUTES.ACCOMMODATIONS} component={SearchResults} />
+                  <Route exact path={ROUTES.BLOG} component={Blog} />
+                  <Route exact path={ROUTES.BLOG_DETAILS} component={BlogDetails} />
+                  <Route exact path={ROUTES.BLOG_PAGINATION} component={Blog} />
+                  <Route exact path={ROUTES.INDEX} component={Home} />
+                  <Route path={ROUTES.INDEX} component={NotFound} />
+                </Switch>
+              </Suspense>
             </Main>
             <Footer />
           </>

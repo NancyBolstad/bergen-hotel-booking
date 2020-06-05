@@ -1,8 +1,10 @@
 import * as React from 'react';
 import PlainBanner from '../../components/Banner/PlainBanner';
-import { CAMPAIGN_A } from '../../data/content';
 import FlexBanner from '../../components/Banner/FlexBanner';
-import BannerGrid from '../../components/Banner/BannerGrid';
+import useApi from '../../hooks/useApi';
+import { BlogList as BlogListTypes } from '../../types/response';
+import BlogList from '../../components/Blog/BlogList';
+import Loader from '../../components/Loader/Loader';
 
 interface Props {}
 
@@ -31,17 +33,22 @@ const mockFlexBannerAboutUsB = {
 };
 
 export const About: React.FunctionComponent<Props> = () => {
+  const { results, loading } = useApi<BlogListTypes>({
+    endpoint: `${process.env.REACT_APP_API_URL}blog`,
+    fetchOnMount: true,
+    initialData: {
+      code: 0,
+      data: [],
+    },
+  });
+
   return (
     <>
       <PlainBanner title="About" isTitleColorRed />
       <FlexBanner {...mockFlexBannerAboutUsA} />
-      <BannerGrid
-        banners={[CAMPAIGN_A, CAMPAIGN_A, CAMPAIGN_A, CAMPAIGN_A, CAMPAIGN_A, CAMPAIGN_A]}
-      />
+      {loading ? <Loader /> : <BlogList list={results.data.reverse().slice(0, 3)} />}
       <FlexBanner {...mockFlexBannerAboutUsB} isImageRight />
-      <BannerGrid
-        banners={[CAMPAIGN_A, CAMPAIGN_A, CAMPAIGN_A, CAMPAIGN_A, CAMPAIGN_A, CAMPAIGN_A]}
-      />
+      {loading ? <Loader /> : <BlogList list={results.data.reverse().slice(10, 13)} />}
     </>
   );
 };

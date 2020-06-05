@@ -26,7 +26,7 @@ export const Footer: React.FC<Props> = () => {
                   {Instagram}
                 </FooterLink>
               </FooterLinksWrapper>
-              <Typography variant="h6" element="h6" content={COPY_RIGHTS} color="white" />
+              <Typography variant="h6" element="span" content={COPY_RIGHTS} color="white" />
             </Flex>
           </WidthConstraints>
         </HorizontalSpacer>

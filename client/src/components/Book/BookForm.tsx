@@ -6,6 +6,7 @@ import Button from '../Button/Button';
 import BookSchema from './book.schema';
 import postData from '../../util/postData';
 import { WidthConstraints, VerticalSpacer, HorizontalSpacer, Section, Flex } from '../Layout';
+import Busy from '../Loader/Busy';
 
 interface Props {
   establishmentId: string;
@@ -42,64 +43,66 @@ const BookForm: React.FC<Props> = ({ establishmentId }) => {
       <VerticalSpacer>
         <HorizontalSpacer>
           <WidthConstraints size="large">
-            <Flex direction="column">
-              <Form
-                onSubmit={handleSubmit((data: Object) => sendForm(data, 'enquiries'))}
-                noValidate
-              >
-                <StyledLabel>
-                  <StyledLabelWrapper>
-                    Name <span>*</span>
-                  </StyledLabelWrapper>
-                  <StyledInput
-                    type="text"
-                    name="name"
-                    placeholder="Your name"
-                    ref={register}
-                    required
-                  />
-                </StyledLabel>
-                {/* 
+            <Busy busy={posting}>
+              <Flex direction="column">
+                <Form
+                  onSubmit={handleSubmit((data: Object) => sendForm(data, 'enquiries'))}
+                  noValidate
+                >
+                  <StyledLabel>
+                    <StyledLabelWrapper>
+                      Name <span>*</span>
+                    </StyledLabelWrapper>
+                    <StyledInput
+                      type="text"
+                      name="name"
+                      placeholder="Your name"
+                      ref={register}
+                      required
+                    />
+                  </StyledLabel>
+                  {/* 
       // @ts-ignore */
-                errors.name && <ErrorMessage>{errors.name.message}</ErrorMessage>}
-                <StyledLabel>
-                  <StyledLabelWrapper>
-                    Email <span>*</span>
-                  </StyledLabelWrapper>
-                  <StyledInput
-                    type="email"
-                    name="email"
-                    placeholder="Your email"
-                    ref={register}
-                    required
-                  />
-                </StyledLabel>
-                {/* 
+                  errors.name && <ErrorMessage>{errors.name.message}</ErrorMessage>}
+                  <StyledLabel>
+                    <StyledLabelWrapper>
+                      Email <span>*</span>
+                    </StyledLabelWrapper>
+                    <StyledInput
+                      type="email"
+                      name="email"
+                      placeholder="Your email"
+                      ref={register}
+                      required
+                    />
+                  </StyledLabel>
+                  {/* 
       // @ts-ignore */
-                errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
-                <StyledLabel>
-                  <StyledLabelWrapper>
-                    Check-in Date <span>*</span>
-                  </StyledLabelWrapper>
-                  <StyledInput type="date" name="checkIn" ref={register} required />
-                </StyledLabel>
-                {/* 
+                  errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
+                  <StyledLabel>
+                    <StyledLabelWrapper>
+                      Check-in Date <span>*</span>
+                    </StyledLabelWrapper>
+                    <StyledInput type="date" name="checkIn" ref={register} required />
+                  </StyledLabel>
+                  {/* 
       // @ts-ignore */
-                errors.checkIn && <ErrorMessage>{errors.checkIn.message}</ErrorMessage>}
-                <StyledLabel>
-                  <StyledLabelWrapper>
-                    Check-out Date <span>*</span>
-                  </StyledLabelWrapper>
-                  <StyledInput type="date" name="checkOut" ref={register} required />
-                </StyledLabel>
-                {/* 
+                  errors.checkIn && <ErrorMessage>{errors.checkIn.message}</ErrorMessage>}
+                  <StyledLabel>
+                    <StyledLabelWrapper>
+                      Check-out Date <span>*</span>
+                    </StyledLabelWrapper>
+                    <StyledInput type="date" name="checkOut" ref={register} required />
+                  </StyledLabel>
+                  {/* 
       // @ts-ignore */
-                errors.checkOut && <ErrorMessage>{errors.checkOut.message}</ErrorMessage>}
-                <Button size="large" variant="primary" type="submit">
-                  {posting ? 'Sending ...' : 'Send'}
-                </Button>
-              </Form>
-            </Flex>
+                  errors.checkOut && <ErrorMessage>{errors.checkOut.message}</ErrorMessage>}
+                  <Button size="large" variant="primary" type="submit">
+                    {posting ? 'Sending ...' : 'Send'}
+                  </Button>
+                </Form>
+              </Flex>
+            </Busy>
           </WidthConstraints>
         </HorizontalSpacer>
       </VerticalSpacer>

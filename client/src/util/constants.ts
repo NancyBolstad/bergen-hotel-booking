@@ -1,4 +1,5 @@
 import { Image } from '../types/response';
+import { InfoListProps } from '../components/InfoList/InfoList';
 
 export const APP_NAME: string = 'Holidaze Bergen';
 
@@ -101,3 +102,22 @@ export const ESTABLISHMENTS_GALLERY: Image[] = [
     alt: 'Foo 12',
   },
 ];
+
+export const INFO_LIST: InfoListProps = {
+  list: [
+    {
+      title: 'Lorem ipsum dolor',
+      content:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet.',
+    },
+    {
+      title: 'Ac sapien rutrum',
+      content:
+        'Pellentesque ac sapien ac felis accumsan rutrum. Pellentesque ac sapien ac felis accumsan rutrum.',
+    },
+    {
+      title: 'Pellentesque ac sapien',
+      content: 'Pellentesque ac sapien ac felis accumsan rutrum. Lorem ipsum dolor sit amet.',
+    },
+  ],
+};

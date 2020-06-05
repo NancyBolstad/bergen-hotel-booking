@@ -2,6 +2,8 @@ import * as React from 'react';
 import Typography from '../../Typography/Typography';
 import { UserContext } from '../../../context/UserContext';
 import { Block } from '../helper-components/Block';
+import { InfoList } from '../../InfoList/InfoList';
+import { INFO_LIST } from '../../../util/constants';
 
 interface Props {}
 
@@ -10,7 +12,14 @@ const Account: React.FC<Props> = () => {
   return (
     <>
       <Block>
-        {!!user.name && <Typography variant="h2" element="h2" content={user.name} />}
+        {!!user.name && (
+          <Typography
+            variant="h2"
+            element="h2"
+            content={`Welcome back ${user.name}!`}
+            textTransform="capitalize"
+          />
+        )}
         {!!user.email && <Typography variant="h5" element="h3" content={user.email} />}
       </Block>
     </>

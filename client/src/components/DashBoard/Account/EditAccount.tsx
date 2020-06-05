@@ -7,7 +7,6 @@ import Busy from '../../Loader/Busy';
 import { Form, StyledLabel, StyledInput, ErrorMessage } from '../../FormElement';
 import { Button } from '../../Button/styles';
 import AccountSchema from './account.schema';
-import { Flex } from '../../Layout';
 import { cross, edit } from '../../../util/icons';
 import useIsMobile from '../../../hooks/useIsMobile';
 

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Route, useLocation, useHistory } from 'react-router-dom';
-import { WidthConstraints, VerticalSpacer, HorizontalSpacer } from '../../components/Layout';
+import { WidthConstraints, HorizontalSpacer } from '../../components/Layout';
 import Menu from './helper-components/Menu';
 import Account from './Account/Account';
 import Enquiries from './Enquiries/Enquiries';

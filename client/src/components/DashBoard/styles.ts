@@ -27,13 +27,13 @@ export const DashboardSections = styled.div`
 `;
 
 export const Content = styled.div<{ aside?: boolean }>`
-  margin: ${props => props.theme.spacing.xs}rem 0;
+  margin: ${props => props.theme.spacing.s}rem 0;
+  height: 100%;
 
   ${createMediaQuery(
     'small',
     css`
       padding: ${props => props.theme.spacing.xs}rem;
-      margin: 0;
     `,
   )}
 

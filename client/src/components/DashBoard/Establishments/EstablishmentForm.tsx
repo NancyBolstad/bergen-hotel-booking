@@ -23,15 +23,13 @@ import { Image } from '../../../types/response';
 import { ClickableBackgroundImage } from '../../Image/BackgroundImage';
 import { cross, solidArrow } from '../../../util/icons';
 import { SelectLabel, StyledSelectInput, Arrow } from '../../FormElement/StyledSelect';
-import {
-  CATEGORIES,
-  SERVICES,
-  PLACEHOLDER_IMAGE,
-  ESTABLISHMENTS_GALLERY,
-} from '../../../util/constants';
+import { CATEGORIES, SERVICES, PLACEHOLDER_IMAGE, UNSPLASH_API } from '../../../util/constants';
 import useIsTablet from '../../../hooks/useIsTablet';
 import { StyledCheckboxWrapper } from '../../FormElement/StyledCheckbox';
 import Busy from '../../Loader/Busy';
+import useApi from '../../../hooks/useApi';
+import { Root } from '../../../types/unsplash';
+import Loader from '../../Loader/Loader';
 
 interface Props {}
 
@@ -42,6 +40,30 @@ const EstablishmentForm: React.FC<Props> = () => {
   const isTablet = useIsTablet();
   const [selectedImages, setSelectedImages] = React.useState<Image[]>([]);
   const [selectedIndex, setSelectedIndex] = React.useState<number[]>([]);
+  const { results, loading } = useApi<Root[]>({
+    endpoint: UNSPLASH_API,
+    fetchOnMount: true,
+    initialData: [
+      {
+        id: '',
+        created_at: '',
+        updated_at: '',
+        promoted_at: '',
+        width: 0,
+        height: 0,
+        color: '',
+        description: '',
+        alt_description: '',
+        urls: {
+          raw: '',
+          full: '',
+          regular: '',
+          small: '',
+          thumb: '',
+        },
+      },
+    ],
+  });
 
   const [posting, setPosting] = React.useState<boolean>(false);
 
@@ -191,41 +213,52 @@ const EstablishmentForm: React.FC<Props> = () => {
                 errors.services && <ErrorMessage>{errors.services.message}</ErrorMessage>}
                 <StyledLabel>
                   <StyledLabelWrapper>Select some images for the establishment</StyledLabelWrapper>
-                  <VerticalSpacer topSpace="s">
-                    <Flex direction="row" justify="space-between" maxHeight="480px">
-                      {ESTABLISHMENTS_GALLERY.map((image, index) => {
-                        return (
-                          <ClickableBackgroundImage
-                            isSelectable
-                            customWidth={isTablet ? '75vw' : '12.25rem'}
-                            customHeight="12.25rem"
-                            selected={selectedIndex.includes(index)}
-                            imageUrl={image.url}
-                            key={index}
-                            onClick={e => {
-                              e.preventDefault();
-                              console.log(image.alt);
-                              if (selectedIndex.includes(index)) {
-                                setSelectedIndex(
-                                  selectedIndex.filter(s => {
-                                    return s !== index;
-                                  }),
-                                );
-                                setSelectedImages(
-                                  selectedImages.filter(s => {
-                                    return s !== image;
-                                  }),
-                                );
-                              } else {
-                                setSelectedIndex([...selectedIndex, index]);
-                                setSelectedImages([...selectedImages, image]);
-                              }
-                            }}
-                          />
-                        );
-                      })}
-                    </Flex>
-                  </VerticalSpacer>
+                  {loading ? (
+                    <Loader />
+                  ) : (
+                    <VerticalSpacer topSpace="s">
+                      <Flex direction="row" justify="space-between" maxHeight="480px">
+                        {results.map((image, index) => {
+                          return (
+                            <ClickableBackgroundImage
+                              isSelectable
+                              customWidth={isTablet ? '75vw' : '12.25rem'}
+                              customHeight="12.25rem"
+                              selected={selectedIndex.includes(index)}
+                              imageUrl={image.urls.small}
+                              key={index}
+                              onClick={e => {
+                                e.preventDefault();
+                                if (selectedIndex.includes(index)) {
+                                  setSelectedIndex(
+                                    selectedIndex.filter(s => {
+                                      return s !== index;
+                                    }),
+                                  );
+                                  setSelectedImages(
+                                    selectedImages.filter(s => {
+                                      return (
+                                        s.url !== image.urls.full && s.alt !== image.alt_description
+                                      );
+                                    }),
+                                  );
+                                } else {
+                                  setSelectedIndex([...selectedIndex, index]);
+                                  setSelectedImages([
+                                    ...selectedImages,
+                                    {
+                                      url: image.urls.regular,
+                                      alt: image.alt_description,
+                                    },
+                                  ]);
+                                }
+                              }}
+                            />
+                          );
+                        })}
+                      </Flex>
+                    </VerticalSpacer>
+                  )}
                 </StyledLabel>
                 <Button size="large" variant="primary" type="submit">
                   {posting ? 'Creating ...' : 'Create'}

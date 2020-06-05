@@ -8,7 +8,7 @@ import HotelCardVariant from '../../HotelCards/HotelCardVariant';
 import { ButtonLink } from '../../Button/Button';
 import useDeleteRequest from '../../../hooks/useDeleteRequest';
 import { API_ENDPOINT } from '../../../util/constants';
-import { trash } from '../../../util/icons';
+import { trash, plus } from '../../../util/icons';
 import useApi from '../../../hooks/useApi';
 import Loader from '../../Loader/Loader';
 import { Context } from '../../../context/GlobalContext';
@@ -55,7 +55,7 @@ const EditableEstablishmentsList: React.FC<Props> = () => {
       <Section>
         <Card>
           <VerticalSpacer topSpaceDesktop="m" bottomSpaceDesktop="m">
-            <Flex direction="row" align="center" justify="space-between">
+            <Flex direction="row" align="center">
               <FlexKid>
                 <ButtonLink
                   variant="primary"
@@ -65,7 +65,7 @@ const EditableEstablishmentsList: React.FC<Props> = () => {
                     history.push('/dashboard/establishments/new');
                   }}
                 >
-                  New
+                  Add New Establishment {plus}
                 </ButtonLink>
               </FlexKid>
             </Flex>

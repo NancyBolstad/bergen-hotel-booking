@@ -2,11 +2,14 @@ import * as React from 'react';
 import Typography from '../../Typography/Typography';
 import { UserContext } from '../../../context/UserContext';
 import { Block } from '../helper-components/Block';
+import getTimeOfDay from '../../../util/getTimeOfDay';
+import EditAccount from './EditAccount';
 
 interface Props {}
 
 const Account: React.FC<Props> = () => {
   const { user } = React.useContext(UserContext);
+
   return (
     <>
       <Block>
@@ -14,12 +17,12 @@ const Account: React.FC<Props> = () => {
           <Typography
             variant="h2"
             element="h2"
-            content={`Welcome back ${user.name}!`}
+            content={`Good ${getTimeOfDay()} ${user.name}!`}
             textTransform="capitalize"
           />
         )}
-        {!!user.email && <Typography variant="h5" element="h3" content={user.email} />}
       </Block>
+      <EditAccount />
     </>
   );
 };

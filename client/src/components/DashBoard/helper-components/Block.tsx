@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components';
 import createMediaQuery from '../../../util/createMediaQuery';
 import Button from '../../Button/Button';
 import createFontStyles from '../../../util/createFontStyles';
+import { Flex } from '../../Layout';
 
 export const Block = styled.div`
   width: 100%;
@@ -12,6 +13,7 @@ export const Block = styled.div`
   background-color: ${props => props.theme.colors.background};
   border: 2px solid ${props => props.theme.colors.white};
   border-radius: 4px;
+  position: relative;
   &:not(:last-child) {
     margin-bottom: ${props => props.theme.spacing.xs}rem;
   }
@@ -22,6 +24,10 @@ export const Block = styled.div`
       padding: ${props => props.theme.spacing.m}rem ${props => props.theme.spacing.s}rem;
     `,
   )};
+
+  form {
+    padding: none;
+  }
 `;
 
 export const EditableWrapper = styled.div`
@@ -91,4 +97,10 @@ export const ExpandButton = styled.a<{ expanded?: boolean }>`
         transform: rotate(180deg);
       `}
   }
+`;
+
+export const EditingButtonGroup = styled(Flex)`
+  position: absolute;
+  top: 0;
+  right: 0;
 `;

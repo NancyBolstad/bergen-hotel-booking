@@ -1,7 +1,9 @@
+//Auto transformation from Json to TypeScript: https://transform.tools/json-to-typescript
+
 type HotelCategories =
   | 'hotel'
   | 'bed and breakfast'
-  | 'hostels'
+  | 'hostel'
   | 'tourist residence'
   | 'furnished apartment';
 type HotelServices =

@@ -86,13 +86,7 @@ export const SearchSubmitButton = styled.button<{ isMobile?: boolean }>`
   &:hover,
   &:active,
   &:focus {
-    background-color: ${props => props.theme.colors.dark};
-    color: ${props => props.theme.colors.white};
-    border: 2px solid ${props => props.theme.colors.onBackground};
-
-    svg {
-      fill: ${props => props.theme.colors.white};
-    }
+    opacity: 0.8;
   }
 `;
 

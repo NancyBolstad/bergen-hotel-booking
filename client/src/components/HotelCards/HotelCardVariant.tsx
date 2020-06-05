@@ -41,7 +41,7 @@ const HotelCardVariant: React.FunctionComponent<Props> = ({
       busy={busy}
       removed={removed}
     >
-      {!!card.category && (
+      {!!card.category && !dropdown && (
         <CategoryBadge
           element="span"
           variant="b2"
@@ -57,12 +57,21 @@ const HotelCardVariant: React.FunctionComponent<Props> = ({
       )}
       <CardVariantRight>
         {!miniCard && <LikeButton card={card} />}
+        {!!dropdown && !!card.category && (
+          <Typography
+            element="span"
+            variant={miniCard ? 'b1' : 'h2'}
+            content={card.category}
+            textTransform="capitalize"
+          />
+        )}
         {!!card.name && (
           <Typography
             element="h3"
             variant={miniCard ? 'b2' : 'h2'}
             content={card.name}
             textTransform="capitalize"
+            isPrimaryColor={dropdown}
           />
         )}
         {!!card.location && (

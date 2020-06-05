@@ -1,6 +1,5 @@
 import * as React from 'react';
-import Card, { MessageCard, MessageCardHeading, DeleteButton } from '../helper-components/Card';
-import Section from '../helper-components/Section';
+import { MessageCard, ExpandButton, DeleteButton, Block } from '../helper-components/Block';
 import Typography from '../../Typography/Typography';
 import useApi from '../../../hooks/useApi';
 import { ContactResponse, Contact } from '../../../types/response';
@@ -49,102 +48,94 @@ const Messages: React.FC<Props> = () => {
 
   return (
     <>
-      <Section>
-        <Card>
-          <Typography variant="h2" element="h2" content="Messages" />
-        </Card>
-      </Section>
+      <Block>
+        <Typography variant="h2" element="h2" content="Messages" />
+      </Block>
       {loading && (
-        <Section>
-          <Card>
-            <Loader />
-          </Card>
-        </Section>
+        <Block>
+          <Loader />
+        </Block>
       )}
       {messagesList.length === 0 ? (
-        <Section>
-          <Card>
-            <Typography variant="h2" element="h2" content="There are no messages for the moment." />
-          </Card>
-        </Section>
+        <Block>
+          <Typography variant="h2" element="h2" content="There are no messages for the moment." />
+        </Block>
       ) : (
         <>
-          <Section>
-            {(messagesList || []).map(item => {
-              return (
-                <MessageCard
-                  key={item.id}
+          {(messagesList || []).map(item => {
+            return (
+              <MessageCard
+                key={item.id}
+                removed={removed && item.id === removedItemId}
+                busy={deleting && item.id === removedItemId}
+              >
+                <DeleteButton
+                  variant="tertiaryVariant"
+                  size="small"
                   removed={removed && item.id === removedItemId}
-                  busy={deleting && item.id === removedItemId}
+                  icon
+                  aria-label="Delete establishment"
+                  onClick={e => {
+                    e.preventDefault();
+                    action(item.id);
+                  }}
                 >
-                  <DeleteButton
-                    variant="tertiaryVariant"
-                    size="small"
-                    removed={removed && item.id === removedItemId}
-                    icon
-                    aria-label="Delete establishment"
-                    onClick={e => {
-                      e.preventDefault();
-                      action(item.id);
-                    }}
-                  >
-                    {trash}
-                  </DeleteButton>
-                  {!!item.createdAt && (
-                    <Typography
-                      variant="b1"
-                      element="span"
-                      content={`${new Date(item.createdAt).toDateString()}`}
-                      bottom={8}
-                    />
-                  )}
-                  <Typography
-                    variant="h2"
-                    element="span"
-                    content={item.clientName ? item.clientName : 'Anonym'}
-                    bottom={16}
-                    bottomDesktop={24}
-                  />
-                  {!!item.email && (
-                    <Typography variant="b1" element="span" content={`Email: ${item.email}`} />
-                  )}
+                  {trash}
+                </DeleteButton>
+                {!!item.createdAt && (
                   <Typography
                     variant="b1"
-                    element="p"
-                    content={
-                      expanded
-                        ? item.message
-                        : item.message.length > 100
-                        ? transformLangText(item.message, 100)
-                        : item.message
-                    }
+                    element="span"
+                    content={`${new Date(item.createdAt).toDateString()}`}
                     bottom={8}
                   />
-                  {item.message.length > 100 && (
-                    <MessageCardHeading
-                      expanded={expanded === item.id}
-                      href="#"
-                      aria-label={`${expanded ? 'Read less' : 'Read more'} ${transformLangText(
-                        item.message,
-                        120,
-                      )}`}
-                      onClick={e => {
-                        e.preventDefault();
-                        if (expanded) {
-                          setIsExpanded('');
-                        } else {
-                          setIsExpanded(item.id);
-                        }
-                      }}
-                    >
-                      {expanded === item.id ? 'Read Less' : 'Read More'}
-                      {arrow}
-                    </MessageCardHeading>
-                  )}
-                </MessageCard>
-              );
-            })}
-          </Section>
+                )}
+                <Typography
+                  variant="h2"
+                  element="span"
+                  content={item.clientName ? item.clientName : 'Anonym'}
+                  bottom={16}
+                  bottomDesktop={24}
+                />
+                {!!item.email && (
+                  <Typography variant="b1" element="span" content={`Email: ${item.email}`} />
+                )}
+                <Typography
+                  variant="b1"
+                  element="p"
+                  content={
+                    expanded
+                      ? item.message
+                      : item.message.length > 100
+                      ? transformLangText(item.message, 100)
+                      : item.message
+                  }
+                  bottom={8}
+                />
+                {item.message.length > 100 && (
+                  <ExpandButton
+                    expanded={expanded === item.id}
+                    href="#"
+                    aria-label={`${expanded ? 'Read less' : 'Read more'} ${transformLangText(
+                      item.message,
+                      120,
+                    )}`}
+                    onClick={e => {
+                      e.preventDefault();
+                      if (expanded) {
+                        setIsExpanded('');
+                      } else {
+                        setIsExpanded(item.id);
+                      }
+                    }}
+                  >
+                    {expanded === item.id ? 'Read Less' : 'Read More'}
+                    {arrow}
+                  </ExpandButton>
+                )}
+              </MessageCard>
+            );
+          })}
         </>
       )}
     </>

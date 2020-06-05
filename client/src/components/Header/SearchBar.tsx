@@ -45,6 +45,7 @@ const SearchBar: React.FunctionComponent<Props> = ({ toggler, isActive }) => {
             event.preventDefault();
             setSearchValue(event.target.value);
           }}
+          autoFocus
         />
       </Form>
       <CloseSearchButton

@@ -12,8 +12,8 @@ export const CardsList = styled.div`
     flex-wrap: wrap;
     &::after {
       content: '';
-      justify-content: flex-start;
-      width: calc(50% - ${props => props.theme.spacing.m / 2}rem);
+      justify-content: center;
+      width: calc(25% - ${props => props.theme.spacing.m / 2}rem);
     }
 
     @media screen and (min-width: 1280px) {

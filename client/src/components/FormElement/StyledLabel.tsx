@@ -10,7 +10,7 @@ export const StyledLabelWrapper = styled.div`
   }
 `;
 
-export const StyledLabel = styled.label<{ isCheckbox?: boolean }>`
+export const StyledLabel = styled.label<{ isCheckbox?: boolean; isSameLine?: boolean }>`
   ${props => createFontStyles(props.theme.fonts.b2)};
   display: flex;
   flex-direction: column;
@@ -34,6 +34,19 @@ export const StyledLabel = styled.label<{ isCheckbox?: boolean }>`
       }
       p {
         margin: 0;
+      }
+    `}
+
+  ${props =>
+    props.isSameLine &&
+    css`
+      flex-direction: row;
+      align-items: center;
+      input {
+        margin-left: ${props => props.theme.spacing.s}rem;
+      }
+      span {
+        min-width: 40px;
       }
     `}
 `;

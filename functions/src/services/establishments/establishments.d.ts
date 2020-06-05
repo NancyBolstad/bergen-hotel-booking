@@ -7,7 +7,7 @@ interface Image {
 type HotelCategories =
   | 'hotel'
   | 'bed and breakfast'
-  | 'hostels'
+  | 'hostel'
   | 'tourist residence'
   | 'furnished apartment';
 type HotelServices =

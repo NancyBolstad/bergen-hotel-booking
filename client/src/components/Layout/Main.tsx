@@ -7,7 +7,7 @@ export const StyledMain = styled.main<{ isDashboard?: boolean }>`
   height: 100%;
   min-height: 75vh;
   background-color: ${props =>
-    props.isDashboard ? props.theme.colors.secondaryVariant : props.theme.colors.background};
+    props.isDashboard ? props.theme.colors.backgroundVariant : props.theme.colors.background};
 `;
 
 export const Main: React.FunctionComponent = ({ children }) => {

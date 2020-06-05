@@ -91,7 +91,7 @@ const ContactForm: React.FC<Props> = () => {
                   {/* 
       // @ts-ignore */
                   errors.message && <ErrorMessage>{errors.message.message}</ErrorMessage>}
-                  <Button size="large" variant="primary" type="submit">
+                  <Button size="large" variant="primary" type="submit" aria-label="Submit form">
                     {posting ? 'Sending ...' : 'Send'}
                   </Button>
                 </Form>

@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { useHistory } from 'react-router-dom';
-import Card, { DeleteButton, EditableWrapper } from '../helper-components/Card';
-import Section from '../helper-components/Section';
+import { DeleteButton, EditableWrapper, Block } from '../helper-components/Block';
 import { HotelDetails, Root } from '../../../types/response';
 import { Flex, FlexKid, VerticalSpacer } from '../../Layout';
 import HotelCardVariant from '../../HotelCards/HotelCardVariant';
@@ -52,59 +51,57 @@ const EditableEstablishmentsList: React.FC<Props> = () => {
 
   return (
     <>
-      <Section>
-        <Card>
-          <VerticalSpacer topSpaceDesktop="m" bottomSpaceDesktop="m">
-            <Flex direction="row" align="center">
-              <FlexKid>
-                <ButtonLink
-                  variant="primary"
-                  size="small"
-                  onClick={e => {
-                    e.preventDefault();
-                    history.push('/dashboard/establishments/new');
-                  }}
-                >
-                  Add New Establishment {plus}
-                </ButtonLink>
-              </FlexKid>
-            </Flex>
-          </VerticalSpacer>
-          {loading ? (
-            <Loader />
-          ) : (
-            <>
-              {!!establishmentsList && (
-                <VerticalSpacer topSpaceDesktop="l">
-                  {establishmentsList.map(establishment => (
-                    <EditableWrapper key={establishment.id}>
-                      <DeleteButton
-                        variant="tertiaryVariant"
-                        size="small"
-                        icon
-                        removed={removed && establishment.id === removedItemId}
-                        aria-label="Delete establishment"
-                        onClick={e => {
-                          e.preventDefault();
-                          action(establishment.id);
-                        }}
-                      >
-                        {trash}
-                      </DeleteButton>
-                      <HotelCardVariant
-                        miniCard
-                        card={establishment}
-                        busy={deleting && establishment.id === removedItemId}
-                        removed={removed && establishment.id === removedItemId}
-                      />
-                    </EditableWrapper>
-                  ))}
-                </VerticalSpacer>
-              )}
-            </>
-          )}
-        </Card>
-      </Section>
+      <Block>
+        <VerticalSpacer topSpaceDesktop="m" bottomSpaceDesktop="m">
+          <Flex direction="row" align="center">
+            <FlexKid>
+              <ButtonLink
+                variant="primary"
+                size="small"
+                onClick={e => {
+                  e.preventDefault();
+                  history.push('/dashboard/establishments/new');
+                }}
+              >
+                Add New Establishment {plus}
+              </ButtonLink>
+            </FlexKid>
+          </Flex>
+        </VerticalSpacer>
+        {loading ? (
+          <Loader />
+        ) : (
+          <>
+            {!!establishmentsList && (
+              <VerticalSpacer topSpaceDesktop="l">
+                {establishmentsList.map(establishment => (
+                  <EditableWrapper key={establishment.id}>
+                    <DeleteButton
+                      variant="tertiaryVariant"
+                      size="small"
+                      icon
+                      removed={removed && establishment.id === removedItemId}
+                      aria-label="Delete establishment"
+                      onClick={e => {
+                        e.preventDefault();
+                        action(establishment.id);
+                      }}
+                    >
+                      {trash}
+                    </DeleteButton>
+                    <HotelCardVariant
+                      miniCard
+                      card={establishment}
+                      busy={deleting && establishment.id === removedItemId}
+                      removed={removed && establishment.id === removedItemId}
+                    />
+                  </EditableWrapper>
+                ))}
+              </VerticalSpacer>
+            )}
+          </>
+        )}
+      </Block>
     </>
   );
 };

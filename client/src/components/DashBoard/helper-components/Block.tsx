@@ -3,7 +3,7 @@ import createMediaQuery from '../../../util/createMediaQuery';
 import Button from '../../Button/Button';
 import createFontStyles from '../../../util/createFontStyles';
 
-export const Card = styled.div`
+export const Block = styled.div`
   width: 100%;
   max-width: 1280px;
   overflow: auto;
@@ -12,6 +12,9 @@ export const Card = styled.div`
   background-color: ${props => props.theme.colors.background};
   border: 2px solid ${props => props.theme.colors.white};
   border-radius: 4px;
+  &:not(:last-child) {
+    margin-bottom: ${props => props.theme.spacing.xs}rem;
+  }
 
   ${createMediaQuery(
     'small',
@@ -39,7 +42,7 @@ export const DeleteButton = styled(Button)<{ removed?: boolean }>`
       `};
 `;
 
-export const MessageCard = styled(Card)<{ removed?: boolean; busy?: boolean }>`
+export const MessageCard = styled(Block)<{ removed?: boolean; busy?: boolean }>`
   display: flex;
   max-width: 1280px;
   flex-direction: column;
@@ -89,5 +92,3 @@ export const MessageCardHeading = styled.a<{ expanded?: boolean }>`
       `}
   }
 `;
-
-export default Card;

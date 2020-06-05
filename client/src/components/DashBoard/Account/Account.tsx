@@ -2,8 +2,6 @@ import * as React from 'react';
 import Typography from '../../Typography/Typography';
 import { UserContext } from '../../../context/UserContext';
 import { Block } from '../helper-components/Block';
-import { InfoList } from '../../InfoList/InfoList';
-import { INFO_LIST } from '../../../util/constants';
 
 interface Props {}
 

@@ -29,7 +29,7 @@ export const Home: React.FunctionComponent<Props> = () => {
         <Loader />
       ) : (
         <HotelCardsList
-          sectionTitle="Most popular hotels"
+          sectionTitle="Most popular accommodations"
           ctaText="Explore more"
           ctaUrl="/accommodations"
           list={localContext.default.slice(0, 8)}

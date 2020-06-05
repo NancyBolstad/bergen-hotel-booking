@@ -38,7 +38,6 @@ export const Button = styled.button<ButtonProps>`
       ${createFontStyles(props.theme.fonts.b2)};
 
       @media all and (min-width: ${props => props.theme.mediaQueries.small}px) {
-        width: auto;
         padding: ${props => props.theme.spacing.xs}rem 20px;
       }
     `};

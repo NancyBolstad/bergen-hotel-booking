@@ -6,6 +6,7 @@ interface Props {
 
 const Busy = styled.div<Props>`
   transition: opacity 0.12s ease-in-out;
+  width: 100%;
 
   ${props =>
     props.busy &&

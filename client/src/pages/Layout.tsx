@@ -8,6 +8,7 @@ import ContrastProvider from '../context/ContrastContext';
 import PrivateRoute from '../routes/PrivateRoute';
 import DashBoard from './Dashboard/Dashboard';
 import { Main } from '../components/Layout/Main';
+import { ROUTES } from '../routes/Routes';
 
 const Home = lazy(() => import('./Home/Home'));
 const Contact = lazy(() => import('./Contact/Contact'));
@@ -33,80 +34,80 @@ const Layout: React.FunctionComponent<Props> = () => {
             <Header />
             <Main>
               <Switch>
-                <PrivateRoute path="/dashboard/" component={DashBoard} exact />
-                <PrivateRoute path="/dashboard/:slug" component={DashBoard} exact />
-                <PrivateRoute path="/dashboard/:slug/:slug" component={DashBoard} exact />
-                <Route exact path="/login">
+                <PrivateRoute path={ROUTES.DASHBOARD} component={DashBoard} exact />
+                <PrivateRoute path={ROUTES.DASHBOARD_MAIN} component={DashBoard} exact />
+                <PrivateRoute path={ROUTES.DASHBOARD_SUB} component={DashBoard} exact />
+                <Route exact path={ROUTES.LOGIN}>
                   <Suspense fallback={<Loader />}>
                     <Login />
                   </Suspense>
                 </Route>
-                <Route exact path="/search">
+                <Route exact path={ROUTES.SEARCH}>
                   <Suspense fallback={<Loader />}>
                     <SearchResults />
                   </Suspense>
                 </Route>
-                <Route exact path="/about">
+                <Route exact path={ROUTES.ABOUT}>
                   <Suspense fallback={<Loader />}>
                     <About />
                   </Suspense>
                 </Route>
-                <Route exact path="/book/:id">
+                <Route exact path={ROUTES.BOOK}>
                   <Suspense fallback={<Loader />}>
                     <Book />
                   </Suspense>
                 </Route>
-                <Route exact path="/book-success">
+                <Route exact path={ROUTES.BOOK_SUCCESS}>
                   <Suspense fallback={<Loader />}>
                     <Feedback bookingSuccess />
                   </Suspense>
                 </Route>
-                <Route exact path="/favorites">
+                <Route exact path={ROUTES.FAVORITES}>
                   <Suspense fallback={<Loader />}>
                     <Favorites />
                   </Suspense>
                 </Route>
-                <Route exact path="/contact">
+                <Route exact path={ROUTES.CONTACT}>
                   <Suspense fallback={<Loader />}>
                     <Contact />
                   </Suspense>
                 </Route>
-                <Route exact path="/contact-success">
+                <Route exact path={ROUTES.CONTACT_SUCCESS}>
                   <Suspense fallback={<Loader />}>
                     <Feedback contactSuccess />
                   </Suspense>
                 </Route>
-                <Route exact path="/accommodation/details/:id">
+                <Route exact path={ROUTES.ACCOMMODATION_DETAILS}>
                   <Suspense fallback={<Loader />}>
                     <AccommodationDetails />
                   </Suspense>
                 </Route>
-                <Route exact path="/accommodations">
+                <Route exact path={ROUTES.ACCOMMODATIONS}>
                   <Suspense fallback={<Loader />}>
                     <SearchResults />
                   </Suspense>
                 </Route>
-                <Route exact path="/blog">
+                <Route exact path={ROUTES.BLOG}>
                   <Suspense fallback={<Loader />}>
                     <Blog />
                   </Suspense>
                 </Route>
-                <Route exact path="/blog/:id">
+                <Route exact path={ROUTES.BLOG_DETAILS}>
                   <Suspense fallback={<Loader />}>
                     <BlogDetails />
                   </Suspense>
                 </Route>
-                <Route exact path="/blog/page/:number">
+                <Route exact path={ROUTES.BLOG_PAGINATION}>
                   <Suspense fallback={<Loader />}>
                     <Blog />
                   </Suspense>
                 </Route>
-                <Route exact path="/">
+                <Route exact path={ROUTES.INDEX}>
                   <Suspense fallback={<Loader />}>
                     <Home />
                   </Suspense>
                 </Route>
-                <Route path="/">
+                <Route path={ROUTES.INDEX}>
                   <Suspense fallback={<Loader />}>
                     <NotFound />
                   </Suspense>

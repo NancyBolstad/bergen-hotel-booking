@@ -587,3 +587,13 @@ export const plus = (
     </g>
   </svg>
 );
+
+export const edit = (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden>
+    <g transform="translate(-28.132 -11.5)">
+      <path d="M47.6 15.7c-1.1-1.1-2.8-1.1-3.8 0L33.6 25.9l-.5.5c-.1.1-.1.2-.2.3l-1.4 5.1c-.1.3.1.7.4.7h.3l5.1-1.4c.1 0 .2-.1.3-.2l10.7-10.7c1.1-1.1 1.1-2.8 0-3.8l-.7-.7z" />
+      <path className="st4" d="M43.3 16.1l4.7 4.4" />
+      <path className="st4" d="M33 26.5l4.3 4.6" />
+    </g>
+  </svg>
+);

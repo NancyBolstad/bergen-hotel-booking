@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { MessageCard, MessageCardHeading, DeleteButton, Block } from '../helper-components/Block';
+import { MessageCard, ExpandButton, DeleteButton, Block } from '../helper-components/Block';
 import Typography from '../../Typography/Typography';
 import useApi from '../../../hooks/useApi';
 import { ContactResponse, Contact } from '../../../types/response';
@@ -113,7 +113,7 @@ const Messages: React.FC<Props> = () => {
                   bottom={8}
                 />
                 {item.message.length > 100 && (
-                  <MessageCardHeading
+                  <ExpandButton
                     expanded={expanded === item.id}
                     href="#"
                     aria-label={`${expanded ? 'Read less' : 'Read more'} ${transformLangText(
@@ -131,7 +131,7 @@ const Messages: React.FC<Props> = () => {
                   >
                     {expanded === item.id ? 'Read Less' : 'Read More'}
                     {arrow}
-                  </MessageCardHeading>
+                  </ExpandButton>
                 )}
               </MessageCard>
             );

@@ -66,7 +66,7 @@ export const MessageCard = styled(Block)<{ removed?: boolean; busy?: boolean }>`
     `};
 `;
 
-export const MessageCardHeading = styled.a<{ expanded?: boolean }>`
+export const ExpandButton = styled.a<{ expanded?: boolean }>`
   display: flex;
   padding-bottom: ${props => props.theme.spacing.xs}rem;
   margin-bottom: ${props => props.theme.spacing.xs}rem;

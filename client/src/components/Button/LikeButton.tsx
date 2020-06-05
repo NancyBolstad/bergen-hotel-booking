@@ -15,7 +15,6 @@ const LikeButton: React.FunctionComponent<HotelCard> = ({ card, withText, alginL
   const { favorites, dispatch } = React.useContext(Context);
   const [like, setLike] = React.useState<boolean>(() => {
     const found = favorites.find(item => {
-      console.log(item.id);
       return item.id === card.id;
     });
 

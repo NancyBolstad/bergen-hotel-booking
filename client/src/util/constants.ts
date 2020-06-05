@@ -38,6 +38,7 @@ export const PLACEHOLDER_IMAGE: Image = {
   url: 'https://via.placeholder.com/300?text=Holidaze+Bergen',
   alt: 'Holidaze Bergen placeholder',
 };
+
 export const ESTABLISHMENTS_GALLERY: Image[] = [
   {
     url:

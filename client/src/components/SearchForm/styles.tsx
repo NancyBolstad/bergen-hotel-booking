@@ -114,7 +114,7 @@ export const SearchSubmitButton = styled.button<{ isMobile?: boolean }>`
   &:hover,
   &:active,
   &:focus {
-    opacity: 0.8;
+    filter: brightness(0.9);
   }
 `;
 

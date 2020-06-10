@@ -122,7 +122,7 @@ export const Button = styled.button<ButtonProps>`
       &:hover,
       &:active,
       &:focus {
-        opacity: 0.8;
+        filter: brightness(0.9);
     `};
   ${props =>
     props.variant === 'secondary' &&

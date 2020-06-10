@@ -111,6 +111,11 @@ export const InnerTextWrapper = styled.a<{ large?: string }>`
     color: ${props => props.theme.colors.dark};
   }
 
+  @media screen and (min-width: 768px) {
+    width: 25.6875rem;
+    height: 10.3125rem;
+  }
+
   @media screen and (min-width: 1280px) {
     width: ${props => (props.large === 'true' ? '30rem' : '18rem')};
     height: ${props => (props.large === 'true' ? '20rem' : '12rem')};

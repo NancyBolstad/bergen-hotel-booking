@@ -47,7 +47,7 @@ const Card = styled.a<{ extraSpace?: boolean; backgroundColor?: keyof IColors }>
   ${createMediaQuery(
     'medium',
     css`
-      width: calc(47% - ${props => props.theme.spacing.s}rem);
+      width: calc(50% - ${props => props.theme.spacing.m}rem);
     `,
   )}
 

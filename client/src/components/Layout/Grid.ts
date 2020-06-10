@@ -12,7 +12,7 @@ const Grid = styled.div`
   overflow: auto;
 
   ${createMediaQuery(
-    'medium',
+    'large',
     css`
       grid-auto-rows: 306px;
       grid-template-columns: repeat(3, 1fr);
@@ -37,7 +37,7 @@ const GridItem = styled(BackgroundImage)<GridItemProps>`
 
   ${props => css`
     ${createMediaQuery(
-      'medium',
+      'large',
       css`
         ${props.column &&
           css`

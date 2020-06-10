@@ -54,7 +54,10 @@ const MobileMenu: React.FunctionComponent<Props> = ({ navLinks, toggler }) => {
         <HeaderNavLink
           href="/#"
           role="button"
-          onClick={() => toggleContrast()}
+          onClick={event => {
+            event.preventDefault();
+            toggleContrast();
+          }}
           aria-label="Toggle mode"
         >
           <Flex direction="column" justify="center" align="center">

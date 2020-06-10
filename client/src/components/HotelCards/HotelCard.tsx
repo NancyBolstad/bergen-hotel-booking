@@ -46,7 +46,12 @@ const HotelCard: React.FunctionComponent<HotelCard> = ({ card, extraSpace, backg
             />
           )}
           {!!card.price && (
-            <Typography element="span" variant="h2" content={`From ${card.price}`} bottom={16} />
+            <Typography
+              element="span"
+              variant="h2"
+              content={`From ${card.price} NOK`}
+              bottom={16}
+            />
           )}
           {!!card.descriptions && (
             <Typography

@@ -86,7 +86,7 @@ const HotelCardVariant: React.FunctionComponent<Props> = ({
           <Typography
             element="span"
             variant={isMobile ? 'b2' : 'h4'}
-            content={`From ${card.price}`}
+            content={`From ${card.price} NOK`}
             bottom={8}
           />
         )}

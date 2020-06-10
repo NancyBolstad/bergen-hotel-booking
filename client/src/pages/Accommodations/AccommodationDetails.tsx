@@ -66,7 +66,7 @@ export const HotelDetails: React.FunctionComponent<Props> = () => {
                 <Typography
                   variant="b3"
                   element="span"
-                  content={`From ${results.data.price} kr per day`}
+                  content={`From ${results.data.price} NOK per day`}
                 />
                 {!!results.data.services && (
                   <Typography variant="h3" element="p" content="Services" />

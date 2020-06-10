@@ -68,10 +68,10 @@ const HotelCardVariant: React.FunctionComponent<Props> = ({
         {!!card.name && (
           <Typography
             element="h3"
-            variant={miniCard ? 'b2' : 'h2'}
+            variant={miniCard ? 'b2' : 'h3'}
             content={card.name}
             textTransform="capitalize"
-            isPrimaryColor={dropdown}
+            isPrimaryColor
           />
         )}
         {!!card.location && (
@@ -83,12 +83,7 @@ const HotelCardVariant: React.FunctionComponent<Props> = ({
           />
         )}
         {!!card.price && (
-          <Typography
-            element="span"
-            variant={isMobile ? 'b2' : 'h3'}
-            content={`From ${card.price} NOK`}
-            bottom={8}
-          />
+          <Typography element="span" variant="b2" content={`From ${card.price} NOK`} bottom={8} />
         )}
         {!!card.descriptions && (
           <Typography

@@ -31,7 +31,7 @@ const HotelCard: React.FunctionComponent<HotelCard> = ({ card, extraSpace, backg
           {!!card.name && (
             <Typography
               element="h3"
-              variant="b2"
+              variant="h3"
               content={card.name}
               isPrimaryColor
               textTransform="capitalize"
@@ -48,7 +48,7 @@ const HotelCard: React.FunctionComponent<HotelCard> = ({ card, extraSpace, backg
           {!!card.price && (
             <Typography
               element="span"
-              variant="h3"
+              variant="b2"
               content={`From ${card.price} NOK`}
               bottom={16}
             />

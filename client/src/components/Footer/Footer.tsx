@@ -2,9 +2,8 @@ import * as React from 'react';
 import Typography from '../Typography/Typography';
 import { FooterWrapper, FooterLinksWrapper, FooterLink } from './styles';
 import { COPY_RIGHTS } from '../../data/footer';
-import { Flex } from '../Layout/Flex';
 import { Facebook, Twitter, Instagram } from '../../util/icons';
-import { WidthConstraints, HorizontalSpacer, VerticalSpacer } from '../Layout';
+import { WidthConstraints, HorizontalSpacer, VerticalSpacer, Flex } from '../Layout';
 
 export interface Props {}
 

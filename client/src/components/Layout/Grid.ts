@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import createMediaQuery from '../../util/createMediaQuery';
-import { BackgroundImage } from './../Image/BackgroundImage';
+import { BackgroundImage } from './BackgroundImage';
 
 const Grid = styled.div`
   display: grid;

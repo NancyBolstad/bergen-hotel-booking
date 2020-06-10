@@ -9,7 +9,7 @@ export const BlogCard: React.FunctionComponent<Blog> = ({ id, title, intro, imag
       {!!images && <BlogImage src={images[0].url} alt={images[0].alt} />}
       {!!title && <BlogTitle element="h3" variant="h3" content={title} />}
       {!!intro && (
-        <BlogIntroText element="p" variant="b3" content={transformLangText(intro, 180)} />
+        <BlogIntroText element="p" variant="b1" content={transformLangText(intro, 180)} />
       )}
     </StyledCard>
   );

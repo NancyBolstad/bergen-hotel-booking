@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-import createFontStyles from '../../util/createFontStyles';
 import createMediaQuery from '../../util/createMediaQuery';
 import { FlexKid } from '../Layout';
 
@@ -37,8 +36,37 @@ export const Letter = styled.a`
   margin-bottom: ${props => props.theme.spacing.xs}rem;
   color: inherit;
   text-decoration: none;
+  font-family: ${props => props.theme.fonts.b2.family};
+  font-weight: ${props => props.theme.fonts.b2.weight};
+  font-size: ${props => props.theme.fonts.b2.weight}rem;
+  ${props =>
+    props.theme.fonts.b2.lineHeight &&
+    css`
+      line-height: ${props.theme.fonts.b2.lineHeight};
+    `};
 
-  ${props => createFontStyles(props.theme.fonts.h6)}
+  ${props =>
+    props.theme.fonts.b2.mediaQueries &&
+    css`
+      @media (min-width: ${props.theme.fonts.b2.mediaQueries[0].query}px) {
+        ${props.theme.fonts.b2.mediaQueries[0].family &&
+          css`
+            font-family: ${props.theme.fonts.b2.mediaQueries[0].family};
+          `};
+        ${props.theme.fonts.b2.mediaQueries[0].weight &&
+          css`
+            font-weight: ${props.theme.fonts.b2.mediaQueries[0].weight};
+          `};
+        ${props.theme.fonts.b2.mediaQueries[0].size &&
+          css`
+            font-size: ${props.theme.fonts.b2.mediaQueries[0].size}rem;
+          `};
+        ${props.theme.fonts.b2.mediaQueries[0].lineHeight &&
+          css`
+            line-height: ${props.theme.fonts.b2.mediaQueries[0].lineHeight};
+          `};
+      }
+    `}
 
   ${createMediaQuery(
     'small',

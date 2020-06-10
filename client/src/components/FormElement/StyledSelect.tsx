@@ -1,13 +1,42 @@
 import styled, { css } from 'styled-components';
-import createFontStyles from '../../util/createFontStyles';
 import createMediaQuery from '../../util/createMediaQuery';
 
 export const SelectLabel = styled.label`
-  ${props => createFontStyles(props.theme.fonts.b1)};
   margin-bottom: ${props => props.theme.spacing.xs}rem;
   display: block;
   color: ${props => props.theme.colors.onBackground};
   position: relative;
+  font-family: ${props => props.theme.fonts.b1.family};
+  font-weight: ${props => props.theme.fonts.b1.weight};
+  font-size: ${props => props.theme.fonts.b1.weight}rem;
+  ${props =>
+    props.theme.fonts.b1.lineHeight &&
+    css`
+      line-height: ${props.theme.fonts.b1.lineHeight};
+    `};
+
+  ${props =>
+    props.theme.fonts.b1.mediaQueries &&
+    css`
+      @media (min-width: ${props.theme.fonts.b1.mediaQueries[0].query}px) {
+        ${props.theme.fonts.b1.mediaQueries[0].family &&
+          css`
+            font-family: ${props.theme.fonts.b1.mediaQueries[0].family};
+          `};
+        ${props.theme.fonts.b1.mediaQueries[0].weight &&
+          css`
+            font-weight: ${props.theme.fonts.b1.mediaQueries[0].weight};
+          `};
+        ${props.theme.fonts.b1.mediaQueries[0].size &&
+          css`
+            font-size: ${props.theme.fonts.b1.mediaQueries[0].size}rem;
+          `};
+        ${props.theme.fonts.b1.mediaQueries[0].lineHeight &&
+          css`
+            line-height: ${props.theme.fonts.b1.mediaQueries[0].lineHeight};
+          `};
+      }
+    `}
 `;
 
 export const StyledSelectInput = styled.select`
@@ -17,7 +46,6 @@ export const StyledSelectInput = styled.select`
   background-color: ${props => props.theme.colors.background};
   color: ${props => props.theme.colors.onBackground};
   background-size: 20px 20px;
-  ${props => createFontStyles(props.theme.fonts.b1)};
   border: 1px solid ${props => props.theme.colors.onSurface};
   padding: 0 16px;
   margin-top: ${props => props.theme.spacing.xs}rem;
@@ -28,6 +56,37 @@ export const StyledSelectInput = styled.select`
   text-transform: capitalize;
   box-shadow: rgba(46, 41, 51, 0.08) 0px 1px 2px, rgba(71, 63, 79, 0.08) 0px 2px 4px;
   border-radius: 4px;
+  font-family: ${props => props.theme.fonts.b1.family};
+  font-weight: ${props => props.theme.fonts.b1.weight};
+  font-size: ${props => props.theme.fonts.b1.weight}rem;
+  ${props =>
+    props.theme.fonts.b1.lineHeight &&
+    css`
+      line-height: ${props.theme.fonts.b1.lineHeight};
+    `};
+
+  ${props =>
+    props.theme.fonts.b1.mediaQueries &&
+    css`
+      @media (min-width: ${props.theme.fonts.b1.mediaQueries[0].query}px) {
+        ${props.theme.fonts.b1.mediaQueries[0].family &&
+          css`
+            font-family: ${props.theme.fonts.b1.mediaQueries[0].family};
+          `};
+        ${props.theme.fonts.b1.mediaQueries[0].weight &&
+          css`
+            font-weight: ${props.theme.fonts.b1.mediaQueries[0].weight};
+          `};
+        ${props.theme.fonts.b1.mediaQueries[0].size &&
+          css`
+            font-size: ${props.theme.fonts.b1.mediaQueries[0].size}rem;
+          `};
+        ${props.theme.fonts.b1.mediaQueries[0].lineHeight &&
+          css`
+            line-height: ${props.theme.fonts.b1.mediaQueries[0].lineHeight};
+          `};
+      }
+    `}
 
   &:hover,
   &:active,

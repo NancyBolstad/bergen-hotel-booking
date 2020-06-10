@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-import createFontStyles from '../../util/createFontStyles';
 import createMediaQueries from '../../util/createMediaQuery';
 import Button from '../Button/Button';
 
@@ -56,7 +55,37 @@ export const HeaderNavLink = styled.a`
   margin-right: ${props => props.theme.spacing.s}rem;
   text-decoration: none;
   text-transform: capitalize;
-  ${props => createFontStyles(props.theme.fonts.b2)};
+  font-family: ${props => props.theme.fonts.b2.family};
+  font-weight: ${props => props.theme.fonts.b2.weight};
+  font-size: ${props => props.theme.fonts.b2.weight}rem;
+  ${props =>
+    props.theme.fonts.b2.lineHeight &&
+    css`
+      line-height: ${props.theme.fonts.b2.lineHeight};
+    `};
+
+  ${props =>
+    props.theme.fonts.b2.mediaQueries &&
+    css`
+      @media (min-width: ${props.theme.fonts.b2.mediaQueries[0].query}px) {
+        ${props.theme.fonts.b2.mediaQueries[0].family &&
+          css`
+            font-family: ${props.theme.fonts.b2.mediaQueries[0].family};
+          `};
+        ${props.theme.fonts.b2.mediaQueries[0].weight &&
+          css`
+            font-weight: ${props.theme.fonts.b2.mediaQueries[0].weight};
+          `};
+        ${props.theme.fonts.b2.mediaQueries[0].size &&
+          css`
+            font-size: ${props.theme.fonts.b2.mediaQueries[0].size}rem;
+          `};
+        ${props.theme.fonts.b2.mediaQueries[0].lineHeight &&
+          css`
+            line-height: ${props.theme.fonts.b2.mediaQueries[0].lineHeight};
+          `};
+      }
+    `}
 
   &:hover {
     color: ${props => props.theme.colors.primary};
@@ -190,8 +219,38 @@ export const MobileMenuWrapper = styled.div`
   background-color: ${props => props.theme.colors.background};
   z-index: 999;
   border-bottom: 2px solid ${props => props.theme.colors.secondary};
-  ${props => createFontStyles(props.theme.fonts.h1)};
   position: relative;
+  font-family: ${props => props.theme.fonts.h1.family};
+  font-weight: ${props => props.theme.fonts.h1.weight};
+  font-size: ${props => props.theme.fonts.h1.weight}rem;
+  ${props =>
+    props.theme.fonts.h1.lineHeight &&
+    css`
+      line-height: ${props.theme.fonts.h1.lineHeight};
+    `};
+
+  ${props =>
+    props.theme.fonts.h1.mediaQueries &&
+    css`
+      @media (min-width: ${props.theme.fonts.h1.mediaQueries[0].query}px) {
+        ${props.theme.fonts.h1.mediaQueries[0].family &&
+          css`
+            font-family: ${props.theme.fonts.h1.mediaQueries[0].family};
+          `};
+        ${props.theme.fonts.h1.mediaQueries[0].weight &&
+          css`
+            font-weight: ${props.theme.fonts.h1.mediaQueries[0].weight};
+          `};
+        ${props.theme.fonts.h1.mediaQueries[0].size &&
+          css`
+            font-size: ${props.theme.fonts.h1.mediaQueries[0].size}rem;
+          `};
+        ${props.theme.fonts.h1.mediaQueries[0].lineHeight &&
+          css`
+            line-height: ${props.theme.fonts.h1.mediaQueries[0].lineHeight};
+          `};
+      }
+    `}
 
   a {
     margin: ${props => props.theme.spacing.l}rem auto;
@@ -211,10 +270,40 @@ export const ThemeToggleButton = styled.button`
   color: ${props => props.theme.colors.onBackground};
   margin-right: ${props => props.theme.spacing.s}rem;
   text-decoration: none;
-  ${props => createFontStyles(props.theme.fonts.b2)};
   background-color: ${props => props.theme.colors.background};
   border: none;
   outline: none;
+  font-family: ${props => props.theme.fonts.b2.family};
+  font-weight: ${props => props.theme.fonts.b2.weight};
+  font-size: ${props => props.theme.fonts.b2.weight}rem;
+  ${props =>
+    props.theme.fonts.b2.lineHeight &&
+    css`
+      line-height: ${props.theme.fonts.b2.lineHeight};
+    `};
+
+  ${props =>
+    props.theme.fonts.b2.mediaQueries &&
+    css`
+      @media (min-width: ${props.theme.fonts.b2.mediaQueries[0].query}px) {
+        ${props.theme.fonts.b2.mediaQueries[0].family &&
+          css`
+            font-family: ${props.theme.fonts.b2.mediaQueries[0].family};
+          `};
+        ${props.theme.fonts.b2.mediaQueries[0].weight &&
+          css`
+            font-weight: ${props.theme.fonts.b2.mediaQueries[0].weight};
+          `};
+        ${props.theme.fonts.b2.mediaQueries[0].size &&
+          css`
+            font-size: ${props.theme.fonts.b2.mediaQueries[0].size}rem;
+          `};
+        ${props.theme.fonts.b2.mediaQueries[0].lineHeight &&
+          css`
+            line-height: ${props.theme.fonts.b2.mediaQueries[0].lineHeight};
+          `};
+      }
+    `}
 
   svg {
     path {
@@ -251,9 +340,39 @@ export const HeaderTop = styled.div`
   justify-content: flex-end;
   line-height: 24px;
   a {
-    ${props => createFontStyles(props.theme.fonts.b1)};
     color: ${props => props.theme.colors.onBackground};
     padding: 0.2rem 0;
+    font-family: ${props => props.theme.fonts.b1.family};
+    font-weight: ${props => props.theme.fonts.b1.weight};
+    font-size: ${props => props.theme.fonts.b1.weight}rem;
+    ${props =>
+      props.theme.fonts.b1.lineHeight &&
+      css`
+        line-height: ${props.theme.fonts.b1.lineHeight};
+      `};
+
+    ${props =>
+      props.theme.fonts.b1.mediaQueries &&
+      css`
+        @media (min-width: ${props.theme.fonts.b1.mediaQueries[0].query}px) {
+          ${props.theme.fonts.b1.mediaQueries[0].family &&
+            css`
+              font-family: ${props.theme.fonts.b1.mediaQueries[0].family};
+            `};
+          ${props.theme.fonts.b1.mediaQueries[0].weight &&
+            css`
+              font-weight: ${props.theme.fonts.b1.mediaQueries[0].weight};
+            `};
+          ${props.theme.fonts.b1.mediaQueries[0].size &&
+            css`
+              font-size: ${props.theme.fonts.b1.mediaQueries[0].size}rem;
+            `};
+          ${props.theme.fonts.b1.mediaQueries[0].lineHeight &&
+            css`
+              line-height: ${props.theme.fonts.b1.mediaQueries[0].lineHeight};
+            `};
+        }
+      `}
   }
 
   ${createMediaQueries(

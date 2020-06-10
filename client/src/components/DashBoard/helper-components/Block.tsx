@@ -1,7 +1,6 @@
 import styled, { css } from 'styled-components';
 import createMediaQuery from '../../../util/createMediaQuery';
 import Button from '../../Button/Button';
-import createFontStyles from '../../../util/createFontStyles';
 import { Flex } from '../../Layout';
 
 export const Block = styled.div`
@@ -81,8 +80,38 @@ export const ExpandButton = styled.a<{ expanded?: boolean }>`
   align-items: center;
   justify-content: flex-start;
   display: relative;
+  font-family: ${props => props.theme.fonts.b1.family};
+  font-weight: ${props => props.theme.fonts.b1.weight};
+  font-size: ${props => props.theme.fonts.b1.weight}rem;
+  ${props =>
+    props.theme.fonts.b1.lineHeight &&
+    css`
+      line-height: ${props.theme.fonts.b1.lineHeight};
+    `};
 
-  ${props => createFontStyles(props.theme.fonts.b1)}
+  ${props =>
+    props.theme.fonts.b1.mediaQueries &&
+    css`
+      @media (min-width: ${props.theme.fonts.b1.mediaQueries[0].query}px) {
+        ${props.theme.fonts.b1.mediaQueries[0].family &&
+          css`
+            font-family: ${props.theme.fonts.b1.mediaQueries[0].family};
+          `};
+        ${props.theme.fonts.b1.mediaQueries[0].weight &&
+          css`
+            font-weight: ${props.theme.fonts.b1.mediaQueries[0].weight};
+          `};
+        ${props.theme.fonts.b1.mediaQueries[0].size &&
+          css`
+            font-size: ${props.theme.fonts.b1.mediaQueries[0].size}rem;
+          `};
+        ${props.theme.fonts.b1.mediaQueries[0].lineHeight &&
+          css`
+            line-height: ${props.theme.fonts.b1.mediaQueries[0].lineHeight};
+          `};
+      }
+    `}
+
   p {
     flex-basis: 80%;
     max-width: 880px;

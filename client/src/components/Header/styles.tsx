@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-import createMediaQueries from '../../util/createMediaQuery';
 import Button from '../Button/Button';
 
 export const HeaderWrapper = styled.header`
@@ -25,13 +24,10 @@ export const HeaderNav = styled.nav`
   align-items: center;
   padding: ${props => props.theme.spacing.s}rem;
 
-  ${createMediaQueries(
-    'large',
-    css`
-      padding: ${props => props.theme.spacing.xs}rem;
-      ${props => props.theme.spacing.l}rem;
-    `,
-  )};
+  @media all and (min-width: ${props => props.theme.mediaQueries.large}px) {
+    padding: ${props => props.theme.spacing.xs}rem;
+    ${props => props.theme.spacing.l}rem;
+  }
 `;
 
 export const HeaderNavLinkList = styled.ul`
@@ -100,12 +96,9 @@ export const HeaderNavLink = styled.a`
     height: 24px;
   }
 
-  ${createMediaQueries(
-    'large',
-    css`
-      padding: 0.5rem 1rem;
-    `,
-  )};
+  @media all and (min-width: ${props => props.theme.mediaQueries.large}px) {
+    padding: 0.5rem 1rem;
+  }
 `;
 
 export const LikeButton = styled(HeaderNavLink)`
@@ -132,18 +125,15 @@ export const Badge = styled.span`
   text-align: center;
   border-radius: 50%;
 
-  ${createMediaQueries(
-    'large',
-    css`
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      top: 4px;
-      left: 50px;
-      width: 18px;
-      height: 18px;
-    `,
-  )};
+  @media all and (min-width: ${props => props.theme.mediaQueries.large}px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 4px;
+    left: 50px;
+    width: 18px;
+    height: 18px;
+  }
 `;
 
 export const SiteLogo = styled(HeaderNavLink)`
@@ -156,12 +146,9 @@ export const SiteLogo = styled(HeaderNavLink)`
     opacity: 0.8;
   }
 
-  ${createMediaQueries(
-    'medium',
-    css`
-      font-size: 2.35rem !important;
-    `,
-  )};
+  @media all and (min-width: ${props => props.theme.mediaQueries.medium}px) {
+    font-size: 2.35rem !important;
+  }
 `;
 
 export const HeaderButton = styled(HeaderNavLink)`
@@ -169,12 +156,9 @@ export const HeaderButton = styled(HeaderNavLink)`
   list-text-style: none;
   padding: 0.2rem 0.5rem;
 
-  ${createMediaQueries(
-    'large',
-    css`
-      padding: 0.5rem 1rem;
-    `,
-  )};
+  @media all and (min-width: ${props => props.theme.mediaQueries.large}px) {
+    padding: 0.5rem 1rem;
+  }
 `;
 
 export const HeaderMenuLeft = styled.div`
@@ -325,12 +309,9 @@ export const ThemeToggleButton = styled.button`
     }
   }
 
-  ${createMediaQueries(
-    'large',
-    css`
-      padding: 0.5rem 1rem;
-    `,
-  )};
+  @media all and (min-width: ${props => props.theme.mediaQueries.large}px) {
+    padding: 0.5rem 1rem;
+  }
 `;
 
 export const HeaderTop = styled.div`
@@ -375,17 +356,14 @@ export const HeaderTop = styled.div`
       `}
   }
 
-  ${createMediaQueries(
-    'large',
-    css`
+  @media all and (min-width: ${props => props.theme.mediaQueries.large}px) {
+    padding: 0;
+    font-size: 0.225rem;
+    height: 24px;
+    a {
       padding: 0;
-      font-size: 0.225rem;
-      height: 24px;
-      a {
-        padding: 0;
-      }
-    `,
-  )};
+    }
+  }
 `;
 
 export const SearchBarContainer = styled.div<{ open?: boolean }>`

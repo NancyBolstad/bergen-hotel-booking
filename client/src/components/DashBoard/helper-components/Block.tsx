@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-import createMediaQuery from '../../../util/createMediaQuery';
 import Button from '../../Button/Button';
 import { Flex } from '../../Layout';
 
@@ -17,12 +16,9 @@ export const Block = styled.div`
     margin-bottom: ${props => props.theme.spacing.xs}rem;
   }
 
-  ${createMediaQuery(
-    'small',
-    css`
-      padding: ${props => props.theme.spacing.m}rem ${props => props.theme.spacing.s}rem;
-    `,
-  )};
+  @media all and (min-width: ${props => props.theme.mediaQueries.small}px) {
+    padding: ${props => props.theme.spacing.m}rem ${props => props.theme.spacing.s}rem;
+  }
 
   form {
     padding: none;

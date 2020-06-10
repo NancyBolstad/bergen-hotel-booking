@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-import createMediaQuery from '../../util/createMediaQuery';
 import { BackgroundImage } from './BackgroundImage';
 
 const Grid = styled.div`
@@ -11,14 +10,11 @@ const Grid = styled.div`
   min-width: 0;
   overflow: auto;
 
-  ${createMediaQuery(
-    'large',
-    css`
-      grid-auto-rows: 306px;
-      grid-template-columns: repeat(3, 1fr);
-      grid-gap: ${props => props.theme.spacing.m}rem;
-    `,
-  )};
+  @media all and (min-width: ${props => props.theme.mediaQueries.large}px) {
+    grid-auto-rows: 306px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: ${props => props.theme.spacing.m}rem;
+  }
 `;
 
 interface GridItemProps {
@@ -35,25 +31,29 @@ const GridItem = styled(BackgroundImage)<GridItemProps>`
   justify-content: center;
   align-items: center;
 
-  ${props => css`
-    ${createMediaQuery(
-      'large',
-      css`
-        ${props.column &&
-          css`
-            grid-column: ${props.column};
-          `};
-        ${props.columnEndSpan &&
-          css`
-            grid-column-end: span ${props.columnEndSpan};
-          `};
-        ${props.rowEndSpan &&
-          css`
-            grid-row-end: span ${props.rowEndSpan};
-          `};
-      `,
-    )};
-  `};
+  ${props =>
+    props.column &&
+    css`
+      @media all and (min-width: ${props => props.theme.mediaQueries.large}px) {
+        grid-column: ${props.column};
+      }
+    `};
+
+  ${props =>
+    props.columnEndSpan &&
+    css`
+      @media all and (min-width: ${props => props.theme.mediaQueries.large}px) {
+        grid-column-end: span ${props.columnEndSpan};
+      }
+    `}
+
+  ${props =>
+    props.rowEndSpan &&
+    css`
+      @media all and (min-width: ${props => props.theme.mediaQueries.large}px) {
+        grid-column-end: span ${props.rowEndSpan};
+      }
+    `}
 
   ${props =>
     props.row &&

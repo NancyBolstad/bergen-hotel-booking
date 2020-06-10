@@ -1,19 +1,15 @@
 import styled, { css } from 'styled-components';
-import createMediaQuery from '../../util/createMediaQuery';
 
 export const Filter = styled.div`
   display: flex;
   flex-direction: column;
   padding: 1rem 0;
 
-  ${createMediaQuery(
-    'medium',
-    css`
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
-    `,
-  )}
+  @media all and (min-width: ${props => props.theme.mediaQueries.medium}px) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
 `;
 
 export const InputFieldWrapper = styled.div`
@@ -128,12 +124,9 @@ export const Arrow = styled.div`
     fill: ${props => props.theme.colors.onBackground};
   }
 
-  ${createMediaQuery(
-    'medium',
-    css`
-      right: 1rem;
-    `,
-  )}
+  @media all and (min-width: ${props => props.theme.mediaQueries.medium}px) {
+    right: 1rem;
+  }
 `;
 
 export const SelectWrapper = styled.div`

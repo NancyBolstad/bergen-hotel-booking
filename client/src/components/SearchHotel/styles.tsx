@@ -1,16 +1,12 @@
 import styled, { css } from 'styled-components';
-import createMediaQuery from '../../util/createMediaQuery';
 import { FlexKid } from '../Layout';
 
 export const Sections = styled(FlexKid)`
   margin-right: ${props => props.theme.spacing.xs}rem;
 
-  ${createMediaQuery(
-    'small',
-    css`
-      margin-right: ${props => props.theme.spacing.m}rem;
-    `,
-  )}
+  @media all and (min-width: ${props => props.theme.mediaQueries.small}px) {
+    margin-right: ${props => props.theme.spacing.m}rem;
+  }
 `;
 
 export const SectionTitle = styled.div`
@@ -68,12 +64,9 @@ export const Letter = styled.a`
       }
     `}
 
-  ${createMediaQuery(
-    'small',
-    css`
-      margin-right: ${props => props.theme.spacing.xs}rem;
-    `,
-  )}
+  @media all and (min-width: ${props => props.theme.mediaQueries.small}px) {
+    margin-right: ${props => props.theme.spacing.xs}rem;
+  }
 
   &:hover,
   &:active {

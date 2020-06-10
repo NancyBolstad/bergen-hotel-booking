@@ -4,21 +4,17 @@ import Slider from '../Slider/Slider';
 import Button from '../Button/Button';
 import { IColors } from '../../types/theme';
 import { Flex } from '../Layout/';
-import createMediaQuery from '../../util/createMediaQuery';
 import setColorOpacity from '../../util/setColorOpacity';
 
 const Wrapper = styled(Flex)`
   flex-direction: column;
 
-  ${createMediaQuery(
-    'large',
-    css`
-      h2 {
-        padding-top: 2rem;
-        padding-bottom: 3rem;
-      }
-    `,
-  )}
+  @media all and (min-width: ${props => props.theme.mediaQueries.large}px) {
+    h2 {
+      padding-top: 2rem;
+      padding-bottom: 3rem;
+    }
+  }
 `;
 
 const Card = styled.a<{ extraSpace?: boolean; backgroundColor?: keyof IColors }>`
@@ -44,20 +40,14 @@ const Card = styled.a<{ extraSpace?: boolean; backgroundColor?: keyof IColors }>
     }
   }
 
-  ${createMediaQuery(
-    'medium',
-    css`
-      width: calc(50% - ${props => props.theme.spacing.m}rem);
-    `,
-  )}
+  @media all and (min-width: ${props => props.theme.mediaQueries.medium}px) {
+    width: calc(50% - ${props => props.theme.spacing.m}rem);
+  }
 
-  ${createMediaQuery(
-    'large',
-    css`
-      width: calc(25% - ${props => props.theme.spacing.m}rem);
-      margin-bottom: ${props => props.theme.spacing.m}rem;
-    `,
-  )}
+  @media all and (min-width: ${props => props.theme.mediaQueries.large}px) {
+    width: calc(25% - ${props => props.theme.spacing.m}rem);
+    margin-bottom: ${props => props.theme.spacing.m}rem;
+  }
 
   ${props =>
     props.extraSpace &&
@@ -83,19 +73,13 @@ const SectionTitle = styled(Typography)<{ element: 'h2' }>`
 const More = styled.div`
   margin: ${props => props.theme.spacing.s}rem auto;
 
-  ${createMediaQuery(
-    'medium',
-    css`
-      padding-top: ${props => props.theme.spacing.l}rem;
-    `,
-  )}
+  @media all and (min-width: ${props => props.theme.mediaQueries.medium}px) {
+    padding-top: ${props => props.theme.spacing.l}rem;
+  }
 
-  ${createMediaQuery(
-    'large',
-    css`
-      margin: ${props => props.theme.spacing.m}rem auto;
-    `,
-  )}
+  @media all and (min-width: ${props => props.theme.mediaQueries.large}px) {
+    margin: ${props => props.theme.spacing.m}rem auto;
+  }
 `;
 
 const CardVariant = styled.a<{
@@ -129,13 +113,10 @@ const CardVariant = styled.a<{
     }
   }
 
-  ${createMediaQuery(
-    'large',
-    css`
-      margin: ${props => props.theme.spacing.s}rem 0;
-      padding: 0;
-    `,
-  )}
+  @media all and (min-width: ${props => props.theme.mediaQueries.large}px) {
+    margin: ${props => props.theme.spacing.s}rem 0;
+    padding: 0;
+  }
 
 
   ${props =>
@@ -146,12 +127,9 @@ const CardVariant = styled.a<{
       padding: 0;
       margin: ${props => props.theme.spacing.s}rem 0;
 
-      ${createMediaQuery(
-        'medium',
-        css`
-          flex-direction: row;
-        `,
-      )}
+      @media all and (min-width: ${props => props.theme.mediaQueries.medium}px) {
+        flex-direction: row;
+      }
     `}
 
   ${props =>
@@ -187,12 +165,9 @@ const CardVariantRight = styled.div`
   padding: 0 ${props => props.theme.spacing.xs}rem;
   position: relative;
 
-  ${createMediaQuery(
-    'large',
-    css`
-      padding: ${props => props.theme.spacing.m}rem;
-    `,
-  )}
+  @media all and (min-width: ${props => props.theme.mediaQueries.medium}px) {
+    padding: ${props => props.theme.spacing.m}rem;
+  }
 `;
 
 const LikeButtonWrapper = styled.div<{ positionAbsolute?: boolean }>`

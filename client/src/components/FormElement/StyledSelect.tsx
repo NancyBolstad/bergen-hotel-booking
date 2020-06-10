@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-import createMediaQuery from '../../util/createMediaQuery';
 
 export const SelectLabel = styled.label`
   margin-bottom: ${props => props.theme.spacing.xs}rem;
@@ -107,12 +106,9 @@ export const Arrow = styled.div`
     fill: ${props => props.theme.colors.onBackground};
   }
 
-  ${createMediaQuery(
-    'medium',
-    css`
-      right: 1rem;
-    `,
-  )}
+  @media all and (min-width: ${props => props.theme.mediaQueries.medium}px) {
+    right: 1rem;
+  }
 `;
 
 export const SelectWrapper = styled.div`
@@ -120,12 +116,9 @@ export const SelectWrapper = styled.div`
   flex-direction: column;
   margin-top: ${props => props.theme.spacing.xs}rem;
 
-  ${createMediaQuery(
-    'medium',
-    css`
-      flex-direction: row;
-      align-items: center;
-      margin-top: 0;
-    `,
-  )}
+  @media all and (min-width: ${props => props.theme.mediaQueries.medium}px) {
+    flex-direction: row;
+    align-items: center;
+    margin-top: 0;
+  }
 `;

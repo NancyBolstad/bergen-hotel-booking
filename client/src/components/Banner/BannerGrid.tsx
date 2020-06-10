@@ -52,7 +52,7 @@ const BannerGrid: React.FunctionComponent<BannerGridProps> = ({ sectionTitle, ba
                       title={`View more about ${banner.text}`}
                     >
                       <Typography
-                        variant="h2"
+                        variant="h3"
                         element={sectionTitle ? 'h3' : 'h2'}
                         content={banner.text}
                       />

@@ -28,7 +28,7 @@ export const SearchInputField = styled.input`
   border: 2px solid white;
   white-space: nowrap;
   padding: 0.55rem 0.75rem;
-  font-size: 1rem;
+  font-size: 1.25rem;
   text-decoration: none;
   line-height: normal;
   height: 3rem;

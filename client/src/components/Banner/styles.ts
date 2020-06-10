@@ -23,11 +23,11 @@ export const FlexKid = styled(BackgroundImage)<{ isMobile: boolean }>`
   align-items: flex-start;
   width: ${props => (props.isMobile ? '100%' : '50%')};
   flex-grow: 1;
-  min-height: 13.75rem;
+  min-height: 20.75rem;
   padding ${props => props.theme.spacing.s}rem 0;
 
   ${createMediaQuery(
-    'large',
+    'medium',
     css`
     justify-content: center;
       min-height: 23.75rem;

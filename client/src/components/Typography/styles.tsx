@@ -5,7 +5,7 @@ import { Space as SpaceInterface, Styles } from './Typography';
 export const FontStyles = css<Styles>`
   font-family: ${props => props.theme.fonts[props.variant].family};
   font-weight: ${props => props.theme.fonts[props.variant].weight};
-  font-size: ${props => props.theme.fonts[props.variant].weight}rem;
+  font-size: ${props => props.theme.fonts[props.variant].size}rem;
   ${props =>
     props.theme.fonts[props.variant].lineHeight &&
     css`

@@ -67,7 +67,7 @@ export const SearchSubmitButton = styled.button<{ isMobile?: boolean }>`
   box-shadow: rgba(46, 41, 51, 0.08) 0px 1px 2px, rgba(71, 63, 79, 0.08) 0px 2px 4px;
   font-family: ${props => props.theme.fonts.b2.family};
   font-weight: ${props => props.theme.fonts.b2.weight};
-  font-size: ${props => props.theme.fonts.b2.weight}rem;
+  font-size: ${props => props.theme.fonts.b2.size}rem;
   ${props =>
     props.theme.fonts.b2.lineHeight &&
     css`

@@ -14,7 +14,7 @@ export const Button = styled.button<ButtonProps>`
   transition: border-color 0.15s ease-in-out, background-color 0.15s ease-in-out;
   font-family: ${props => props.theme.fonts.b2.family};
   font-weight: ${props => props.theme.fonts.b2.weight};
-  font-size: ${props => props.theme.fonts.b2.weight}rem;
+  font-size: ${props => props.theme.fonts.b2.size}rem;
   ${props =>
     props.theme.fonts.b2.lineHeight &&
     css`
@@ -80,7 +80,7 @@ export const Button = styled.button<ButtonProps>`
     css`
       padding: ${props => props.theme.spacing.xs}rem 48px;
       font-weight: ${props => props.theme.fonts.h3.weight};
-      font-size: ${props => props.theme.fonts.h3.weight}rem;
+      font-size: ${props => props.theme.fonts.h3.size}rem;
       ${props =>
         props.theme.fonts.h3.lineHeight &&
         css`

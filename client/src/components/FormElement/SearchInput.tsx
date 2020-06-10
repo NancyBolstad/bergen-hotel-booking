@@ -11,7 +11,7 @@ const StyledInput = styled.input<Partial<IProps>>`
   padding: 0 ${props => props.theme.spacing.xs}rem;
   font-family: ${props => props.theme.fonts.b3.family};
   font-weight: ${props => props.theme.fonts.b3.weight};
-  font-size: ${props => props.theme.fonts.b3.weight}rem;
+  font-size: ${props => props.theme.fonts.b3.size}rem;
   ${props =>
     props.theme.fonts.b3.lineHeight &&
     css`

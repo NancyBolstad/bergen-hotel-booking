@@ -4,7 +4,7 @@ export const StyledLabelWrapper = styled.div`
   margin-bottom: ${props => props.theme.spacing.xs}rem;
   font-family: ${props => props.theme.fonts.b2.family};
   font-weight: ${props => props.theme.fonts.b2.weight};
-  font-size: ${props => props.theme.fonts.b2.weight}rem;
+  font-size: ${props => props.theme.fonts.b2.size}rem;
   ${props =>
     props.theme.fonts.b2.lineHeight &&
     css`
@@ -48,7 +48,7 @@ export const StyledLabel = styled.label<{ isCheckbox?: boolean; isSameLine?: boo
   width: 100%;
   font-family: ${props => props.theme.fonts.b2.family};
   font-weight: ${props => props.theme.fonts.b2.weight};
-  font-size: ${props => props.theme.fonts.b2.weight}rem;
+  font-size: ${props => props.theme.fonts.b2.size}rem;
   ${props =>
     props.theme.fonts.b2.lineHeight &&
     css`
@@ -85,7 +85,7 @@ export const StyledLabel = styled.label<{ isCheckbox?: boolean; isSameLine?: boo
       align-items: baseline;
       font-family: ${props => props.theme.fonts.b1.family};
       font-weight: ${props => props.theme.fonts.b1.weight};
-      font-size: ${props => props.theme.fonts.b1.weight}rem;
+      font-size: ${props => props.theme.fonts.b1.size}rem;
       ${props =>
         props.theme.fonts.b1.lineHeight &&
         css`

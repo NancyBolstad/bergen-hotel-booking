@@ -19,10 +19,9 @@ export const Form = styled.form`
 export const ErrorMessage = styled.span`
   text-align: left;
   color: ${props => props.theme.colors.error};
-
   font-family: ${props => props.theme.fonts.b3.family};
   font-weight: ${props => props.theme.fonts.b3.weight};
-  font-size: ${props => props.theme.fonts.b3.weight}rem;
+  font-size: ${props => props.theme.fonts.b3.size}rem;
   ${props =>
     props.theme.fonts.b3.lineHeight &&
     css`

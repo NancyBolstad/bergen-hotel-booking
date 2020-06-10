@@ -38,7 +38,7 @@ export const Letter = styled.a`
   text-decoration: none;
   font-family: ${props => props.theme.fonts.b2.family};
   font-weight: ${props => props.theme.fonts.b2.weight};
-  font-size: ${props => props.theme.fonts.b2.weight}rem;
+  font-size: ${props => props.theme.fonts.b2.size}rem;
   ${props =>
     props.theme.fonts.b2.lineHeight &&
     css`

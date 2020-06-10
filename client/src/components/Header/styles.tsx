@@ -57,7 +57,7 @@ export const HeaderNavLink = styled.a`
   text-transform: capitalize;
   font-family: ${props => props.theme.fonts.b2.family};
   font-weight: ${props => props.theme.fonts.b2.weight};
-  font-size: ${props => props.theme.fonts.b2.weight}rem;
+  font-size: ${props => props.theme.fonts.b2.size}rem;
   ${props =>
     props.theme.fonts.b2.lineHeight &&
     css`
@@ -222,7 +222,7 @@ export const MobileMenuWrapper = styled.div`
   position: relative;
   font-family: ${props => props.theme.fonts.h1.family};
   font-weight: ${props => props.theme.fonts.h1.weight};
-  font-size: ${props => props.theme.fonts.h1.weight}rem;
+  font-size: ${props => props.theme.fonts.h1.size}rem;
   ${props =>
     props.theme.fonts.h1.lineHeight &&
     css`
@@ -275,7 +275,7 @@ export const ThemeToggleButton = styled.button`
   outline: none;
   font-family: ${props => props.theme.fonts.b2.family};
   font-weight: ${props => props.theme.fonts.b2.weight};
-  font-size: ${props => props.theme.fonts.b2.weight}rem;
+  font-size: ${props => props.theme.fonts.b2.size}rem;
   ${props =>
     props.theme.fonts.b2.lineHeight &&
     css`
@@ -344,7 +344,7 @@ export const HeaderTop = styled.div`
     padding: 0.2rem 0;
     font-family: ${props => props.theme.fonts.b1.family};
     font-weight: ${props => props.theme.fonts.b1.weight};
-    font-size: ${props => props.theme.fonts.b1.weight}rem;
+    font-size: ${props => props.theme.fonts.b1.size}rem;
     ${props =>
       props.theme.fonts.b1.lineHeight &&
       css`

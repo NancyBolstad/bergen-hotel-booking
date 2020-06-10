@@ -8,7 +8,7 @@ export const SelectLabel = styled.label`
   position: relative;
   font-family: ${props => props.theme.fonts.b1.family};
   font-weight: ${props => props.theme.fonts.b1.weight};
-  font-size: ${props => props.theme.fonts.b1.weight}rem;
+  font-size: ${props => props.theme.fonts.b1.size}rem;
   ${props =>
     props.theme.fonts.b1.lineHeight &&
     css`
@@ -58,7 +58,7 @@ export const StyledSelectInput = styled.select`
   border-radius: 4px;
   font-family: ${props => props.theme.fonts.b1.family};
   font-weight: ${props => props.theme.fonts.b1.weight};
-  font-size: ${props => props.theme.fonts.b1.weight}rem;
+  font-size: ${props => props.theme.fonts.b1.size}rem;
   ${props =>
     props.theme.fonts.b1.lineHeight &&
     css`

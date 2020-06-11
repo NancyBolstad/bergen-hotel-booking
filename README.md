@@ -21,16 +21,32 @@ If something doesn’t work, please [file an issue](https://github.com/NancyBols
 
 ## Building the code
 
-1. API
+In the project directory, you can run:
+
+### To set up Google Functions
 
 ```sh
 yarn && npm-run-all -p setup:yarn:*
 cd functions && yarn install && yarn deploy
 ```
 
-2. Client
+### To build the client app
 
 ```sh
 yarn && npm-run-all -p setup:yarn:*
 cd client && yarn install && yarn build
+```
+
+### To develop the client app
+
+```sh
+yarn && npm-run-all -p setup:yarn:*
+cd client && yarn start
+```
+
+### To run Storybook
+
+```sh
+yarn && npm-run-all -p setup:yarn:*
+cd client && yarn storybook
 ```

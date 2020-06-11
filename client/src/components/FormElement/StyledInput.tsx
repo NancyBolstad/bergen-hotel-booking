@@ -58,4 +58,8 @@ export const StyledInput = styled.input<Partial<React.InputHTMLAttributes<HTMLIn
     margin: 0;
     margin-left: 1rem;
   }
+
+  ::placeholder {
+    color: ${props => props.theme.colors.onSurface};
+  }
 `;

@@ -50,4 +50,8 @@ export const StyledTextArea = styled.textarea<
     border-bottom: 2px solid ${props => props.theme.colors.onBackground};
     outline: none;
   }
+
+  ::placeholder {
+    color: ${props => props.theme.colors.onSurface};
+  }
 `;

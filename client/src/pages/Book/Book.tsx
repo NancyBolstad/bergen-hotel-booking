@@ -12,29 +12,6 @@ import PlainBanner from '../../components/Banner/PlainBanner';
 
 interface Props {}
 
-const Layout = styled(Flex)`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  algin-items: center;
-
-  @media all and (min-width: ${props => props.theme.mediaQueries.large}px) {
-    flex-direction: row;
-    justify-content: flex-start;
-    algin-items: flex-start;
-  }
-`;
-
-const FlexLeft = styled(FlexKid)`
-  a {
-    margin: 0 auto;
-
-    @media all and (min-width: ${props => props.theme.mediaQueries.large}px) {
-      width: 100%;
-    }
-  }
-`;
-
 export const Book: React.FunctionComponent<Props> = () => {
   let { id } = useParams();
   const { results, loading, error } = useApi<HotelDetailsRoot>({
@@ -92,5 +69,28 @@ export const Book: React.FunctionComponent<Props> = () => {
     </>
   );
 };
+
+const Layout = styled(Flex)`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  algin-items: center;
+
+  @media all and (min-width: ${props => props.theme.mediaQueries.large}px) {
+    flex-direction: row;
+    justify-content: flex-start;
+    algin-items: flex-start;
+  }
+`;
+
+const FlexLeft = styled(FlexKid)`
+  a {
+    margin: 0 auto;
+
+    @media all and (min-width: ${props => props.theme.mediaQueries.large}px) {
+      width: 100%;
+    }
+  }
+`;
 
 export default Book;

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import styled from 'styled-components';
 import { useParams, useHistory } from 'react-router-dom';
 import PageHero from '../../components/PageHero/PageHero';
 import useApi from '../../hooks/useApi';
@@ -10,25 +9,9 @@ import Typography from '../../components/Typography/Typography';
 import { Flex } from '../../components/Layout/';
 import { HotelCardsList } from '../../components/HotelCards';
 import { Context } from '../../context/GlobalContext';
+import RichText from '../../components/Typography/RichText';
 
 interface Props {}
-
-export const RichText = styled.div`
-  line-height: 1.8;
-  color: ${props => props.theme.colors.onBackground};
-  font-size: 1.5rem;
-  margin-bottom: ${props => props.theme.spacing.s}rem;
-  white-space: pre-wrap;
-  p {
-    margin: ${props => props.theme.spacing.s}rem auto;
-  }
-
-  @media screen and (min-width: 1280px) {
-    p {
-      margin: ${props => props.theme.spacing.m}rem auto;
-    }
-  }
-`;
 
 export const BlogDetails: React.FunctionComponent<Props> = () => {
   const localContext = React.useContext(Context);

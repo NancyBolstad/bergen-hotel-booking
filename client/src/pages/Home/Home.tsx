@@ -6,7 +6,7 @@ import { HotelCardsList } from '../../components/HotelCards';
 import IconList from '../../components/IconList/IconList';
 import Loader from '../../components/Loader/Loader';
 import { Context } from '../../context/GlobalContext';
-import { CAMPAIGN_A, FLEX_BANNER_A, FLEX_BANNER_B, PAGE_HERO_IMG } from '../../data/content';
+import { CAMPAIGN_A, FLEX_BANNER_A, FLEX_BANNER_B, PAGE_HERO_IMG } from '../../util/constants';
 
 interface Props {}
 

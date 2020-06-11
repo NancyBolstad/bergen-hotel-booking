@@ -2,6 +2,10 @@
 
 A full-stack web development project build with Google Cloud Functions, Firebase, Node.js, TypeScript, React and Styled-Components.
 
+<p align='center'>
+<img src='https://res.cloudinary.com/dykdxdtuu/image/upload/q_auto:eco/v1591882382/holidaza/holidaze-bergen.netlify.app__Laptop_with_MDPI_screen_1_mlajdb.png' width='600' alt='npm start'>
+</p>
+
 ## Features
 
 - [x] A Node.js Restful API for CRUD operations using Express, TypeScript, Google Cloud Functions with Firebase.
@@ -17,11 +21,21 @@ If something doesn’t work, please [file an issue](https://github.com/NancyBols
 
 ## Building the code
 
+1. API
+
 ```sh
-npx create-react-app my-browser-extension --scripts-version react-browser-extension-scripts --template browser-extension
-cd my-browser-extension
-npm start
+yarn && npm-run-all -p setup:yarn:*
+cd functions && yarn install && yarn deploy
 ```
+
+2. Client
+
+```sh
+yarn && npm-run-all -p setup:yarn:*
+cd cd client && yarn install && yarn build
+```
+
+Building the code
 
 If you've previously installed `create-react-app` globally via `npm install -g create-react-app`, we recommend you uninstall the package using `npm uninstall -g create-react-app` to ensure that npx always uses the latest version.
 
@@ -29,10 +43,6 @@ _([npx](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7
 
 Then open Chrome, and unpack the newly created `/dev` folder to see your extension added locally to your browser.<br>
 When you’re ready to ship your extension, create an optimized build with `npm run build`.
-
-<p align='center'>
-<img src='https://cdn.jsdelivr.net/gh/facebook/create-react-app@27b42ac7efa018f2541153ab30d63180f5fa39e0/screencast.svg' width='600' alt='npm start'>
-</p>
 
 ## What's do I need to know to start building my extension ?
 

@@ -240,7 +240,7 @@ const ServiceLabel = styled(Typography)`
   padding: ${props => props.theme.spacing.xs}rem;
   background-color: ${props => props.theme.colors.surface};
   color: ${props => props.theme.colors.onBackground};
-  font-size: 14px;
+  font-size: 1rem;
   margin-right: ${props => props.theme.spacing.xs}rem;
   margin-bottom: ${props => props.theme.spacing.xs}rem;
   border-radius: 4px;

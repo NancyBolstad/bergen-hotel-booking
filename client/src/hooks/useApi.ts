@@ -28,9 +28,9 @@ function useApi<T>(opts: Opts<T>): UseApiInterface<T> {
 
       const response = await fetch(url);
       if (response.status === 404) {
-        throw new Error('pageNotFound');
+        throw new Error('Page Not Found');
       } else if (response.status === 500) {
-        throw new Error('internalServerError');
+        throw new Error('Internal Server Error');
       }
 
       const data = await response.json();
@@ -40,7 +40,6 @@ function useApi<T>(opts: Opts<T>): UseApiInterface<T> {
     } catch (error) {
       setLoading(false);
       setError('Something went wrong with the API service.');
-      console.log(error);
     }
   }
 

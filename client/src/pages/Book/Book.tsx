@@ -1,45 +1,16 @@
 import * as React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import useApi from '../../hooks/useApi';
 import Loader from '../../components/Loader/Loader';
 import { HotelDetailsRoot } from '../../types/response';
 import { VerticalSpacer, HorizontalSpacer, WidthConstraints } from '../../components/Layout';
-import { Flex, FlexKid } from '../../components/Layout/Flex';
+import { Flex, FlexKid } from '../../components/Layout/';
 import BookForm from '../../components/Book/BookForm';
 import { HotelCard } from '../../components/HotelCards';
-import createMediaQuery from '../../util/createMediaQuery';
 import PlainBanner from '../../components/Banner/PlainBanner';
 
 interface Props {}
-
-const Layout = styled(Flex)`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  algin-items: center;
-
-  ${createMediaQuery(
-    'large',
-    css`
-      flex-direction: row;
-      justify-content: flex-start;
-      algin-items: flex-start;
-    `,
-  )}
-`;
-
-const FlexLeft = styled(FlexKid)`
-  a {
-    margin: 0 auto;
-    ${createMediaQuery(
-      'large',
-      css`
-        width: 100%;
-      `,
-    )}
-  }
-`;
 
 export const Book: React.FunctionComponent<Props> = () => {
   let { id } = useParams();
@@ -73,9 +44,7 @@ export const Book: React.FunctionComponent<Props> = () => {
         <>
           <PlainBanner
             title={
-              results.data.name
-                ? `Booking your stay at ${results.data.name} `
-                : `Send in your booking`
+              results.data.name ? `Book your stay at ${results.data.name} ` : `Send in your booking`
             }
             isTitleColorRed
           />
@@ -98,5 +67,28 @@ export const Book: React.FunctionComponent<Props> = () => {
     </>
   );
 };
+
+const Layout = styled(Flex)`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  algin-items: center;
+
+  @media all and (min-width: ${props => props.theme.mediaQueries.large}px) {
+    flex-direction: row;
+    justify-content: flex-start;
+    algin-items: flex-start;
+  }
+`;
+
+const FlexLeft = styled(FlexKid)`
+  a {
+    margin: 0 auto;
+
+    @media all and (min-width: ${props => props.theme.mediaQueries.large}px) {
+      width: 100%;
+    }
+  }
+`;
 
 export default Book;

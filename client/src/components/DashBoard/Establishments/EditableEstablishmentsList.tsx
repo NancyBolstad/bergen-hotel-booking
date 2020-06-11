@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useHistory } from 'react-router-dom';
-import { DeleteButton, EditableWrapper, Block } from '../helper-components/Block';
+import { DeleteButton, EditableWrapper, Block } from '../styles/common';
 import { HotelDetails, Root } from '../../../types/response';
 import { Flex, FlexKid, VerticalSpacer } from '../../Layout';
 import HotelCardVariant from '../../HotelCards/HotelCardVariant';

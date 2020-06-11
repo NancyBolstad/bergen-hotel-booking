@@ -1,10 +1,9 @@
 import * as React from 'react';
 import Typography from '../Typography/Typography';
 import { FooterWrapper, FooterLinksWrapper, FooterLink } from './styles';
-import { COPY_RIGHTS } from '../../data/footer';
-import { Flex } from '../Layout/Flex';
 import { Facebook, Twitter, Instagram } from '../../util/icons';
-import { WidthConstraints, HorizontalSpacer, VerticalSpacer } from '../Layout';
+import { WidthConstraints, HorizontalSpacer, VerticalSpacer, Flex } from '../Layout';
+import { COPY_RIGHTS } from '../../util/constants';
 
 export interface Props {}
 
@@ -26,7 +25,13 @@ export const Footer: React.FC<Props> = () => {
                   {Instagram}
                 </FooterLink>
               </FooterLinksWrapper>
-              <Typography variant="h6" element="span" content={COPY_RIGHTS} color="white" />
+              <Typography
+                variant="h6"
+                element="span"
+                content={COPY_RIGHTS}
+                color="white"
+                top={24}
+              />
             </Flex>
           </WidthConstraints>
         </HorizontalSpacer>

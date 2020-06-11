@@ -1,7 +1,42 @@
 import styled, { css } from 'styled-components';
-import createFontStyles from '../../util/createFontStyles';
 import pixelsToRem from '../../util/pixelsToRem';
 import { Space as SpaceInterface, Styles } from './Typography';
+
+export const FontStyles = css<Styles>`
+  font-family: ${props => props.theme.fonts[props.variant].family};
+  font-weight: ${props => props.theme.fonts[props.variant].weight};
+  font-size: ${props => props.theme.fonts[props.variant].size}rem;
+  ${props =>
+    props.theme.fonts[props.variant].lineHeight &&
+    css`
+      line-height: ${props.theme.fonts[props.variant].lineHeight};
+    `};
+
+  ${props =>
+    props.theme.fonts[props.variant].mediaQueries &&
+    (props.theme.fonts[props.variant].mediaQueries || []).map(
+      query => css`
+        @media (min-width: ${query.query}px) {
+          ${query.family &&
+            css`
+              font-family: ${query.family};
+            `};
+          ${query.weight &&
+            css`
+              font-weight: ${query.weight};
+            `};
+          ${query.size &&
+            css`
+              font-size: ${query.size}rem;
+            `};
+          ${query.lineHeight &&
+            css`
+              line-height: ${query.lineHeight};
+            `};
+        }
+      `,
+    )};
+`;
 
 export const Space = css<SpaceInterface>`
   ${props =>
@@ -33,73 +68,24 @@ export const Space = css<SpaceInterface>`
 export const Text = styled.p<Styles>`
   color: ${props =>
     props.isPrimaryColor ? props.theme.colors.primary : props.theme.colors.onBackground};
+
   ${props =>
-    props.variant === 'b1' &&
+    props.maxWidth &&
     css`
-      ${props => createFontStyles(props.theme.fonts.b1)};
+      max-width: ${props.maxWidth}px;
     `}
-    ${props =>
-      props.variant === 'b2' &&
-      css`
-        ${props => createFontStyles(props.theme.fonts.b2)};
-      `}
-   ${props =>
-     props.variant === 'b3' &&
-     css`
-       ${props => createFontStyles(props.theme.fonts.b3)};
-     `}
-     ${props =>
-       props.variant === 'h1' &&
-       css`
-         ${props => createFontStyles(props.theme.fonts.h1)};
-       `}
-    
-    ${props =>
-      props.variant === 'h2' &&
-      css`
-        ${props => createFontStyles(props.theme.fonts.h3)};
-      `}
-    
-    ${props =>
-      props.variant === 'h3' &&
-      css`
-        ${props => createFontStyles(props.theme.fonts.h4)};
-      `}
-    
-    ${props =>
-      props.variant === 'h4' &&
-      css`
-        ${props => createFontStyles(props.theme.fonts.h4)};
-      `}
-         
-    ${props =>
-      props.variant === 'h5' &&
-      css`
-        ${props => createFontStyles(props.theme.fonts.h5)};
-      `}
-         
-    ${props =>
-      props.variant === 'h6' &&
-      css`
-        ${props => createFontStyles(props.theme.fonts.h6)};
-      `}
-     ${props =>
-       props.maxWidth &&
-       css`
-         max-width: ${props.maxWidth}px;
-       `}
-      ${props =>
-        props.textTransform &&
-        css`
-          text-transform: ${props.textTransform};
-        `}
+  ${props =>
+    props.textTransform &&
+    css`
+      text-transform: ${props.textTransform};
+    `}
 
-        ${props =>
-          props.color &&
-          css`
-            color: ${props.theme.colors[props.color]};
-          `}
+  ${props =>
+    props.color &&
+    css`
+      color: ${props.theme.colors[props.color]};
+    `}
 
-
-    ${Space};
+  ${Space};
+  ${FontStyles};
 `;

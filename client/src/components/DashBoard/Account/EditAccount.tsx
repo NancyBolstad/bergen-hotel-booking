@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useForm } from 'react-hook-form';
 import Typography from '../../Typography/Typography';
 import { UserContext } from '../../../context/UserContext';
-import { Block, EditingButtonGroup } from '../helper-components/Block';
+import { Block, EditingButtonGroup } from '../styles/common';
 import Busy from '../../Loader/Busy';
 import { Form, StyledLabel, StyledInput, ErrorMessage } from '../../FormElement';
 import { Button } from '../../Button/styles';
@@ -55,7 +55,7 @@ const EditAccount: React.FC<Props> = () => {
             </Button>
           )}
         </EditingButtonGroup>
-        <Typography variant="h2" element="h2" content="Account Details" />
+        <Typography variant="h3" element="h2" content="Account Details" />
         <Busy busy={updating}>
           <Form
             noValidate

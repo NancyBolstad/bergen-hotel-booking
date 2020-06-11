@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Typography from '../../Typography/Typography';
 import { UserContext } from '../../../context/UserContext';
-import { Block } from '../helper-components/Block';
+import { Block } from '../styles/common';
 import getTimeOfDay from '../../../util/getTimeOfDay';
 import EditAccount from './EditAccount';
 

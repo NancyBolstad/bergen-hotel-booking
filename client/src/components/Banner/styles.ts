@@ -1,39 +1,33 @@
 import styled, { css } from 'styled-components';
-import { BackgroundImage } from '../Image/BackgroundImage';
+import { BackgroundImage } from '../Layout/BackgroundImage';
 import Typography from '../Typography/Typography';
-import createMediaQuery from '../../util/createMediaQuery';
 
 type alignVariant = 'flex-start' | 'center' | 'flex-end';
 
-export const FlexParent = styled.div<{ isImageRight?: boolean; isMobile: boolean }>`
+export const FlexParent = styled.div<{ isImageRight?: boolean }>`
   display: flex;
   flex-direction: column-reverse;
 
-  ${props =>
-    props.isMobile === false &&
-    css`
-      flex-direction: ${props.isImageRight ? 'row-reverse' : 'row'};
-    `}
+  @media all and (min-width: ${props => props.theme.mediaQueries.medium}px) {
+    flex-direction: ${props => (props.isImageRight ? 'row-reverse' : 'row')};
+  }
 `;
 
-export const FlexKid = styled(BackgroundImage)<{ isMobile: boolean }>`
+export const FlexColumn = styled(BackgroundImage)`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  width: ${props => (props.isMobile ? '100%' : '50%')};
+  width: 100%;
   flex-grow: 1;
-  min-height: 13.75rem;
+  min-height: 23.75rem;
   padding ${props => props.theme.spacing.s}rem 0;
 
-  ${createMediaQuery(
-    'large',
-    css`
+  @media all and (min-width: ${props => props.theme.mediaQueries.medium}px) {
     justify-content: center;
-      min-height: 23.75rem;
-      padding ${props => props.theme.spacing.m}rem;
-    `,
-  )}
+    padding ${props => props.theme.spacing.m}rem;
+    width:50%;
+  }
 `;
 
 export const PlainBannerContent = styled(BackgroundImage)<{
@@ -46,10 +40,11 @@ export const PlainBannerContent = styled(BackgroundImage)<{
   align-items: ${props => (props.align ? props.align : 'center')};
   width: 100%;
   min-height: 15vh;
+
   ${props =>
     props.large &&
     css`
-      height: 80vh;
+      height: 75vh;
     `}
 `;
 
@@ -111,7 +106,12 @@ export const InnerTextWrapper = styled.a<{ large?: string }>`
     color: ${props => props.theme.colors.dark};
   }
 
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: ${props => props.theme.mediaQueries.medium}px) {
+    width: 25.6875rem;
+    height: 10.3125rem;
+  }
+
+  @media screen and (min-width: ${props => props.theme.mediaQueries.large}px) {
     width: ${props => (props.large === 'true' ? '30rem' : '18rem')};
     height: ${props => (props.large === 'true' ? '20rem' : '12rem')};
   }

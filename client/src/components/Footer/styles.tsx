@@ -1,11 +1,10 @@
 import styled from 'styled-components';
-import setColorOpacity from '../../util/setColorOpacity';
 
 export const FooterWrapper = styled.footer`
   width: 100%;
   background-color: ${props => props.theme.colors.dark};
   color: ${props => props.theme.colors.onSurface};
-  border-top: 1px solid ${props => props.theme.colors.onBackground};
+  border-top: 1px solid ${props => props.theme.colors.surface};
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -30,7 +29,7 @@ export const FooterLink = styled.a`
   svg {
     width: 2rem;
     height: 2rem;
-    fill: ${setColorOpacity('#ffffff', '0.7')};
+    fill: ${props => props.theme.colors.surface};
     margin-right: ${props => props.theme.spacing.s}rem;
 
     &:hover {

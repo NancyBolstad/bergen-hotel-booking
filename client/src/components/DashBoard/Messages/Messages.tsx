@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { MessageCard, ExpandButton, DeleteButton, Block } from '../helper-components/Block';
+import { MessageCard, ExpandButton, DeleteButton, Block } from '../styles/common';
 import Typography from '../../Typography/Typography';
 import useApi from '../../../hooks/useApi';
 import { ContactResponse, Contact } from '../../../types/response';
@@ -49,7 +49,7 @@ const Messages: React.FC<Props> = () => {
   return (
     <>
       <Block>
-        <Typography variant="h2" element="h2" content="Messages" />
+        <Typography variant="h2" element="h2" content="Manage Messages" />
       </Block>
       {loading && (
         <Block>
@@ -91,7 +91,7 @@ const Messages: React.FC<Props> = () => {
                   />
                 )}
                 <Typography
-                  variant="h2"
+                  variant="h3"
                   element="span"
                   content={item.clientName ? item.clientName : 'Anonym'}
                   bottom={16}

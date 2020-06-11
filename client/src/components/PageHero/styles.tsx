@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components';
 import { IColors } from '../../types/theme';
-import createMediaQueries from '../../util/createMediaQuery';
 
 type backgroundColor = keyof IColors;
 
@@ -41,19 +40,13 @@ export const Content = styled.div`
   top: -5.5625rem;
   padding 1.5rem 0 0 0;
 
-  ${createMediaQueries(
-    'medium',
-    css`
-      top: -8.0625rem;
-    `,
-  )}
+  @media all and (min-width: ${props => props.theme.mediaQueries.medium}px) {
+    top: -8.0625rem;
+  }
 
-  ${createMediaQueries(
-    'large',
-    css`
-      max-width: 1280px;
-      top: -3.5625rem;
-      padding: 1rem 0 0 0;
-    `,
-  )}
+  @media all and (min-width: ${props => props.theme.mediaQueries.large}px) {
+    max-width: 1280px;
+    top: -3.5625rem;
+    padding: 1rem 0 0 0;
+  }
 `;

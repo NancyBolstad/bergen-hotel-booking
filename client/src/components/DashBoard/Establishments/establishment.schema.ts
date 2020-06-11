@@ -1,20 +1,26 @@
 import * as Yup from 'yup';
+import charactersLengthErrorMessage from '../../../util/charactersLengthErrorMessage';
+import { YUP_SCHEMA_MESSAGE } from './../../../util/constants';
+import requiredErrorMessage from '../../../util/requiredErrorMessage';
 
 const EstablishmentSchema = Yup.object().shape({
   name: Yup.string()
-    .required('Establishment name is required.')
-    .min(3, 'Establishment name is too short.'),
-  category: Yup.string().required('Category is required.'),
+    .required(requiredErrorMessage('Name'))
+    .min(2, `${charactersLengthErrorMessage('Establishment name', 2, 50)}`)
+    .max(50, `${charactersLengthErrorMessage('Establishment name', 2, 50)}`),
+  category: Yup.string().required(requiredErrorMessage('Category')),
   descriptions: Yup.string()
-    .required('Description is required.')
-    .min(300, 'Description is too short.')
-    .max(1000, 'Description is too long'),
+    .required(requiredErrorMessage('Description'))
+    .min(300, `${charactersLengthErrorMessage('Description', 300, 1000)}`)
+    .max(1000, `${charactersLengthErrorMessage('Description', 300, 1000)}`),
   location: Yup.string()
-    .required('Location is required')
-    .min(4, 'Invalid location'),
+    .required(requiredErrorMessage('Location'))
+    .min(4, `${charactersLengthErrorMessage('Location', 4, 50)}`)
+    .max(50, `${charactersLengthErrorMessage('Location', 4, 50)}`),
   price: Yup.number()
-    .required('Price is required')
-    .min(0, 'Invalid price.'),
+    .typeError(YUP_SCHEMA_MESSAGE.numberTypeError)
+    .required(requiredErrorMessage('Price'))
+    .min(0, YUP_SCHEMA_MESSAGE.price),
   services: Yup.array(Yup.string()),
 });
 

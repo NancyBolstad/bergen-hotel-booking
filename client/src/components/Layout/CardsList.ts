@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const CardsList = styled.div`
+export const CardsList = styled.div<{ isEven?: boolean }>`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -10,10 +10,13 @@ export const CardsList = styled.div`
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: space-around;
     &::after {
       content: '';
       justify-content: center;
-      width: calc(25% - ${props => props.theme.spacing.m / 2}rem);
+      width: calc(
+        ${props => (props.isEven ? '25%' : '50%')} - ${props => props.theme.spacing.m / 2}rem
+      );
     }
 
     @media screen and (min-width: 1280px) {

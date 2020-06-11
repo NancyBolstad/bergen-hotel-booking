@@ -13,7 +13,6 @@ export const StyledMain = styled.main<{ isDashboard?: boolean }>`
 export const Main: React.FunctionComponent = ({ children }) => {
   const location = useLocation();
 
-  console.log(location);
   if (!children) return null;
 
   return <StyledMain isDashboard={location.pathname.includes('dashboard')}>{children}</StyledMain>;

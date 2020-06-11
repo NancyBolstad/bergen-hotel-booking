@@ -66,7 +66,7 @@ export const HotelDetails: React.FunctionComponent<Props> = () => {
                 <Typography
                   variant="b3"
                   element="span"
-                  content={`From ${results.data.price} kr per day`}
+                  content={`From ${results.data.price} NOK per day`}
                 />
                 {!!results.data.services && (
                   <Typography variant="h3" element="p" content="Services" />
@@ -84,7 +84,7 @@ export const HotelDetails: React.FunctionComponent<Props> = () => {
                 </Flex>
                 <Typography variant="h3" element="p" content="Description" />
                 <Typography variant="b3" element="p" content={results.data.descriptions} />
-                <Flex direction="row" justify="flex-start" align="center">
+                <Flex direction="column" justify="flex-start" align="flex-start">
                   <ButtonLink
                     variant="primary"
                     size="large"
@@ -94,12 +94,10 @@ export const HotelDetails: React.FunctionComponent<Props> = () => {
                   >
                     Book
                   </ButtonLink>
-                  <VerticalSpacer topSpace="s" bottomSpace="s">
-                    <HorizontalSpacer>
-                      {!!localContext.favorites && results.data.id && (
-                        <LikeButton card={results.data} withText alginLeft />
-                      )}
-                    </HorizontalSpacer>
+                  <VerticalSpacer>
+                    {!!localContext.favorites && results.data.id && (
+                      <LikeButton card={results.data} withText alginLeft />
+                    )}
                   </VerticalSpacer>
                 </Flex>
               </WidthConstraints>

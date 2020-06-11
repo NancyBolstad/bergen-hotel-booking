@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-import createFontStyles from '../../util/createFontStyles';
 import { ButtonProps } from './Button';
 
 export const Button = styled.button<ButtonProps>`
@@ -13,6 +12,37 @@ export const Button = styled.button<ButtonProps>`
   border-radius: 4px;
   border: 2px solid transparent;
   transition: border-color 0.15s ease-in-out, background-color 0.15s ease-in-out;
+  font-family: ${props => props.theme.fonts.b2.family};
+  font-weight: ${props => props.theme.fonts.b2.weight};
+  font-size: ${props => props.theme.fonts.b2.size}rem;
+  ${props =>
+    props.theme.fonts.b2.lineHeight &&
+    css`
+      line-height: ${props.theme.fonts.b2.lineHeight};
+    `};
+  ${props =>
+    props.theme.fonts.b2.mediaQueries &&
+    css`
+      @media (min-width: ${props.theme.fonts.b2.mediaQueries[0].query}px) {
+        ${props.theme.fonts.b2.mediaQueries[0].family &&
+          css`
+            font-family: ${props.theme.fonts.b2.mediaQueries[0].family};
+          `};
+        ${props.theme.fonts.b2.mediaQueries[0].weight &&
+          css`
+            font-weight: ${props.theme.fonts.b2.mediaQueries[0].weight};
+          `};
+        ${props.theme.fonts.b2.mediaQueries[0].size &&
+          css`
+            font-size: ${props.theme.fonts.b2.mediaQueries[0].size}rem;
+          `};
+        ${props.theme.fonts.b2.mediaQueries[0].lineHeight &&
+          css`
+            line-height: ${props.theme.fonts.b2.mediaQueries[0].lineHeight};
+          `};
+      }
+    `}
+
   &:disabled {
     pointer-events: none;
     opacity: 0.6;
@@ -35,7 +65,6 @@ export const Button = styled.button<ButtonProps>`
     props.size === 'small' &&
     css`
       padding: ${props => props.theme.spacing.xs}rem 32px;
-      ${createFontStyles(props.theme.fonts.b2)};
 
       @media all and (min-width: ${props => props.theme.mediaQueries.small}px) {
         padding: ${props => props.theme.spacing.xs}rem 20px;
@@ -45,13 +74,40 @@ export const Button = styled.button<ButtonProps>`
     props.size === 'medium' &&
     css`
       padding: ${props => props.theme.spacing.xs}rem 20px;
-      ${createFontStyles(props.theme.fonts.b2)};
     `};
   ${props =>
     props.size === 'large' &&
     css`
       padding: ${props => props.theme.spacing.xs}rem 48px;
-      ${createFontStyles(props.theme.fonts.h3)};
+      font-weight: ${props => props.theme.fonts.h3.weight};
+      font-size: ${props => props.theme.fonts.h3.size}rem;
+      ${props =>
+        props.theme.fonts.h3.lineHeight &&
+        css`
+          line-height: ${props.theme.fonts.h3.lineHeight};
+        `};
+      ${props =>
+        props.theme.fonts.h3.mediaQueries &&
+        css`
+          @media (min-width: ${props.theme.fonts.h3.mediaQueries[0].query}px) {
+            ${props.theme.fonts.h3.mediaQueries[0].family &&
+              css`
+                font-family: ${props.theme.fonts.h3.mediaQueries[0].family};
+              `};
+            ${props.theme.fonts.h3.mediaQueries[0].weight &&
+              css`
+                font-weight: ${props.theme.fonts.h3.mediaQueries[0].weight};
+              `};
+            ${props.theme.fonts.h3.mediaQueries[0].size &&
+              css`
+                font-size: ${props.theme.fonts.h3.mediaQueries[0].size}rem;
+              `};
+            ${props.theme.fonts.h3.mediaQueries[0].lineHeight &&
+              css`
+                line-height: ${props.theme.fonts.h3.mediaQueries[0].lineHeight};
+              `};
+          }
+        `}
     `};
   ${props =>
     props.variant === 'primary' &&
@@ -66,7 +122,7 @@ export const Button = styled.button<ButtonProps>`
       &:hover,
       &:active,
       &:focus {
-        opacity: 0.8;
+        filter: brightness(0.9);
     `};
   ${props =>
     props.variant === 'secondary' &&

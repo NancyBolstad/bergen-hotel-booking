@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import createFontStyles from '../../util/createFontStyles';
 import Typography from '../Typography/Typography';
 
 const Wrapper = styled.div`
@@ -53,7 +52,6 @@ const BlogTitle = styled(Typography)<{ element: 'h3' | 'h4' }>`
 const BlogIntroText = styled(Typography)<{ element: 'p' }>`
   margin: 0;
   text-align: left;
-  ${props => createFontStyles(props.theme.fonts.b1)};
 `;
 
 const SectionTitle = styled(Typography)<{ element: 'h2' }>`

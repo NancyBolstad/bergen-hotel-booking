@@ -2,7 +2,6 @@ import * as React from 'react';
 import styled, { css } from 'styled-components';
 import { Link, useLocation } from 'react-router-dom';
 import { user, messages, hotel, enquiry, logout } from '../../../util/icons';
-import setColorOpacity from '../../../util/setColorOpacity';
 import slugMatch from '../../../util/slugMatch';
 import Typography from '../../../components/Typography/Typography';
 import { UserContext } from '../../../context/UserContext';
@@ -50,13 +49,13 @@ const ListItem = styled.li<{ isActive?: boolean }>`
 
   a {
     display: flex;
-    background-color: ${props => setColorOpacity(props.theme.colors.surface, '0.9')};
+    background-color: ${props => props.theme.colors.surface};
     padding: ${props => `${props.theme.spacing.xs / 2}rem ${props.theme.spacing.xs}rem`};
     color: ${props => props.theme.colors.dark};
     box-shadow: 0px 3px 6px #00000029;
     align-items: center;
     border-radius: 4px;
-    border: 2px solid ${props => setColorOpacity(props.theme.colors.surface, '0.9')};
+    border: 2px solid ${props => props.theme.colors.surface};
     transition: background-color 0.15s ease-in-out;
     text-decoration: none;
     flex-direction: row;

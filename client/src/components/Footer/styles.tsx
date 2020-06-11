@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import setColorOpacity from '../../util/setColorOpacity';
 
 export const FooterWrapper = styled.footer`
   width: 100%;

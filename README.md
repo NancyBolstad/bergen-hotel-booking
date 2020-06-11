@@ -23,30 +23,32 @@ If something doesn’t work, please [file an issue](https://github.com/NancyBols
 
 In the project directory, you can run:
 
-### To set up Google Functions
+### To set up project
 
 ```sh
 yarn && npm-run-all -p setup:yarn:*
+```
+
+### To deploy Google Functions
+
+```sh
 cd functions && yarn install && yarn deploy
 ```
 
 ### To build the client app
 
 ```sh
-yarn && npm-run-all -p setup:yarn:*
 cd client && yarn install && yarn build
 ```
 
 ### To develop the client app
 
 ```sh
-yarn && npm-run-all -p setup:yarn:*
 cd client && yarn start
 ```
 
 ### To run Storybook
 
 ```sh
-yarn && npm-run-all -p setup:yarn:*
 cd client && yarn storybook
 ```

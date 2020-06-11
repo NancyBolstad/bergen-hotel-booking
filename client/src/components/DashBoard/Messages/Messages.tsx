@@ -91,7 +91,7 @@ const Messages: React.FC<Props> = () => {
                   />
                 )}
                 <Typography
-                  variant="h2"
+                  variant="h3"
                   element="span"
                   content={item.clientName ? item.clientName : 'Anonym'}
                   bottom={16}

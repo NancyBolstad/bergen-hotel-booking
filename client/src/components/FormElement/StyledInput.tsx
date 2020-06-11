@@ -1,6 +1,5 @@
 import * as React from 'react';
 import styled, { css } from 'styled-components';
-import setColorOpacity from '../../util/setColorOpacity';
 
 export const StyledInput = styled.input<Partial<React.InputHTMLAttributes<HTMLInputElement>>>`
   border: 1px solid ${props => props.theme.colors.onBackground};
@@ -44,11 +43,6 @@ export const StyledInput = styled.input<Partial<React.InputHTMLAttributes<HTMLIn
       }
     `}
 
-  &::placeholder {
-    color: ${props => setColorOpacity(props.theme.colors.onBackground, '0.6')};
-    font-size: 1rem;
-  }
-
   &:active,
   &:focus {
     border-bottom: 2px solid ${props => props.theme.colors.onBackground};
@@ -59,9 +53,13 @@ export const StyledInput = styled.input<Partial<React.InputHTMLAttributes<HTMLIn
     border: none;
     outline: none;
     box-shadow: none;
-    color: ${props => setColorOpacity(props.theme.colors.onBackground, '0.8')};
+    color: ${props => props.theme.colors.surface};
     background-color: ${props => props.theme.colors.background};
     margin: 0;
     margin-left: 1rem;
+  }
+
+  ::placeholder {
+    color: ${props => props.theme.colors.onSurface};
   }
 `;

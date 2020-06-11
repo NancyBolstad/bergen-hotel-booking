@@ -30,7 +30,7 @@ export const BlogList: React.FunctionComponent<Props> = ({
           <WidthConstraints size="large">
             <Wrapper>
               {!!sectionTitle && <SectionTitle element="h2" variant="h2" content={sectionTitle} />}
-              <CardsList>
+              <CardsList isEven={list.length % 2 === 0}>
                 {list.map((blog, index) => (
                   <BlogCard
                     key={`blog-card${index}-${blog.id}`}

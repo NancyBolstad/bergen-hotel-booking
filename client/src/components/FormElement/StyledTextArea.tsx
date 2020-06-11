@@ -1,6 +1,5 @@
 import * as React from 'react';
 import styled, { css } from 'styled-components';
-import setColorOpacity from '../../util/setColorOpacity';
 
 export const StyledTextArea = styled.textarea<
   Partial<React.TextareaHTMLAttributes<HTMLTextAreaElement>>
@@ -46,13 +45,13 @@ export const StyledTextArea = styled.textarea<
       }
     `}
 
-  &::placeholder {
-    color: ${props => setColorOpacity(props.theme.colors.onBackground, '0.4')};
-  }
-
   &:active,
   &:focus {
     border-bottom: 2px solid ${props => props.theme.colors.onBackground};
     outline: none;
+  }
+
+  ::placeholder {
+    color: ${props => props.theme.colors.onSurface};
   }
 `;

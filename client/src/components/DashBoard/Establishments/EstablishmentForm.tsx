@@ -196,18 +196,20 @@ const EstablishmentForm: React.FC<Props> = () => {
                 {/* 
       // @ts-ignore */
                 errors.category && <ErrorMessage>{errors.category.message}</ErrorMessage>}
-                <StyledLabelWrapper>Services</StyledLabelWrapper>
-                {SERVICES.map((service, index) => (
-                  <StyledCheckboxWrapper key={`service-${index}`}>
-                    <input type="checkbox" name={`services`} ref={register} value={service} />
-                    <Typography
-                      variant="b1"
-                      element="p"
-                      content={service}
-                      textTransform="capitalize"
-                    />
-                  </StyledCheckboxWrapper>
-                ))}
+                <StyledLabel>
+                  <StyledLabelWrapper>Services</StyledLabelWrapper>
+                  {SERVICES.map((service, index) => (
+                    <StyledCheckboxWrapper key={`service-${index}`}>
+                      <input type="checkbox" name={`services`} ref={register} value={service} />
+                      <Typography
+                        variant="b1"
+                        element="p"
+                        content={service}
+                        textTransform="capitalize"
+                      />
+                    </StyledCheckboxWrapper>
+                  ))}
+                </StyledLabel>
                 {/* 
       // @ts-ignore */
                 errors.services && <ErrorMessage>{errors.services.message}</ErrorMessage>}

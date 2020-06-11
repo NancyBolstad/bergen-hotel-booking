@@ -2,9 +2,8 @@ import * as React from 'react';
 import { Image as ImageType } from '../../types/types';
 import { WidthConstraints, HorizontalSpacer, VerticalSpacer, Section } from '../Layout';
 import Typography from '../Typography/Typography';
-import useIsMobile from '../../hooks/useIsMobile';
 import { ButtonVariant, ButtonLink } from '../Button/Button';
-import { FlexParent, FlexKid } from './styles';
+import { FlexParent, FlexColumn } from './styles';
 import { navigationArrow } from '../../util/icons';
 
 interface Props {
@@ -30,21 +29,19 @@ const FlexBanner: React.FunctionComponent<Props> = ({
   buttonText,
   redirectLink,
 }) => {
-  const isMobile = useIsMobile();
   return (
     <Section>
       <VerticalSpacer>
         <HorizontalSpacer>
           <WidthConstraints size="large">
-            <FlexParent isMobile={isMobile} isImageRight={isImageRight}>
-              <FlexKid
+            <FlexParent isImageRight={isImageRight}>
+              <FlexColumn
                 backgroundColor={backgroundColor}
-                isMobile={isMobile}
                 imageUrl={figure?.url}
                 role="img"
                 aria-label={figure?.alt}
               />
-              <FlexKid backgroundColor={backgroundColor} isMobile={isMobile}>
+              <FlexColumn backgroundColor={backgroundColor}>
                 <HorizontalSpacer>
                   <WidthConstraints size="small">
                     {!!title && (
@@ -73,7 +70,7 @@ const FlexBanner: React.FunctionComponent<Props> = ({
                     )}
                   </WidthConstraints>
                 </HorizontalSpacer>
-              </FlexKid>
+              </FlexColumn>
             </FlexParent>
           </WidthConstraints>
         </HorizontalSpacer>

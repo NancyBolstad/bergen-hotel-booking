@@ -4,31 +4,29 @@ import Typography from '../Typography/Typography';
 
 type alignVariant = 'flex-start' | 'center' | 'flex-end';
 
-export const FlexParent = styled.div<{ isImageRight?: boolean; isMobile: boolean }>`
+export const FlexParent = styled.div<{ isImageRight?: boolean }>`
   display: flex;
   flex-direction: column-reverse;
 
-  ${props =>
-    props.isMobile === false &&
-    css`
-      flex-direction: ${props.isImageRight ? 'row-reverse' : 'row'};
-    `}
+  @media all and (min-width: ${props => props.theme.mediaQueries.medium}px) {
+    flex-direction: ${props => (props.isImageRight ? 'row-reverse' : 'row')};
+  }
 `;
 
-export const FlexKid = styled(BackgroundImage)<{ isMobile: boolean }>`
+export const FlexColumn = styled(BackgroundImage)`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  width: ${props => (props.isMobile ? '100%' : '50%')};
+  width: 100%;
   flex-grow: 1;
-  min-height: 20.75rem;
+  min-height: 23.75rem;
   padding ${props => props.theme.spacing.s}rem 0;
 
   @media all and (min-width: ${props => props.theme.mediaQueries.medium}px) {
     justify-content: center;
-    min-height: 23.75rem;
     padding ${props => props.theme.spacing.m}rem;
+    width:50%;
   }
 `;
 
@@ -43,13 +41,11 @@ export const PlainBannerContent = styled(BackgroundImage)<{
   width: 100%;
   min-height: 15vh;
 
-  @media all and (min-width: ${props => props.theme.mediaQueries.large}px) {
-    ${props =>
-      props.large &&
-      css`
-        height: 80vh;
-      `}
-  }
+  ${props =>
+    props.large &&
+    css`
+      height: 75vh;
+    `}
 `;
 
 export const PlainBannerTitle = styled(Typography)<{ hasBackgroundImage?: boolean }>`

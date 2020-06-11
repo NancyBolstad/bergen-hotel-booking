@@ -4,7 +4,7 @@ import useApi from '../../../hooks/useApi';
 import { EnquiriesResponse, Enquiry } from '../../../types/response';
 import Loader from '../../Loader/Loader';
 import Table from '../../Table/Table';
-import { Block } from '../helper-components/Block';
+import { Block } from '../styles/common';
 
 interface Props {}
 
@@ -35,7 +35,7 @@ const Enquiries: React.FC<Props> = () => {
   return (
     <>
       <Block>
-        <Typography variant="h2" element="h2" content="Enquiries" />
+        <Typography variant="h2" element="h2" content="Manage Enquiries" />
       </Block>
       {results.data.length === 0 ? (
         <Block>

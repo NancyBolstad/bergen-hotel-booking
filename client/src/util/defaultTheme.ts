@@ -78,7 +78,7 @@ const h1: Font = {
   family: defaultFontFamily.primary,
   weight: defaultFontWeight.bold,
   size: 1.8125,
-  lineHeight: 1.15,
+  lineHeight: 1.5,
   mediaQueries: [
     {
       query: defaultMediaQueries.small,
@@ -93,7 +93,7 @@ const h2: Font = {
   family: defaultFontFamily.primary,
   weight: defaultFontWeight.bold,
   size: 1.5625,
-  lineHeight: 1.15,
+  lineHeight: 1.25,
   mediaQueries: [
     {
       query: defaultMediaQueries.small,
@@ -183,7 +183,7 @@ const b2: Font = {
   family: defaultFontFamily.primary,
   weight: defaultFontWeight.bold,
   size: 1.125,
-  lineHeight: 1.15,
+  lineHeight: 1.5,
   mediaQueries: [
     {
       query: defaultMediaQueries.small,

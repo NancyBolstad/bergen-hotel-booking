@@ -4,7 +4,6 @@ import Slider from '../Slider/Slider';
 import Button from '../Button/Button';
 import { IColors } from '../../types/theme';
 import { Flex } from '../Layout/';
-import setColorOpacity from '../../util/setColorOpacity';
 
 const Wrapper = styled(Flex)`
   flex-direction: column;
@@ -239,12 +238,13 @@ const CategoryBadge = styled(Typography)<{ element: 'span'; miniCard?: boolean }
 
 const ServiceLabel = styled(Typography)`
   padding: ${props => props.theme.spacing.xs}rem;
-  background-color: ${props => setColorOpacity(props.theme.colors.surface, '0.7')};
+  background-color: ${props => props.theme.colors.surface};
   color: ${props => props.theme.colors.onBackground};
-  font-size: 14px;
   margin-right: ${props => props.theme.spacing.xs}rem;
   margin-bottom: ${props => props.theme.spacing.xs}rem;
   border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 400;
 
   ${Card}:hover && {
     background-color: ${props => props.theme.colors.dark};

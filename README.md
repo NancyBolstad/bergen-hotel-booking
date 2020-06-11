@@ -34,39 +34,3 @@ cd functions && yarn install && yarn deploy
 yarn && npm-run-all -p setup:yarn:*
 cd client && yarn install && yarn build
 ```
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### "setup:npm": "npm install && npm-run-all -p setup:npm:\_",
-
-### "setup:npm:functions": "cd functions && npm install",
-
-### "setup:npm:client": "cd client && npm install",
-
-### "develop:npm": "npm-run-all -p develop:npm:\_",
-
-### "develop:npm:functions": "cd functions && npm run start",
-
-### "develop:npm:client": "cd client && npm run start",
-
-### "setup:yarn": "yarn && npm-run-all -p setup:yarn:\_",
-
-### "setup:yarn:functions": "cd functions && yarn install",
-
-### "setup:yarn:client": "cd client && yarn install",
-
-### "develop:yarn": "npm-run-all -p develop:yarn:\_",
-
-### "develop:yarn:functions": "cd functions && yarn start",
-
-### "develop:yarn:client": "cd client && yarn start",
-
-### "build:npm": "cd client && npm install && npm run build",
-
-### "build:yarn": "cd client && yarn install && yarn build",
-
-### "deploy-firebase:npm": "cd functions && npm install && npm run deploy",
-
-### "deploy-firebase:yarn": "cd functions && yarn install && yarn deploy"

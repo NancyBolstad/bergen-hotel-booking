@@ -30,7 +30,7 @@ export const FooterLink = styled.a`
   svg {
     width: 2rem;
     height: 2rem;
-    fill: ${setColorOpacity('#ffffff', '0.7')};
+    fill: ${props => props.theme.colors.surface};
     margin-right: ${props => props.theme.spacing.s}rem;
 
     &:hover {

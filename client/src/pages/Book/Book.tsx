@@ -44,9 +44,7 @@ export const Book: React.FunctionComponent<Props> = () => {
         <>
           <PlainBanner
             title={
-              results.data.name
-                ? `Booking your stay at ${results.data.name} `
-                : `Send in your booking`
+              results.data.name ? `Book your stay at ${results.data.name} ` : `Send in your booking`
             }
             isTitleColorRed
           />

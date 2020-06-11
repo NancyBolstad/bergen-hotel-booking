@@ -43,13 +43,11 @@ export const PlainBannerContent = styled(BackgroundImage)<{
   width: 100%;
   min-height: 15vh;
 
-  @media all and (min-width: ${props => props.theme.mediaQueries.large}px) {
-    ${props =>
-      props.large &&
-      css`
-        height: 80vh;
-      `}
-  }
+  ${props =>
+    props.large &&
+    css`
+      height: 75vh;
+    `}
 `;
 
 export const PlainBannerTitle = styled(Typography)<{ hasBackgroundImage?: boolean }>`

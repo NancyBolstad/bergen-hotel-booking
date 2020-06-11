@@ -11,7 +11,7 @@ const ContactSchema: Yup.ObjectSchema = Yup.object().shape({
   message: Yup.string()
     .required('Required!')
     .min(50, 'Too short!')
-    .max(300, 'Too long!'),
+    .max(1000, 'Too long!'),
 });
 
 export default ContactSchema;

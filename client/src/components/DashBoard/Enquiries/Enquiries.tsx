@@ -4,7 +4,7 @@ import useApi from '../../../hooks/useApi';
 import { EnquiriesResponse, Enquiry } from '../../../types/response';
 import Loader from '../../Loader/Loader';
 import Table from '../../Table/Table';
-import { Block } from '../helper-components/Block';
+import { Block } from '../styles/common';
 
 interface Props {}
 

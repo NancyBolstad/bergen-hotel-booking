@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useForm } from 'react-hook-form';
 import Typography from '../../Typography/Typography';
 import { UserContext } from '../../../context/UserContext';
-import { Block, EditingButtonGroup } from '../helper-components/Block';
+import { Block, EditingButtonGroup } from '../styles/common';
 import Busy from '../../Loader/Busy';
 import { Form, StyledLabel, StyledInput, ErrorMessage } from '../../FormElement';
 import { Button } from '../../Button/styles';

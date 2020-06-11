@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Route, useLocation, useHistory } from 'react-router-dom';
 import { WidthConstraints, HorizontalSpacer } from '../../components/Layout';
-import Menu from './helper-components/Menu';
+import DashboardMenu from './DashboardMenu';
 import Account from './Account/Account';
 import Enquiries from './Enquiries/Enquiries';
 import Establishments from './Establishments/Establishments';
@@ -29,7 +29,7 @@ const DashboardLayout: React.FunctionComponent<Props> = ({ user }) => {
         <WidthConstraints size="large">
           <DashboardSections>
             <Content aside>
-              <Menu />
+              <DashboardMenu />
             </Content>
             <Content>
               <Route

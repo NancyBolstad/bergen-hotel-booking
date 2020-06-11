@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import Typography from '../../Typography/Typography';
 import EstablishmentForm from './EstablishmentForm';
 import EditableEstablishmentsList from './EditableEstablishmentsList';
-import { Block } from '../helper-components/Block';
+import { Block } from '../styles/common';
 
 interface Props {}
 

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { MessageCard, ExpandButton, DeleteButton, Block } from '../helper-components/Block';
+import { MessageCard, ExpandButton, DeleteButton, Block } from '../styles/common';
 import Typography from '../../Typography/Typography';
 import useApi from '../../../hooks/useApi';
 import { ContactResponse, Contact } from '../../../types/response';

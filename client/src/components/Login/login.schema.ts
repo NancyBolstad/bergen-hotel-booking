@@ -1,15 +1,16 @@
 import * as Yup from 'yup';
+import charactersLengthErrorMessage from '../../util/charactersLengthErrorMessage';
+import requiredErrorMessage from '../../util/requiredErrorMessage';
 
 const LoginSchema: Yup.ObjectSchema = Yup.object().shape({
   userName: Yup.string()
-    .required('Username is required.')
-    .min(6, 'Too Short!')
-    .max(20, 'Too Long!'),
+    .required(requiredErrorMessage('User name'))
+    .min(6, `${charactersLengthErrorMessage('User name', 6, 20)}`)
+    .max(20, `${charactersLengthErrorMessage('User name', 6, 20)}`),
   password: Yup.string()
-    .required('Password is required.')
-    .min(6, 'Too Short!')
-    .matches(/(?=.*[0-9])/, 'Password must contain a number.')
-    .max(64, 'Too Long!'),
+    .required(requiredErrorMessage('Password'))
+    .min(6, `${charactersLengthErrorMessage('Password', 6, 64)}`)
+    .max(64, `${charactersLengthErrorMessage('Password', 6, 64)}`),
 });
 
 export default LoginSchema;

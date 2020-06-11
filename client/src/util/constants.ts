@@ -157,3 +157,11 @@ export const ABOUT_B = {
   buttonText: 'Read our stories',
   redirectLink: '/accommodations?category=&name=&service=',
 };
+
+export const YUP_SCHEMA_MESSAGE = {
+  email: 'Please enter a valid email address.',
+  checkInDate: 'Check-in date can not be earlier than today.',
+  checkOutDate: 'Check-out date should be later than check-in date.',
+  price: 'Please enter a valid price.',
+  numberTypeError: 'Please enter a valid number.',
+};

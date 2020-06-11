@@ -12,11 +12,13 @@ const BookSchema: Yup.ObjectSchema = Yup.object().shape({
     .required(requiredErrorMessage('Email'))
     .email(YUP_SCHEMA_MESSAGE.email),
   checkIn: Yup.date()
+    .typeError(requiredErrorMessage('Check-in date'))
     .min(new Date(new Date().valueOf() - 1000 * 60 * 60 * 24), YUP_SCHEMA_MESSAGE.checkInDate)
     .default(function() {
       return new Date();
     }),
   checkOut: Yup.date()
+    .typeError(requiredErrorMessage('Checkout date'))
     .min(Yup.ref('checkIn'), YUP_SCHEMA_MESSAGE.checkOutDate)
     .default(function() {
       return new Date();

@@ -15,9 +15,7 @@ A full-stack web development project build with Google Cloud Functions, Firebase
 - [x] Dynamic routes and authentication using react-router-dom.
 - [x] Performance optimization, code splitting and lazy loading.
 - [x] Redux-like persisted Global Store Using React Hooks and the State Reducer Pattern
-- [x] Schema-based form-level validation through Yup.
-
-If something doesn’t work, please [file an issue](https://github.com/NancyBolstad/bergen-hotel-booking/issues/new).
+- [x] Schema-based form-level validation using Yup.
 
 ## Building the code
 

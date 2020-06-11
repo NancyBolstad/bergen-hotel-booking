@@ -19,7 +19,7 @@ const mockFlexBannerAboutUsA = {
   descriptions:
     'Our workers are down-to-earth, trustworthy and reliable. With us you can focus on enjoying the stay, and rest assured that your booked hotel will fullfil your expectations.',
   figure: image,
-  buttonText: 'Explore our accommodations',
+  buttonText: 'Explore our services',
   redirectLink: '/accommodations?category=&name=&service=',
 };
 

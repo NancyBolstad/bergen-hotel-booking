@@ -59,7 +59,7 @@ export const PaginateButtons: React.FunctionComponent<Props> = ({
                 role="button"
                 size="small"
                 variant="secondary"
-                isActive={index === currentPage - 1}
+                current={index === currentPage - 1 ? 'true' : 'false'}
                 aria-label={`Page ${number}`}
                 title={`Page ${number}`}
                 to="/#"
@@ -83,7 +83,7 @@ export const PaginateButtons: React.FunctionComponent<Props> = ({
                 e.preventDefault();
                 nextHandler();
               }}
-              next
+              next="true"
             >
               {arrow}
               {isTablet && <Typography element="span" variant="b2" content="Next" />}
@@ -95,22 +95,22 @@ export const PaginateButtons: React.FunctionComponent<Props> = ({
   );
 };
 
-export const JumpPageButton = styled(ButtonInternal)<{ isActive?: boolean }>`
+export const JumpPageButton = styled(ButtonInternal)<{ current?: 'true' | 'false' }>`
   margin: 0 ${props => props.theme.spacing.xs}rem;
   border: none;
   ${props =>
-    props.isActive &&
+    props.current === 'true' &&
     css`
       background-color: ${props => props.theme.colors.secondary};
       color: ${props => props.theme.colors.dark};
     `}
 `;
 
-export const PrevNextButton = styled(ButtonInternal)<{ next?: boolean }>`
+export const PrevNextButton = styled(ButtonInternal)<{ next?: 'true' | 'false' }>`
   border: none;
   color: ${props => props.theme.colors.primary};
   svg {
-    transform: ${props => (props.next ? 'rotate(-90deg)' : 'rotate(90deg)')};
+    transform: ${props => (props.next === 'true' ? 'rotate(-90deg)' : 'rotate(90deg)')};
     width: 36px;
     height: 36px;
     fill: ${props => props.theme.colors.primary};

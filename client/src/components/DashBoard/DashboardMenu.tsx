@@ -23,8 +23,6 @@ const DashboardMenu: React.FC<Props> = () => {
   const isEnquiriesActive = slugMatch('enquiries', location.pathname);
   const isCustomerServiceActive = slugMatch('messages', location.pathname);
 
-  console.log(isEstablishmentsActive);
-
   return (
     <DashboardMenuWrapper>
       <DashboardNav>
@@ -33,9 +31,11 @@ const DashboardMenu: React.FC<Props> = () => {
             <DashboardNavLink
               to="/dashboard/my-account"
               aria-label="Go to my account"
-              isActive={isMyProfileActive}
+              current={isMyProfileActive ? 'true' : 'false'}
             >
-              <DashboardMenuIcon isActive={isMyProfileActive}>{user}</DashboardMenuIcon>
+              <DashboardMenuIcon current={isMyProfileActive ? 'true' : 'false'}>
+                {user}
+              </DashboardMenuIcon>
               <Typography variant="b3" element="span" content="My Account" />
             </DashboardNavLink>
           </DashboardNavListItem>
@@ -43,9 +43,11 @@ const DashboardMenu: React.FC<Props> = () => {
             <DashboardNavLink
               to="/dashboard/establishments"
               aria-label="Go to establishments"
-              isActive={isEstablishmentsActive}
+              current={isEstablishmentsActive ? 'true' : 'false'}
             >
-              <DashboardMenuIcon isActive={isEstablishmentsActive}>{hotel}</DashboardMenuIcon>
+              <DashboardMenuIcon current={isEstablishmentsActive ? 'true' : 'false'}>
+                {hotel}
+              </DashboardMenuIcon>
               <Typography variant="b3" element="span" content="Establishments" />
             </DashboardNavLink>
           </DashboardNavListItem>
@@ -53,9 +55,11 @@ const DashboardMenu: React.FC<Props> = () => {
             <DashboardNavLink
               to="/dashboard/enquiries"
               aria-label="Go to enquiries"
-              isActive={isEnquiriesActive}
+              current={isEnquiriesActive ? 'true' : 'false'}
             >
-              <DashboardMenuIcon isActive={isEnquiriesActive}>{enquiry}</DashboardMenuIcon>
+              <DashboardMenuIcon current={isEnquiriesActive ? 'true' : 'false'}>
+                {enquiry}
+              </DashboardMenuIcon>
               <Typography variant="b3" element="span" content="Enquiries" />
             </DashboardNavLink>
           </DashboardNavListItem>
@@ -63,9 +67,11 @@ const DashboardMenu: React.FC<Props> = () => {
             <DashboardNavLink
               to="/dashboard/messages"
               aria-label="Go to messages"
-              isActive={isCustomerServiceActive}
+              current={isCustomerServiceActive ? 'true' : 'false'}
             >
-              <DashboardMenuIcon isActive={isCustomerServiceActive}>{messages}</DashboardMenuIcon>
+              <DashboardMenuIcon current={isCustomerServiceActive ? 'true' : 'false'}>
+                {messages}
+              </DashboardMenuIcon>
               <Typography variant="b3" element="span" content="Messages" />
             </DashboardNavLink>
           </DashboardNavListItem>

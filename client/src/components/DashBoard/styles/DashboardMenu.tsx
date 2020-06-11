@@ -43,7 +43,7 @@ export const DashboardNavListItem = styled.li`
   }
 `;
 
-export const DashboardNavLink = styled(Link)<{ isActive?: boolean }>`
+export const DashboardNavLink = styled(Link)<{ current?: 'true' | 'false' }>`
   display: flex;
   background-color: ${props => props.theme.colors.surface};
   padding: ${props => `${props.theme.spacing.xs / 2}rem ${props.theme.spacing.xs}rem`};
@@ -71,14 +71,14 @@ export const DashboardNavLink = styled(Link)<{ isActive?: boolean }>`
   }
 
   ${props =>
-    props.isActive &&
+    props.current === 'true' &&
     css`
       background-color: ${props => props.theme.colors.background};
       border-color: ${props => props.theme.colors.white};
     `};
 `;
 
-export const DashboardMenuIcon = styled.div<{ isActive?: boolean }>`
+export const DashboardMenuIcon = styled.div<{ current?: 'true' | 'false' }>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -90,7 +90,7 @@ export const DashboardMenuIcon = styled.div<{ isActive?: boolean }>`
   margin-bottom: ${props => props.theme.spacing.xs}rem;
 
   ${props =>
-    props.isActive &&
+    props.current === 'true' &&
     css`
       background-color: ${props => props.theme.colors.primary};
     `};
@@ -101,7 +101,7 @@ export const DashboardMenuIcon = styled.div<{ isActive?: boolean }>`
     fill: ${props => props.theme.colors.onBackground};
 
     ${props =>
-      props.isActive &&
+      props.current === 'true' &&
       css`
         fill: ${props => props.theme.colors.background};
       `};

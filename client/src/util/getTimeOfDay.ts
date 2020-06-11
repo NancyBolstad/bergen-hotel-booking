@@ -8,8 +8,8 @@ function getTimeOfDay(): string {
     case 9:
     case 10:
     case 11:
-    case 12:
       return 'Morning';
+    case 12:
     case 13:
     case 14:
     case 15:

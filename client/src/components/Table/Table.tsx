@@ -1,5 +1,5 @@
 import React from 'react';
-import * as moment from 'moment';
+import moment from 'moment';
 import { Enquiry } from '../../types/response';
 import {
   StyledTable,
@@ -74,7 +74,7 @@ export const Table: React.FunctionComponent<Props> = ({ headerNames, rows }) => 
                   return (
                     <TableDataCell key={index}>
                       {headerName === 'checkIn' || headerName === 'checkOut'
-                        ? moment.utc(item[headerName]).format('DD/MM/YY')
+                        ? moment(new Date(item[headerName])).format('DD/MM/YY')
                         : item[headerName]}
                     </TableDataCell>
                   );

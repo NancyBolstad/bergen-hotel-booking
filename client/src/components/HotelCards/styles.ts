@@ -240,10 +240,11 @@ const ServiceLabel = styled(Typography)`
   padding: ${props => props.theme.spacing.xs}rem;
   background-color: ${props => props.theme.colors.surface};
   color: ${props => props.theme.colors.onBackground};
-  font-size: 1rem;
   margin-right: ${props => props.theme.spacing.xs}rem;
   margin-bottom: ${props => props.theme.spacing.xs}rem;
   border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 400;
 
   ${Card}:hover && {
     background-color: ${props => props.theme.colors.dark};

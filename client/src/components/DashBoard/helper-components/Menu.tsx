@@ -2,7 +2,6 @@ import * as React from 'react';
 import styled, { css } from 'styled-components';
 import { Link, useLocation } from 'react-router-dom';
 import { user, messages, hotel, enquiry, logout } from '../../../util/icons';
-import createMediaQuery from '../../../util/createMediaQuery';
 import setColorOpacity from '../../../util/setColorOpacity';
 import slugMatch from '../../../util/slugMatch';
 import Typography from '../../../components/Typography/Typography';
@@ -26,22 +25,24 @@ const List = styled.ul`
   margin: calc(-${props => props.theme.spacing.xs}rem / 2);
   justify-content: flex-start;
 
-  ${createMediaQuery(
-    'small',
-    css`
-      margin: 0;
-      padding: 0;
-      list-style: none;
-      display: block;
-      width: 100%;
-      margin: 0;
-    `,
-  )}
+  @media all and (min-width: ${props => props.theme.mediaQueries.small}px) {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: block;
+    width: 100%;
+    margin: 0;
+  }
 `;
 
 const ListItem = styled.li<{ isActive?: boolean }>`
   width: 100%;
   margin: calc(${props => props.theme.spacing.xs}rem / 2);
+
+  @media all and (min-width: ${props => props.theme.mediaQueries.small}px) {
+    width: 100%;
+    margin: 0;
+  }
 
   &:not(last-child) {
     margin-bottom: ${props => props.theme.spacing.xs}rem;
@@ -61,6 +62,15 @@ const ListItem = styled.li<{ isActive?: boolean }>`
     flex-direction: row;
     justify-content: flex-start;
 
+    @media all and (min-width: ${props => props.theme.mediaQueries.medium}px) {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      flex-direction: row;
+      justify-content: flex-start;
+      padding: ${props => `${props.theme.spacing.xs / 2}rem ${props.theme.spacing.s}rem`};
+    }
+
     &:hover,
     &:focus,
     &:active {
@@ -73,27 +83,7 @@ const ListItem = styled.li<{ isActive?: boolean }>`
         background-color: ${props => props.theme.colors.background};
         border-color: ${props => props.theme.colors.white};
       `};
-
-    ${createMediaQuery(
-      'medium',
-      css`
-        display: flex;
-        align-items: center;
-        width: 100%;
-        flex-direction: row;
-        justify-content: flex-start;
-        padding: ${props => `${props.theme.spacing.xs / 2}rem ${props.theme.spacing.s}rem`};
-      `,
-    )}
   }
-
-  ${createMediaQuery(
-    'small',
-    css`
-      width: 100%;
-      margin: 0;
-    `,
-  )}
 `;
 
 const MenuIcon = styled.div<{ isActive?: boolean }>`
@@ -125,13 +115,10 @@ const MenuIcon = styled.div<{ isActive?: boolean }>`
       `};
   }
 
-  ${createMediaQuery(
-    'small',
-    css`
-      margin-right: ${props => props.theme.spacing.xs}rem;
-      margin-bottom: 0;
-    `,
-  )}
+  @media all and (min-width: ${props => props.theme.mediaQueries.small}px) {
+    margin-right: ${props => props.theme.spacing.xs}rem;
+    margin-bottom: 0;
+  }
 `;
 
 interface Props {}

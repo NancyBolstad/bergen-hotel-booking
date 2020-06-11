@@ -15,11 +15,7 @@ export const Home: React.FunctionComponent<Props> = () => {
 
   return (
     <>
-      <SearchBanner
-        figure={PAGE_HERO_IMG}
-        title="Book your holiday in Bergen at best price"
-        placeHolderText="Search for hotels"
-      />
+      <SearchBanner figure={PAGE_HERO_IMG} title="Book your holiday in Bergen at best price" />
       <IconList />
       <BannerGrid
         sectionTitle="We selected best deals for you."

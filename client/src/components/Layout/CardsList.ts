@@ -10,6 +10,7 @@ export const CardsList = styled.div`
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: space-around;
     &::after {
       content: '';
       justify-content: center;

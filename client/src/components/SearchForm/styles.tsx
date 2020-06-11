@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-import createFontStyles from '../../util/createFontStyles';
 
 export const Wrapper = styled.div<{ isMobile?: boolean }>`
   width: 100%;
@@ -29,7 +28,7 @@ export const SearchInputField = styled.input`
   border: 2px solid white;
   white-space: nowrap;
   padding: 0.55rem 0.75rem;
-  font-size: 1rem;
+  font-size: 1.25rem;
   text-decoration: none;
   line-height: normal;
   height: 3rem;
@@ -66,6 +65,37 @@ export const SearchSubmitButton = styled.button<{ isMobile?: boolean }>`
   flex-grow: 1;
   height: 3rem;
   box-shadow: rgba(46, 41, 51, 0.08) 0px 1px 2px, rgba(71, 63, 79, 0.08) 0px 2px 4px;
+  font-family: ${props => props.theme.fonts.b2.family};
+  font-weight: ${props => props.theme.fonts.b2.weight};
+  font-size: ${props => props.theme.fonts.b2.size}rem;
+  ${props =>
+    props.theme.fonts.b2.lineHeight &&
+    css`
+      line-height: ${props.theme.fonts.b2.lineHeight};
+    `};
+
+  ${props =>
+    props.theme.fonts.b2.mediaQueries &&
+    css`
+      @media (min-width: ${props.theme.fonts.b2.mediaQueries[0].query}px) {
+        ${props.theme.fonts.b2.mediaQueries[0].family &&
+          css`
+            font-family: ${props.theme.fonts.b2.mediaQueries[0].family};
+          `};
+        ${props.theme.fonts.b2.mediaQueries[0].weight &&
+          css`
+            font-weight: ${props.theme.fonts.b2.mediaQueries[0].weight};
+          `};
+        ${props.theme.fonts.b2.mediaQueries[0].size &&
+          css`
+            font-size: ${props.theme.fonts.b2.mediaQueries[0].size}rem;
+          `};
+        ${props.theme.fonts.b2.mediaQueries[0].lineHeight &&
+          css`
+            line-height: ${props.theme.fonts.b2.mediaQueries[0].lineHeight};
+          `};
+      }
+    `}
 
   svg {
     height: 1.5rem;
@@ -81,12 +111,10 @@ export const SearchSubmitButton = styled.button<{ isMobile?: boolean }>`
     border-radius: 0px 4px 4px 0px;
   }
 
-  ${props => createFontStyles(props.theme.fonts.b2)}
-
   &:hover,
   &:active,
   &:focus {
-    opacity: 0.8;
+    filter: brightness(0.9);
   }
 `;
 

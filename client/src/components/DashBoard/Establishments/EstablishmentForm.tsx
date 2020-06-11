@@ -20,7 +20,7 @@ import {
   Flex,
 } from '../../../components/Layout';
 import { Image } from '../../../types/response';
-import { ClickableBackgroundImage } from '../../Image/BackgroundImage';
+import { ClickableBackgroundImage } from '../../Layout/BackgroundImage';
 import { cross, solidArrow } from '../../../util/icons';
 import { SelectLabel, StyledSelectInput, Arrow } from '../../FormElement/StyledSelect';
 import { CATEGORIES, SERVICES, PLACEHOLDER_IMAGE, UNSPLASH_API } from '../../../util/constants';

@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { BackgroundImage } from '../Image/BackgroundImage';
+import { BackgroundImage } from '../Layout/BackgroundImage';
 
 export const Slide = styled(BackgroundImage)<{ large?: boolean }>`
   display: flex;

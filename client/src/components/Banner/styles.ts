@@ -1,7 +1,6 @@
 import styled, { css } from 'styled-components';
-import { BackgroundImage } from '../Image/BackgroundImage';
+import { BackgroundImage } from '../Layout/BackgroundImage';
 import Typography from '../Typography/Typography';
-import createMediaQuery from '../../util/createMediaQuery';
 
 type alignVariant = 'flex-start' | 'center' | 'flex-end';
 
@@ -23,17 +22,14 @@ export const FlexKid = styled(BackgroundImage)<{ isMobile: boolean }>`
   align-items: flex-start;
   width: ${props => (props.isMobile ? '100%' : '50%')};
   flex-grow: 1;
-  min-height: 13.75rem;
+  min-height: 20.75rem;
   padding ${props => props.theme.spacing.s}rem 0;
 
-  ${createMediaQuery(
-    'large',
-    css`
+  @media all and (min-width: ${props => props.theme.mediaQueries.medium}px) {
     justify-content: center;
-      min-height: 23.75rem;
-      padding ${props => props.theme.spacing.m}rem;
-    `,
-  )}
+    min-height: 23.75rem;
+    padding ${props => props.theme.spacing.m}rem;
+  }
 `;
 
 export const PlainBannerContent = styled(BackgroundImage)<{
@@ -46,11 +42,14 @@ export const PlainBannerContent = styled(BackgroundImage)<{
   align-items: ${props => (props.align ? props.align : 'center')};
   width: 100%;
   min-height: 15vh;
-  ${props =>
-    props.large &&
-    css`
-      height: 80vh;
-    `}
+
+  @media all and (min-width: ${props => props.theme.mediaQueries.large}px) {
+    ${props =>
+      props.large &&
+      css`
+        height: 80vh;
+      `}
+  }
 `;
 
 export const PlainBannerTitle = styled(Typography)<{ hasBackgroundImage?: boolean }>`
@@ -111,7 +110,12 @@ export const InnerTextWrapper = styled.a<{ large?: string }>`
     color: ${props => props.theme.colors.dark};
   }
 
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: ${props => props.theme.mediaQueries.medium}px) {
+    width: 25.6875rem;
+    height: 10.3125rem;
+  }
+
+  @media screen and (min-width: ${props => props.theme.mediaQueries.large}px) {
     width: ${props => (props.large === 'true' ? '30rem' : '18rem')};
     height: ${props => (props.large === 'true' ? '20rem' : '12rem')};
   }

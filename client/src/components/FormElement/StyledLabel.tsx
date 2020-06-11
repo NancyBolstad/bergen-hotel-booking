@@ -1,9 +1,38 @@
 import styled, { css } from 'styled-components';
-import createFontStyles from '../../util/createFontStyles';
 
 export const StyledLabelWrapper = styled.div`
-  ${props => createFontStyles(props.theme.fonts.b2)};
   margin-bottom: ${props => props.theme.spacing.xs}rem;
+  font-family: ${props => props.theme.fonts.b2.family};
+  font-weight: ${props => props.theme.fonts.b2.weight};
+  font-size: ${props => props.theme.fonts.b2.size}rem;
+  ${props =>
+    props.theme.fonts.b2.lineHeight &&
+    css`
+      line-height: ${props.theme.fonts.b2.lineHeight};
+    `};
+
+  ${props =>
+    props.theme.fonts.b2.mediaQueries &&
+    css`
+      @media (min-width: ${props.theme.fonts.b2.mediaQueries[0].query}px) {
+        ${props.theme.fonts.b2.mediaQueries[0].family &&
+          css`
+            font-family: ${props.theme.fonts.b2.mediaQueries[0].family};
+          `};
+        ${props.theme.fonts.b2.mediaQueries[0].weight &&
+          css`
+            font-weight: ${props.theme.fonts.b2.mediaQueries[0].weight};
+          `};
+        ${props.theme.fonts.b2.mediaQueries[0].size &&
+          css`
+            font-size: ${props.theme.fonts.b2.mediaQueries[0].size}rem;
+          `};
+        ${props.theme.fonts.b2.mediaQueries[0].lineHeight &&
+          css`
+            line-height: ${props.theme.fonts.b2.mediaQueries[0].lineHeight};
+          `};
+      }
+    `}
 
   span {
     color: ${props => props.theme.colors.primary};
@@ -11,20 +40,80 @@ export const StyledLabelWrapper = styled.div`
 `;
 
 export const StyledLabel = styled.label<{ isCheckbox?: boolean; isSameLine?: boolean }>`
-  ${props => createFontStyles(props.theme.fonts.b2)};
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
   margin: ${props => props.theme.spacing.s}rem 0;
   width: 100%;
+  font-family: ${props => props.theme.fonts.b2.family};
+  font-weight: ${props => props.theme.fonts.b2.weight};
+  font-size: ${props => props.theme.fonts.b2.size}rem;
+  ${props =>
+    props.theme.fonts.b2.lineHeight &&
+    css`
+      line-height: ${props.theme.fonts.b2.lineHeight};
+    `};
+
+  ${props =>
+    props.theme.fonts.b2.mediaQueries &&
+    css`
+      @media (min-width: ${props.theme.fonts.b2.mediaQueries[0].query}px) {
+        ${props.theme.fonts.b2.mediaQueries[0].family &&
+          css`
+            font-family: ${props.theme.fonts.b2.mediaQueries[0].family};
+          `};
+        ${props.theme.fonts.b2.mediaQueries[0].weight &&
+          css`
+            font-weight: ${props.theme.fonts.b2.mediaQueries[0].weight};
+          `};
+        ${props.theme.fonts.b2.mediaQueries[0].size &&
+          css`
+            font-size: ${props.theme.fonts.b2.mediaQueries[0].size}rem;
+          `};
+        ${props.theme.fonts.b2.mediaQueries[0].lineHeight &&
+          css`
+            line-height: ${props.theme.fonts.b2.mediaQueries[0].lineHeight};
+          `};
+      }
+    `}
 
   ${props =>
     props.isCheckbox &&
     css`
       flex-direction: row;
       align-items: baseline;
-      ${props => createFontStyles(props.theme.fonts.b1)};
+      font-family: ${props => props.theme.fonts.b1.family};
+      font-weight: ${props => props.theme.fonts.b1.weight};
+      font-size: ${props => props.theme.fonts.b1.size}rem;
+      ${props =>
+        props.theme.fonts.b1.lineHeight &&
+        css`
+          line-height: ${props.theme.fonts.b1.lineHeight};
+        `};
+
+      ${props =>
+        props.theme.fonts.b1.mediaQueries &&
+        css`
+          @media (min-width: ${props.theme.fonts.b1.mediaQueries[0].query}px) {
+            ${props.theme.fonts.b1.mediaQueries[0].family &&
+              css`
+                font-family: ${props.theme.fonts.b1.mediaQueries[0].family};
+              `};
+            ${props.theme.fonts.b1.mediaQueries[0].weight &&
+              css`
+                font-weight: ${props.theme.fonts.b1.mediaQueries[0].weight};
+              `};
+            ${props.theme.fonts.b1.mediaQueries[0].size &&
+              css`
+                font-size: ${props.theme.fonts.b1.mediaQueries[0].size}rem;
+              `};
+            ${props.theme.fonts.b1.mediaQueries[0].lineHeight &&
+              css`
+                line-height: ${props.theme.fonts.b1.mediaQueries[0].lineHeight};
+              `};
+          }
+        `}
 
       input {
         margin-right: ${props => props.theme.spacing.xs}rem;

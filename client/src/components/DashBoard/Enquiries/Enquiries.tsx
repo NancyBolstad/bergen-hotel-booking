@@ -35,7 +35,7 @@ const Enquiries: React.FC<Props> = () => {
   return (
     <>
       <Block>
-        <Typography variant="h2" element="h2" content="Enquiries" />
+        <Typography variant="h2" element="h2" content="Manage Enquiries" />
       </Block>
       {results.data.length === 0 ? (
         <Block>

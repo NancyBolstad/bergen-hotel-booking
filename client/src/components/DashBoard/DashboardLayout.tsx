@@ -7,7 +7,7 @@ import Enquiries from './Enquiries/Enquiries';
 import Establishments from './Establishments/Establishments';
 import Messages from './Messages/Messages';
 import { UserState } from '../../context/UserContext';
-import { DashboardBackgroundWrapper, DashboardSections, Content } from './styles';
+import { DashboardBackgroundWrapper, DashboardSections, DashboardContent } from './styles/common';
 
 interface Props {
   user: UserState;
@@ -28,10 +28,10 @@ const DashboardLayout: React.FunctionComponent<Props> = ({ user }) => {
       <HorizontalSpacer>
         <WidthConstraints size="large">
           <DashboardSections>
-            <Content aside>
+            <DashboardContent aside>
               <DashboardMenu />
-            </Content>
-            <Content>
+            </DashboardContent>
+            <DashboardContent>
               <Route
                 exact
                 path="/dashboard/:step?/:slug?"
@@ -49,7 +49,7 @@ const DashboardLayout: React.FunctionComponent<Props> = ({ user }) => {
                   }
                 }}
               />
-            </Content>
+            </DashboardContent>
           </DashboardSections>
         </WidthConstraints>
       </HorizontalSpacer>

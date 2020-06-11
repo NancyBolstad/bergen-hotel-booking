@@ -49,7 +49,7 @@ const Messages: React.FC<Props> = () => {
   return (
     <>
       <Block>
-        <Typography variant="h2" element="h2" content="Messages" />
+        <Typography variant="h2" element="h2" content="Manage Messages" />
       </Block>
       {loading && (
         <Block>

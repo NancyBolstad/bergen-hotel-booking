@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const Form = styled.form<{ leftAlign?: boolean }>`
-  max-width: 480px;
   width:100%;
   margin: 0 ${props => (props.leftAlign ? 0 : 'auto')};
   padding: ${props => props.theme.spacing.s}rem 0;

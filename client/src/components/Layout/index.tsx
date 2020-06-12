@@ -2,7 +2,7 @@ import WidthConstraints from './WidthConstraints';
 import { VerticalSpacer, HorizontalSpacer } from './Spacer';
 import { CardsList } from './CardsList';
 import { Grid, GridItem, GridItemLink } from './Grid';
-import { Section, Article, Aside } from './Container';
+import Container, { Section, Article, Aside } from './Container';
 import { Main } from './Main';
 import Flex from './Flex';
 import FlexKid from './FlexKid';
@@ -21,4 +21,5 @@ export {
   Main,
   Flex,
   FlexKid,
+  Container,
 };

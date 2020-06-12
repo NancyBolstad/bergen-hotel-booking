@@ -46,6 +46,7 @@ export const Book: React.FunctionComponent<Props> = () => {
             title={
               results.data.name ? `Book your stay at ${results.data.name} ` : `Send in your booking`
             }
+            center="center"
             isTitleColorRed
           />
           <VerticalSpacer topSpace="xs" topSpaceDesktop="m" bottomSpace="xs" bottomSpaceDesktop="m">
@@ -53,7 +54,9 @@ export const Book: React.FunctionComponent<Props> = () => {
               <WidthConstraints size="large">
                 <Layout>
                   <FlexLeft flex={1}>
-                    <HotelCard card={results.data} />
+                    <VerticalSpacer>
+                      <HotelCard card={results.data} />
+                    </VerticalSpacer>
                   </FlexLeft>
                   <FlexRight flex={2}>
                     <BookForm establishmentId={id} establishmentName={results.data.name} />

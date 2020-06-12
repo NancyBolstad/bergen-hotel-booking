@@ -5,9 +5,8 @@ import { StyledInput, StyledLabelWrapper, Form, StyledLabel, ErrorMessage } from
 import Button from '../Button/Button';
 import BookSchema from './book.schema';
 import postData from '../../util/postData';
-import { WidthConstraints, VerticalSpacer, HorizontalSpacer, Flex } from '../Layout';
+import { WidthConstraints, VerticalSpacer, HorizontalSpacer, Flex, Container } from '../Layout';
 import Busy from '../Loader/Busy';
-import Container from '../Layout/Container';
 
 interface Props {
   establishmentId: string;

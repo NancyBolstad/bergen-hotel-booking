@@ -35,6 +35,7 @@ const MobileMenu: React.FunctionComponent<Props> = ({ navLinks, toggler }) => {
           href={`/${link}`}
           title={`Go to ${link} page`}
           aria-label={`Go to ${link} page`}
+          key={index}
         >
           {link}
         </HeaderNavLink>

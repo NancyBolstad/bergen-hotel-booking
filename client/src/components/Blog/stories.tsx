@@ -22,7 +22,7 @@ const mockList: Props = {
   backgroundColor: 'background',
   ctaText: 'Read more blogs',
   ctaUrl: '/blog',
-  list: createList(mockBlog, 5),
+  list: createList(mockBlog, 6),
 };
 
 export const BlogListStory = <BlogList {...mockList} />;

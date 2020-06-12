@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Image as ImageType } from '../../types/types';
+import { Image as ImageType } from '../../types/response';
 import { WidthConstraints, HorizontalSpacer, Section, VerticalSpacer, Flex } from '../Layout';
 import { PlainBannerTitle, PlainBannerContent } from './styles';
 import { ButtonVariant, ButtonLink, Size } from '../Button/Button';

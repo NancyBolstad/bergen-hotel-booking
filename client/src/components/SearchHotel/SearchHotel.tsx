@@ -10,7 +10,6 @@ import { HotelCardVariant, HotelCard } from '../../components/HotelCards';
 import { Context } from '../../context/GlobalContext';
 import Loader from '../../components/Loader/Loader';
 import useFilter from '../../hooks/useFilter';
-import useIsTablet from '../../hooks/useIsTablet';
 import {
   Sections,
   SectionTitle,
@@ -20,10 +19,11 @@ import {
   LettersWrapper,
 } from './styles';
 import HotelFilter from '../../components/HotelFilter/HotelFilter';
+import useResponsiveWindowSize from '../../hooks/useResponsiveWindowSize';
 
 const SearchHotel: React.FunctionComponent = () => {
   const localContext = React.useContext(Context);
-  const isTablet = useIsTablet();
+  const { isTablet } = useResponsiveWindowSize();
   const { hotels, letters, filter, handleFilter, currentQueryString } = useFilter({
     autoUpdateUrl: true,
   });

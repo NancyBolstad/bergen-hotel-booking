@@ -7,7 +7,6 @@ import {
   SearchSubmitButton,
   SearchResultsWrapper,
 } from './styles';
-import useIsMobile from '../../hooks/useIsMobile';
 import { HotelDetails } from '../../types/response';
 import validateUserInput from '../../util/validateUserInput';
 import useFilter, { FilterInterface } from '../../hooks/useFilter';
@@ -16,6 +15,7 @@ import { HotelCardVariant } from '../HotelCards/index';
 import useOutsideClick from '../../hooks/useOutsideClick';
 import { ButtonLink } from '../Button/Button';
 import { search, navigationArrow } from '../../util/icons';
+import useResponsiveWindowSize from '../../hooks/useResponsiveWindowSize';
 
 interface Props {
   dataSet?: HotelDetails[];
@@ -24,7 +24,7 @@ interface Props {
 }
 
 export const SearchForm: React.FunctionComponent<Props> = ({ dataSet, placeHolderText }) => {
-  const isMobile = useIsMobile();
+  const { isMobile } = useResponsiveWindowSize();
   let history = useHistory();
   const { hotels, filter, handleFilter } = useFilter({});
   const [showResults, setShowResults] = React.useState(false);

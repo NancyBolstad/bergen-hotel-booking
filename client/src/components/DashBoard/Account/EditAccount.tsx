@@ -8,7 +8,7 @@ import { Form, StyledLabel, StyledInput, ErrorMessage } from '../../FormElement'
 import { Button } from '../../Button/styles';
 import AccountSchema from './account.schema';
 import { cross, edit } from '../../../util/icons';
-import useIsMobile from '../../../hooks/useIsMobile';
+import useResponsiveWindowSize from '../../../hooks/useResponsiveWindowSize';
 
 interface Props {}
 
@@ -19,7 +19,7 @@ const EditAccount: React.FC<Props> = () => {
   });
   const [editing, setEditing] = React.useState(false);
   const [updating, setUpdating] = React.useState(false);
-  const isMobile = useIsMobile();
+  const { isMobile } = useResponsiveWindowSize();
 
   return (
     <>

@@ -17,18 +17,18 @@ import { APP_NAME, MAIN_NAV_LINKS } from '../../util/constants';
 import { ContrastContext } from '../../context/ContrastContext';
 import { Context } from '../../context/GlobalContext';
 import { hamburger, cross, search, heart, sun, moon } from '../../util/icons';
-import useIsMobile from '../../hooks/useIsMobile';
 import SearchBar from './SearchBar';
 import MobileMenu from './MobileMenu';
 import MainNavMenu from './MainNavMenu';
 import { Flex } from '../Layout/';
 import Typography from '../Typography/Typography';
+import useResponsiveWindowSize from '../../hooks/useResponsiveWindowSize';
 
 const Header: React.FunctionComponent = () => {
   const { theme, toggleContrast } = React.useContext(ContrastContext);
   const location = useLocation();
   const { favorites } = React.useContext(Context);
-  const isMobile = useIsMobile();
+  const { isMobile } = useResponsiveWindowSize();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState<boolean>(false);
   const [searching, setSearching] = React.useState<boolean>(false);
 

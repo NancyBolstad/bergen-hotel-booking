@@ -5,8 +5,8 @@ import useApi from '../../hooks/useApi';
 import Loader from '../../components/Loader/Loader';
 import { HotelDetailsRoot } from '../../types/response';
 import { VerticalSpacer, HorizontalSpacer, WidthConstraints } from '../../components/Layout';
-import { Flex, FlexKid } from '../../components/Layout/';
-import BookForm from '../../components/Book/BookForm';
+import { FlexKid } from '../../components/Layout/';
+import BookForm from '../../components/BookForm/BookForm';
 import { HotelCard } from '../../components/HotelCards';
 import PlainBanner from '../../components/Banner/PlainBanner';
 
@@ -53,11 +53,13 @@ export const Book: React.FunctionComponent<Props> = () => {
               <WidthConstraints size="large">
                 <Layout>
                   <FlexLeft flex={1}>
-                    <HotelCard card={results.data} />
+                    <VerticalSpacer>
+                      <HotelCard card={results.data} />
+                    </VerticalSpacer>
                   </FlexLeft>
-                  <FlexKid flex={2}>
+                  <FlexRight flex={2}>
                     <BookForm establishmentId={id} establishmentName={results.data.name} />
-                  </FlexKid>
+                  </FlexRight>
                 </Layout>
               </WidthConstraints>
             </HorizontalSpacer>
@@ -68,7 +70,7 @@ export const Book: React.FunctionComponent<Props> = () => {
   );
 };
 
-const Layout = styled(Flex)`
+const Layout = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -77,18 +79,27 @@ const Layout = styled(Flex)`
   @media all and (min-width: ${props => props.theme.mediaQueries.large}px) {
     flex-direction: row;
     justify-content: flex-start;
-    algin-items: flex-start;
+    algin-items: flex-start !important;
   }
 `;
 
 const FlexLeft = styled(FlexKid)`
   a {
     margin: 0 auto;
+    width: 380px;
+
+    @media all and (min-width: ${props => props.theme.mediaQueries.medium}px) {
+      width: 480px;
+    }
 
     @media all and (min-width: ${props => props.theme.mediaQueries.large}px) {
       width: 100%;
     }
   }
+`;
+
+const FlexRight = styled(FlexKid)`
+  width: 100%;
 `;
 
 export default Book;

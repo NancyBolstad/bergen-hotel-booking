@@ -10,7 +10,7 @@ function useResponsiveWindowSize(): { isMobile: boolean; isTablet: boolean } {
       setIsTablet(window.innerWidth < defaultMediaQueries.medium);
       setIsMobile(window.innerWidth < defaultMediaQueries.large);
     }
-  }, [window]);
+  }, []);
 
   useEffect(() => {
     window.addEventListener('resize', handleWindowSizeChange, true);
@@ -18,7 +18,7 @@ function useResponsiveWindowSize(): { isMobile: boolean; isTablet: boolean } {
     return () => {
       window.removeEventListener('resize', handleWindowSizeChange, true);
     };
-  }, []);
+  });
 
   return { isMobile, isTablet };
 }

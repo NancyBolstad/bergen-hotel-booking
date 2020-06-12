@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { BackgroundImage, Content } from './styles';
-import { Image } from '../../types/types';
+import { Image } from '../../types/response';
 import { IColors } from '../../types/theme';
 
 interface Props {

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Image } from '../../types/types';
+import { Image } from '../../types/response';
 import {
   Grid,
   GridItem,

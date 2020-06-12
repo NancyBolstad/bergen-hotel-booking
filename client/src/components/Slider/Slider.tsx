@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { arrow } from '../../util/icons';
-import { Image } from '../../types/types';
+import { Image } from '../../types/response';
 import { Slide, SliderNav, SliderButtonWrapper, Dots, Dot, PrevNextButton } from './styles';
 
 interface Props {

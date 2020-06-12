@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Image as ImageType } from '../../types/types';
+import { Image as ImageType } from '../../types/response';
 import { WidthConstraints, HorizontalSpacer, Section } from '../Layout';
 import Typography from '../Typography/Typography';
 import SearchForm from '../SearchForm/SearchForm';

@@ -24,12 +24,12 @@ import { ClickableBackgroundImage } from '../../Layout/BackgroundImage';
 import { cross, solidArrow } from '../../../util/icons';
 import { SelectLabel, StyledSelectInput, Arrow } from '../../FormElement/StyledSelect';
 import { CATEGORIES, SERVICES, PLACEHOLDER_IMAGE, UNSPLASH_API } from '../../../util/constants';
-import useIsTablet from '../../../hooks/useIsTablet';
 import { StyledCheckboxWrapper } from '../../FormElement/StyledCheckbox';
 import Busy from '../../Loader/Busy';
 import useApi from '../../../hooks/useApi';
 import { Root } from '../../../types/unsplash';
 import Loader from '../../Loader/Loader';
+import useResponsiveWindowSize from '../../../hooks/useResponsiveWindowSize';
 
 interface Props {}
 
@@ -37,7 +37,7 @@ const EstablishmentForm: React.FC<Props> = () => {
   const { handleSubmit, register, errors } = useForm({
     validationSchema: EstablishmentSchema,
   });
-  const isTablet = useIsTablet();
+  const { isTablet } = useResponsiveWindowSize();
   const [selectedImages, setSelectedImages] = React.useState<Image[]>([]);
   const [selectedIndex, setSelectedIndex] = React.useState<number[]>([]);
   const { results, loading } = useApi<Root[]>({

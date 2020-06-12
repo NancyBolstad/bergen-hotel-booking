@@ -2,9 +2,9 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { VerticalSpacer, WidthConstraints, Flex } from '../Layout';
 import { ButtonInternal } from './Button';
-import useIsTablet from '../../hooks/useIsTablet';
 import { arrow } from '../../util/icons';
 import Typography from '../Typography/Typography';
+import useResponsiveWindowSize from '../../hooks/useResponsiveWindowSize';
 
 interface Props {
   totalPages: number;
@@ -25,7 +25,7 @@ export const PaginateButtons: React.FunctionComponent<Props> = ({
   displayPrev,
   currentPage,
 }) => {
-  const isTablet = useIsTablet();
+  const { isTablet } = useResponsiveWindowSize();
   const pageNumbers: number[] = [];
   for (let i = 1; i <= totalPages; i++) {
     pageNumbers.push(i);

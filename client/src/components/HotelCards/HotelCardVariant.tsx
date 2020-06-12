@@ -10,9 +10,9 @@ import {
   ServiceLabel,
 } from './styles';
 import { HotelDetails } from '../../types/response';
-import useIsMobile from '../../hooks/useIsMobile';
 import { Flex } from '../Layout/';
 import LikeButton from '../Button/LikeButton';
+import useResponsiveWindowSize from '../../hooks/useResponsiveWindowSize';
 
 interface Props {
   card: HotelDetails;
@@ -29,7 +29,7 @@ const HotelCardVariant: React.FunctionComponent<Props> = ({
   removed,
   dropdown,
 }) => {
-  const isMobile = useIsMobile();
+  const { isMobile } = useResponsiveWindowSize();
 
   return (
     <CardVariant

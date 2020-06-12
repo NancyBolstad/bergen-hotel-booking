@@ -3,8 +3,8 @@ import { Image as ImageType } from '../../types/types';
 import { WidthConstraints, HorizontalSpacer, Section } from '../Layout';
 import Typography from '../Typography/Typography';
 import SearchForm from '../SearchForm/SearchForm';
-import useIsMobile from '../../hooks/useIsMobile';
 import { SearchBannerContent, SearchBannerBackground } from './styles';
+import useResponsiveWindowSize from '../../hooks/useResponsiveWindowSize';
 
 interface Props {
   title?: string;
@@ -21,7 +21,7 @@ const SearchBanner: React.FunctionComponent<Props> = ({
   searchHandler,
   placeHolderText,
 }) => {
-  const isMobile = useIsMobile();
+  const { isMobile } = useResponsiveWindowSize();
   return (
     <Section>
       {isMobile && (

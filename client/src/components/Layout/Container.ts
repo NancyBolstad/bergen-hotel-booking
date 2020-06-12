@@ -17,5 +17,8 @@ export const Section = styled.section<{ backgroundColor?: keyof IColors; overflo
     `}
 `;
 
+export const Container = Section.withComponent('div');
 export const Article = styled.article``;
 export const Aside = styled.aside``;
+
+export default Container;

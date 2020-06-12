@@ -5,8 +5,9 @@ import { StyledInput, StyledLabelWrapper, Form, StyledLabel, ErrorMessage } from
 import Button from '../Button/Button';
 import BookSchema from './book.schema';
 import postData from '../../util/postData';
-import { WidthConstraints, VerticalSpacer, HorizontalSpacer, Section, Flex } from '../Layout';
+import { WidthConstraints, VerticalSpacer, HorizontalSpacer, Flex } from '../Layout';
 import Busy from '../Loader/Busy';
+import Container from '../Layout/Container';
 
 interface Props {
   establishmentId: string;
@@ -39,7 +40,7 @@ const BookForm: React.FC<Props> = ({ establishmentId }) => {
   }
 
   return (
-    <Section>
+    <Container>
       <VerticalSpacer>
         <HorizontalSpacer>
           <WidthConstraints size="large">
@@ -83,7 +84,13 @@ const BookForm: React.FC<Props> = ({ establishmentId }) => {
                     <StyledLabelWrapper>
                       Check-in Date <span>*</span>
                     </StyledLabelWrapper>
-                    <StyledInput type="date" name="checkIn" ref={register} required />
+                    <StyledInput
+                      type="date"
+                      name="checkIn"
+                      placeholder="DD/MM/YYYY"
+                      ref={register}
+                      required
+                    />
                   </StyledLabel>
                   {/* 
       // @ts-ignore */
@@ -92,7 +99,13 @@ const BookForm: React.FC<Props> = ({ establishmentId }) => {
                     <StyledLabelWrapper>
                       Check-out Date <span>*</span>
                     </StyledLabelWrapper>
-                    <StyledInput type="date" name="checkOut" ref={register} required />
+                    <StyledInput
+                      type="date"
+                      name="checkOut"
+                      placeholder="DD/MM/YYYY"
+                      ref={register}
+                      required
+                    />
                   </StyledLabel>
                   {/* 
       // @ts-ignore */
@@ -106,7 +119,7 @@ const BookForm: React.FC<Props> = ({ establishmentId }) => {
           </WidthConstraints>
         </HorizontalSpacer>
       </VerticalSpacer>
-    </Section>
+    </Container>
   );
 };
 

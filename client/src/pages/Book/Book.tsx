@@ -46,7 +46,6 @@ export const Book: React.FunctionComponent<Props> = () => {
             title={
               results.data.name ? `Book your stay at ${results.data.name} ` : `Send in your booking`
             }
-            center="center"
             isTitleColorRed
           />
           <VerticalSpacer topSpace="xs" topSpaceDesktop="m" bottomSpace="xs" bottomSpaceDesktop="m">

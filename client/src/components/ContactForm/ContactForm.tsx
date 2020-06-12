@@ -16,9 +16,11 @@ import postData from '../../util/postData';
 import { WidthConstraints, VerticalSpacer, HorizontalSpacer, Section, Flex } from '../Layout';
 import Busy from '../Loader/Busy';
 
-interface Props {}
+interface Props {
+  formTitle?: string;
+}
 
-const ContactForm: React.FC<Props> = () => {
+const ContactForm: React.FC<Props> = ({ formTitle }) => {
   const { handleSubmit, register, errors } = useForm({
     validationSchema: ContactSchema,
   });
@@ -46,7 +48,7 @@ const ContactForm: React.FC<Props> = () => {
         <HorizontalSpacer>
           <WidthConstraints size="large">
             <Flex direction="column">
-              <Typography element="h1" variant="h1" content="Contact Us" />
+              {!!formTitle && <Typography element="h2" variant="h2" content={formTitle} />}
               <Busy busy={posting}>
                 <Form
                   onSubmit={handleSubmit((data: Object) => sendForm(data, 'contact'))}

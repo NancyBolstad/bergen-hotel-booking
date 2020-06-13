@@ -25,7 +25,7 @@ export const Home: React.FunctionComponent<Props> = () => {
       <SearchBanner figure={PAGE_HERO_IMG} title="Book accommodations in Bergen at best price" />
       <IconList />
       <BannerGrid
-        sectionTitle="We selected best deals for you."
+        sectionTitle="We select the best deals for you."
         banners={[CAMPAIGN_A, CAMPAIGN_B, CAMPAIGN_C]}
       />
       {localContext.loading ? (

@@ -155,7 +155,7 @@ export const ABOUT_B = {
     alt: 'Bergen scenery',
   },
   buttonText: 'Read our stories',
-  redirectLink: '/accommodations?category=&name=&service=',
+  redirectLink: '/about',
 };
 
 export const YUP_SCHEMA_MESSAGE = {

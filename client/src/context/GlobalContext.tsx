@@ -2,7 +2,7 @@ import React from 'react';
 import useApi from '../hooks/useApi';
 import { FavoriteActions, favoriteCardsReducer } from '../reducer/favoriteCardsReducer';
 import { HotelDetails, Root } from '../types/response';
-import { FAVORITES_KEY } from '../util/constants';
+import { FAVORITES_KEY, API_ENDPOINT } from '../util/constants';
 import isBrowser from '../util/isBrowser';
 import storage from '../util/storage';
 
@@ -24,8 +24,7 @@ export const Context = React.createContext<GlobalDataProps>({
 
 export const GlobalContext: React.FunctionComponent<Props> = ({ children }) => {
   const { results, loading } = useApi<Root>({
-    endpoint: `${process.env.REACT_APP_API_URL}establishments`,
-    fetchOnMount: true,
+    url: `${process.env.REACT_APP_API_URL}${API_ENDPOINT.establishments}`,
     initialData: {
       code: 0,
       data: [],

@@ -37,7 +37,7 @@ export const SERVICES: string[] = [
 export const API_ENDPOINT = {
   enquires: 'enquiries',
   contact: 'contact',
-  establishment: 'establishments',
+  establishments: 'establishments',
   blog: 'blog',
 };
 

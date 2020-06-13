@@ -10,6 +10,7 @@ import { Flex } from '../../components/Layout/';
 import { HotelCardsList } from '../../components/HotelCards';
 import { Context } from '../../context/GlobalContext';
 import RichText from '../../components/Typography/RichText';
+import { API_ENDPOINT } from '../../util/constants';
 
 interface Props {}
 
@@ -18,8 +19,7 @@ export const BlogDetails: React.FunctionComponent<Props> = () => {
   const history = useHistory();
   let { id } = useParams();
   const { results, loading, error } = useApi<BlogDetailsRoot>({
-    endpoint: `${process.env.REACT_APP_API_URL}blog/${id}`,
-    fetchOnMount: true,
+    url: `${process.env.REACT_APP_API_URL}${API_ENDPOINT.blog}/${id}`,
     initialData: {
       code: 0,
       data: {

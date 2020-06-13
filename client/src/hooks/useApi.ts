@@ -2,10 +2,8 @@ import { useState, useEffect } from 'react';
 import { API_ERROR_MESSAGE } from './../util/constants';
 
 interface Config<T> {
-  endpoint: string;
-  queryParams?: string;
+  url: string;
   initialData: T;
-  fetchOnMount?: boolean;
 }
 
 interface ApiResponseData<T> {
@@ -23,11 +21,7 @@ function useApi<T>(config: Config<T>): ApiResponseData<T> {
     setLoading(true);
 
     try {
-      const url = config.queryParams
-        ? `${config.endpoint}/${config.queryParams}`
-        : `${config.endpoint}`;
-
-      const response = await fetch(url);
+      const response = await fetch(config.url);
 
       if (response.status === 404) {
         throw new Error(API_ERROR_MESSAGE.notFound);
@@ -46,9 +40,7 @@ function useApi<T>(config: Config<T>): ApiResponseData<T> {
   }
 
   useEffect(() => {
-    if (config.fetchOnMount) {
-      fetchData();
-    }
+    fetchData();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return {

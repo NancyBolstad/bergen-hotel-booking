@@ -13,8 +13,7 @@ interface Props {}
 
 const Messages: React.FC<Props> = () => {
   const { results, loading } = useApi<ContactResponse>({
-    endpoint: `${process.env.REACT_APP_API_URL}contact`,
-    fetchOnMount: true,
+    url: `${process.env.REACT_APP_API_URL}${API_ENDPOINT.contact}`,
     initialData: {
       code: 0,
       data: [

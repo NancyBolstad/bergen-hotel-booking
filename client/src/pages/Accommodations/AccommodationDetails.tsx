@@ -12,6 +12,7 @@ import { ServiceLabel } from '../../components/HotelCards/styles';
 import Slider from '../../components/Slider/Slider';
 import LikeButton from '../../components/Button/LikeButton';
 import PlainBanner from '../../components/Banner/PlainBanner';
+import { API_ENDPOINT } from '../../util/constants';
 
 interface Props {}
 
@@ -20,8 +21,7 @@ export const HotelDetails: React.FunctionComponent<Props> = () => {
   let { id } = useParams();
   const history = useHistory();
   const { results, loading, error } = useApi<HotelDetailsRoot>({
-    endpoint: `${process.env.REACT_APP_API_URL}establishments/${id}`,
-    fetchOnMount: true,
+    url: `${process.env.REACT_APP_API_URL}${API_ENDPOINT.establishments}/${id}`,
     initialData: {
       code: 0,
       data: {

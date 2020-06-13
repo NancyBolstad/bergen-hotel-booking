@@ -5,14 +5,13 @@ import useApi from '../../hooks/useApi';
 import { BlogList as BlogListTypes } from '../../types/response';
 import BlogList from '../../components/Blog/BlogList';
 import Loader from '../../components/Loader/Loader';
-import { ABOUT_A, ABOUT_B } from '../../util/constants';
+import { ABOUT_A, ABOUT_B, API_ENDPOINT } from '../../util/constants';
 
 interface Props {}
 
 export const About: React.FunctionComponent<Props> = () => {
   const { results, loading } = useApi<BlogListTypes>({
-    endpoint: `${process.env.REACT_APP_API_URL}blog`,
-    fetchOnMount: true,
+    url: `${process.env.REACT_APP_API_URL}${API_ENDPOINT.blog}`,
     initialData: {
       code: 0,
       data: [],

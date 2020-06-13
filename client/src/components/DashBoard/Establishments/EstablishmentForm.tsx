@@ -41,8 +41,7 @@ const EstablishmentForm: React.FC<Props> = () => {
   const [selectedImages, setSelectedImages] = React.useState<Image[]>([]);
   const [selectedIndex, setSelectedIndex] = React.useState<number[]>([]);
   const { results, loading } = useApi<Root[]>({
-    endpoint: UNSPLASH_API,
-    fetchOnMount: true,
+    url: UNSPLASH_API,
     initialData: [
       {
         id: '',

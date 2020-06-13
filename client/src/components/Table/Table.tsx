@@ -50,6 +50,7 @@ export const Table: React.FunctionComponent<Props> = ({ headerNames, rows }) => 
                 {headerName === 'establishmentId' ? 'Establishment' : headerName}
               </TableHeader>
             ))}
+            <TableHeader />
           </TableRow>
         </thead>
         <tbody>

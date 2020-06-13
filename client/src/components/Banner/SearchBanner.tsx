@@ -32,7 +32,7 @@ const SearchBanner: React.FunctionComponent<Props> = ({
               {!!subTitle && <Typography variant="h2" element="h2" content={subTitle} />}
               <SearchForm
                 handler={searchHandler}
-                placeHolderText={placeHolderText ? placeHolderText : 'Search her'}
+                placeHolderText={placeHolderText ? placeHolderText : 'Search here'}
               />
             </HorizontalSpacer>
           </WidthConstraints>
@@ -47,7 +47,7 @@ const SearchBanner: React.FunctionComponent<Props> = ({
               <HorizontalSpacer>
                 <SearchForm
                   handler={searchHandler}
-                  placeHolderText={placeHolderText ? placeHolderText : 'Search her'}
+                  placeHolderText={placeHolderText ? placeHolderText : 'Search here'}
                 />
               </HorizontalSpacer>
             </WidthConstraints>

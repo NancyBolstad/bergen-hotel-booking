@@ -65,7 +65,7 @@ const Header: React.FunctionComponent = () => {
           <HeaderNavLink
             href="/#"
             role="button"
-            aria-label="Search her"
+            aria-label="Search here"
             title="Search"
             onClick={event => {
               event.preventDefault();

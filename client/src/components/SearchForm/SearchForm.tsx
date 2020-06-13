@@ -54,7 +54,7 @@ export const SearchForm: React.FunctionComponent<Props> = ({ dataSet, placeHolde
           type="search"
           autoComplete="off"
           aria-label="Search"
-          placeholder={placeHolderText ? placeHolderText : 'Search her ...'}
+          placeholder={placeHolderText ? placeHolderText : 'Search here ...'}
           onChange={e => {
             e.preventDefault();
             if (e.target.value.length > 0 && validateUserInput(e.target.value)) {

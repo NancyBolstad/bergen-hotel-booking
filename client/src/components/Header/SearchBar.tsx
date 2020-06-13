@@ -40,7 +40,7 @@ const SearchBar: React.FunctionComponent<Props> = ({ toggler, isActive }) => {
           type="search"
           autoComplete="off"
           aria-label="Search form"
-          placeholder="Search her ..."
+          placeholder="Search here ..."
           onChange={event => {
             event.preventDefault();
             setSearchValue(event.target.value);

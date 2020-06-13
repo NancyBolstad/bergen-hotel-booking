@@ -17,8 +17,7 @@ interface Props {}
 
 const EditableEstablishmentsList: React.FC<Props> = () => {
   const { results, loading } = useApi<Root>({
-    endpoint: `${process.env.REACT_APP_API_URL}establishments`,
-    fetchOnMount: true,
+    url: `${process.env.REACT_APP_API_URL}${API_ENDPOINT.establishments}`,
     initialData: {
       code: 0,
       data: [],
@@ -26,7 +25,9 @@ const EditableEstablishmentsList: React.FC<Props> = () => {
   });
   const history = useHistory();
   const [establishmentsList, setEstablishmentsList] = React.useState<HotelDetails[]>([]);
-  const { deleting, removed, action, removedItemId } = useDeleteRequest(API_ENDPOINT.establishment);
+  const { deleting, removed, action, removedItemId } = useDeleteRequest(
+    API_ENDPOINT.establishments,
+  );
   const { dispatch } = React.useContext(Context);
 
   React.useEffect(() => {

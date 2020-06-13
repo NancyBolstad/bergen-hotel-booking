@@ -1,18 +1,12 @@
-export interface Headers {
-  [key: string]: string;
-}
+import { API_ERROR_MESSAGE } from './constants';
 
-export interface RequestData {
-  [key: string]: any;
-}
-
-export interface ApiOpts {
+export interface PostConfig {
   endpoint: 'contact' | 'establishments' | 'enquiries';
   data?: Object;
 }
 
-async function postData<T>(opts: ApiOpts): Promise<Response> {
-  const url: string = `${process.env.REACT_APP_API_URL}${opts.endpoint}`;
+async function postData(config: PostConfig): Promise<Response> {
+  const url: string = `${process.env.REACT_APP_API_URL}${config.endpoint}`;
 
   const response = await fetch(url, {
     method: 'POST',
@@ -20,15 +14,13 @@ async function postData<T>(opts: ApiOpts): Promise<Response> {
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(opts.data),
+    body: JSON.stringify(config.data),
   });
 
   if (response.status === 404) {
-    throw new Error('pageNotFound');
+    throw new Error(API_ERROR_MESSAGE.notFound);
   } else if (response.status === 500) {
-    throw new Error('internalServerError');
-  } else if (!response.status.toString().startsWith('2')) {
-    throw await response.json();
+    throw new Error(API_ERROR_MESSAGE.serverProblem);
   }
 
   return response;

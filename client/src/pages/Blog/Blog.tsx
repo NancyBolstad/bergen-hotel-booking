@@ -6,13 +6,12 @@ import { BlogList as BlogListTypes } from '../../types/response';
 import Loader from '../../components/Loader/Loader';
 import usePagination from '../../hooks/usePagination';
 import PaginateButtons from '../../components/Button/PaginateButtons';
-import { BLOG_LIST_SIZE } from '../../util/constants';
+import { BLOG_LIST_SIZE, API_ENDPOINT } from '../../util/constants';
 import BlogList from '../../components/Blog/BlogList';
 
 const Blog: React.FunctionComponent = () => {
   const { results, loading } = useApi<BlogListTypes>({
-    endpoint: `${process.env.REACT_APP_API_URL}blog`,
-    fetchOnMount: true,
+    url: `${process.env.REACT_APP_API_URL}${API_ENDPOINT.blog}`,
     initialData: {
       code: 0,
       data: [],

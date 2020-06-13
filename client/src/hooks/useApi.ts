@@ -1,36 +1,32 @@
 import { useState, useEffect } from 'react';
+import { API_ERROR_MESSAGE } from './../util/constants';
 
-interface Opts<T> {
-  endpoint: string;
-  queryParams?: string;
+interface Config<T> {
+  url: string;
   initialData: T;
-  fetchOnMount?: boolean;
 }
 
-interface UseApiInterface<T> {
+interface ApiResponseData<T> {
   results: T;
   loading: boolean;
-  hasFetched: boolean;
   error: string;
 }
 
-function useApi<T>(opts: Opts<T>): UseApiInterface<T> {
-  const [results, setResults] = useState(opts.initialData);
-  const [hasFetched, setHasFetched] = useState(false);
+function useApi<T>(config: Config<T>): ApiResponseData<T> {
+  const [results, setResults] = useState(config.initialData);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+
   async function fetchData() {
     setLoading(true);
-    setHasFetched(true);
 
     try {
-      const url = opts.queryParams ? `${opts.endpoint}/${opts.queryParams}` : `${opts.endpoint}`;
+      const response = await fetch(config.url);
 
-      const response = await fetch(url);
       if (response.status === 404) {
-        throw new Error('Page Not Found');
+        throw new Error(API_ERROR_MESSAGE.notFound);
       } else if (response.status === 500) {
-        throw new Error('Internal Server Error');
+        throw new Error(API_ERROR_MESSAGE.serverProblem);
       }
 
       const data = await response.json();
@@ -39,20 +35,17 @@ function useApi<T>(opts: Opts<T>): UseApiInterface<T> {
       setResults(data as T);
     } catch (error) {
       setLoading(false);
-      setError('Something went wrong with the API service.');
+      setError(API_ERROR_MESSAGE.default);
     }
   }
 
   useEffect(() => {
-    if (opts.fetchOnMount) {
-      fetchData();
-    }
+    fetchData();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return {
     results,
     loading,
-    hasFetched,
     error,
   };
 }

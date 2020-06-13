@@ -9,14 +9,14 @@ import { FlexKid } from '../../components/Layout/';
 import BookForm from '../../components/BookForm/BookForm';
 import { HotelCard } from '../../components/HotelCards';
 import PlainBanner from '../../components/Banner/PlainBanner';
+import { API_ENDPOINT } from '../../util/constants';
 
 interface Props {}
 
 export const Book: React.FunctionComponent<Props> = () => {
   let { id } = useParams();
   const { results, loading, error } = useApi<HotelDetailsRoot>({
-    endpoint: `${process.env.REACT_APP_API_URL}establishments/${id}`,
-    fetchOnMount: true,
+    url: `${process.env.REACT_APP_API_URL}${API_ENDPOINT.establishments}/${id}`,
     initialData: {
       code: 0,
       data: {

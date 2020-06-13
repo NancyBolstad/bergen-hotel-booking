@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { API_ERROR_MESSAGE } from '../util/constants';
 
 function useDeleteRequest(endpoint: string) {
   const [removedItemId, setRemovedItemId] = useState('');
@@ -15,9 +16,9 @@ function useDeleteRequest(endpoint: string) {
       });
 
       if (response.status === 404) {
-        throw new Error('NotFound');
+        throw new Error(API_ERROR_MESSAGE.notFound);
       } else if (response.status === 500) {
-        throw new Error('internalServerError');
+        throw new Error(API_ERROR_MESSAGE.serverProblem);
       }
 
       if (response.ok) {

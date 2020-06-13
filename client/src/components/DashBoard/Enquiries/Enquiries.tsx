@@ -5,13 +5,13 @@ import { EnquiriesResponse, Enquiry } from '../../../types/response';
 import Loader from '../../Loader/Loader';
 import Table from '../../Table/Table';
 import { Block } from '../styles/common';
+import { API_ENDPOINT } from '../../../util/constants';
 
 interface Props {}
 
 const Enquiries: React.FC<Props> = () => {
   const { results, loading } = useApi<EnquiriesResponse>({
-    endpoint: `${process.env.REACT_APP_API_URL}enquiries`,
-    fetchOnMount: true,
+    url: `${process.env.REACT_APP_API_URL}${API_ENDPOINT.enquires}`,
     initialData: {
       code: 0,
       data: [

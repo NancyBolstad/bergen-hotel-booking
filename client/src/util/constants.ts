@@ -121,7 +121,7 @@ export const FLEX_BANNER_A = {
 };
 
 export const FLEX_BANNER_B = {
-  title: 'Why should you booking with us',
+  title: 'Why should you book with us',
   descriptions: 'Our holiday booking system provides the best accommodations at the best price.',
   figure: {
     url:

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import FlexBanner from '../../components/Banner/FlexBanner';
 import SearchBanner from '../../components/Banner/SearchBanner';
 import BannerGrid from '../../components/Banner/BannerGrid';
@@ -22,6 +23,9 @@ export const Home: React.FunctionComponent<Props> = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Helmet</title>
+      </Helmet>
       <SearchBanner figure={PAGE_HERO_IMG} title="Book accommodations in Bergen at best price" />
       <IconList />
       <BannerGrid

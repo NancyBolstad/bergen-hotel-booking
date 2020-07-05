@@ -1,5 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 import PlainBanner from '../../components/Banner/PlainBanner';
 import useApi from '../../hooks/useApi';
 import { BlogList as BlogListTypes } from '../../types/response';
@@ -28,6 +29,7 @@ const Blog: React.FunctionComponent = () => {
   );
   return (
     <>
+      <Helmet>Blog</Helmet>
       <PlainBanner title="Welcome to our blog" isTitleColorRed />
       {loading ? (
         <Loader />

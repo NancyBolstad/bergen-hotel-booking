@@ -10,7 +10,7 @@ export const DashBoard: React.FunctionComponent<Props> = () => {
   return (
     <>
       <Helmet>
-        <title>Dashboard</title>
+        <title>Dashboard Home | Booking hotels with Holidaze Bergen</title>
       </Helmet>
       <PlainBanner title="Holidaze Dashboard" />
       <DashboardLayout user={user} />

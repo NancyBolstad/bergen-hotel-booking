@@ -24,7 +24,7 @@ export const Home: React.FunctionComponent<Props> = () => {
   return (
     <>
       <Helmet>
-        <title>Helmet</title>
+        <title>Home | Booking hotels with Holidaze Bergen</title>
       </Helmet>
       <SearchBanner figure={PAGE_HERO_IMG} title="Book accommodations in Bergen at best price" />
       <IconList />

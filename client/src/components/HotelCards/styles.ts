@@ -16,7 +16,12 @@ const Wrapper = styled(Flex)`
   }
 `;
 
-const Card = styled.a<{ extraSpace?: boolean; backgroundColor?: keyof IColors }>`
+const Card = styled.a<{
+  extraSpace?: boolean;
+  backgroundColor?: keyof IColors;
+  verticalTransform?: boolean;
+  parallel?: boolean;
+}>`
   background: ${props => props.theme.colors.background};
   display: flex;
   flex-direction: column;
@@ -59,6 +64,18 @@ const Card = styled.a<{ extraSpace?: boolean; backgroundColor?: keyof IColors }>
     css`
       background-color: ${props.theme.colors[props.backgroundColor]};
     `}
+
+    ${props =>
+      props.parallel &&
+      css`
+        width: 100% !important;
+      `}
+
+    ${props =>
+      props.verticalTransform &&
+      css`
+        transform: translate3d(0px, 40.04159px, 0px);
+      `}
 `;
 
 const FeaturedImages = styled(Slider)`

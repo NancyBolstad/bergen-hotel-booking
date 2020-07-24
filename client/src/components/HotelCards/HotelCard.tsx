@@ -12,9 +12,17 @@ export interface HotelCard {
   card: HotelDetails;
   extraSpace?: boolean;
   backgroundColor?: keyof IColors;
+  verticalTransform?: boolean;
+  parallel?: boolean;
 }
 
-const HotelCard: React.FunctionComponent<HotelCard> = ({ card, extraSpace, backgroundColor }) => {
+const HotelCard: React.FunctionComponent<HotelCard> = ({
+  card,
+  extraSpace,
+  backgroundColor,
+  verticalTransform,
+  parallel,
+}) => {
   return (
     <Card
       href={`/accommodation/details/${card.id}`}
@@ -22,6 +30,8 @@ const HotelCard: React.FunctionComponent<HotelCard> = ({ card, extraSpace, backg
       title={`View details about ${card.name}`}
       extraSpace={extraSpace}
       backgroundColor={backgroundColor}
+      verticalTransform={verticalTransform}
+      parallel={parallel}
     >
       {!!card.featuredImages && <FeaturedImages slides={card.featuredImages} />}
       <VerticalSpacer topSpace="xs" bottomSpace="xs">
